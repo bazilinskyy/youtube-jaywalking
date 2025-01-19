@@ -1,0 +1,38 @@
+# Runs and output folders
+runs/
+_output/
+
+# Video and data folders
+video/
+data/
+source_videos/
+
+# Model files
+yolov8x.pt
+
+# Python environment files
+.vscode/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Scripts
+run_download.py
+check.py
+
+# macOS specific files
+**/.DS_Store
+
+# Sublime Text project files
+*.sublime-project
+*.sublime-workspace
+
+# Instance specific files
+config
+secret
+mapping_queue.csv
+
+# Pickle files
+city_coordinates.pkl
+analysis_results.pkl
