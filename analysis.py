@@ -896,7 +896,10 @@ class Analysis():
 
                 # Calculate the duration of the video
                 duration = end - start
-                time_[f'{city}_{state}_{condition}'] = duration
+                if f'{city}_{state}_{condition}' in time_:
+                    time_[f'{city}_{state}_{condition}'] += duration
+                else:
+                    time_[f'{city}_{state}_{condition}'] = duration
 
                 value = dfs.get(key)
 
@@ -905,7 +908,7 @@ class Analysis():
                     first_occurrence = unique_id_indices[0]
                     last_occurrence = unique_id_indices[-1]
 
-                    # Check if YOLO_id = 9 exists within the specified index range
+                    # Check if YOLO_id = 9 and 11 exists within the specified index range
                     yolo_id_9_exists = any(
                         value.loc[first_occurrence:last_occurrence, 'YOLO_id'].isin([9, 11]))
                     yolo_id_9_not_exists = not any(
@@ -920,7 +923,7 @@ class Analysis():
                                                                          0) + counter_exists
                 counter_2[f'{city}_{state}_{condition}'] = counter_2.get(f'{city}_{state}_{condition}',
                                                                          0) + counter_nt_exists
-
+        print(time_)
         return counter_1, counter_2, time_
 
     @staticmethod
@@ -1233,7 +1236,7 @@ class Analysis():
         ]
 
         # Add vertical legends with the positions you will provide
-        x_legend_position = 0.205  # Position close to the left edge
+        x_legend_position = 0.4  # Position close to the left edge
         y_legend_start_bottom = 0.65  # Lower position to the bottom left corner
 
         # Add the vertical legends at the top and bottom
@@ -1245,7 +1248,7 @@ class Analysis():
             type="rect", xref="paper", yref="paper",
             x0=x_legend_position,  # Adjust x0 to control the left edge of the box
             y0=y_legend_start_bottom + 0.01,  # Adjust y0 to control the top of the box
-            x1=x_legend_position + 0.29,  # Adjust x1 to control the right edge of the box
+            x1=x_legend_position + 0.095,  # Adjust x1 to control the right edge of the box
             y1=y_legend_start_bottom - len(legend_items) * 0.03 + 0.02,  # Adjust y1 to control the bottom of the box
             line=dict(color="black", width=2),  # Black border for the box
             fillcolor="rgba(255,255,255,0.7)"  # White fill with transparency
@@ -1316,7 +1319,7 @@ class Analysis():
         # Final adjustments and display
         fig.update_layout(margin=dict(l=80, r=100, t=150, b=180))
         Analysis.save_plotly_figure(fig, "count_of_pedestrian_crossing_without_traffic_equipment_avg",
-                                    width=2400, height=3200, scale=3, save_final=True)
+                                    width=7016, height=4960, scale=3, save_final=True)
 
     @staticmethod
     def plot_crossing_with_traffic_light(df_mapping):
@@ -1546,12 +1549,12 @@ class Analysis():
 
         # Define the legend items
         legend_items = [
-            {"name": "Road crossings with traffic signals during day", "color": common.get_configs('bar_colour_1')},
-            {"name": "Road crossings with traffic signals during night", "color": common.get_configs('bar_colour_2')},
+            {"name": "Pedestrian crossings at signals by day", "color": common.get_configs('bar_colour_1')},
+            {"name": "Pedestrian crossings at signals by night", "color": common.get_configs('bar_colour_2')},
         ]
 
         # Add vertical legends with the positions you will provide
-        x_legend_position = 0.30  # Position close to the left edge
+        x_legend_position = 0.37  # Position close to the left edge
         y_legend_start_bottom = 0.65  # Lower position to the bottom left corner
 
         # Add the vertical legends at the top and bottom
@@ -1563,7 +1566,7 @@ class Analysis():
             type="rect", xref="paper", yref="paper",
             x0=x_legend_position,  # Adjust x0 to control the left edge of the box
             y0=y_legend_start_bottom + 0.01,  # Adjust y0 to control the top of the box
-            x1=x_legend_position + 0.195,  # Adjust x1 to control the right edge of the box
+            x1=x_legend_position + 0.125,  # Adjust x1 to control the right edge of the box
             y1=y_legend_start_bottom - len(legend_items) * 0.03 + 0.02,  # Adjust y1 to control the bottom of the box
             line=dict(color="black", width=2),  # Black border for the box
             fillcolor="rgba(255,255,255,0.7)"  # White fill with transparency
@@ -1634,7 +1637,7 @@ class Analysis():
         # Final adjustments and display
         fig.update_layout(margin=dict(l=80, r=100, t=150, b=180))
         Analysis.save_plotly_figure(fig, "count_of_pedestrian_crossing_with_traffic_equipment_avg",
-                                    width=2400, height=3200, scale=3, save_final=True)
+                                    width=7016, height=4960, scale=3, save_final=True)
 
     @staticmethod
     def plot_crossing_with_and_without_traffic_light(df_mapping):
@@ -2288,7 +2291,7 @@ class Analysis():
         )
 
         # Manually add gridlines using `shapes`
-        x_grid_values = [10, 20, 30, 40, 50, 60, 70, 80, 90]  # Define the gridline positions on the x-axis
+        x_grid_values = [1, 2, 3, 4, 5, 6, 7]  # Define the gridline positions on the x-axis
         for x in x_grid_values:
             fig.add_shape(
                 type="line",
@@ -2322,12 +2325,12 @@ class Analysis():
 
         # Define the legend items
         legend_items = [
-            {"name": "Jaywalking count during day (normalised)", "color": common.get_configs('bar_colour_1')},
-            {"name": "Jaywalking count during night (normalised)", "color": common.get_configs('bar_colour_2')},
+            {"name": "Jaywalking count during day", "color": common.get_configs('bar_colour_1')},
+            {"name": "Jaywalking count during night", "color": common.get_configs('bar_colour_2')},
         ]
 
         # Add vertical legends with the positions you will provide
-        x_legend_position = 0.35  # Position close to the left edge
+        x_legend_position = 0.4  # Position close to the left edge
         y_legend_start_bottom = 0.65  # Lower position to the bottom left corner
 
         # Add the vertical legends at the top and bottom
@@ -2339,7 +2342,7 @@ class Analysis():
             type="rect", xref="paper", yref="paper",
             x0=x_legend_position,  # Adjust x0 to control the left edge of the box
             y0=y_legend_start_bottom + 0.01,  # Adjust y0 to control the top of the box
-            x1=x_legend_position + 0.145,  # Adjust x1 to control the right edge of the box
+            x1=x_legend_position + 0.095,  # Adjust x1 to control the right edge of the box
             y1=y_legend_start_bottom - len(legend_items) * 0.03 + 0.02,  # Adjust y1 to control the bottom of the box
             line=dict(color="black", width=2),  # Black border for the box
             fillcolor="rgba(255,255,255,0.7)"  # White fill with transparency
@@ -2411,7 +2414,7 @@ class Analysis():
         fig.update_layout(margin=dict(l=80, r=100, t=150, b=180))
         Analysis.save_plotly_figure(fig, "count_of_pedestrian_crossing_without_traffic_equipment_norm",
                                     width=7016, height=4960, scale=3, save_final=True)
-        
+
     @staticmethod
     def plot_crossing_with_traffic_light_norm(df_mapping):
         final_dict = {}
@@ -2605,7 +2608,7 @@ class Analysis():
         )
 
         # Manually add gridlines using `shapes`
-        x_grid_values = [10, 20, 30, 40, 50, 60, 70, 80, 90]  # Define the gridline positions on the x-axis
+        x_grid_values = [2, 4, 6, 8, 10]  # Define the gridline positions on the x-axis
         for x in x_grid_values:
             fig.add_shape(
                 type="line",
@@ -2639,12 +2642,12 @@ class Analysis():
 
         # Define the legend items
         legend_items = [
-            {"name": "Road crossings with traffic signals during day", "color": common.get_configs('bar_colour_1')},
-            {"name": "Road crossings with traffic signals during day", "color": common.get_configs('bar_colour_2')},
+            {"name": "Pedestrian crossings at signals by day", "color": common.get_configs('bar_colour_1')},
+            {"name": "Pedestrian crossings at signals by night", "color": common.get_configs('bar_colour_2')},
         ]
 
         # Add vertical legends with the positions you will provide
-        x_legend_position = 0.30  # Position close to the left edge
+        x_legend_position = 0.37  # Position close to the left edge
         y_legend_start_bottom = 0.65  # Lower position to the bottom left corner
 
         # Add the vertical legends at the top and bottom
@@ -2656,7 +2659,7 @@ class Analysis():
             type="rect", xref="paper", yref="paper",
             x0=x_legend_position,  # Adjust x0 to control the left edge of the box
             y0=y_legend_start_bottom + 0.01,  # Adjust y0 to control the top of the box
-            x1=x_legend_position + 0.195,  # Adjust x1 to control the right edge of the box
+            x1=x_legend_position + 0.125,  # Adjust x1 to control the right edge of the box
             y1=y_legend_start_bottom - len(legend_items) * 0.03 + 0.02,  # Adjust y1 to control the bottom of the box
             line=dict(color="black", width=2),  # Black border for the box
             fillcolor="rgba(255,255,255,0.7)"  # White fill with transparency
