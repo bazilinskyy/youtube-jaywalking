@@ -864,7 +864,7 @@ class Analysis():
 
     @staticmethod
     def crossing_event_wt_traffic_equipment(df_mapping, dfs, data):
-        """Plots traffic mortality rate vs percentage of crossing events without traffic light.
+        """Crossing events with respect to traffic equipment.
 
         Args:
             df_mapping (dict): Mapping of video keys to relevant information.
@@ -872,6 +872,7 @@ class Analysis():
             data (dict): Dictionary containing pedestrian crossing data.
         """
         time_ = {}
+        population_ = {}
         counter_1, counter_2 = {}, {}
 
         # For a specific id of a person search for the first and last occurrence of that id and see if the traffic
@@ -923,18 +924,20 @@ class Analysis():
                                                                          0) + counter_exists
                 counter_2[f'{city}_{state}_{condition}'] = counter_2.get(f'{city}_{state}_{condition}',
                                                                          0) + counter_nt_exists
-        print(time_)
-        return counter_1, counter_2, time_
+                # add population of country for normalisation
+                population_[f'{city}_{state}_{condition}'] = population
+        return counter_1, counter_2, time_, population_
 
     @staticmethod
     def nomalised_crossing_wth_traffic_equipment(df_mapping, dfs, data):
         var_exist, var_nt_exist = {}, {}
-        with_traffic_instr, without_traffic_instr, time = Analysis.crossing_event_wt_traffic_equipment(df_mapping,
-                                                                                                       dfs, data)
+        with_traffic_instr, without_traffic_instr, time, population = Analysis.crossing_event_wt_traffic_equipment(df_mapping,  # noqa: E501
+                                                                                                                   dfs, data)  # noqa: E501
 
         for key, value in time.items():
-            var_exist[key] = ((with_traffic_instr[key] * 60) / time[key])
-            var_nt_exist[key] = ((without_traffic_instr[key] * 60) / time[key])
+            var_exist[key] = ((with_traffic_instr[key] * 60) / time[key] / population[key])
+            var_nt_exist[key] = ((without_traffic_instr[key] * 60) / time[key] / population[key])
+            print(key, var_exist[key], var_exist[key])
 
         return var_exist, var_nt_exist
 
@@ -2834,7 +2837,7 @@ if __name__ == "__main__":
             traffic_light_counter += Analysis.count_object(dfs[key], 9)
             stop_sign_counter += Analysis.count_object(dfs[key], 11)
 
-        with_trf_light, without_trf_light, _ = Analysis.crossing_event_wt_traffic_equipment(df_mapping, dfs, data)
+        with_trf_light, without_trf_light, _, _ = Analysis.crossing_event_wt_traffic_equipment(df_mapping, dfs, data)
         with_trf_light_norm, without_trf_light_norm = Analysis.nomalised_crossing_wth_traffic_equipment(df_mapping,
                                                                                                         dfs, data)
         speed_values = Analysis.calculate_speed_of_crossing(df_mapping, dfs, data)
