@@ -2801,6 +2801,8 @@ if __name__ == "__main__":
     logger.info("Total number of videos: {}", Analysis.calculate_total_videos(df_mapping))
     country, number = Analysis.get_unique_values(df_mapping, "country")
     logger.info("Total number of countries: {}", number)
+    city, number = Analysis.get_unique_values(df_mapping, "city")
+    logger.info("Total number of cities: {}", number)
 
     if os.path.exists(pickle_file_path):
         # Load the data from the pickle file
@@ -2864,11 +2866,11 @@ if __name__ == "__main__":
 
     # Analysis.get_world_plot(df_mapping)
     # Todo
-    # Analysis.plot_crossing_with_and_without_traffic_light(df_mapping)
-    # Analysis.plot_crossing_without_traffic_light(df_mapping)
-    # Analysis.plot_crossing_without_traffic_light_norm(df_mapping)
-    # Analysis.plot_crossing_with_traffic_light(df_mapping)
-    # Analysis.plot_crossing_with_traffic_light_norm(df_mapping)
+    Analysis.plot_crossing_with_and_without_traffic_light(df_mapping)
+    Analysis.plot_crossing_without_traffic_light(df_mapping)
+    Analysis.plot_crossing_without_traffic_light_norm(df_mapping)
+    Analysis.plot_crossing_with_traffic_light(df_mapping)
+    Analysis.plot_crossing_with_traffic_light_norm(df_mapping)
     Analysis.scatter_with_and_without_traffic_light_norm(df_mapping)
 
     logger.info("Analysis completed.")
