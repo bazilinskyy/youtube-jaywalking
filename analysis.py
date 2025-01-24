@@ -1075,7 +1075,7 @@ class Analysis():
                     text=[''], textposition='auto', showlegend=False), row=row, col=1)
 
             elif day_crossing[i] is not None:  # Only day data available
-                value = (day_crossing[i])/2
+                value = (day_crossing[i])
                 fig.add_trace(go.Bar(
                     x=[day_crossing[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in day",
@@ -1084,7 +1084,7 @@ class Analysis():
                     textfont=dict(size=14, color='white')), row=row, col=1)
 
             elif night_crossing[i] is not None:  # Only night data available
-                value = (night_crossing[i])/2
+                value = (night_crossing[i])
                 fig.add_trace(go.Bar(
                     x=[night_crossing[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in night",
@@ -1114,7 +1114,7 @@ class Analysis():
                     text=[''], textposition='inside', showlegend=False), row=row, col=2)
 
             elif day_crossing[idx] is not None:
-                value = (day_crossing[idx])/2
+                value = (day_crossing[idx])
                 fig.add_trace(go.Bar(
                     x=[day_crossing[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in day",
@@ -1123,7 +1123,7 @@ class Analysis():
                     textfont=dict(size=14, color='white')), row=row, col=2)
 
             elif night_crossing[idx] is not None:
-                value = (night_crossing[idx])/2
+                value = (night_crossing[idx])
                 fig.add_trace(go.Bar(
                     x=[night_crossing[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in night",
@@ -1393,7 +1393,7 @@ class Analysis():
                     text=[''], textposition='auto', showlegend=False), row=row, col=1)
 
             elif day_crossing[i] is not None:  # Only day data available
-                value = (day_crossing[i])/2
+                value = (day_crossing[i])
                 fig.add_trace(go.Bar(
                     x=[day_crossing[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing with traffic light in day",
@@ -1402,7 +1402,7 @@ class Analysis():
                     textfont=dict(size=14, color='white')), row=row, col=1)
 
             elif night_crossing[i] is not None:  # Only night data available
-                value = (night_crossing[i])/2
+                value = (night_crossing[i])
                 fig.add_trace(go.Bar(
                     x=[night_crossing[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing with traffic light in night",
@@ -1432,7 +1432,7 @@ class Analysis():
                     text=[''], textposition='inside', showlegend=False), row=row, col=2)
 
             elif day_crossing[idx] is not None:
-                value = (day_crossing[idx])/2
+                value = (day_crossing[idx])
                 fig.add_trace(go.Bar(
                     x=[day_crossing[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing with traffic light in day",
@@ -1441,7 +1441,7 @@ class Analysis():
                     textfont=dict(size=14, color='white')), row=row, col=2)
 
             elif night_crossing[idx] is not None:
-                value = (night_crossing[idx])/2
+                value = (night_crossing[idx])
                 fig.add_trace(go.Bar(
                     x=[night_crossing[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing with traffic light in night",
@@ -1748,7 +1748,7 @@ class Analysis():
                     text=[''], textposition='auto', showlegend=False), row=row, col=1)
 
             elif day_crossing_without[i] is not None:  # Only day data available
-                value = (day_crossing_without[i])/2
+                value = (day_crossing_without[i])
                 fig.add_trace(go.Bar(
                     x=[day_crossing_without[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in day",
@@ -1757,7 +1757,7 @@ class Analysis():
                     textfont=dict(size=28, color='white')), row=row, col=1)
 
             elif night_crossing_without[i] is not None:  # Only night data available
-                value = (night_crossing_without[i])/2
+                value = (night_crossing_without[i])
                 fig.add_trace(go.Bar(
                     x=[night_crossing_without[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in night",
@@ -1780,7 +1780,7 @@ class Analysis():
                     textposition='auto', showlegend=False), row=row, col=1)
 
             elif day_crossing_with[i] is not None:  # Only day time data available
-                value = (day_crossing_with[i])/2
+                value = (day_crossing_with[i])
                 fig.add_trace(go.Bar(
                     x=[day_crossing_with[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} time during day", marker=dict(color=common.get_configs('bar_colour_3')),
@@ -1788,7 +1788,7 @@ class Analysis():
                     textfont=dict(size=28, color='white')), row=row, col=1)
 
             elif night_crossing_with[i] is not None:  # Only night time data available
-                value = (night_crossing_with[i])/2
+                value = (night_crossing_with[i])
                 fig.add_trace(go.Bar(
                     x=[night_crossing_with[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} time during night", marker=dict(color=common.get_configs('bar_colour_4')),
@@ -1817,7 +1817,7 @@ class Analysis():
                     text=[''], textposition='inside', showlegend=False), row=row, col=2)
 
             elif day_crossing_without[idx] is not None:
-                value = (day_crossing_without[idx])/2
+                value = (day_crossing_without[idx])
                 fig.add_trace(go.Bar(
                     x=[day_crossing_without[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in day",
@@ -1826,7 +1826,7 @@ class Analysis():
                     textfont=dict(size=28, color='white')), row=row, col=2)
 
             elif night_crossing_without[idx] is not None:
-                value = (night_crossing_without[idx])/2
+                value = (night_crossing_without[idx])
                 fig.add_trace(go.Bar(
                     x=[night_crossing_without[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in night",
@@ -1848,7 +1848,7 @@ class Analysis():
                     textposition='inside', showlegend=False), row=row, col=2)
 
             elif day_crossing_with[idx] is not None:  # Only day time data available
-                value = (day_crossing_with[idx])/2
+                value = (day_crossing_with[idx])
                 fig.add_trace(go.Bar(
                     x=[day_crossing_with[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} time during day", marker=dict(color=common.get_configs('bar_colour_3')),
@@ -1856,7 +1856,7 @@ class Analysis():
                     textfont=dict(size=28, color='white')), row=row, col=2)
 
             elif night_crossing_with[idx] is not None:  # Only night time data available
-                value = (night_crossing_with[idx])/2
+                value = (night_crossing_with[idx])
                 fig.add_trace(go.Bar(
                     x=[night_crossing_with[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} time during night", marker=dict(color=common.get_configs('bar_colour_4')),
@@ -2170,7 +2170,7 @@ class Analysis():
                     text=[''], textposition='auto', showlegend=False), row=row, col=1)
 
             elif day_crossing[i] is not None:  # Only day data available
-                value = (day_crossing[i])/2
+                value = (day_crossing[i])
                 fig.add_trace(go.Bar(
                     x=[day_crossing[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in day",
@@ -2179,7 +2179,7 @@ class Analysis():
                     textfont=dict(size=14, color='white')), row=row, col=1)
 
             elif night_crossing[i] is not None:  # Only night data available
-                value = (night_crossing[i])/2
+                value = (night_crossing[i])
                 fig.add_trace(go.Bar(
                     x=[night_crossing[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in night",
@@ -2209,7 +2209,7 @@ class Analysis():
                     text=[''], textposition='inside', showlegend=False), row=row, col=2)
 
             elif day_crossing[idx] is not None:
-                value = (day_crossing[idx])/2
+                value = (day_crossing[idx])
                 fig.add_trace(go.Bar(
                     x=[day_crossing[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in day",
@@ -2218,7 +2218,7 @@ class Analysis():
                     textfont=dict(size=14, color='white')), row=row, col=2)
 
             elif night_crossing[idx] is not None:
-                value = (night_crossing[idx])/2
+                value = (night_crossing[idx])
                 fig.add_trace(go.Bar(
                     x=[night_crossing[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing without traffic light in night",
@@ -2487,7 +2487,7 @@ class Analysis():
                     text=[''], textposition='auto', showlegend=False), row=row, col=1)
 
             elif day_crossing[i] is not None:  # Only day data available
-                value = (day_crossing[i])/2
+                value = (day_crossing[i])
                 fig.add_trace(go.Bar(
                     x=[day_crossing[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing with traffic light in day",
@@ -2496,7 +2496,7 @@ class Analysis():
                     textfont=dict(size=14, color='white')), row=row, col=1)
 
             elif night_crossing[i] is not None:  # Only night data available
-                value = (night_crossing[i])/2
+                value = (night_crossing[i])
                 fig.add_trace(go.Bar(
                     x=[night_crossing[i]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing with traffic light in night",
@@ -2526,7 +2526,7 @@ class Analysis():
                     text=[''], textposition='inside', showlegend=False), row=row, col=2)
 
             elif day_crossing[idx] is not None:
-                value = (day_crossing[idx])/2
+                value = (day_crossing[idx])
                 fig.add_trace(go.Bar(
                     x=[day_crossing[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing with traffic light in day",
@@ -2535,7 +2535,7 @@ class Analysis():
                     textfont=dict(size=14, color='white')), row=row, col=2)
 
             elif night_crossing[idx] is not None:
-                value = (night_crossing[idx])/2
+                value = (night_crossing[idx])
                 fig.add_trace(go.Bar(
                     x=[night_crossing[idx]], y=[f'{city} {value:.2f}'], orientation='h',
                     name=f"{city} crossing with traffic light in night",
@@ -2755,9 +2755,11 @@ class Analysis():
                     cities.append("")
                 conditions.append(condition)
                 time_cal.append(with_trf_light.get(key))
-                y_axis[f'{city}_{state}_{condition}'] = with_trf_light.get(key)
+                y_axis[f'{city}_{state}_{condition}'] = without_trf_light.get(key)
                 counts.append(value)
                 continents.append(Analysis.get_value(df_mapping, "city", city, "state", state, "continent"))
+
+        print(time_cal, y_axis)
 
         # Plot the scatter diagram
         Analysis.plot_scatter_diag(x=time_cal, y=y_axis, size=[0.01]*len(y_axis), color=continents, symbol=conditions,
@@ -2863,10 +2865,10 @@ if __name__ == "__main__":
     # Analysis.get_world_plot(df_mapping)
     # Todo
     # Analysis.plot_crossing_with_and_without_traffic_light(df_mapping)
-    Analysis.plot_crossing_without_traffic_light(df_mapping)
-    Analysis.plot_crossing_without_traffic_light_norm(df_mapping)
-    Analysis.plot_crossing_with_traffic_light(df_mapping)
-    Analysis.plot_crossing_with_traffic_light_norm(df_mapping)
+    # Analysis.plot_crossing_without_traffic_light(df_mapping)
+    # Analysis.plot_crossing_without_traffic_light_norm(df_mapping)
+    # Analysis.plot_crossing_with_traffic_light(df_mapping)
+    # Analysis.plot_crossing_with_traffic_light_norm(df_mapping)
     Analysis.scatter_with_and_without_traffic_light_norm(df_mapping)
 
     logger.info("Analysis completed.")
