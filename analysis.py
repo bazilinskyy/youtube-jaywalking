@@ -90,7 +90,7 @@ class Analysis():
 
     @staticmethod
     def save_plotly_figure(fig, filename, scatter_plot_flag=False, width=1600, height=900, scale=3, save_final=True):
-        """Saves a Plotly figure as HTML, PNG, SVG, and EPS formats.
+        """Saves a Plotly figure as HTML, PNG, and EPS formats.
 
         Args:
             fig (plotly.graph_objs.Figure): Plotly figure object.
@@ -124,10 +124,10 @@ class Analysis():
             if save_final:
                 fig.write_image(os.path.join(output_final, filename + ".png"), scale=scale)
         else:
-            fig.write_image(os.path.join(output_folder, filename + ".png"), width=width, height=height, scale=scale)
+            fig.write_image(os.path.join(output_folder, filename + ".png"), width=width, height=height, scale=1)
             # also save the final figure
             if save_final:
-                fig.write_image(os.path.join(output_final, filename + ".png"), width=width, height=height, scale=scale)
+                fig.write_image(os.path.join(output_final, filename + ".png"), width=width, height=height, scale=1)
 
         # Save as EPS
         fig.write_image(os.path.join(output_folder, filename + ".eps"), width=width, height=height)
@@ -937,7 +937,6 @@ class Analysis():
         for key, value in time.items():
             var_exist[key] = ((with_traffic_instr[key] * 60) / time[key] / population[key])
             var_nt_exist[key] = ((without_traffic_instr[key] * 60) / time[key] / population[key])
-            print(key, var_exist[key], var_exist[key])
 
         return var_exist, var_nt_exist
 
@@ -2759,8 +2758,6 @@ class Analysis():
                 counts.append(value)
                 continents.append(Analysis.get_value(df_mapping, "city", city, "state", state, "continent"))
 
-        print(time_cal, y_axis)
-
         # Plot the scatter diagram
         Analysis.plot_scatter_diag(x=time_cal, y=y_axis, size=[0.01]*len(y_axis), color=continents, symbol=conditions,
                                    city=cities, plot_name="with_and_without_traffic_light",
@@ -2865,8 +2862,6 @@ if __name__ == "__main__":
     logger.info(f"cellphone: {cellphone_counter}; traffic light: {traffic_light_counter}; sign: {stop_sign_counter}")
 
     # Analysis.get_world_plot(df_mapping)
-    # Todo
-    Analysis.plot_crossing_with_and_without_traffic_light(df_mapping)
     Analysis.plot_crossing_without_traffic_light(df_mapping)
     Analysis.plot_crossing_without_traffic_light_norm(df_mapping)
     Analysis.plot_crossing_with_traffic_light(df_mapping)
