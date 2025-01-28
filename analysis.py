@@ -2866,6 +2866,6 @@ if __name__ == "__main__":
     Analysis.plot_crossing_without_traffic_light_norm(df_mapping)
     Analysis.plot_crossing_with_traffic_light(df_mapping)
     Analysis.plot_crossing_with_traffic_light_norm(df_mapping)
-    Analysis.scatter_with_and_without_traffic_light_norm(df_mapping)
+    # Analysis.scatter_with_and_without_traffic_light_norm(df_mapping)
 
     logger.info("Analysis completed.")
