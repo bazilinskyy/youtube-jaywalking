@@ -87,30 +87,30 @@ Configuration of the project needs to be defined in `config`. Please use the `de
 
 ## Description and analysis of dataset
 ### Description of dataset
-[![Locations of cities with footage in dataset](figures/map.png)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-jaywalking/blob/main/figures/map.html)
+[![Locations of cities with footage in dataset](figures/map.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-jaywalking/blob/main/figures/map.html)
 The countries with dashcam footage included in analysis on the political map (coloured by continent). Black dots show the cities included.
 
-[![Total time of footage over number of detected pedestrians](figures/scatter_total_time-person.png)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-jaywalking/blob/main/figures/scatter_total_time-person.html)
+[![Total time of footage over number of detected pedestrians](figures/scatter_total_time-person.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-jaywalking/blob/main/figures/scatter_total_time-person.html)
 Total time of footage over number of detected pedestrians.
 
 ### Jaywalking behaviour
-[![Crossing events without traffic lights during daytime and night](figures/scatter_without_trf_light_day-without_trf_light_night.html.png)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-jaywalking/blob/main/figures/scatter_without_trf_light_day-without_trf_light_night.html.html)
+[![Crossing events without traffic lights during daytime and night](figures/scatter_without_trf_light_day-without_trf_light_night.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-jaywalking/blob/main/figures/scatter_without_trf_light_day-without_trf_light_night.html)
 Crossing events without traffic lights during daytime and night.
 
-[![Map with heatmap based on the amount of crossing events without traffic lights during daytime](figures/map_without_trf_light_day.html?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-national/blob/main/figures/map_without_trf_light_day.html)
+[![Map with heatmap based on the amount of crossing events without traffic lights during daytime](figures/map_without_trf_light_day.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-national/blob/main/figures/map_without_trf_light_day.html)
 Map with heatmap based on the amount of crossing events without traffic lights during daytime.
 
-[![Map with heatmap based on the amount of crossing events without traffic lights during night](figures/map_without_trf_light_night?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-national/blob/main/figures/map_without_trf_light_night.html)
+[![Map with heatmap based on the amount of crossing events without traffic lights during night](figures/map_without_trf_light_night.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-national/blob/main/figures/map_without_trf_light_night.html)
 Map with heatmap based on the amount of crossing events without traffic lights during night.
 
 ### Correlation matrices
-[![Correlation matrix based on average speed and time to start cross](figures/correlation_matrix_heatmap_averaged.png)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-jaywalking/blob/main/figures/correlation_matrix_heatmap_averaged.html)
+[![Correlation matrix based on average speed and time to start cross](figures/correlation_matrix_heatmap_averaged.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-jaywalking/blob/main/figures/correlation_matrix_heatmap_averaged.html)
 Correlation matrix.
 
-[![Correlation matrix at daytime](figures/correlation_matrix_heatmap_day.png)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-national/blob/main/figures/correlation_matrix_heatmap_day.html)
+[![Correlation matrix at daytime](figures/correlation_matrix_heatmap_day.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-national/blob/main/figures/correlation_matrix_heatmap_day.html)
 Correlation matrix at daytime.
 
-[![Correlation matrix at night time](figures/correlation_matrix_heatmap_night.png)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-national/blob/main/figures/correlation_matrix_heatmap_night.html)
+[![Correlation matrix at night time](figures/correlation_matrix_heatmap_night.png?raw=true)](https://htmlpreview.github.io/?https://github.com/bazilinskyy/youtube-national/blob/main/figures/correlation_matrix_heatmap_night.html)
 Correlation matrix at night time.
 
 ## License

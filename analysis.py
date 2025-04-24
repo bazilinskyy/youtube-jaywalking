@@ -23,6 +23,8 @@ import shutil
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 from datetime import datetime
+from moviepy.video.io.VideoFileClip import VideoFileClip
+
 
 # Suppress the specific FutureWarning
 warnings.filterwarnings("ignore", category=FutureWarning, module="plotly")
@@ -1253,6 +1255,8 @@ class Analysis():
                         value.loc[first_occurrence:last_occurrence, 'YOLO_id'].isin([9, 11]))
 
                     if yolo_id_9_exists:
+                        # Save video of event to location
+                        Analysis.save_video_event(key + "_" + start, time)
                         counter_exists += 1
                     if yolo_id_9_not_exists:
                         counter_nt_exists += 1
@@ -1260,6 +1264,24 @@ class Analysis():
                 counter_1[f'{country}_{condition}'] = counter_1.get(f'{country}_{condition}', 0) + counter_exists
                 counter_2[f'{country}_{condition}'] = counter_2.get(f'{country}_{condition}', 0) + counter_nt_exists
         return counter_1, counter_2, time_
+
+    @staticmethod
+    def save_video_event(video_id, time, yolo_overlay=False, folder="videos_events"):
+        # Save video of event to location
+        folder = os.path.join(common.output_dir, folder)
+        os.makedirs(common.output_dir, exist_ok=True)  # check if folder exists
+        original_video_path = os.path.join(common.output_dir, video_id + ".mp4")
+        output_video_path = os.path.join(folder, video_id + "_" + str(time) + ".mp4")
+        try:
+            with VideoFileClip(original_video_path) as video:
+                video_duration = video.duration  # in seconds
+                start_time = max(0, time - 5)
+                end_time = min(video_duration, time + 5)
+                clip = video.subclip(start_time, end_time)
+                clip.write_videofile(output_video_path, codec="libx264", audio=False)
+            logger.debug(f"Saved video of event to {output_video_path}.")
+        except Exception as e:
+            logger.error(f"Failed to save video {output_video_path}: {e}")
 
     # TODO: combine methods for looking at crossing events with/without traffic lights
     @staticmethod
@@ -3299,7 +3321,7 @@ class Analysis():
         #                 if all(pd.api.types.is_numeric_dtype(filtered_df[c]) for c in condition_cols):
         #                     agg_df[feature_name] = filtered_df[condition_cols].mean(axis=1)
         #                 else:
-        #                     print(f"Skipping non-numeric feature: {feature_name}")
+        #                     logger.debug(f"Skipping non-numeric feature: {feature_name}")
 
         #         else:
         #             agg_df[col] = filtered_df[col]
@@ -3709,12 +3731,13 @@ if __name__ == "__main__":
 
         logger.info("Loaded analysis results from pickle file.")
     else:
-        # Stores the mapping file
+        # Store the mapping file
         df_mapping = pd.read_csv(common.get_configs("mapping"))
         
-        # limit countries
+        # Limit countries if required
         countries_include = common.get_configs("countries_analyse")
-        df_mapping = df_mapping[df_mapping["iso3"].isin(common.get_configs("countries_analyse"))]
+        if countries_include:
+            df_mapping = df_mapping[df_mapping["iso3"].isin(common.get_configs("countries_analyse"))]
 
         pedestrian_crossing_count, data = {}, {}
         person_counter, bicycle_counter, car_counter, motorcycle_counter = 0, 0, 0, 0
