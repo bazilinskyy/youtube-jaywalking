@@ -1256,7 +1256,8 @@ class Analysis():
 
                     if yolo_id_9_exists:
                         # Save video of event to location
-                        Analysis.save_video_event(key + "_" + start, time)
+                        video_id, start_index = key.rsplit("_", 1)  # split to extract id and index
+                        Analysis.save_event_video(video_id, time)
                         counter_exists += 1
                     if yolo_id_9_not_exists:
                         counter_nt_exists += 1
@@ -1266,17 +1267,25 @@ class Analysis():
         return counter_1, counter_2, time_
 
     @staticmethod
-    def save_video_event(video_id, time, yolo_overlay=False, folder="videos_events"):
+    def save_event_video(video_id, time, yolo_overlay=False, folder="event_videos"):
         # Save video of event to location
         folder = os.path.join(common.output_dir, folder)
-        os.makedirs(common.output_dir, exist_ok=True)  # check if folder exists
-        original_video_path = os.path.join(common.output_dir, video_id + ".mp4")
+        os.makedirs(folder, exist_ok=True)  # check if folder exists
+        # Find video
+        video_filename = video_id + ".mp4"
+        original_video_path = None
+        for path in common.get_configs('videos'):
+            candidate_path = os.path.join(path, video_filename)
+            if os.path.isfile(candidate_path):
+                original_video_path = candidate_path
+                break
         output_video_path = os.path.join(folder, video_id + "_" + str(time) + ".mp4")
         try:
             with VideoFileClip(original_video_path) as video:
                 video_duration = video.duration  # in seconds
                 start_time = max(0, time - 5)
                 end_time = min(video_duration, time + 5)
+                print(output_video_path, start_time, end_time)
                 clip = video.subclip(start_time, end_time)
                 clip.write_videofile(output_video_path, codec="libx264", audio=False)
             logger.debug(f"Saved video of event to {output_video_path}.")
@@ -4036,77 +4045,77 @@ if __name__ == "__main__":
     columns_remove = ['videos', 'time_of_day', 'start_time', 'end_time', 'upload_date', 'fps_list', 'vehicle_type']
     hover_data = list(set(df_countries.columns) - set(columns_remove))
 
-    # Map with no images
-    Analysis.map_political(df=df_countries, df_mapping=df_mapping, show_cities=True, show_images=False,
-                           hover_data=hover_data, save_file=True, save_final=True)
+    # # Map with no images
+    # Analysis.map_political(df=df_countries, df_mapping=df_mapping, show_cities=True, show_images=False,
+    #                        hover_data=hover_data, save_file=True, save_final=True)
 
-    # Amount of footage
-    Analysis.scatter(df=df_countries,
-                     x="total_time",
-                     y="person",
-                     color="continent",
-                     text="iso3",
-                     xaxis_title='Total time of footage (s)',
-                     yaxis_title='Number of detected pedestrians',
-                     pretty_text=False,
-                     marker_size=10,
-                     save_file=True,
-                     hover_data=hover_data,
-                     hover_name="country",
-                     legend_title="",
-                     legend_x=0.01,
-                     legend_y=1.0,
-                     label_distance_factor=0.1,
-                     marginal_x=None,  # type: ignore
-                     marginal_y=None)  # type: ignore
+    # # Amount of footage
+    # Analysis.scatter(df=df_countries,
+    #                  x="total_time",
+    #                  y="person",
+    #                  color="continent",
+    #                  text="iso3",
+    #                  xaxis_title='Total time of footage (s)',
+    #                  yaxis_title='Number of detected pedestrians',
+    #                  pretty_text=False,
+    #                  marker_size=10,
+    #                  save_file=True,
+    #                  hover_data=hover_data,
+    #                  hover_name="country",
+    #                  legend_title="",
+    #                  legend_x=0.01,
+    #                  legend_y=1.0,
+    #                  label_distance_factor=0.1,
+    #                  marginal_x=None,  # type: ignore
+    #                  marginal_y=None)  # type: ignore
 
-    Analysis.correlation_matrix(df_countries)
+    # Analysis.correlation_matrix(df_countries)
 
-    # With traffic lights vs without traffic lights
-    df = df_countries[df_countries["without_trf_light_day"] != 0].copy()
-    df = df[df["without_trf_light_night"] != 0]
-    Analysis.scatter(df=df,
-                     x="without_trf_light_day",
-                     y="without_trf_light_night",
-                     color="continent",
-                     text="iso3",
-                     xaxis_title='Crossing events without traffic light during daytime',
-                     yaxis_title='Crossing events without traffic light during night',
-                     pretty_text=False,
-                     marker_size=10,
-                     save_file=True,
-                     hover_data=hover_data,
-                     hover_name="country",
-                     legend_title="",
-                     legend_x=0.87,
-                     legend_y=0.1,
-                     label_distance_factor=0.1,
-                     marginal_x=None,  # type: ignore
-                     marginal_y=None)  # type: ignore
+    # # With traffic lights vs without traffic lights
+    # df = df_countries[df_countries["without_trf_light_day"] != 0].copy()
+    # df = df[df["without_trf_light_night"] != 0]
+    # Analysis.scatter(df=df,
+    #                  x="without_trf_light_day",
+    #                  y="without_trf_light_night",
+    #                  color="continent",
+    #                  text="iso3",
+    #                  xaxis_title='Crossing events without traffic light during daytime',
+    #                  yaxis_title='Crossing events without traffic light during night',
+    #                  pretty_text=False,
+    #                  marker_size=10,
+    #                  save_file=True,
+    #                  hover_data=hover_data,
+    #                  hover_name="country",
+    #                  legend_title="",
+    #                  legend_x=0.87,
+    #                  legend_y=0.1,
+    #                  label_distance_factor=0.1,
+    #                  marginal_x=None,  # type: ignore
+    #                  marginal_y=None)  # type: ignore
 
-    # Bar plots
-    # Analysis.plot_crossing_without_traffic_light(df_countries,
-    #                                              x_axis_title_height=60,
-    #                                              font_size_captions=common.get_configs("font_size"),
-    #                                              legend_x=0.96,
-    #                                              legend_y=0.03,
-    #                                              legend_spacing=0.02)
-    # Analysis.plot_crossing_with_traffic_light(df_countries,
-    #                                           x_axis_title_height=60,
-    #                                           font_size_captions=common.get_configs("font_size"),
-    #                                           legend_x=0.96,
-    #                                           legend_y=0.03,
-    #                                           legend_spacing=0.02)
+    # # Bar plots
+    # # Analysis.plot_crossing_without_traffic_light(df_countries,
+    # #                                              x_axis_title_height=60,
+    # #                                              font_size_captions=common.get_configs("font_size"),
+    # #                                              legend_x=0.96,
+    # #                                              legend_y=0.03,
+    # #                                              legend_spacing=0.02)
+    # # Analysis.plot_crossing_with_traffic_light(df_countries,
+    # #                                           x_axis_title_height=60,
+    # #                                           font_size_captions=common.get_configs("font_size"),
+    # #                                           legend_x=0.96,
+    # #                                           legend_y=0.03,
+    # #                                           legend_spacing=0.02)
 
-    # Maps with heatmaps
-    Analysis.map(df_countries,
-                 'without_trf_light_day',
-                 'Crossing events without traffic light during daytime',
-                 save_file=True)
-    Analysis.map(df_countries,
-                 'without_trf_light_night',
-                 'Crossings events without traffic light during night',
-                 save_file=True)
+    # # Maps with heatmaps
+    # Analysis.map(df_countries,
+    #              'without_trf_light_day',
+    #              'Crossing events without traffic light during daytime',
+    #              save_file=True)
+    # Analysis.map(df_countries,
+    #              'without_trf_light_night',
+    #              'Crossings events without traffic light during night',
+    #              save_file=True)
 
     # # Exclude zero values before finding min
     # nonzero_without_trf_day = df_countries[df_countries["without_trf_light_day"] > 0]
