@@ -4,11 +4,13 @@ _output/
 
 # Video and data folders
 video/
+videos/
 data/
 source_videos/
 
 # Model files
 yolov8x.pt
+yolo11x.pt
 
 # Python environment files
 .vscode/
@@ -32,7 +34,26 @@ check.py
 config
 secret
 mapping_queue.csv
+last_updated_pytube.txt
 
 # Pickle files
-city_coordinates.pkl
-analysis_results.pkl
+*.pickle
+
+# Docker files
+docker-compose.debug.yml
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# venv
+/yt
+
+# temp video file in root
+/*.mp4
+
+# log files
+*.log
+*.out
+
+# log of upgrades
+upgrade_log.json
