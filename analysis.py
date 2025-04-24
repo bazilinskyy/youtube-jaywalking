@@ -23,8 +23,10 @@ import shutil
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 from datetime import datetime
-from moviepy.video.io.VideoFileClip import VideoFileClip
+from moviepy.editor import VideoFileClip
+import moviepy.editor as mp
 
+mp.logger = None
 
 # Suppress the specific FutureWarning
 warnings.filterwarnings("ignore", category=FutureWarning, module="plotly")
@@ -734,7 +736,9 @@ class Analysis():
             'time_crossing', 'time_crossing_day', 'time_crossing_night',
             'speed_crossing_avg', 'time_crossing_avg',
             'with_trf_light_day', 'with_trf_light_night',
-            'without_trf_light_day', 'without_trf_light_night'
+            'without_trf_light_day', 'without_trf_light_night',
+            'with_trf_light_norm_day', 'with_trf_light_norm_night',
+            'without_trf_light_norm_day', 'without_trf_light_norm_night'
         ]
 
         # Build aggregation dictionary
@@ -1267,30 +1271,48 @@ class Analysis():
         return counter_1, counter_2, time_
 
     @staticmethod
+    def nomalised_crossing_wth_traffic_equipment(with_traffic_instr, without_traffic_instr, time, person_city):
+        var_exist, var_nt_exist = {}, {}
+
+        for key, value in time.items():
+            var_exist[key] = ((with_traffic_instr[key] * 60) / time[key] / person_city[key])
+            var_nt_exist[key] = ((without_traffic_instr[key] * 60) / time[key] / person_city[key])
+
+        return var_exist, var_nt_exist
+
+    @staticmethod
     def save_event_video(video_id, time, yolo_overlay=False, folder="event_videos"):
-        # Save video of event to location
         folder = os.path.join(common.output_dir, folder)
-        os.makedirs(folder, exist_ok=True)  # check if folder exists
-        # Find video
+        os.makedirs(folder, exist_ok=True)
+
+        # find video
         video_filename = video_id + ".mp4"
-        original_video_path = None
+        input_path = None
         for path in common.get_configs('videos'):
             candidate_path = os.path.join(path, video_filename)
             if os.path.isfile(candidate_path):
-                original_video_path = candidate_path
+                input_path = candidate_path
                 break
-        output_video_path = os.path.join(folder, video_id + "_" + str(time) + ".mp4")
+
+        if input_path is None:
+            logger.error(f"Video {video_filename} not found in any configured paths.")
+            return
+
+        output_path = os.path.join(folder, f"{video_id}_{time}.mp4")
+
         try:
-            with VideoFileClip(original_video_path) as video:
-                video_duration = video.duration  # in seconds
-                start_time = max(0, time - 5)
-                end_time = min(video_duration, time + 5)
-                print(output_video_path, start_time, end_time)
-                clip = video.subclip(start_time, end_time)
-                clip.write_videofile(output_video_path, codec="libx264", audio=False)
-            logger.debug(f"Saved video of event to {output_video_path}.")
+            video = VideoFileClip(input_path)
+            if not video.fps:
+                video.fps = 30  # fallback if fps is None
+            start_time = max(0, time - 5)
+            end_time = min(video.duration, time + 5)
+
+            subclip = video.subclip(start_time, end_time)
+            subclip.write_videofile(output_path, codec="libx264", audio_codec="aac", verbose=False)
+            video.close()
+            logger.debug(f"Saved video of event to {output_path}.")
         except Exception as e:
-            logger.error(f"Failed to save video {output_video_path}: {e}")
+            logger.error(f"Failed to save video {output_path}: {e}")
 
     # TODO: combine methods for looking at crossing events with/without traffic lights
     @staticmethod
@@ -3788,6 +3810,10 @@ if __name__ == "__main__":
         df_mapping['with_trf_light_night'] = 0.0
         df_mapping['without_trf_light_day'] = 0.0
         df_mapping['without_trf_light_night'] = 0.0
+        df_mapping['with_trf_light_norm_day'] = 0.0
+        df_mapping['with_trf_light_norm_night'] = 0.0
+        df_mapping['without_trf_light_norm_day'] = 0.0
+        df_mapping['without_trf_light_norm_night'] = 0.0
 
         # Loop over rows of data
         logger.info("Analysing data.")
@@ -3941,7 +3967,8 @@ if __name__ == "__main__":
 
         # Jaywalking data
         logger.info("Calculating parameters for detection of jaywalking.")
-        with_trf_light, without_trf_light, _ = Analysis.crossing_event_wt_traffic_equipment(df_mapping, dfs, data)
+        with_trf_light, without_trf_light, time = Analysis.crossing_event_wt_traffic_equipment(df_mapping, dfs, data)
+        with_trf_light_norm, without_trf_light_norm = Analysis.nomalised_crossing_wth_traffic_equipment(with_trf_light, without_trf_light, time, person_city)  # noqa: E501
         for key, value in with_trf_light.items():
             parts = key.split("_")
             country = parts[0]  # First part is always the city
@@ -3968,6 +3995,33 @@ if __name__ == "__main__":
                 df_mapping.loc[
                     (df_mapping["country"] == country), "without_trf_light_night"
                 ] = int(value)  # Explicitly cast to int
+
+        for key, value in with_trf_light_norm.items():
+            parts = key.split("_")
+            country = parts[0]  # First part is always the city
+            time_of_day = int(parts[1])  # Second part is the time-of-day
+            if not time_of_day:  # day
+                df_mapping.loc[
+                    (df_mapping["country"] == country), "with_trf_light_norm_day"
+                ] = value
+            else:  # night
+                df_mapping.loc[
+                    (df_mapping["country"] == country), "with_trf_light_norm_night"
+                ] = value
+
+        # add to mapping file
+        for key, value in without_trf_light_norm.items():
+            parts = key.split("_")
+            country = parts[0]  # First part is always the city
+            time_of_day = int(parts[1])  # Second part is the time-of-day
+            if not time_of_day:  # day
+                df_mapping.loc[
+                    (df_mapping["country"] == country), "without_trf_light_norm_day"
+                ] = value
+            else:  # night
+                df_mapping.loc[
+                    (df_mapping["country"] == country), "without_trf_light_norm_night"
+                ] = value
 
         # Add column with count of videos
         df_mapping["total_videos"] = df_mapping["videos"].apply(lambda x: len(x.strip("[]").split(",")) if x.strip("[]") else 0)  # noqa: E501
@@ -4014,7 +4068,9 @@ if __name__ == "__main__":
                          avg_time,                   # 27
                          df_mapping,                 # 28
                          with_trf_light,             # 29
-                         without_trf_light),         # 30
+                         without_trf_light,          # 30
+                         with_trf_light_norm,        # 31
+                         without_trf_light_norm),    # 32
                         file)
         logger.info("Analysis results saved to pickle file.")
 
@@ -4071,27 +4127,29 @@ if __name__ == "__main__":
 
     # Analysis.correlation_matrix(df_countries)
 
-    # # With traffic lights vs without traffic lights
-    # df = df_countries[df_countries["without_trf_light_day"] != 0].copy()
-    # df = df[df["without_trf_light_night"] != 0]
-    # Analysis.scatter(df=df,
-    #                  x="without_trf_light_day",
-    #                  y="without_trf_light_night",
-    #                  color="continent",
-    #                  text="iso3",
-    #                  xaxis_title='Crossing events without traffic light during daytime',
-    #                  yaxis_title='Crossing events without traffic light during night',
-    #                  pretty_text=False,
-    #                  marker_size=10,
-    #                  save_file=True,
-    #                  hover_data=hover_data,
-    #                  hover_name="country",
-    #                  legend_title="",
-    #                  legend_x=0.87,
-    #                  legend_y=0.1,
-    #                  label_distance_factor=0.1,
-    #                  marginal_x=None,  # type: ignore
-    #                  marginal_y=None)  # type: ignore
+    # With traffic lights vs without traffic lights
+    print(df_countries["without_trf_light_norm_day"])
+    print(df_countries["without_trf_light_norm_night"])
+    # df = df_countries[df_countries["without_trf_light_norm_day"] != 0].copy()
+    # df = df[df["without_trf_light_norm_night"] != 0]
+    Analysis.scatter(df=df_countries,
+                     x="without_trf_light_norm_day",
+                     y="without_trf_light_norm_night",
+                     color="continent",
+                     text="iso3",
+                     xaxis_title='Crossing events without traffic light during daytime (normalised)',
+                     yaxis_title='Crossing events without traffic light during night (normalised)',
+                     pretty_text=False,
+                     marker_size=10,
+                     save_file=True,
+                     hover_data=hover_data,
+                     hover_name="country",
+                     legend_title="",
+                     legend_x=0.87,
+                     legend_y=0.1,
+                     label_distance_factor=0.1,
+                     marginal_x=None,  # type: ignore
+                     marginal_y=None)  # type: ignore
 
     # # Bar plots
     # # Analysis.plot_crossing_without_traffic_light(df_countries,
