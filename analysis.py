@@ -1273,6 +1273,8 @@ class Analysis():
                         # Save video of event to location
                         video_id, start_index = key.rsplit("_", 1)  # split to extract id and index
                         helper.save_event_video(video_id, time)
+                        # todo: check if zebra crossing is present in the scene
+                        
                         counter_exists += 1
                     if yolo_id_9_not_exists:
                         counter_nt_exists += 1
