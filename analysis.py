@@ -23,16 +23,16 @@ import shutil
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
 from datetime import datetime
-from moviepy.editor import VideoFileClip
-import moviepy.editor as mp
+from helper_script import Youtube_Helper
 
-mp.logger = None
 
 # Suppress the specific FutureWarning
 warnings.filterwarnings("ignore", category=FutureWarning, module="plotly")
 
 logs(show_level=common.get_configs("logger_level"), show_color=True)
 logger = CustomLogger(__name__)  # use custom logger
+
+helper = Youtube_Helper()
 
 # set template for plotly output
 template = common.get_configs('plotly_template')
@@ -63,7 +63,7 @@ class Analysis():
 
     # Read the csv files and stores them as a dictionary in form {Unique_id : CSV}
     @staticmethod
-    def read_csv_files(folder_paths):
+    def read_csv_files(folder_paths, df_mapping):
         """reads all csv files in the specified folders and returns their contents as a dictionary.
 
         args:
@@ -86,15 +86,26 @@ class Analysis():
                 if file.endswith(".csv"):
                     file_path = os.path.join(folder_path, file)
                     try:
-                        logger.debug(f"Adding file {file_path} to dfs.")
-                        df = pd.read_csv(file_path)
+                        logger.debug(f"Adding file {file_path} to dfs.")                        
                         filename = os.path.splitext(file)[0]
                         key = filename  # includes both video id and suffix
                         video_id, start_index = key.rsplit("_", 1)  # split to extract id and index
-                        video_city_id = Analysis.find_city_id(df_mapping, video_id, int(start_index))
-                        if not video_city_id:
-                            logger.debug(f"{video_id} with start {start_index} skipped as it is not from included countries.")  # noqa: E501
+                        # Limit countries if required
+                        start_index = int(start_index)
+                        countries_include = common.get_configs("countries_analyse")
+
+                        # find the row in df_mapping where video_id is listed in 'videos'
+                        matched_row = df_mapping[df_mapping["videos"].apply(lambda x: video_id in eval(x))]
+
+                        if not matched_row.empty:
+                            iso3 = matched_row.iloc[0]["iso3"].lower()
+                            if countries_include and iso3 not in [c.lower() for c in countries_include]:
+                                logger.debug(f"{video_id} skipped (iso3: {iso3} not in included countries).")
+                                continue
+                        else:
+                            logger.debug(f"{video_id} not found in df_mapping — skipping.")
                             continue
+                        df = pd.read_csv(file_path)
                         dfs[key] = df                       
                     except Exception as e:
                         logger.error(f"Failed to read {file_path}: {e}.")
@@ -1261,7 +1272,7 @@ class Analysis():
                     if yolo_id_9_exists:
                         # Save video of event to location
                         video_id, start_index = key.rsplit("_", 1)  # split to extract id and index
-                        Analysis.save_event_video(video_id, time)
+                        helper.save_event_video(video_id, time)
                         counter_exists += 1
                     if yolo_id_9_not_exists:
                         counter_nt_exists += 1
@@ -1279,40 +1290,6 @@ class Analysis():
             var_nt_exist[key] = ((without_traffic_instr[key] * 60) / time[key] / person_city[key])
 
         return var_exist, var_nt_exist
-
-    @staticmethod
-    def save_event_video(video_id, time, yolo_overlay=False, folder="event_videos"):
-        folder = os.path.join(common.output_dir, folder)
-        os.makedirs(folder, exist_ok=True)
-
-        # find video
-        video_filename = video_id + ".mp4"
-        input_path = None
-        for path in common.get_configs('videos'):
-            candidate_path = os.path.join(path, video_filename)
-            if os.path.isfile(candidate_path):
-                input_path = candidate_path
-                break
-
-        if input_path is None:
-            logger.error(f"Video {video_filename} not found in any configured paths.")
-            return
-
-        output_path = os.path.join(folder, f"{video_id}_{time}.mp4")
-
-        try:
-            video = VideoFileClip(input_path)
-            if not video.fps:
-                video.fps = 30  # fallback if fps is None
-            start_time = max(0, time - 5)
-            end_time = min(video.duration, time + 5)
-
-            subclip = video.subclip(start_time, end_time)
-            subclip.write_videofile(output_path, codec="libx264", audio_codec="aac", verbose=False)
-            video.close()
-            logger.debug(f"Saved video of event to {output_path}.")
-        except Exception as e:
-            logger.error(f"Failed to save video {output_path}: {e}")
 
     # TODO: combine methods for looking at crossing events with/without traffic lights
     @staticmethod
@@ -3785,7 +3762,7 @@ if __name__ == "__main__":
         logger.info("Total number of cities: {}.", number)
 
         # Stores the content of the csv file in form of {name_time: content}
-        dfs = Analysis.read_csv_files(common.get_configs('data'))
+        dfs = Analysis.read_csv_files(common.get_configs('data'), df_mapping)
 
         # add information for each city to then be appended to mapping
         df_mapping['person'] = 0
@@ -4128,8 +4105,6 @@ if __name__ == "__main__":
     # Analysis.correlation_matrix(df_countries)
 
     # With traffic lights vs without traffic lights
-    print(df_countries["without_trf_light_norm_day"])
-    print(df_countries["without_trf_light_norm_night"])
     # df = df_countries[df_countries["without_trf_light_norm_day"] != 0].copy()
     # df = df[df["without_trf_light_norm_night"] != 0]
     Analysis.scatter(df=df_countries,
