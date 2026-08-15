@@ -1,0 +1,66 @@
+# Runs and output folders
+runs/
+_output/
+
+# Video and data folders
+video/
+videos/
+data/
+source_videos/
+
+# Model files
+yolov8x.pt
+yolo11x.pt
+
+# Python environment files
+.vscode/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Scripts
+run_download.py
+check.py
+
+# macOS specific files
+**/.DS_Store
+
+# Sublime Text project files
+*.sublime-project
+*.sublime-workspace
+
+# Instance specific files
+config
+config.json
+secret
+mapping_queue.csv
+last_updated_pytube.txt
+
+# Model files (local downloads)
+models/
+
+# Pickle files
+*.pickle
+
+# Docker files
+docker-compose.debug.yml
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# venv
+/yt
+
+# temp video file in root
+/*.mp4
+
+# log files
+*.log
+*.out
+
+# log of upgrades
+upgrade_log.json
+myenv/
+!data/ground_truth.csv
+!data/heldout_ground_truth.csv

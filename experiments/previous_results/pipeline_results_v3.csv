@@ -1,0 +1,14 @@
+name,gt,pred,match,reason,frames,persons,red,green,red_ratio
+video_0014.mp4,compliant,compliant,True,GREEN light (246G/3R),270,1,3,246,0.01
+video_0023.mp4,compliant,compliant,True,GREEN light (39G/5R),240,2,5,39,0.11
+video_0025.mp4,compliant,jaywalking,False,"NO_SIGNAL: green-only (181G, 0R = phantom)",210,8,0,181,0.0
+video_0003.mp4,jaywalking,jaywalking,True,SIGNAL_VIOLATION: red_ratio=19% (23/119),210,3,23,96,0.19
+video_0006.mp4,jaywalking,jaywalking,True,"NO_SIGNAL: green-only (330G, 0R = phantom)",330,25,0,330,0.0
+video_0011.mp4,jaywalking,compliant,False,GREEN light (204G/7R),270,2,7,204,0.03
+video_0012.mp4,jaywalking,jaywalking,True,SIGNAL_VIOLATION: red_ratio=32% (10/31),120,7,10,21,0.32
+video_0016.mp4,jaywalking,jaywalking,True,"NO_SIGNAL: green-only (210G, 0R = phantom)",210,13,0,210,0.0
+video_0028.mp4,jaywalking,jaywalking,True,"NO_SIGNAL: green-only (240G, 0R = phantom)",240,18,0,240,0.0
+video_0030.mp4,jaywalking,jaywalking,True,SIGNAL_VIOLATION: red_ratio=19% (34/180),180,5,34,146,0.19
+video_0032.mp4,jaywalking,jaywalking,True,"NO_SIGNAL: green-only (240G, 0R = phantom)",240,3,0,240,0.0
+video_0035.mp4,jaywalking,jaywalking,True,SIGNAL_VIOLATION: red_ratio=26% (46/179),180,2,46,133,0.26
+video_0037.mp4,jaywalking,jaywalking,True,"NO_SIGNAL: green-only (236G, 0R = phantom)",300,7,0,236,0.0

@@ -1,0 +1,919 @@
+[
+  {
+    "clip_name": "video_0014.mp4",
+    "gt": "compliant",
+    "vlm_prediction": "JAYWALKING",
+    "match": false,
+    "votes": {
+      "JAYWALKING": 2,
+      "COMPLIANT": 1
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk.",
+              "pedestrian_signal": "There is no visible pedestrian walk/don't walk signal in this frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are parked in the parking lot and there are no cars actively moving on the road where the pedestrian is crossing.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of any potential traffic flow."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings. There are no visible traffic lights or pedestrian signals to guide safe crossing, and no traffic signs indicating a legal crossing point. The pedestrian's position on the road without these elements suggests they are not using a compliant crossing method.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 90,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are zebra markings on the road, and the pedestrian is crossing within these markings.",
+              "pedestrian_position": "The pedestrian is on the road, specifically on a crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars appear to be stopped or moving slowly, possibly yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "COMPLIANT",
+          "reasoning": "The pedestrian is crossing within the designated crosswalk markings, which suggests compliance with pedestrian safety rules. Although there are no visible traffic signals or signs, the presence of zebra markings indicates an area where pedestrians are expected to cross. The cars seem to be yielding, further supporting that the pedestrian is crossing in a compliant manner.",
+          "confidence": "medium"
+        }
+      },
+      {
+        "frame_index": 180,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no zebra markings on the road where the pedestrian is crossing.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are present and appear to be moving. They do not seem to be yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings. There are no visible traffic signals or signs indicating that pedestrians have the right of way. Additionally, the cars do not appear to be yielding, suggesting that the pedestrian is not following proper crossing procedures. These factors collectively indicate jaywalking behavior.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0023.mp4",
+    "gt": "compliant",
+    "vlm_prediction": "JAYWALKING",
+    "match": false,
+    "votes": {
+      "JAYWALKING": 2,
+      "N/A": 1
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible.",
+              "crosswalk": "No zebra markings are present; the pedestrian is crossing at an unmarked location.",
+              "pedestrian_position": "The pedestrian is on the road, outside of a designated crosswalk.",
+              "pedestrian_signal": "No pedestrian signal is visible.",
+              "traffic_signs": "No relevant traffic signs are visible.",
+              "cars": "The observing car is stopped or moving slowly; no other cars are clearly visible.",
+              "direction": "The pedestrian is crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road at an unmarked location without any visible crosswalk markings, traffic signals, or pedestrian signals indicating permission to cross. This suggests that the pedestrian is not using a designated crossing area, which typically classifies as jaywalking.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 80,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible.",
+              "crosswalk": "No zebra markings are present on the road.",
+              "pedestrian_position": "No pedestrian is visible in the frame.",
+              "pedestrian_signal": "No pedestrian signals are visible.",
+              "traffic_signs": "No traffic signs such as stop, yield, or pedestrian crossing signs are visible.",
+              "cars": "No other cars are visible; the road appears clear.",
+              "direction": "Direction cannot be determined as there is no pedestrian."
+            }
+          ],
+          "classification": "N/A",
+          "reasoning": "The frame does not contain any pedestrians or relevant traffic elements that would allow for a classification of jaywalking or compliant behavior. The scene is devoid of activity related to pedestrian crossing.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 160,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "There is a green traffic light visible on the left side of the image.",
+              "crosswalk": "There are no clear zebra markings visible on the road. The pedestrian appears to be crossing at an intersection but not within a designated crosswalk area.",
+              "pedestrian_position": "The pedestrian is on the road, crossing between lanes rather than using a crosswalk.",
+              "pedestrian_signal": "No walk/don't walk signal is visible in this frame.",
+              "traffic_signs": "There are no stop signs or yield signs visible. A pedestrian crossing sign is present further down the road, but it is not near the pedestrian's current location.",
+              "cars": "Cars appear to be stopped or moving slowly, possibly due to the weather conditions and the pedestrian's presence.",
+              "direction": "The pedestrian seems to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk area, which is generally considered jaywalking. There are no visible pedestrian signals indicating permission to cross, and the pedestrian is not using a marked crosswalk. Although cars appear to be yielding, the lack of a proper crossing point suggests non-compliance with traffic rules.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0025.mp4",
+    "gt": "compliant",
+    "vlm_prediction": "JAYWALKING",
+    "match": false,
+    "votes": {
+      "JAYWALKING": 3
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no zebra markings visible on the road. The pedestrian appears to be crossing at an unmarked location.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk area.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No specific traffic signs such as stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "There are no other cars visible in the immediate vicinity of the pedestrian. However, the vehicle from which the image is taken seems to be approaching the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road at an unmarked location without any visible crosswalk markings, traffic signals, or pedestrian signs indicating a safe crossing point. Additionally, there are no visible traffic controls that would suggest the pedestrian has the right of way. This behavior aligns with the definition of jaywalking, where a pedestrian crosses a road in an unsafe or unauthorized manner.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 70,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no clear zebra markings visible on the road where the pedestrians are located.",
+              "pedestrian_position": "The pedestrians appear to be on the road but not within a designated crosswalk area. They seem to be crossing at an intersection without clear markings.",
+              "pedestrian_signal": "There is no visible pedestrian walk/don't walk signal in this frame.",
+              "traffic_signs": "There are no stop signs, yield signs, or pedestrian crossing signs visible near the pedestrians.",
+              "cars": "Cars are present and appear to be moving. There is no indication that they are yielding specifically for the pedestrians.",
+              "direction": "The pedestrians appear to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "Based on the visual evidence, the pedestrians are crossing the road outside of a designated crosswalk area, as there are no visible zebra markings or pedestrian signals. Additionally, there are no traffic signs indicating a legal crossing point. The presence of moving cars suggests that the pedestrians are not using a controlled crossing, further supporting the classification of jaywalking.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 140,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no clear zebra markings visible on the road where the pedestrians are crossing.",
+              "pedestrian_position": "The pedestrians are on the road, not on a sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "A yellow pedestrian crossing sign is visible, indicating that this area is designated for pedestrian crossings. However, there are no stop or yield signs directly at the crossing point.",
+              "cars": "Cars are stopped and appear to be yielding to the pedestrians crossing the road.",
+              "direction": "The pedestrians are crossing perpendicular to the direction of the traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "While the presence of a pedestrian crossing sign suggests that pedestrians may cross in this general area, the lack of visible zebra markings and the fact that the pedestrians are crossing outside a clearly defined crosswalk indicates jaywalking. The cars are yielding, which might suggest an informal understanding of pedestrian priority in this location, but officially, crossing outside a marked crosswalk is considered jaywalking.",
+          "confidence": "medium"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0003.mp4",
+    "gt": "jaywalking",
+    "vlm_prediction": "JAYWALKING",
+    "match": true,
+    "votes": {
+      "JAYWALKING": 3
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible.",
+              "crosswalk": "No zebra markings are present; pedestrian is crossing at an unmarked location.",
+              "pedestrian_position": "The pedestrian is on the road outside of a designated crosswalk.",
+              "pedestrian_signal": "No pedestrian signal is visible.",
+              "traffic_signs": "No relevant traffic signs are visible.",
+              "cars": "Cars are parked on both sides of the road; no active traffic is observed.",
+              "direction": "Pedestrian is crossing perpendicular to the direction of parked cars."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, and there are no visible traffic signals or signs indicating that this is a legal crossing point. Additionally, the absence of a crosswalk and the presence of parked cars suggest that this is not a safe or compliant crossing location.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 70,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no zebra markings visible on the road. The pedestrian is not within a designated crosswalk area.",
+              "pedestrian_position": "The pedestrian is standing on the road, not on the sidewalk and not within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible pedestrian walk/don't walk signal in this frame.",
+              "traffic_signs": "A stop sign is visible near the pedestrian, but it appears to be for vehicles rather than pedestrians.",
+              "cars": "Cars are parked along both sides of the road. There are no cars actively moving in the immediate vicinity of the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of the parked cars, which suggests they are crossing where there is no designated crosswalk."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk area, as indicated by the absence of zebra markings and the presence of a stop sign meant for vehicles. Additionally, there is no pedestrian signal present, and the pedestrian is not using a sidewalk. These factors suggest that the pedestrian is not following proper pedestrian crossing procedures.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 140,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in the frame.",
+              "traffic_signs": "A stop sign is visible on the left side of the image, but it is not directly related to pedestrian crossing. There are no specific pedestrian crossing signs visible.",
+              "cars": "Cars are present and appear to be stopped or moving slowly, possibly yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings. Additionally, there is no visible pedestrian signal indicating that it is safe to cross. The presence of a stop sign does not imply a legal pedestrian crossing point. The pedestrian's position on the road without a crosswalk suggests they are not following proper pedestrian crossing procedures.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0006.mp4",
+    "gt": "jaywalking",
+    "vlm_prediction": "JAYWALKING",
+    "match": true,
+    "votes": {
+      "COMPLIANT": 1,
+      "JAYWALKING": 2
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road indicating a designated crosswalk.",
+              "pedestrian_position": "The pedestrians are on the sidewalk, not on the road or within a crosswalk.",
+              "pedestrian_signal": "There is no visible pedestrian signal (walk/don't walk) in this frame.",
+              "traffic_signs": "No specific traffic signs such as stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars appear to be parked in a lot and some may be moving along the road, but none seem to be yielding specifically for pedestrians.",
+              "direction": "The pedestrians are walking parallel to the road, not crossing it."
+            }
+          ],
+          "classification": "COMPLIANT",
+          "reasoning": "Based on the visual evidence, the pedestrians are walking on the sidewalk and not crossing the road. There is no indication that they are jaywalking since they are not on the road or within an undesignated crosswalk area. The absence of traffic lights, pedestrian signals, and crosswalk markings further supports that they are simply walking along the sidewalk.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 110,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road. The pedestrian appears to be crossing at an intersection but not within a designated crosswalk area.",
+              "pedestrian_position": "The pedestrian is on the road, not on the sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No specific traffic signs like stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are stopped and appear to be yielding to the pedestrian. There are no vehicles actively moving through the intersection.",
+              "direction": "The pedestrian is crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk area, as indicated by the absence of zebra markings. Additionally, there are no visible traffic signals or signs indicating that pedestrians have the right of way. Although the cars are stopped and yielding, the lack of a proper crosswalk suggests that the pedestrian is not following the rules for safe crossing.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 220,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road. The pedestrian appears to be crossing at an intersection but not within a designated crosswalk area.",
+              "pedestrian_position": "The pedestrian is on the road, not on the sidewalk and not within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No specific traffic signs such as stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are present on the road, some appear to be stopped while others seem to be moving. It's unclear if they are yielding specifically for the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "Based on the visual evidence, the pedestrian is crossing the road outside of a designated crosswalk area, which typically constitutes jaywalking. There are no visible traffic lights, pedestrian signals, or signs indicating a legal crossing point. Additionally, the presence of cars on the road suggests that the pedestrian may be disrupting the flow of traffic by crossing in an unauthorized location.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0011.mp4",
+    "gt": "jaywalking",
+    "vlm_prediction": "JAYWALKING",
+    "match": true,
+    "votes": {
+      "UNKNOWN": 1,
+      "JAYWALKING": 2
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "raw_response": "### Frame Analysis\n\n#### Frame 1:\n- **Traffic Light:** No traffic lights are visible in this frame.\n- **Crosswalk:** There are no visible zebra markings on the road. The pedestrian appears to be crossing outside of any designated crosswalk area.\n- **Pedestrian Position:** The pedestrian is on the road, not on a sidewalk or within a marked crosswalk.\n- **Pedestrian Signal:** There is no visible pedestrian signal (walk/don't walk) in the frame.\n- **Traffic Signs:** No stop signs, yield signs, or pedestrian crossing signs are visible.\n- **Other Cars:** Several cars are parked in the parking lot, and one car is driving through the parking area. It does not appear that any cars are yielding specifically for the pedestrian.\n- **Direction:** The pedestrian seems to be crossing perpendicular to the direction of the moving vehicle, which suggests crossing against the flow of traffic.\n\n### Classification and Reasoning\n\n**Classification:** JAYWALKING\n\n**Reasoning:**\n- The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings.\n- There are no visible traffic lights or pedestrian signals to indicate that the pedestrian has the right of way.\n- The pedestrian is crossing in front of a moving vehicle without any visible traffic control measures like stop signs or yield signs that would require the vehicle to stop.\n- The pedestrian's position on the road, away from sidewalks and crosswalks, further supports the conclusion that they are not following standard pedestrian safety practices.\n\n**Confidence:** High\n\nThe visual evidence strongly indicates that the pedestrian is not using a designated crosswalk and is crossing in an area where vehicles are moving, which aligns with the definition of jaywalking.",
+          "classification": "UNKNOWN"
+        }
+      },
+      {
+        "frame_index": 90,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road where the pedestrian is located.",
+              "pedestrian_position": "The pedestrian appears to be on the road but not within a designated crosswalk area.",
+              "pedestrian_signal": "There is no visible pedestrian walk/don't walk signal in this frame.",
+              "traffic_signs": "No specific traffic signs such as stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are parked in the parking lot and do not appear to be actively moving or yielding to the pedestrian.",
+              "direction": "The pedestrian seems to be crossing perpendicular to the direction of potential traffic flow, though no active traffic is present."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings. There are no visible traffic lights or pedestrian signals to guide safe crossing, and the pedestrian is not using a marked pedestrian crossing area. The lack of any visible traffic signs further suggests that the pedestrian is not following standard safety protocols for crossing roads.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 180,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are parked in the parking lot and do not appear to be actively yielding to the pedestrian. There are no moving vehicles directly interacting with the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of potential traffic flow, but since there are no visible lanes for moving traffic in the immediate vicinity, it's unclear if they are crossing with or against traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings. Additionally, there are no visible traffic signals or signs indicating a legal crossing area. The pedestrian is not using a crosswalk and is therefore not complying with standard pedestrian safety rules.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0012.mp4",
+    "gt": "jaywalking",
+    "vlm_prediction": "JAYWALKING",
+    "match": true,
+    "votes": {
+      "COMPLIANT": 1,
+      "JAYWALKING": 2
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "There are no visible traffic lights in this frame.",
+              "crosswalk": "There are no zebra markings visible on the road in this frame.",
+              "pedestrian_position": "There is no pedestrian visible in this frame.",
+              "pedestrian_signal": "There is no pedestrian walk/don't walk signal visible in this frame.",
+              "traffic_signs": "There are no stop signs, yield signs, or pedestrian crossing signs visible in this frame.",
+              "cars": "Cars are visible on the road, and they appear to be moving normally. There is no indication that they are yielding for a pedestrian.",
+              "direction": "Since there is no pedestrian present, the direction cannot be determined."
+            }
+          ],
+          "classification": "COMPLIANT",
+          "reasoning": "The image shows an empty road with no pedestrians present. Therefore, there is no jaywalking occurring. The classification is 'COMPLIANT' because there is no evidence of any pedestrian violating traffic rules.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 40,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "There are two visible traffic lights in the image. Both appear yellow, indicating caution.",
+              "crosswalk": "No clear zebra markings (white stripes) are visible on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road but not within a designated crosswalk area.",
+              "pedestrian_signal": "No walk/don't walk signal is visible in this frame.",
+              "traffic_signs": "There are no stop signs or yield signs visible. A pedestrian crossing sign is present further down the road, but it's not directly related to the pedestrian's current position.",
+              "cars": "Cars are stopped at the intersection, likely due to the yellow light. They do not seem to be actively yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk and without any visible pedestrian signal indicating it's safe to do so. The presence of traffic lights and stopped vehicles suggests that the pedestrian is not using a controlled crossing point. This behavior is generally considered jaywalking as it violates standard pedestrian safety rules.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 80,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "There are multiple traffic lights visible. They appear yellow, indicating caution.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk.",
+              "pedestrian_signal": "No walk/don't walk signal is visible in this frame.",
+              "traffic_signs": "There are no stop signs or yield signs visible. There is a sign indicating a left turn lane ahead.",
+              "cars": "Cars are stopped at the intersection, likely due to the yellow light. They do not appear to be yielding specifically for the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk and without any visible pedestrian signal indicating it's safe to do so. The presence of traffic lights and stopped vehicles suggests that this is an intersection where pedestrians should use marked crosswalks. Crossing here poses a risk as drivers may not expect pedestrians in this location.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0016.mp4",
+    "gt": "jaywalking",
+    "vlm_prediction": "JAYWALKING",
+    "match": true,
+    "votes": {
+      "JAYWALKING": 3
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in the frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are parked along the side of the road and do not appear to be actively yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings. There are no visible traffic lights or pedestrian signals that might authorize the crossing. Additionally, the pedestrian is not using a sidewalk and is crossing in an area where cars are parked but could potentially be moving. These factors suggest that the pedestrian is not following standard pedestrian safety rules.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 70,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no zebra markings on the road. The pedestrian is not within a designated crosswalk area.",
+              "pedestrian_position": "The pedestrian is on the road, not on the sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are parked along the side of the road and do not appear to be actively yielding to pedestrians. There are no moving vehicles directly near the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of the parked cars."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings. Additionally, there are no visible traffic lights, pedestrian signals, or signs indicating a legal crossing point. The pedestrian's position on the road without these elements suggests they are not following proper pedestrian crossing procedures.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 140,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are present and appear to be moving. There is no indication that they are yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings. Additionally, there are no visible traffic lights, pedestrian signals, or traffic signs that would suggest a legal crossing point. The cars do not appear to be yielding, further indicating that the pedestrian is not using a controlled crossing area.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0028.mp4",
+    "gt": "jaywalking",
+    "vlm_prediction": "JAYWALKING",
+    "match": true,
+    "votes": {
+      "COMPLIANT": 1,
+      "JAYWALKING": 2
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings indicating a designated crosswalk in the immediate vicinity of the pedestrians.",
+              "pedestrian_position": "The pedestrians are on the sidewalk, not on the road or within a crosswalk area.",
+              "pedestrian_signal": "No pedestrian walk/don't walk signal is visible in this frame.",
+              "traffic_signs": "There are some traffic signs visible, including a 'NO STOPPING ANY TIME' sign and a 'DON'T BLOCK THE BOX' sign, but no specific pedestrian crossing signs are present.",
+              "cars": "A taxi is visible on the road, and it appears to be moving forward. There are no indications that vehicles are stopped or yielding for pedestrians.",
+              "direction": "Since the pedestrians are on the sidewalk and not crossing the road, their direction relative to traffic cannot be determined."
+            }
+          ],
+          "classification": "COMPLIANT",
+          "reasoning": "Based on the visual evidence, the pedestrians are currently on the sidewalk and not crossing the road. There is no indication of jaywalking as they have not entered the roadway or violated any visible traffic rules. The absence of a crosswalk or pedestrian signals further supports that they are simply walking along the sidewalk.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 80,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road in this frame.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "There are some traffic signs visible, but none specifically indicate a pedestrian crossing. There is a 'DON'T BLOCK THE BOX' sign and a 'NO STOPPING ANY TIME' sign.",
+              "cars": "Cars are present on the road, including a taxi that appears to be moving. The cars do not seem to be yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing the road perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as there are no visible zebra markings. Additionally, there is no pedestrian signal indicating it is safe to cross, and the cars on the road do not appear to be yielding. The presence of traffic signs like 'NO STOPPING ANY TIME' further suggests that this area may have specific traffic regulations that the pedestrian is not adhering to.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 160,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road in this frame.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk.",
+              "pedestrian_signal": "There is no visible pedestrian walk/don't walk signal in this frame.",
+              "traffic_signs": "There are some traffic signs visible, but none specifically indicate a pedestrian crossing. There is a 'Don't Block the Box' sign and a 'No Stopping Any Time' sign.",
+              "cars": "A taxi is present on the road and appears to be moving forward. It is not yielding to the pedestrian.",
+              "direction": "The pedestrian is crossing the road perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as there are no visible zebra markings. Additionally, there is no pedestrian signal indicating it is safe to cross, and the taxi is not yielding to the pedestrian. The presence of traffic signs like 'No Stopping Any Time' suggests that this area is regulated for traffic flow, further supporting the conclusion that the pedestrian is jaywalking.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0030.mp4",
+    "gt": "jaywalking",
+    "vlm_prediction": "JAYWALKING",
+    "match": true,
+    "votes": {
+      "JAYWALKING": 3
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in the frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars appear to be stopped or moving slowly, but none seem to be actively yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk and without any visible pedestrian signals indicating it's safe to do so. There are no traffic lights or other signs that suggest the pedestrian has the right of way. The absence of a crosswalk and pedestrian signal strongly suggests that the pedestrian is not following proper crossing procedures.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 60,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "One visible traffic light showing red.",
+              "crosswalk": "No clear zebra markings visible near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a marked crosswalk.",
+              "pedestrian_signal": "No walk/don't walk signal visible.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs visible.",
+              "cars": "Cars appear to be stopped, likely due to the red traffic light ahead.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a marked crosswalk while there is no visible pedestrian signal indicating it's safe to do so. Although the cars are stopped, the lack of a designated crosswalk suggests that the pedestrian is not using a compliant crossing method.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 120,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are clearly visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No specific traffic signs like stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are present but appear stationary or moving slowly. They do not seem to be actively yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings and pedestrian signals. There are no visible traffic signs indicating a legal crossing point, and the pedestrian is not using a sidewalk. The cars do not appear to be actively yielding, suggesting that the pedestrian is not crossing at a controlled intersection. These factors collectively suggest jaywalking behavior.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0032.mp4",
+    "gt": "jaywalking",
+    "vlm_prediction": "JAYWALKING",
+    "match": true,
+    "votes": {
+      "JAYWALKING": 3
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road indicating a designated crosswalk.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in the frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are parked along the side of the road and do not appear to be actively yielding to the pedestrian. There are no moving vehicles directly near the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of the parked cars, suggesting they are crossing where there is no designated crosswalk."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings and pedestrian signals. Additionally, there are no visible traffic signs that would indicate a legal crossing point. The pedestrian's position on the road without any apparent traffic control measures suggests they are not following proper pedestrian crossing procedures.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 80,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are parked along the side of the road and do not appear to be actively yielding to the pedestrian. There are no moving vehicles directly interacting with the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of the parked cars, but since there are no moving vehicles, the direction relative to traffic cannot be determined."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, as indicated by the absence of zebra markings. Additionally, there are no visible traffic signals or signs indicating that the pedestrian has the right of way. The lack of a crosswalk and the absence of any yielding behavior from vehicles suggest that the pedestrian is not following standard pedestrian safety rules.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 160,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a designated crosswalk.",
+              "pedestrian_signal": "There is no visible pedestrian walk/don't walk signal in the frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars appear to be stopped or moving slowly, but none seem to be actively yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk and without any visible pedestrian signals indicating it's safe to do so. There are no traffic signs or lights that suggest the pedestrian has the right of way. The absence of a crosswalk and the pedestrian's position on the road strongly indicate jaywalking behavior.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0035.mp4",
+    "gt": "jaywalking",
+    "vlm_prediction": "JAYWALKING",
+    "match": true,
+    "votes": {
+      "JAYWALKING": 2,
+      "COMPLIANT": 1
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in the frame.",
+              "traffic_signs": "There are no stop signs, yield signs, or pedestrian crossing signs visible.",
+              "cars": "Cars are moving and do not appear to be yielding for the pedestrian.",
+              "direction": "The pedestrian appears to be crossing against the flow of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, without any visible pedestrian signals indicating it's safe to cross. Additionally, the cars are not yielding, suggesting that the pedestrian is not crossing at an appropriate time or place. The lack of traffic lights and other regulatory signs further supports the conclusion that the pedestrian is jaywalking.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 60,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is standing on the sidewalk, not on the road or within a crosswalk.",
+              "pedestrian_signal": "There is no visible pedestrian walk/don't walk signal in the frame.",
+              "traffic_signs": "There are no stop signs, yield signs, or pedestrian crossing signs visible in the immediate vicinity of the pedestrian.",
+              "cars": "Cars are moving along the road. There is no indication that they are yielding for a pedestrian.",
+              "direction": "Since the pedestrian is on the sidewalk and not crossing the road, the direction of crossing cannot be determined."
+            }
+          ],
+          "classification": "COMPLIANT",
+          "reasoning": "The pedestrian is currently standing on the sidewalk and has not yet entered the road. There are no visible crosswalk markings or pedestrian signals indicating whether it would be safe to cross. Since the pedestrian is not actively crossing the road, they are not jaywalking at this moment.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 120,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is standing on the road, not on a sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible pedestrian walk/don't walk signal in the frame.",
+              "traffic_signs": "There are no stop signs, yield signs, or pedestrian crossing signs visible.",
+              "cars": "Cars are present on the road and appear to be moving. There is no indication that they are yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing the road in front of oncoming traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a marked crosswalk, without any visible pedestrian signals indicating it's safe to do so. Additionally, there are no traffic signs or lights suggesting that vehicles should stop for the pedestrian. The presence of moving cars further indicates that the pedestrian is not using a designated crossing area.",
+          "confidence": "high"
+        }
+      }
+    ]
+  },
+  {
+    "clip_name": "video_0037.mp4",
+    "gt": "jaywalking",
+    "vlm_prediction": "JAYWALKING",
+    "match": true,
+    "votes": {
+      "JAYWALKING": 3
+    },
+    "frames": [
+      {
+        "frame_index": 0,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible.",
+              "crosswalk": "No zebra markings are present; pedestrian is not using a designated crosswalk.",
+              "pedestrian_position": "The pedestrian is on the road, outside of any marked crosswalk.",
+              "pedestrian_signal": "No pedestrian signal is visible.",
+              "traffic_signs": "No relevant traffic signs (stop, yield, pedestrian crossing) are visible.",
+              "cars": "Cars are moving and not yielding to the pedestrian.",
+              "direction": "The pedestrian is crossing against the flow of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, without any visible pedestrian signals indicating it's safe to cross. Additionally, the cars are not yielding, suggesting that the pedestrian is not crossing at a controlled or legal crossing point. Crossing against the flow of traffic further supports the classification of jaywalking.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 100,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no zebra markings visible on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in this frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars are moving and do not appear to be yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing against the flow of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk, without any visible pedestrian signals indicating it's safe to cross. Additionally, the cars are not yielding, suggesting that the pedestrian is not crossing at an appropriate time or place. The lack of visible traffic lights or other regulatory signs further supports the conclusion that the pedestrian is jaywalking.",
+          "confidence": "high"
+        }
+      },
+      {
+        "frame_index": 200,
+        "analysis": {
+          "frame_analysis": [
+            {
+              "frame": 1,
+              "traffic_light": "No traffic lights are visible in this frame.",
+              "crosswalk": "There are no visible zebra markings on the road near the pedestrian.",
+              "pedestrian_position": "The pedestrian is on the road, not on a sidewalk or within a marked crosswalk.",
+              "pedestrian_signal": "There is no visible walk/don't walk signal in the frame.",
+              "traffic_signs": "No stop signs, yield signs, or pedestrian crossing signs are visible.",
+              "cars": "Cars appear to be stopped or moving slowly, but none seem to be actively yielding to the pedestrian.",
+              "direction": "The pedestrian appears to be crossing perpendicular to the direction of traffic."
+            }
+          ],
+          "classification": "JAYWALKING",
+          "reasoning": "The pedestrian is crossing the road outside of a designated crosswalk and without any visible pedestrian signals indicating it's safe to do so. There are no traffic lights or other signs that would suggest the pedestrian has the right of way. The cars are not actively yielding, which further suggests the pedestrian is not following proper crossing procedures.",
+          "confidence": "high"
+        }
+      }
+    ]
+  }
+]

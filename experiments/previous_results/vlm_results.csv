@@ -1,0 +1,14 @@
+name,gt,final,match,votes
+video_0014.mp4,compliant,COMPLIANT,True,"{'JAYWALKING': 1, 'COMPLIANT': 2}"
+video_0023.mp4,compliant,JAYWALKING,False,{'JAYWALKING': 3}
+video_0025.mp4,compliant,JAYWALKING,False,"{'JAYWALKING': 2, 'COMPLIANT': 1}"
+video_0003.mp4,jaywalking,JAYWALKING,True,"{'JAYWALKING': 2, 'COMPLIANT': 1}"
+video_0006.mp4,jaywalking,JAYWALKING,True,{'JAYWALKING': 3}
+video_0011.mp4,jaywalking,JAYWALKING,True,{'JAYWALKING': 3}
+video_0012.mp4,jaywalking,JAYWALKING,True,{'JAYWALKING': 3}
+video_0016.mp4,jaywalking,JAYWALKING,True,{'JAYWALKING': 3}
+video_0028.mp4,jaywalking,JAYWALKING,True,{'JAYWALKING': 3}
+video_0030.mp4,jaywalking,JAYWALKING,True,{'JAYWALKING': 3}
+video_0032.mp4,jaywalking,JAYWALKING,True,{'JAYWALKING': 3}
+video_0035.mp4,jaywalking,JAYWALKING,True,{'JAYWALKING': 3}
+video_0037.mp4,jaywalking,JAYWALKING,True,{'JAYWALKING': 3}

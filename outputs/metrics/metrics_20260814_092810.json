@@ -1,0 +1,28 @@
+{
+  "accuracy": 80.0,
+  "precision": 75.0,
+  "recall": 100.0,
+  "specificity": 50.0,
+  "f1_score": 85.71,
+  "false_positive_rate": 50.0,
+  "false_negative_rate": 0.0,
+  "tp": 3,
+  "tn": 1,
+  "fp": 1,
+  "fn": 0,
+  "unknown_predictions": 0,
+  "correct": 4,
+  "total_evaluated": 5,
+  "confusion_matrix": {
+    "predicted_jaywalking": {
+      "actual_jaywalking": 3,
+      "actual_compliant": 1
+    },
+    "predicted_compliant": {
+      "actual_jaywalking": 0,
+      "actual_compliant": 1
+    }
+  },
+  "total_wall_time_seconds": 17.32,
+  "avg_time_per_clip_seconds": 3.46
+}

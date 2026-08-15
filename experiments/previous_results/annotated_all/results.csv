@@ -1,0 +1,14 @@
+name,gt,verdict,final_pred,match,jaywalk_frames,compliant_frames,not_crossing_frames,total_frames,path
+video_0014.mp4,compliant,correct,jaywalking,False,111,0,159,270,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0014.mp4_annotated.mp4
+video_0023.mp4,compliant,ambiguous,jaywalking,False,84,0,156,240,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0023.mp4_annotated.mp4
+video_0025.mp4,compliant,correct,compliant,True,0,57,153,210,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0025.mp4_annotated.mp4
+video_0003.mp4,jaywalking,correct,jaywalking,True,108,0,102,210,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0003.mp4_annotated.mp4
+video_0006.mp4,jaywalking,correct,compliant,False,0,274,56,330,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0006.mp4_annotated.mp4
+video_0011.mp4,jaywalking,correct,jaywalking,True,110,0,160,270,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0011.mp4_annotated.mp4
+video_0012.mp4,jaywalking,correct,compliant,False,10,23,87,120,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0012.mp4_annotated.mp4
+video_0016.mp4,jaywalking,correct,compliant,False,0,193,17,210,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0016.mp4_annotated.mp4
+video_0028.mp4,jaywalking,correct,compliant,False,0,158,82,240,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0028.mp4_annotated.mp4
+video_0030.mp4,jaywalking,correct,jaywalking,True,154,0,26,180,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0030.mp4_annotated.mp4
+video_0032.mp4,jaywalking,correct,compliant,False,0,98,142,240,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0032.mp4_annotated.mp4
+video_0035.mp4,jaywalking,wrong,jaywalking,True,74,0,106,180,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0035.mp4_annotated.mp4
+video_0037.mp4,jaywalking,wrong,compliant,False,0,248,52,300,/home/priyanshu/Research_paper/crowd-jaywalking/evaluation/annotated_all/video_0037.mp4_annotated.mp4
