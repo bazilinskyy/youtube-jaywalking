@@ -954,3 +954,46 @@ The research direction has officially shifted from the previous Qwen2.5-VL/V1 ke
   - Zero ground-truth class labels accessed or used during extraction.
 * **Next Recommended Research Direction:**
   - Fuse lower-body stride geometry (ankle spread ratio $\Delta x_{\text{ankle}} / h_{\text{body}}$ and knee flexion) into the Two-Stage Roadway-Entry Validator to recover the remaining 7 False Negatives without increasing False Positives.
+
+## Experiment 30 — BoT-SORT Custom Tracking + YOLO26x-Pose Migration Benchmark (39 Clips)
+* **Date:** 2026-08-21
+* **Architecture:** YOLO11x + BoT-SORT (custom config with ReID, sparseOptFlow) -> Dynamic track_buffer per video -> YOLO26x-Pose (`yolo26x-pose.pt`) -> Two-Stage Roadway-Entry Validation -> Qwen2.5-VL-7B (5 Key-State Frames).
+* **Research Question:** How does migrating from ByteTrack + YOLO11x-Pose to BoT-SORT with ReID & optical flow GMC + YOLO26x-Pose impact track persistence and long-video classification?
+* **Experimental Configuration:**
+  - `configs/botsort_custom.yaml`: `tracker_type: botsort`, `with_reid: true`, `gmc_method: sparseOptFlow`, `appearance_thresh: 0.25`, `match_thresh: 0.6`, `proximity_thresh: 0.5`.
+  - Dynamic `track_buffer`: Scaled as $\text{int}(\text{FPS} \times 2.0\text{s})$ (60 frames at 30 FPS, 120 frames at 60 FPS).
+  - Zero ground-truth access during inference. Loaded `ground_truth.csv` post-inference.
+* **Empirical Benchmark Metrics Summary:**
+
+| Architecture / Experiment | Accuracy | Precision | Recall | Specificity | F1 Score | TP | TN | FP | FN | Total Tracks | Avg Latency |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|:---:|---:|
+| **Historical Short-Clip Baseline** | **97.44%** | **93.75%** | **100.0%** | **95.83%** | **96.77%** | 15 | 23 | 1 | 0 | - | 5.45s |
+| **Exp 29 (ByteTrack + YOLO11x-Pose)** | **74.36%** | **72.73%** | 53.33% | **87.50%** | **61.54%** | 8 | 21 | **3** | 7 | 698 | **5.07s** |
+| **Exp 30 (BoT-SORT + YOLO26x-Pose)** | 66.67% | 56.25% | **60.00%** | 70.83% | 58.06% | **9** | 17 | 7 | **6** | **329** | 10.45s |
+
+* **Key Tracker Observations:**
+  1. **Track Consolidation:** BoT-SORT reduced total fragmented tracks across the 39 videos by **52.9%** (from 698 down to 329 tracks) due to appearance ReID and camera motion compensation.
+  2. **Recall Impact:** Higher track longevity improved true jaywalking recovery ($\text{TP}=9$, Recall $53.33\% \to 60.00\%$, recovering `video_0139` and `video_0053`).
+  3. **Precision Trade-off:** More persistent bystander tracks on curbs increased False Positives ($3 \to 7$), lowering overall accuracy to 66.67%.
+
+## Experiment 31 — BoT-SORT Custom Tracking + YOLO26x-Pose with Simple Prediction Reporting (39 Clips)
+* **Date:** 2026-08-21
+* **Architecture:** YOLO11x + BoT-SORT (custom config with ReID, sparseOptFlow) -> Dynamic track_buffer per video -> YOLO26x-Pose (`yolo26x-pose.pt`) -> Two-Stage Roadway-Entry Validation -> Qwen2.5-VL-7B (5 Key-State Frames).
+* **Research Question:** How can the BoT-SORT + YOLO26x-Pose pipeline outputs be formatted into human-readable tables (CSV & Markdown) while maintaining research data integrity?
+* **Experimental Configuration:**
+  - `configs/botsort_custom.yaml`: `tracker_type: botsort`, `with_reid: true`, `gmc_method: sparseOptFlow`, `appearance_thresh: 0.25`, `match_thresh: 0.6`, `proximity_thresh: 0.5`.
+  - Dynamic `track_buffer`: Scaled as $\text{int}(\text{FPS} \times 2.0\text{s})$ (60 frames at 30 FPS, 120 frames at 60 FPS).
+  - Zero ground-truth access during inference. Loaded `ground_truth.csv` post-inference.
+* **Empirical Benchmark Metrics Summary:**
+
+| Architecture / Experiment | Accuracy | Precision | Recall | Specificity | F1 Score | TP | TN | FP | FN | Avg Latency |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| **Historical Short-Clip Baseline** | **97.44%** | **93.75%** | **100.0%** | **95.83%** | **96.77%** | 15 | 23 | 1 | 0 | 5.45s |
+| **Exp 29 (ByteTrack + YOLO11x-Pose)** | **74.36%** | **72.73%** | 53.33% | **87.50%** | **61.54%** | 8 | 21 | **3** | 7 | **5.07s** |
+| **Exp 31 (BoT-SORT + YOLO26x-Pose)** | 64.10% | 53.33% | 53.33% | 70.83% | 53.33% | 8 | 17 | 7 | 7 | 10.60s |
+
+* **Human-Readable Deliverable Files:**
+  - [`outputs/exp31_botsort_yolo26/results_summary.csv`](file:///home/tue20234844/crowd-jaywalking/outputs/exp31_botsort_yolo26/results_summary.csv)
+  - [`outputs/exp31_botsort_yolo26/results_summary.md`](file:///home/tue20234844/crowd-jaywalking/outputs/exp31_botsort_yolo26/results_summary.md)
+  - `outputs/exp31_botsort_yolo26/detailed_results.json`
+  - `outputs/exp31_botsort_yolo26/visualizations/*_prediction.png`

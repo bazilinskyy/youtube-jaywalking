@@ -1,0 +1,4901 @@
+{
+  "video_path": "data/raw_clips/video_0099.mp4",
+  "total_frames": 180,
+  "fps": 30.0,
+  "duration_seconds": 6.0,
+  "tracker_used": "BoT-SORT (custom with_reid=True, sparseOptFlow)",
+  "track_buffer_frames": 60,
+  "track_buffer_seconds": 2.0,
+  "pose_model_used": "YOLO26x-Pose (yolo26x-pose.pt)",
+  "total_pedestrian_tracks": 6,
+  "tracks": [
+    {
+      "track_id": 215,
+      "event_start_frame": 5,
+      "event_end_frame": 8,
+      "duration_seconds": 0.133,
+      "total_frames": 4,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 1.105,
+      "total_lateral_displacement": 0.0221,
+      "roadway_entry_candidate_frame": 7,
+      "peak_motion_frame": 8,
+      "all_frames": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "velocities": [
+        0.0,
+        9.7915,
+        11.5695,
+        12.1509
+      ],
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 5,
+          "timestamp_seconds": 0.167,
+          "bbox": {
+            "center_x": 0.0312,
+            "center_y": 0.6337,
+            "width": 0.0159,
+            "height": 0.0904,
+            "bottom_y": 0.6789
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 6,
+          "timestamp_seconds": 0.2,
+          "bbox": {
+            "center_x": 0.0247,
+            "center_y": 0.6331,
+            "width": 0.0166,
+            "height": 0.092,
+            "bottom_y": 0.6791
+          },
+          "normalized_lateral_displacement": 0.325,
+          "consecutive_displacement": 0.3264,
+          "velocity": 9.7915,
+          "acceleration": 293.745,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 7,
+          "timestamp_seconds": 0.233,
+          "bbox": {
+            "center_x": 0.0172,
+            "center_y": 0.6313,
+            "width": 0.0179,
+            "height": 0.0909,
+            "bottom_y": 0.6768
+          },
+          "normalized_lateral_displacement": 0.7,
+          "consecutive_displacement": 0.3856,
+          "velocity": 11.5695,
+          "acceleration": 53.34,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 8,
+          "timestamp_seconds": 0.267,
+          "bbox": {
+            "center_x": 0.0091,
+            "center_y": 0.6312,
+            "width": 0.0179,
+            "height": 0.0936,
+            "bottom_y": 0.678
+          },
+          "normalized_lateral_displacement": 1.105,
+          "consecutive_displacement": 0.405,
+          "velocity": 12.1509,
+          "acceleration": 17.442,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 218,
+      "event_start_frame": 98,
+      "event_end_frame": 109,
+      "duration_seconds": 0.4,
+      "total_frames": 12,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 0.6058,
+      "total_lateral_displacement": 0.0126,
+      "roadway_entry_candidate_frame": 98,
+      "peak_motion_frame": 101,
+      "all_frames": [
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109
+      ],
+      "velocities": [
+        0.0,
+        1.6125,
+        2.0192,
+        10.4615,
+        2.6002,
+        3.2251,
+        1.05,
+        1.3683,
+        2.5189,
+        4.5289,
+        1.784,
+        1.5865
+      ],
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 98,
+          "timestamp_seconds": 3.267,
+          "bbox": {
+            "center_x": 0.4933,
+            "center_y": 0.6526,
+            "width": 0.0132,
+            "height": 0.0686,
+            "bottom_y": 0.6869
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 99,
+          "timestamp_seconds": 3.3,
+          "bbox": {
+            "center_x": 0.4922,
+            "center_y": 0.6524,
+            "width": 0.0141,
+            "height": 0.0702,
+            "bottom_y": 0.6875
+          },
+          "normalized_lateral_displacement": 0.0529,
+          "consecutive_displacement": 0.0538,
+          "velocity": 1.6125,
+          "acceleration": 48.375,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 100,
+          "timestamp_seconds": 3.333,
+          "bbox": {
+            "center_x": 0.4908,
+            "center_y": 0.6524,
+            "width": 0.0162,
+            "height": 0.0711,
+            "bottom_y": 0.6879
+          },
+          "normalized_lateral_displacement": 0.1202,
+          "consecutive_displacement": 0.0673,
+          "velocity": 2.0192,
+          "acceleration": 12.201,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 101,
+          "timestamp_seconds": 3.367,
+          "bbox": {
+            "center_x": 0.4889,
+            "center_y": 0.6594,
+            "width": 0.0205,
+            "height": 0.0655,
+            "bottom_y": 0.6922
+          },
+          "normalized_lateral_displacement": 0.2115,
+          "consecutive_displacement": 0.3487,
+          "velocity": 10.4615,
+          "acceleration": 253.269,
+          "trajectory_direction": "moving_down",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 102,
+          "timestamp_seconds": 3.4,
+          "bbox": {
+            "center_x": 0.4874,
+            "center_y": 0.6604,
+            "width": 0.0235,
+            "height": 0.0661,
+            "bottom_y": 0.6935
+          },
+          "normalized_lateral_displacement": 0.2837,
+          "consecutive_displacement": 0.0867,
+          "velocity": 2.6002,
+          "acceleration": -235.839,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 103,
+          "timestamp_seconds": 3.433,
+          "bbox": {
+            "center_x": 0.4864,
+            "center_y": 0.6584,
+            "width": 0.0259,
+            "height": 0.0725,
+            "bottom_y": 0.6946
+          },
+          "normalized_lateral_displacement": 0.3317,
+          "consecutive_displacement": 0.1075,
+          "velocity": 3.2251,
+          "acceleration": 18.747,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 104,
+          "timestamp_seconds": 3.467,
+          "bbox": {
+            "center_x": 0.4857,
+            "center_y": 0.6582,
+            "width": 0.0272,
+            "height": 0.075,
+            "bottom_y": 0.6957
+          },
+          "normalized_lateral_displacement": 0.3654,
+          "consecutive_displacement": 0.035,
+          "velocity": 1.05,
+          "acceleration": -65.253,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 105,
+          "timestamp_seconds": 3.5,
+          "bbox": {
+            "center_x": 0.4848,
+            "center_y": 0.6579,
+            "width": 0.0274,
+            "height": 0.0781,
+            "bottom_y": 0.6969
+          },
+          "normalized_lateral_displacement": 0.4087,
+          "consecutive_displacement": 0.0456,
+          "velocity": 1.3683,
+          "acceleration": 9.549,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 106,
+          "timestamp_seconds": 3.533,
+          "bbox": {
+            "center_x": 0.4844,
+            "center_y": 0.6596,
+            "width": 0.0265,
+            "height": 0.0784,
+            "bottom_y": 0.6988
+          },
+          "normalized_lateral_displacement": 0.4279,
+          "consecutive_displacement": 0.084,
+          "velocity": 2.5189,
+          "acceleration": 34.518,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 107,
+          "timestamp_seconds": 3.567,
+          "bbox": {
+            "center_x": 0.4819,
+            "center_y": 0.6577,
+            "width": 0.0204,
+            "height": 0.0775,
+            "bottom_y": 0.6965
+          },
+          "normalized_lateral_displacement": 0.5481,
+          "consecutive_displacement": 0.151,
+          "velocity": 4.5289,
+          "acceleration": 60.3,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 108,
+          "timestamp_seconds": 3.6,
+          "bbox": {
+            "center_x": 0.4807,
+            "center_y": 0.6574,
+            "width": 0.0177,
+            "height": 0.0763,
+            "bottom_y": 0.6956
+          },
+          "normalized_lateral_displacement": 0.6058,
+          "consecutive_displacement": 0.0595,
+          "velocity": 1.784,
+          "acceleration": -82.347,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 109,
+          "timestamp_seconds": 3.633,
+          "bbox": {
+            "center_x": 0.4807,
+            "center_y": 0.6585,
+            "width": 0.017,
+            "height": 0.0705,
+            "bottom_y": 0.6938
+          },
+          "normalized_lateral_displacement": 0.6058,
+          "consecutive_displacement": 0.0529,
+          "velocity": 1.5865,
+          "acceleration": -5.925,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 220,
+      "event_start_frame": 112,
+      "event_end_frame": 128,
+      "duration_seconds": 0.567,
+      "total_frames": 17,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 3.165,
+      "total_lateral_displacement": 0.0633,
+      "roadway_entry_candidate_frame": 117,
+      "peak_motion_frame": 127,
+      "all_frames": [
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128
+      ],
+      "velocities": [
+        0.0,
+        6.0392,
+        3.5146,
+        6.9065,
+        5.552,
+        6.9794,
+        5.316,
+        6.0,
+        6.7766,
+        6.8837,
+        5.4208,
+        6.5898,
+        6.408,
+        7.0564,
+        7.164,
+        7.65,
+        6.9584
+      ],
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 112,
+          "timestamp_seconds": 3.733,
+          "bbox": {
+            "center_x": 0.8074,
+            "center_y": 0.6515,
+            "width": 0.0176,
+            "height": 0.1057,
+            "bottom_y": 0.7044
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 113,
+          "timestamp_seconds": 3.767,
+          "bbox": {
+            "center_x": 0.8113,
+            "center_y": 0.6505,
+            "width": 0.0197,
+            "height": 0.1111,
+            "bottom_y": 0.7061
+          },
+          "normalized_lateral_displacement": 0.195,
+          "consecutive_displacement": 0.2013,
+          "velocity": 6.0392,
+          "acceleration": 181.176,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 114,
+          "timestamp_seconds": 3.8,
+          "bbox": {
+            "center_x": 0.8131,
+            "center_y": 0.649,
+            "width": 0.0212,
+            "height": 0.111,
+            "bottom_y": 0.7045
+          },
+          "normalized_lateral_displacement": 0.285,
+          "consecutive_displacement": 0.1172,
+          "velocity": 3.5146,
+          "acceleration": -75.738,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 115,
+          "timestamp_seconds": 3.833,
+          "bbox": {
+            "center_x": 0.8177,
+            "center_y": 0.6492,
+            "width": 0.0189,
+            "height": 0.1088,
+            "bottom_y": 0.7036
+          },
+          "normalized_lateral_displacement": 0.515,
+          "consecutive_displacement": 0.2302,
+          "velocity": 6.9065,
+          "acceleration": 101.757,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 116,
+          "timestamp_seconds": 3.867,
+          "bbox": {
+            "center_x": 0.8214,
+            "center_y": 0.6491,
+            "width": 0.0192,
+            "height": 0.1075,
+            "bottom_y": 0.7029
+          },
+          "normalized_lateral_displacement": 0.7,
+          "consecutive_displacement": 0.1851,
+          "velocity": 5.552,
+          "acceleration": -40.635,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 117,
+          "timestamp_seconds": 3.9,
+          "bbox": {
+            "center_x": 0.8255,
+            "center_y": 0.6513,
+            "width": 0.0177,
+            "height": 0.1073,
+            "bottom_y": 0.7049
+          },
+          "normalized_lateral_displacement": 0.905,
+          "consecutive_displacement": 0.2326,
+          "velocity": 6.9794,
+          "acceleration": 42.822,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 118,
+          "timestamp_seconds": 3.933,
+          "bbox": {
+            "center_x": 0.8289,
+            "center_y": 0.6503,
+            "width": 0.017,
+            "height": 0.1076,
+            "bottom_y": 0.7041
+          },
+          "normalized_lateral_displacement": 1.075,
+          "consecutive_displacement": 0.1772,
+          "velocity": 5.316,
+          "acceleration": -49.902,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 119,
+          "timestamp_seconds": 3.967,
+          "bbox": {
+            "center_x": 0.8321,
+            "center_y": 0.6527,
+            "width": 0.0188,
+            "height": 0.1093,
+            "bottom_y": 0.7073
+          },
+          "normalized_lateral_displacement": 1.235,
+          "consecutive_displacement": 0.2,
+          "velocity": 6.0,
+          "acceleration": 20.52,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 120,
+          "timestamp_seconds": 4.0,
+          "bbox": {
+            "center_x": 0.8361,
+            "center_y": 0.6548,
+            "width": 0.0175,
+            "height": 0.1153,
+            "bottom_y": 0.7124
+          },
+          "normalized_lateral_displacement": 1.435,
+          "consecutive_displacement": 0.2259,
+          "velocity": 6.7766,
+          "acceleration": 23.298,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 121,
+          "timestamp_seconds": 4.033,
+          "bbox": {
+            "center_x": 0.8406,
+            "center_y": 0.6557,
+            "width": 0.0176,
+            "height": 0.1165,
+            "bottom_y": 0.714
+          },
+          "normalized_lateral_displacement": 1.66,
+          "consecutive_displacement": 0.2295,
+          "velocity": 6.8837,
+          "acceleration": 3.213,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 122,
+          "timestamp_seconds": 4.067,
+          "bbox": {
+            "center_x": 0.8441,
+            "center_y": 0.6566,
+            "width": 0.0176,
+            "height": 0.1159,
+            "bottom_y": 0.7146
+          },
+          "normalized_lateral_displacement": 1.835,
+          "consecutive_displacement": 0.1807,
+          "velocity": 5.4208,
+          "acceleration": -43.887,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 123,
+          "timestamp_seconds": 4.1,
+          "bbox": {
+            "center_x": 0.8484,
+            "center_y": 0.6575,
+            "width": 0.0176,
+            "height": 0.1175,
+            "bottom_y": 0.7163
+          },
+          "normalized_lateral_displacement": 2.05,
+          "consecutive_displacement": 0.2197,
+          "velocity": 6.5898,
+          "acceleration": 35.07,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 124,
+          "timestamp_seconds": 4.133,
+          "bbox": {
+            "center_x": 0.8524,
+            "center_y": 0.659,
+            "width": 0.0181,
+            "height": 0.1191,
+            "bottom_y": 0.7185
+          },
+          "normalized_lateral_displacement": 2.25,
+          "consecutive_displacement": 0.2136,
+          "velocity": 6.408,
+          "acceleration": -5.454,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 125,
+          "timestamp_seconds": 4.167,
+          "bbox": {
+            "center_x": 0.8571,
+            "center_y": 0.6592,
+            "width": 0.0191,
+            "height": 0.121,
+            "bottom_y": 0.7197
+          },
+          "normalized_lateral_displacement": 2.485,
+          "consecutive_displacement": 0.2352,
+          "velocity": 7.0564,
+          "acceleration": 19.452,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 126,
+          "timestamp_seconds": 4.2,
+          "bbox": {
+            "center_x": 0.8616,
+            "center_y": 0.6608,
+            "width": 0.0192,
+            "height": 0.1257,
+            "bottom_y": 0.7236
+          },
+          "normalized_lateral_displacement": 2.71,
+          "consecutive_displacement": 0.2388,
+          "velocity": 7.164,
+          "acceleration": 3.228,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 127,
+          "timestamp_seconds": 4.233,
+          "bbox": {
+            "center_x": 0.8661,
+            "center_y": 0.6632,
+            "width": 0.0189,
+            "height": 0.1261,
+            "bottom_y": 0.7262
+          },
+          "normalized_lateral_displacement": 2.935,
+          "consecutive_displacement": 0.255,
+          "velocity": 7.65,
+          "acceleration": 14.58,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 128,
+          "timestamp_seconds": 4.267,
+          "bbox": {
+            "center_x": 0.8707,
+            "center_y": 0.6638,
+            "width": 0.0192,
+            "height": 0.1308,
+            "bottom_y": 0.7292
+          },
+          "normalized_lateral_displacement": 3.165,
+          "consecutive_displacement": 0.2319,
+          "velocity": 6.9584,
+          "acceleration": -20.748,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 222,
+      "event_start_frame": 116,
+      "event_end_frame": 180,
+      "duration_seconds": 2.167,
+      "total_frames": 61,
+      "valid_keypoint_frames": 28,
+      "keypoint_coverage_ratio": 0.459,
+      "normalized_motion_score": 10.2667,
+      "total_lateral_displacement": 0.4326,
+      "roadway_entry_candidate_frame": 125,
+      "peak_motion_frame": 179,
+      "all_frames": [
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        132,
+        133,
+        134,
+        135,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        146,
+        147,
+        148,
+        149,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180
+      ],
+      "velocities": [
+        0.0,
+        1.8152,
+        4.5533,
+        0.9118,
+        2.094,
+        1.5103,
+        2.9061,
+        1.5019,
+        1.6758,
+        2.2083,
+        3.3097,
+        2.0251,
+        2.7065,
+        3.1537,
+        4.3103,
+        1.9515,
+        2.0537,
+        2.4499,
+        1.6267,
+        1.7831,
+        3.2611,
+        2.7648,
+        3.8506,
+        4.5816,
+        3.3471,
+        3.7902,
+        3.5748,
+        3.9833,
+        3.4182,
+        4.8436,
+        5.2145,
+        3.3159,
+        3.9417,
+        5.4129,
+        6.5595,
+        5.8711,
+        6.0956,
+        6.2719,
+        6.6767,
+        6.6218,
+        5.7251,
+        5.273,
+        4.5656,
+        4.2725,
+        4.7039,
+        6.6057,
+        6.7877,
+        9.0802,
+        9.4894,
+        9.9568,
+        14.3661,
+        8.9656,
+        12.3641,
+        12.086,
+        11.7821,
+        11.7098,
+        10.9666,
+        13.6219,
+        13.2522,
+        14.427,
+        13.4215
+      ],
+      "is_dominant_crossing_candidate": true,
+      "frames": [
+        {
+          "frame_id": 116,
+          "timestamp_seconds": 3.867,
+          "bbox": {
+            "center_x": 0.4662,
+            "center_y": 0.6508,
+            "width": 0.0257,
+            "height": 0.0935,
+            "bottom_y": 0.6976
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 117,
+          "timestamp_seconds": 3.9,
+          "bbox": {
+            "center_x": 0.4645,
+            "center_y": 0.6489,
+            "width": 0.0287,
+            "height": 0.1006,
+            "bottom_y": 0.6992
+          },
+          "normalized_lateral_displacement": 0.0403,
+          "consecutive_displacement": 0.0605,
+          "velocity": 1.8152,
+          "acceleration": 54.456,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 118,
+          "timestamp_seconds": 3.933,
+          "bbox": {
+            "center_x": 0.4634,
+            "center_y": 0.6552,
+            "width": 0.0315,
+            "height": 0.0917,
+            "bottom_y": 0.701
+          },
+          "normalized_lateral_displacement": 0.0665,
+          "consecutive_displacement": 0.1518,
+          "velocity": 4.5533,
+          "acceleration": 82.143,
+          "trajectory_direction": "moving_down",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 119,
+          "timestamp_seconds": 3.967,
+          "bbox": {
+            "center_x": 0.4626,
+            "center_y": 0.6542,
+            "width": 0.0325,
+            "height": 0.1015,
+            "bottom_y": 0.705
+          },
+          "normalized_lateral_displacement": 0.0854,
+          "consecutive_displacement": 0.0304,
+          "velocity": 0.9118,
+          "acceleration": -109.245,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 120,
+          "timestamp_seconds": 4.0,
+          "bbox": {
+            "center_x": 0.4609,
+            "center_y": 0.6566,
+            "width": 0.0339,
+            "height": 0.1033,
+            "bottom_y": 0.7082
+          },
+          "normalized_lateral_displacement": 0.1258,
+          "consecutive_displacement": 0.0698,
+          "velocity": 2.094,
+          "acceleration": 35.466,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 121,
+          "timestamp_seconds": 4.033,
+          "bbox": {
+            "center_x": 0.4594,
+            "center_y": 0.6581,
+            "width": 0.0335,
+            "height": 0.1075,
+            "bottom_y": 0.7119
+          },
+          "normalized_lateral_displacement": 0.1614,
+          "consecutive_displacement": 0.0503,
+          "velocity": 1.5103,
+          "acceleration": -17.511,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 122,
+          "timestamp_seconds": 4.067,
+          "bbox": {
+            "center_x": 0.4573,
+            "center_y": 0.6616,
+            "width": 0.0324,
+            "height": 0.1022,
+            "bottom_y": 0.7127
+          },
+          "normalized_lateral_displacement": 0.2112,
+          "consecutive_displacement": 0.0969,
+          "velocity": 2.9061,
+          "acceleration": 41.874,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 123,
+          "timestamp_seconds": 4.1,
+          "bbox": {
+            "center_x": 0.4552,
+            "center_y": 0.6614,
+            "width": 0.0302,
+            "height": 0.1028,
+            "bottom_y": 0.7128
+          },
+          "normalized_lateral_displacement": 0.2611,
+          "consecutive_displacement": 0.0501,
+          "velocity": 1.5019,
+          "acceleration": -42.126,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 124,
+          "timestamp_seconds": 4.133,
+          "bbox": {
+            "center_x": 0.4529,
+            "center_y": 0.6619,
+            "width": 0.0258,
+            "height": 0.1024,
+            "bottom_y": 0.7131
+          },
+          "normalized_lateral_displacement": 0.3156,
+          "consecutive_displacement": 0.0559,
+          "velocity": 1.6758,
+          "acceleration": 5.217,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 125,
+          "timestamp_seconds": 4.167,
+          "bbox": {
+            "center_x": 0.45,
+            "center_y": 0.663,
+            "width": 0.0218,
+            "height": 0.1064,
+            "bottom_y": 0.7162
+          },
+          "normalized_lateral_displacement": 0.3845,
+          "consecutive_displacement": 0.0736,
+          "velocity": 2.2083,
+          "acceleration": 15.975,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 126,
+          "timestamp_seconds": 4.2,
+          "bbox": {
+            "center_x": 0.4456,
+            "center_y": 0.6615,
+            "width": 0.0193,
+            "height": 0.1103,
+            "bottom_y": 0.7167
+          },
+          "normalized_lateral_displacement": 0.4889,
+          "consecutive_displacement": 0.1103,
+          "velocity": 3.3097,
+          "acceleration": 33.042,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 127,
+          "timestamp_seconds": 4.233,
+          "bbox": {
+            "center_x": 0.4428,
+            "center_y": 0.662,
+            "width": 0.0178,
+            "height": 0.1076,
+            "bottom_y": 0.7159
+          },
+          "normalized_lateral_displacement": 0.5553,
+          "consecutive_displacement": 0.0675,
+          "velocity": 2.0251,
+          "acceleration": -38.538,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 128,
+          "timestamp_seconds": 4.267,
+          "bbox": {
+            "center_x": 0.4397,
+            "center_y": 0.6642,
+            "width": 0.0183,
+            "height": 0.1055,
+            "bottom_y": 0.7169
+          },
+          "normalized_lateral_displacement": 0.6289,
+          "consecutive_displacement": 0.0902,
+          "velocity": 2.7065,
+          "acceleration": 20.442,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 129,
+          "timestamp_seconds": 4.3,
+          "bbox": {
+            "center_x": 0.4358,
+            "center_y": 0.6663,
+            "width": 0.0236,
+            "height": 0.1106,
+            "bottom_y": 0.7216
+          },
+          "normalized_lateral_displacement": 0.7215,
+          "consecutive_displacement": 0.1051,
+          "velocity": 3.1537,
+          "acceleration": 13.416,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 130,
+          "timestamp_seconds": 4.333,
+          "bbox": {
+            "center_x": 0.4327,
+            "center_y": 0.6715,
+            "width": 0.0285,
+            "height": 0.1072,
+            "bottom_y": 0.7251
+          },
+          "normalized_lateral_displacement": 0.795,
+          "consecutive_displacement": 0.1437,
+          "velocity": 4.3103,
+          "acceleration": 34.698,
+          "trajectory_direction": "moving_down",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 132,
+          "timestamp_seconds": 4.4,
+          "bbox": {
+            "center_x": 0.4274,
+            "center_y": 0.6701,
+            "width": 0.0366,
+            "height": 0.116,
+            "bottom_y": 0.7281
+          },
+          "normalized_lateral_displacement": 0.9208,
+          "consecutive_displacement": 0.1301,
+          "velocity": 1.9515,
+          "acceleration": -35.382,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 133,
+          "timestamp_seconds": 4.433,
+          "bbox": {
+            "center_x": 0.425,
+            "center_y": 0.6717,
+            "width": 0.0401,
+            "height": 0.1195,
+            "bottom_y": 0.7314
+          },
+          "normalized_lateral_displacement": 0.9778,
+          "consecutive_displacement": 0.0685,
+          "velocity": 2.0537,
+          "acceleration": 3.066,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 134,
+          "timestamp_seconds": 4.467,
+          "bbox": {
+            "center_x": 0.423,
+            "center_y": 0.6745,
+            "width": 0.0417,
+            "height": 0.1213,
+            "bottom_y": 0.7351
+          },
+          "normalized_lateral_displacement": 1.0252,
+          "consecutive_displacement": 0.0817,
+          "velocity": 2.4499,
+          "acceleration": 11.886,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 135,
+          "timestamp_seconds": 4.5,
+          "bbox": {
+            "center_x": 0.4209,
+            "center_y": 0.6754,
+            "width": 0.0433,
+            "height": 0.1249,
+            "bottom_y": 0.7379
+          },
+          "normalized_lateral_displacement": 1.0751,
+          "consecutive_displacement": 0.0542,
+          "velocity": 1.6267,
+          "acceleration": -24.696,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 137,
+          "timestamp_seconds": 4.567,
+          "bbox": {
+            "center_x": 0.4159,
+            "center_y": 0.6757,
+            "width": 0.04,
+            "height": 0.1348,
+            "bottom_y": 0.7431
+          },
+          "normalized_lateral_displacement": 1.1938,
+          "consecutive_displacement": 0.1189,
+          "velocity": 1.7831,
+          "acceleration": 2.346,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 138,
+          "timestamp_seconds": 4.6,
+          "bbox": {
+            "center_x": 0.4132,
+            "center_y": 0.6794,
+            "width": 0.0349,
+            "height": 0.1343,
+            "bottom_y": 0.7466
+          },
+          "normalized_lateral_displacement": 1.2578,
+          "consecutive_displacement": 0.1087,
+          "velocity": 3.2611,
+          "acceleration": 44.34,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 139,
+          "timestamp_seconds": 4.633,
+          "bbox": {
+            "center_x": 0.41,
+            "center_y": 0.6816,
+            "width": 0.0301,
+            "height": 0.1331,
+            "bottom_y": 0.7481
+          },
+          "normalized_lateral_displacement": 1.3338,
+          "consecutive_displacement": 0.0922,
+          "velocity": 2.7648,
+          "acceleration": -14.889,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 140,
+          "timestamp_seconds": 4.667,
+          "bbox": {
+            "center_x": 0.4046,
+            "center_y": 0.6813,
+            "width": 0.0257,
+            "height": 0.1368,
+            "bottom_y": 0.7497
+          },
+          "normalized_lateral_displacement": 1.4619,
+          "consecutive_displacement": 0.1284,
+          "velocity": 3.8506,
+          "acceleration": 32.574,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 141,
+          "timestamp_seconds": 4.7,
+          "bbox": {
+            "center_x": 0.3992,
+            "center_y": 0.6848,
+            "width": 0.0215,
+            "height": 0.1378,
+            "bottom_y": 0.7537
+          },
+          "normalized_lateral_displacement": 1.5901,
+          "consecutive_displacement": 0.1527,
+          "velocity": 4.5816,
+          "acceleration": 21.93,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 142,
+          "timestamp_seconds": 4.733,
+          "bbox": {
+            "center_x": 0.3949,
+            "center_y": 0.6867,
+            "width": 0.0215,
+            "height": 0.1411,
+            "bottom_y": 0.7573
+          },
+          "normalized_lateral_displacement": 1.6921,
+          "consecutive_displacement": 0.1116,
+          "velocity": 3.3471,
+          "acceleration": -37.035,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 143,
+          "timestamp_seconds": 4.767,
+          "bbox": {
+            "center_x": 0.3902,
+            "center_y": 0.6892,
+            "width": 0.0261,
+            "height": 0.1478,
+            "bottom_y": 0.7631
+          },
+          "normalized_lateral_displacement": 1.8037,
+          "consecutive_displacement": 0.1263,
+          "velocity": 3.7902,
+          "acceleration": 13.293,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 144,
+          "timestamp_seconds": 4.8,
+          "bbox": {
+            "center_x": 0.3867,
+            "center_y": 0.6928,
+            "width": 0.0272,
+            "height": 0.1472,
+            "bottom_y": 0.7664
+          },
+          "normalized_lateral_displacement": 1.8867,
+          "consecutive_displacement": 0.1192,
+          "velocity": 3.5748,
+          "acceleration": -6.462,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 146,
+          "timestamp_seconds": 4.867,
+          "bbox": {
+            "center_x": 0.3765,
+            "center_y": 0.6974,
+            "width": 0.0379,
+            "height": 0.1469,
+            "bottom_y": 0.7709
+          },
+          "normalized_lateral_displacement": 2.1288,
+          "consecutive_displacement": 0.2656,
+          "velocity": 3.9833,
+          "acceleration": 6.1275,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 147,
+          "timestamp_seconds": 4.9,
+          "bbox": {
+            "center_x": 0.3726,
+            "center_y": 0.7002,
+            "width": 0.0413,
+            "height": 0.1461,
+            "bottom_y": 0.7733
+          },
+          "normalized_lateral_displacement": 2.2214,
+          "consecutive_displacement": 0.1139,
+          "velocity": 3.4182,
+          "acceleration": -16.953,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 148,
+          "timestamp_seconds": 4.933,
+          "bbox": {
+            "center_x": 0.3698,
+            "center_y": 0.7064,
+            "width": 0.0418,
+            "height": 0.1556,
+            "bottom_y": 0.7842
+          },
+          "normalized_lateral_displacement": 2.2878,
+          "consecutive_displacement": 0.1615,
+          "velocity": 4.8436,
+          "acceleration": 42.762,
+          "trajectory_direction": "moving_down",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 149,
+          "timestamp_seconds": 4.967,
+          "bbox": {
+            "center_x": 0.3656,
+            "center_y": 0.7124,
+            "width": 0.0446,
+            "height": 0.163,
+            "bottom_y": 0.7939
+          },
+          "normalized_lateral_displacement": 2.3875,
+          "consecutive_displacement": 0.1738,
+          "velocity": 5.2145,
+          "acceleration": 11.127,
+          "trajectory_direction": "moving_down",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 151,
+          "timestamp_seconds": 5.033,
+          "bbox": {
+            "center_x": 0.3566,
+            "center_y": 0.7148,
+            "width": 0.0408,
+            "height": 0.1723,
+            "bottom_y": 0.8009
+          },
+          "normalized_lateral_displacement": 2.6011,
+          "consecutive_displacement": 0.2211,
+          "velocity": 3.3159,
+          "acceleration": -28.479,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 152,
+          "timestamp_seconds": 5.067,
+          "bbox": {
+            "center_x": 0.3513,
+            "center_y": 0.7132,
+            "width": 0.0367,
+            "height": 0.171,
+            "bottom_y": 0.7987
+          },
+          "normalized_lateral_displacement": 2.7269,
+          "consecutive_displacement": 0.1314,
+          "velocity": 3.9417,
+          "acceleration": 18.774,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.34071410497029625,
+              0.6325397067599826,
+              0.08680043369531631
+            ],
+            [
+              0.34138062795003254,
+              0.6286110772026909,
+              0.07144924998283386
+            ],
+            [
+              0.3419740041097005,
+              0.6285198635525173,
+              0.010786042548716068
+            ],
+            [
+              0.3440977732340495,
+              0.6302715160228588,
+              0.4882076382637024
+            ],
+            [
+              0.3486842473347982,
+              0.629459861472801,
+              0.04426166042685509
+            ],
+            [
+              0.34468631744384765,
+              0.6482336538809317,
+              0.9767354130744934
+            ],
+            [
+              0.3532934824625651,
+              0.6485928005642361,
+              0.9166693687438965
+            ],
+            [
+              0.3420038859049479,
+              0.674778464988426,
+              0.8967925310134888
+            ],
+            [
+              0.35302327473958334,
+              0.6734128598813658,
+              0.26291966438293457
+            ],
+            [
+              0.3369562784830729,
+              0.6728908962673611,
+              0.6998727917671204
+            ],
+            [
+              0.3460180600484212,
+              0.6745353416160301,
+              0.10790526866912842
+            ],
+            [
+              0.34531548817952473,
+              0.7017314769603588,
+              0.9884763956069946
+            ],
+            [
+              0.35032908121744794,
+              0.70179364239728,
+              0.9752309322357178
+            ],
+            [
+              0.34514697392781574,
+              0.7415944417317708,
+              0.9831249713897705
+            ],
+            [
+              0.3442116101582845,
+              0.7440949616608796,
+              0.9721694588661194
+            ],
+            [
+              0.36160672505696617,
+              0.7706944783528645,
+              0.9810709357261658
+            ],
+            [
+              0.34398091634114586,
+              0.782107996057581,
+              0.9737808704376221
+            ]
+          ]
+        },
+        {
+          "frame_id": 153,
+          "timestamp_seconds": 5.1,
+          "bbox": {
+            "center_x": 0.3445,
+            "center_y": 0.7098,
+            "width": 0.0339,
+            "height": 0.1774,
+            "bottom_y": 0.7985
+          },
+          "normalized_lateral_displacement": 2.8883,
+          "consecutive_displacement": 0.1804,
+          "velocity": 5.4129,
+          "acceleration": 44.136,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.3335357666015625,
+              0.628889239275897,
+              0.08953490108251572
+            ],
+            [
+              0.3339909235636393,
+              0.624828592936198,
+              0.05664719641208649
+            ],
+            [
+              0.33463691075642904,
+              0.6247239289460359,
+              0.009944392368197441
+            ],
+            [
+              0.3367214838663737,
+              0.625215431495949,
+              0.3662555515766144
+            ],
+            [
+              0.3414067586263021,
+              0.6242606834129051,
+              0.036577414721250534
+            ],
+            [
+              0.33844833374023436,
+              0.6428240175600405,
+              0.9747756123542786
+            ],
+            [
+              0.34737860361735023,
+              0.6422318070023149,
+              0.9215334057807922
+            ],
+            [
+              0.3366328557332357,
+              0.6721647474500868,
+              0.9413469433784485
+            ],
+            [
+              0.35032774607340494,
+              0.6682926884403935,
+              0.3968849182128906
+            ],
+            [
+              0.3304465611775716,
+              0.6735770331488715,
+              0.8178938627243042
+            ],
+            [
+              0.3459444999694824,
+              0.6760295726634838,
+              0.19027848541736603
+            ],
+            [
+              0.33919254938761395,
+              0.6959703233506944,
+              0.9904836416244507
+            ],
+            [
+              0.3446244239807129,
+              0.6951401321976273,
+              0.9813310503959656
+            ],
+            [
+              0.3362185796101888,
+              0.7389755249023438,
+              0.9876059293746948
+            ],
+            [
+              0.33851426442464194,
+              0.7383438675491898,
+              0.9825657606124878
+            ],
+            [
+              0.35192031860351564,
+              0.7703140258789063,
+              0.9843276143074036
+            ],
+            [
+              0.34037698109944664,
+              0.7803372983579282,
+              0.9826164245605469
+            ]
+          ]
+        },
+        {
+          "frame_id": 154,
+          "timestamp_seconds": 5.133,
+          "bbox": {
+            "center_x": 0.3363,
+            "center_y": 0.7056,
+            "width": 0.0293,
+            "height": 0.1802,
+            "bottom_y": 0.7957
+          },
+          "normalized_lateral_displacement": 3.0829,
+          "consecutive_displacement": 0.2186,
+          "velocity": 6.5595,
+          "acceleration": 34.398,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 155,
+          "timestamp_seconds": 5.167,
+          "bbox": {
+            "center_x": 0.3299,
+            "center_y": 0.7004,
+            "width": 0.03,
+            "height": 0.1885,
+            "bottom_y": 0.7946
+          },
+          "normalized_lateral_displacement": 3.2348,
+          "consecutive_displacement": 0.1957,
+          "velocity": 5.8711,
+          "acceleration": -20.652,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.3219708124796549,
+              0.6129340277777777,
+              0.2957558035850525
+            ],
+            [
+              0.32332016626993815,
+              0.6089218704788774,
+              0.29984256625175476
+            ],
+            [
+              0.32329069773356117,
+              0.608878015588831,
+              0.03918953984975815
+            ],
+            [
+              0.32739375432332357,
+              0.6113667240849248,
+              0.7532663941383362
+            ],
+            [
+              0.3314160029093424,
+              0.6103784631799769,
+              0.06321105360984802
+            ],
+            [
+              0.3263442357381185,
+              0.6330159505208334,
+              0.9882227778434753
+            ],
+            [
+              0.3374305725097656,
+              0.6319007590964988,
+              0.9666289687156677
+            ],
+            [
+              0.3246511777242025,
+              0.6615262632016783,
+              0.9165694713592529
+            ],
+            [
+              0.34270718892415364,
+              0.6587448685257523,
+              0.34239843487739563
+            ],
+            [
+              0.3177973747253418,
+              0.6646557278103299,
+              0.7110631465911865
+            ],
+            [
+              0.33826077779134117,
+              0.6670319733796296,
+              0.12207216769456863
+            ],
+            [
+              0.3278842290242513,
+              0.689439222547743,
+              0.9926128387451172
+            ],
+            [
+              0.3365837415059408,
+              0.6896774857132523,
+              0.9869044423103333
+            ],
+            [
+              0.3235374768575033,
+              0.7280210706922743,
+              0.9785536527633667
+            ],
+            [
+              0.3325856844584147,
+              0.734885491265191,
+              0.9675546884536743
+            ],
+            [
+              0.33062559763590493,
+              0.7669517234519676,
+              0.9667255282402039
+            ],
+            [
+              0.3334219296773275,
+              0.7789796052155671,
+              0.9584200382232666
+            ]
+          ]
+        },
+        {
+          "frame_id": 156,
+          "timestamp_seconds": 5.2,
+          "bbox": {
+            "center_x": 0.322,
+            "center_y": 0.6971,
+            "width": 0.0308,
+            "height": 0.1934,
+            "bottom_y": 0.7938
+          },
+          "normalized_lateral_displacement": 3.4222,
+          "consecutive_displacement": 0.2032,
+          "velocity": 6.0956,
+          "acceleration": 6.735,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.31344998677571617,
+              0.6096806278935185,
+              0.19019517302513123
+            ],
+            [
+              0.31467081705729166,
+              0.6054147790979456,
+              0.1866116225719452
+            ],
+            [
+              0.31500447591145836,
+              0.605632753725405,
+              0.024789297953248024
+            ],
+            [
+              0.319034481048584,
+              0.6071924280237269,
+              0.6211060285568237
+            ],
+            [
+              0.3232278823852539,
+              0.6065046522352431,
+              0.050303757190704346
+            ],
+            [
+              0.31911258697509765,
+              0.6265878748010706,
+              0.9737470746040344
+            ],
+            [
+              0.3282205581665039,
+              0.6263033266420718,
+              0.9301817417144775
+            ],
+            [
+              0.3183841069539388,
+              0.6559222186053241,
+              0.9217305779457092
+            ],
+            [
+              0.3264086087544759,
+              0.6550073129159433,
+              0.359021931886673
+            ],
+            [
+              0.3116819699605306,
+              0.6555144133391204,
+              0.7926476001739502
+            ],
+            [
+              0.3169449806213379,
+              0.6546638771339699,
+              0.17074525356292725
+            ],
+            [
+              0.3202454249064128,
+              0.6843305799696181,
+              0.9931723475456238
+            ],
+            [
+              0.3291889826456706,
+              0.6853494149667245,
+              0.9904659986495972
+            ],
+            [
+              0.31084442138671875,
+              0.7185331556532119,
+              0.9820882678031921
+            ],
+            [
+              0.3294435818990072,
+              0.7314136646412037,
+              0.9851953983306885
+            ],
+            [
+              0.31838563283284504,
+              0.7559785630967882,
+              0.9650726318359375
+            ],
+            [
+              0.32931016286214193,
+              0.7768562599464699,
+              0.9712911248207092
+            ]
+          ]
+        },
+        {
+          "frame_id": 157,
+          "timestamp_seconds": 5.233,
+          "bbox": {
+            "center_x": 0.3152,
+            "center_y": 0.6915,
+            "width": 0.0329,
+            "height": 0.1981,
+            "bottom_y": 0.7905
+          },
+          "normalized_lateral_displacement": 3.5836,
+          "consecutive_displacement": 0.2091,
+          "velocity": 6.2719,
+          "acceleration": 5.289,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.3078722635904948,
+              0.6042714436848958,
+              0.49947425723075867
+            ],
+            [
+              0.3092349370320638,
+              0.5997798213252314,
+              0.5384271740913391
+            ],
+            [
+              0.3087809880574544,
+              0.6000661779333044,
+              0.05704770237207413
+            ],
+            [
+              0.31431439717610676,
+              0.601277330186632,
+              0.836057722568512
+            ],
+            [
+              0.31619351704915366,
+              0.6010377106843171,
+              0.03885004669427872
+            ],
+            [
+              0.3136404037475586,
+              0.621077643500434,
+              0.9882253408432007
+            ],
+            [
+              0.323037846883138,
+              0.6207447193287037,
+              0.9467436671257019
+            ],
+            [
+              0.31283623377482095,
+              0.6504881117078993,
+              0.9388427734375
+            ],
+            [
+              0.32232929865519205,
+              0.6490062572337963,
+              0.25300881266593933
+            ],
+            [
+              0.3073067347208659,
+              0.6620638812029803,
+              0.7791135907173157
+            ],
+            [
+              0.3120094935099284,
+              0.6542749475549768,
+              0.0866578072309494
+            ],
+            [
+              0.31426337560017903,
+              0.6790525648328993,
+              0.9938045740127563
+            ],
+            [
+              0.32388073603312173,
+              0.6797958374023437,
+              0.9848471283912659
+            ],
+            [
+              0.3034229278564453,
+              0.7167637577763311,
+              0.9894784092903137
+            ],
+            [
+              0.3246601422627767,
+              0.7282608032226563,
+              0.974127471446991
+            ],
+            [
+              0.3053392092386881,
+              0.7632977520978009,
+              0.9835811853408813
+            ],
+            [
+              0.32551301320393883,
+              0.7739128960503472,
+              0.9686925411224365
+            ]
+          ]
+        },
+        {
+          "frame_id": 158,
+          "timestamp_seconds": 5.267,
+          "bbox": {
+            "center_x": 0.3065,
+            "center_y": 0.688,
+            "width": 0.0416,
+            "height": 0.2,
+            "bottom_y": 0.788
+          },
+          "normalized_lateral_displacement": 3.7901,
+          "consecutive_displacement": 0.2226,
+          "velocity": 6.6767,
+          "acceleration": 12.144,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.30020567576090496,
+              0.5998830159505208,
+              0.3501308858394623
+            ],
+            [
+              0.30116430918375653,
+              0.5955199065031829,
+              0.3480519950389862
+            ],
+            [
+              0.3009272575378418,
+              0.5956141153971354,
+              0.0426439493894577
+            ],
+            [
+              0.3054100354512533,
+              0.5963203147605614,
+              0.7248169183731079
+            ],
+            [
+              0.308367665608724,
+              0.5957422327112268,
+              0.0471254400908947
+            ],
+            [
+              0.30705006917317706,
+              0.6166836208767361,
+              0.9838758111000061
+            ],
+            [
+              0.3143416086832682,
+              0.6149013378002025,
+              0.9096945524215698
+            ],
+            [
+              0.3055522918701172,
+              0.6506792986834491,
+              0.9764248132705688
+            ],
+            [
+              0.3096556345621745,
+              0.6453345404730902,
+              0.31757795810699463
+            ],
+            [
+              0.2956343650817871,
+              0.6390125415943287,
+              0.9415669441223145
+            ],
+            [
+              0.29881178538004555,
+              0.6385517826786747,
+              0.20890451967716217
+            ],
+            [
+              0.3071209271748861,
+              0.6761066578052662,
+              0.9931473135948181
+            ],
+            [
+              0.3159489949544271,
+              0.6753446225766783,
+              0.9806978702545166
+            ],
+            [
+              0.2961113929748535,
+              0.7199440285011575,
+              0.9940769672393799
+            ],
+            [
+              0.31975523630777997,
+              0.7234647962782118,
+              0.9833412766456604
+            ],
+            [
+              0.2939031918843587,
+              0.7710093180338542,
+              0.990401566028595
+            ],
+            [
+              0.3223964055379232,
+              0.7725513034396702,
+              0.9822580218315125
+            ]
+          ]
+        },
+        {
+          "frame_id": 159,
+          "timestamp_seconds": 5.3,
+          "bbox": {
+            "center_x": 0.2976,
+            "center_y": 0.6853,
+            "width": 0.0525,
+            "height": 0.2025,
+            "bottom_y": 0.7866
+          },
+          "normalized_lateral_displacement": 4.0013,
+          "consecutive_displacement": 0.2207,
+          "velocity": 6.6218,
+          "acceleration": -1.647,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.2949570973714193,
+              0.5936147054036458,
+              0.6256349086761475
+            ],
+            [
+              0.2967791239420573,
+              0.5888332790798612,
+              0.6676332950592041
+            ],
+            [
+              0.2953257878621419,
+              0.5889599270290798,
+              0.09758339822292328
+            ],
+            [
+              0.30220861434936525,
+              0.5896646005135996,
+              0.8326504826545715
+            ],
+            [
+              0.302301279703776,
+              0.5890925654658565,
+              0.04211712256073952
+            ],
+            [
+              0.30096282958984377,
+              0.611015545880353,
+              0.98661869764328
+            ],
+            [
+              0.3095800717671712,
+              0.6096074987340856,
+              0.9327251315116882
+            ],
+            [
+              0.29823919932047527,
+              0.641847907172309,
+              0.9574719667434692
+            ],
+            [
+              0.30509214401245116,
+              0.6383859139901621,
+              0.3281407952308655
+            ],
+            [
+              0.29058043162027997,
+              0.644463207103588,
+              0.8888528943061829
+            ],
+            [
+              0.29330409367879234,
+              0.6347686767578125,
+              0.20534153282642365
+            ],
+            [
+              0.30096747080485026,
+              0.672043694390191,
+              0.9938103556632996
+            ],
+            [
+              0.3104487737019857,
+              0.671524895562066,
+              0.9834264516830444
+            ],
+            [
+              0.28939231236775714,
+              0.717149183485243,
+              0.9912447333335876
+            ],
+            [
+              0.3141997973124186,
+              0.7192906697591146,
+              0.9784397482872009
+            ],
+            [
+              0.2818866411844889,
+              0.766682603624132,
+              0.9863648414611816
+            ],
+            [
+              0.3187541643778483,
+              0.7686550564236111,
+              0.97803795337677
+            ]
+          ]
+        },
+        {
+          "frame_id": 160,
+          "timestamp_seconds": 5.333,
+          "bbox": {
+            "center_x": 0.2901,
+            "center_y": 0.6824,
+            "width": 0.0589,
+            "height": 0.2078,
+            "bottom_y": 0.7863
+          },
+          "normalized_lateral_displacement": 4.1793,
+          "consecutive_displacement": 0.1908,
+          "velocity": 5.7251,
+          "acceleration": -26.901,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.2870272954305013,
+              0.594873555501302,
+              0.1274721324443817
+            ],
+            [
+              0.2878348668416341,
+              0.5902579413519965,
+              0.1104404628276825
+            ],
+            [
+              0.2882700284322103,
+              0.5904609962745949,
+              0.01627453789114952
+            ],
+            [
+              0.2919459025065104,
+              0.5915365713614005,
+              0.5304317474365234
+            ],
+            [
+              0.2962979634602865,
+              0.5907574123806424,
+              0.04968447610735893
+            ],
+            [
+              0.29364614486694335,
+              0.6110831931785301,
+              0.97489333152771
+            ],
+            [
+              0.3013365427652995,
+              0.6095768681278935,
+              0.8801386952400208
+            ],
+            [
+              0.28984238306681315,
+              0.6446891502097801,
+              0.967348039150238
+            ],
+            [
+              0.2955553372701009,
+              0.6405752676504629,
+              0.2966945767402649
+            ],
+            [
+              0.2823404947916667,
+              0.6333189787688078,
+              0.9275001287460327
+            ],
+            [
+              0.2840538660685221,
+              0.6329510724103009,
+              0.199353888630867
+            ],
+            [
+              0.29122161865234375,
+              0.6763432255497686,
+              0.9965981841087341
+            ],
+            [
+              0.301132869720459,
+              0.6749135335286458,
+              0.9909428954124451
+            ],
+            [
+              0.2803728739420573,
+              0.7210344102647569,
+              0.9951061010360718
+            ],
+            [
+              0.30831807454427085,
+              0.7222210919415509,
+              0.9882420897483826
+            ],
+            [
+              0.2711562474568685,
+              0.7690633138020834,
+              0.9879966378211975
+            ],
+            [
+              0.31445465087890623,
+              0.7689005533854166,
+              0.9788193106651306
+            ]
+          ]
+        },
+        {
+          "frame_id": 161,
+          "timestamp_seconds": 5.367,
+          "bbox": {
+            "center_x": 0.2827,
+            "center_y": 0.6821,
+            "width": 0.0658,
+            "height": 0.2144,
+            "bottom_y": 0.7893
+          },
+          "normalized_lateral_displacement": 4.3549,
+          "consecutive_displacement": 0.1758,
+          "velocity": 5.273,
+          "acceleration": -13.563,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.27799580891927084,
+              0.5865017361111111,
+              0.28037229180336
+            ],
+            [
+              0.27898820241292316,
+              0.5816315827546297,
+              0.22316406667232513
+            ],
+            [
+              0.2788758595784505,
+              0.5816302829318576,
+              0.02930738776922226
+            ],
+            [
+              0.2832308451334635,
+              0.5828486124674479,
+              0.6090930104255676
+            ],
+            [
+              0.28728726704915364,
+              0.5818851047092014,
+              0.04895613715052605
+            ],
+            [
+              0.28460801442464195,
+              0.6043106644241898,
+              0.9889668822288513
+            ],
+            [
+              0.294297726949056,
+              0.6033406575520833,
+              0.9277398586273193
+            ],
+            [
+              0.2809003194173177,
+              0.6405562789351852,
+              0.9783498048782349
+            ],
+            [
+              0.2901604970296224,
+              0.6359733298972801,
+              0.28680169582366943
+            ],
+            [
+              0.27172457377115883,
+              0.629923841688368,
+              0.9489262700080872
+            ],
+            [
+              0.27633393605550133,
+              0.6277958622685185,
+              0.21066948771476746
+            ],
+            [
+              0.28372542063395184,
+              0.6694497567635995,
+              0.9969229102134705
+            ],
+            [
+              0.2945664087931315,
+              0.668187572337963,
+              0.9910907745361328
+            ],
+            [
+              0.27302093505859376,
+              0.7182640923394097,
+              0.9955475330352783
+            ],
+            [
+              0.30037008921305336,
+              0.7191923353407118,
+              0.9902377724647522
+            ],
+            [
+              0.2646237850189209,
+              0.7663782190393519,
+              0.9848014712333679
+            ],
+            [
+              0.30932639439900717,
+              0.7690418384693287,
+              0.9771586656570435
+            ]
+          ]
+        },
+        {
+          "frame_id": 162,
+          "timestamp_seconds": 5.4,
+          "bbox": {
+            "center_x": 0.2763,
+            "center_y": 0.6817,
+            "width": 0.0685,
+            "height": 0.2198,
+            "bottom_y": 0.7916
+          },
+          "normalized_lateral_displacement": 4.5068,
+          "consecutive_displacement": 0.1522,
+          "velocity": 4.5656,
+          "acceleration": -21.222,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.2696549733479818,
+              0.5842165346498842,
+              0.22170308232307434
+            ],
+            [
+              0.27059542338053383,
+              0.5792738172743056,
+              0.2159506380558014
+            ],
+            [
+              0.2705784797668457,
+              0.5791343406394676,
+              0.026260921731591225
+            ],
+            [
+              0.275053596496582,
+              0.5800177114981192,
+              0.6464123129844666
+            ],
+            [
+              0.27929258346557617,
+              0.5787681297019676,
+              0.053694985806941986
+            ],
+            [
+              0.2763381322224935,
+              0.6005180076316551,
+              0.9893133044242859
+            ],
+            [
+              0.2869997978210449,
+              0.5992082383897569,
+              0.9292768239974976
+            ],
+            [
+              0.2705509185791016,
+              0.6363655938042535,
+              0.9672470688819885
+            ],
+            [
+              0.2846800486246745,
+              0.6306641190140335,
+              0.2027551382780075
+            ],
+            [
+              0.2641274929046631,
+              0.6234151204427083,
+              0.8780829310417175
+            ],
+            [
+              0.2720536549886068,
+              0.6216536910445601,
+              0.10154245048761368
+            ],
+            [
+              0.2761595408121745,
+              0.6664147836190683,
+              0.9961767196655273
+            ],
+            [
+              0.2863367716471354,
+              0.6651025842737268,
+              0.9893972873687744
+            ],
+            [
+              0.26441226005554197,
+              0.7155115763346355,
+              0.9931942224502563
+            ],
+            [
+              0.29066778818766276,
+              0.7155041164822049,
+              0.9849950671195984
+            ],
+            [
+              0.2579191207885742,
+              0.7670347990813079,
+              0.9850215315818787
+            ],
+            [
+              0.3030295689900716,
+              0.7648992467809607,
+              0.9796822667121887
+            ]
+          ]
+        },
+        {
+          "frame_id": 163,
+          "timestamp_seconds": 5.433,
+          "bbox": {
+            "center_x": 0.2703,
+            "center_y": 0.6816,
+            "width": 0.0705,
+            "height": 0.223,
+            "bottom_y": 0.7931
+          },
+          "normalized_lateral_displacement": 4.6492,
+          "consecutive_displacement": 0.1424,
+          "velocity": 4.2725,
+          "acceleration": -8.793,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.25945119857788085,
+              0.5823527583369502,
+              0.1640549749135971
+            ],
+            [
+              0.25995537439982097,
+              0.5772815845630787,
+              0.1448950171470642
+            ],
+            [
+              0.260849142074585,
+              0.5774588690863716,
+              0.015066448599100113
+            ],
+            [
+              0.26433897018432617,
+              0.5775187739619503,
+              0.6052601337432861
+            ],
+            [
+              0.2705710411071777,
+              0.5766481187608506,
+              0.03961678221821785
+            ],
+            [
+              0.26645832061767577,
+              0.5981372974537037,
+              0.9818867444992065
+            ],
+            [
+              0.2775296211242676,
+              0.5960738570601852,
+              0.8873597979545593
+            ],
+            [
+              0.2610160827636719,
+              0.6361852010091146,
+              0.9753184914588928
+            ],
+            [
+              0.27163346608479816,
+              0.6297991717303241,
+              0.22933349013328552
+            ],
+            [
+              0.2527537663777669,
+              0.6185579653139468,
+              0.9202077984809875
+            ],
+            [
+              0.25832228660583495,
+              0.6190268057364005,
+              0.12738797068595886
+            ],
+            [
+              0.2651223182678223,
+              0.6688090006510417,
+              0.9971137046813965
+            ],
+            [
+              0.276541264851888,
+              0.6671937730577256,
+              0.9910673499107361
+            ],
+            [
+              0.25376524925231936,
+              0.7216191044560185,
+              0.9964540004730225
+            ],
+            [
+              0.2822013219197591,
+              0.7205590142144097,
+              0.9876591563224792
+            ],
+            [
+              0.24906924565633137,
+              0.7790312025282118,
+              0.9921128749847412
+            ],
+            [
+              0.2968693733215332,
+              0.7683283487955729,
+              0.983674943447113
+            ]
+          ]
+        },
+        {
+          "frame_id": 164,
+          "timestamp_seconds": 5.467,
+          "bbox": {
+            "center_x": 0.2637,
+            "center_y": 0.6819,
+            "width": 0.067,
+            "height": 0.2275,
+            "bottom_y": 0.7956
+          },
+          "normalized_lateral_displacement": 4.8059,
+          "consecutive_displacement": 0.1568,
+          "velocity": 4.7039,
+          "acceleration": 12.942,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.2513209342956543,
+              0.5784936410409433,
+              0.27014169096946716
+            ],
+            [
+              0.2525207042694092,
+              0.573317125108507,
+              0.18516917526721954
+            ],
+            [
+              0.2519713878631592,
+              0.5732426961263021,
+              0.021270105615258217
+            ],
+            [
+              0.25703538258870445,
+              0.5741763644748263,
+              0.5401432514190674
+            ],
+            [
+              0.26067304611206055,
+              0.5731158786349826,
+              0.037570975720882416
+            ],
+            [
+              0.2595103899637858,
+              0.5947567409939236,
+              0.9844217300415039
+            ],
+            [
+              0.2668364842732747,
+              0.5945828473126447,
+              0.9188308715820312
+            ],
+            [
+              0.2552111307779948,
+              0.6308002613208912,
+              0.9456233978271484
+            ],
+            [
+              0.2595658779144287,
+              0.6281995985243055,
+              0.22584062814712524
+            ],
+            [
+              0.24456686973571778,
+              0.6221083464445891,
+              0.8831911683082581
+            ],
+            [
+              0.24561848640441894,
+              0.6178578129521123,
+              0.193889781832695
+            ],
+            [
+              0.25792393684387205,
+              0.664566887749566,
+              0.9951732754707336
+            ],
+            [
+              0.26675332387288414,
+              0.6634714762369792,
+              0.9874733686447144
+            ],
+            [
+              0.24694264729817708,
+              0.7175049958405672,
+              0.9967754483222961
+            ],
+            [
+              0.26817684173583983,
+              0.7183612399631076,
+              0.9919557571411133
+            ],
+            [
+              0.24323639869689942,
+              0.7754291110568576,
+              0.9902142286300659
+            ],
+            [
+              0.2858258883158366,
+              0.7653928403501158,
+              0.9847971200942993
+            ]
+          ]
+        },
+        {
+          "frame_id": 165,
+          "timestamp_seconds": 5.5,
+          "bbox": {
+            "center_x": 0.2545,
+            "center_y": 0.6807,
+            "width": 0.066,
+            "height": 0.2339,
+            "bottom_y": 0.7977
+          },
+          "normalized_lateral_displacement": 5.0242,
+          "consecutive_displacement": 0.2202,
+          "velocity": 6.6057,
+          "acceleration": 57.054,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.2380783716837565,
+              0.5719315140335648,
+              0.37631574273109436
+            ],
+            [
+              0.23931477864583334,
+              0.5663499055085359,
+              0.3170965313911438
+            ],
+            [
+              0.23945830663045248,
+              0.5661427250614872,
+              0.0306536927819252
+            ],
+            [
+              0.24511998494466145,
+              0.5675232498734085,
+              0.7064971327781677
+            ],
+            [
+              0.2500811894734701,
+              0.5656580041956019,
+              0.036229588091373444
+            ],
+            [
+              0.24727492332458495,
+              0.5915417706524885,
+              0.9913488030433655
+            ],
+            [
+              0.25903345743815104,
+              0.5899116798683449,
+              0.9677777886390686
+            ],
+            [
+              0.24085718790690105,
+              0.6320437961154514,
+              0.9632857441902161
+            ],
+            [
+              0.25947593053181967,
+              0.6280170581958912,
+              0.2399071305990219
+            ],
+            [
+              0.23188126881917318,
+              0.6158847950122974,
+              0.883041501045227
+            ],
+            [
+              0.24431214332580567,
+              0.6159254286024306,
+              0.09199544787406921
+            ],
+            [
+              0.24703855514526368,
+              0.6687602855541088,
+              0.9960221648216248
+            ],
+            [
+              0.25675347646077473,
+              0.6662871184172454,
+              0.9911819696426392
+            ],
+            [
+              0.2386578877766927,
+              0.7264856974283854,
+              0.9948870539665222
+            ],
+            [
+              0.2571668306986491,
+              0.724332908347801,
+              0.9870654344558716
+            ],
+            [
+              0.2352306842803955,
+              0.7836985270182292,
+              0.9881961941719055
+            ],
+            [
+              0.27516619364420575,
+              0.7648722330729166,
+              0.9826340079307556
+            ]
+          ]
+        },
+        {
+          "frame_id": 166,
+          "timestamp_seconds": 5.533,
+          "bbox": {
+            "center_x": 0.245,
+            "center_y": 0.6815,
+            "width": 0.0628,
+            "height": 0.2402,
+            "bottom_y": 0.8016
+          },
+          "normalized_lateral_displacement": 5.2497,
+          "consecutive_displacement": 0.2263,
+          "velocity": 6.7877,
+          "acceleration": 5.46,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.23016049067179362,
+              0.5733298972800925,
+              0.6145353317260742
+            ],
+            [
+              0.2326901117960612,
+              0.5679261949327257,
+              0.4747442901134491
+            ],
+            [
+              0.22884292602539064,
+              0.5679592556423612,
+              0.10367167741060257
+            ],
+            [
+              0.2390460968017578,
+              0.56864663583261,
+              0.5693057179450989
+            ],
+            [
+              0.23309834798177084,
+              0.5685497707790799,
+              0.036425553262233734
+            ],
+            [
+              0.24064400990804036,
+              0.5934421680591725,
+              0.9855725169181824
+            ],
+            [
+              0.23879427909851075,
+              0.5914956552010996,
+              0.9457116723060608
+            ],
+            [
+              0.23229904174804689,
+              0.6296630859375,
+              0.9030061960220337
+            ],
+            [
+              0.23119503657023113,
+              0.6230964378074363,
+              0.38494059443473816
+            ],
+            [
+              0.22789036432902018,
+              0.6127472488968461,
+              0.7179053425788879
+            ],
+            [
+              0.2316762606302897,
+              0.6133027818467882,
+              0.24133679270744324
+            ],
+            [
+              0.24017624855041503,
+              0.6678770842375579,
+              0.9897187948226929
+            ],
+            [
+              0.23691902160644532,
+              0.6677111590350115,
+              0.9851818680763245
+            ],
+            [
+              0.24284396171569825,
+              0.7246593899197049,
+              0.9915139079093933
+            ],
+            [
+              0.23145631154378254,
+              0.7291239420572917,
+              0.9929078817367554
+            ],
+            [
+              0.2658136049906413,
+              0.7719178941514757,
+              0.9842395782470703
+            ],
+            [
+              0.23052934010823567,
+              0.7867033216688368,
+              0.9882547855377197
+            ]
+          ]
+        },
+        {
+          "frame_id": 167,
+          "timestamp_seconds": 5.567,
+          "bbox": {
+            "center_x": 0.2334,
+            "center_y": 0.6868,
+            "width": 0.0561,
+            "height": 0.2434,
+            "bottom_y": 0.8084
+          },
+          "normalized_lateral_displacement": 5.525,
+          "consecutive_displacement": 0.3027,
+          "velocity": 9.0802,
+          "acceleration": 68.775,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.21888446807861328,
+              0.5738312897858796,
+              0.05889749899506569
+            ],
+            [
+              0.21968018213907878,
+              0.5687526561595776,
+              0.03886856511235237
+            ],
+            [
+              0.22104907035827637,
+              0.5686171355070891,
+              0.008203394711017609
+            ],
+            [
+              0.22314122517903645,
+              0.5697509200484664,
+              0.38166847825050354
+            ],
+            [
+              0.23324027061462402,
+              0.5677858705873843,
+              0.07562834024429321
+            ],
+            [
+              0.22330937385559083,
+              0.5948297571252894,
+              0.9790976643562317
+            ],
+            [
+              0.2396979014078776,
+              0.5922952157479745,
+              0.9303231239318848
+            ],
+            [
+              0.21663185755411785,
+              0.6326674849898727,
+              0.9475030303001404
+            ],
+            [
+              0.24162794748942057,
+              0.6264708342375579,
+              0.1944953352212906
+            ],
+            [
+              0.21141138076782226,
+              0.6166200425889757,
+              0.7912724614143372
+            ],
+            [
+              0.2306561787923177,
+              0.6213352344654225,
+              0.06442149728536606
+            ],
+            [
+              0.22498784065246583,
+              0.6675565366391782,
+              0.9891841411590576
+            ],
+            [
+              0.23486016591389974,
+              0.6664859347873264,
+              0.9801920652389526
+            ],
+            [
+              0.2272443135579427,
+              0.7262836597583912,
+              0.9929805994033813
+            ],
+            [
+              0.22360429763793946,
+              0.7284129955150463,
+              0.9897626638412476
+            ],
+            [
+              0.2482351303100586,
+              0.7739975540726273,
+              0.9936574101448059
+            ],
+            [
+              0.2237678050994873,
+              0.7857433742947049,
+              0.993070662021637
+            ]
+          ]
+        },
+        {
+          "frame_id": 168,
+          "timestamp_seconds": 5.6,
+          "bbox": {
+            "center_x": 0.2214,
+            "center_y": 0.6926,
+            "width": 0.0554,
+            "height": 0.2579,
+            "bottom_y": 0.8215
+          },
+          "normalized_lateral_displacement": 5.8097,
+          "consecutive_displacement": 0.3163,
+          "velocity": 9.4894,
+          "acceleration": 12.276,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.21519255638122559,
+              0.5759561044198496,
+              0.020530395209789276
+            ],
+            [
+              0.21418205897013345,
+              0.5706497192382812,
+              0.014068316668272018
+            ],
+            [
+              0.21720104217529296,
+              0.5709498087565105,
+              0.005471376236528158
+            ],
+            [
+              0.21266655921936034,
+              0.5719507853190104,
+              0.36592018604278564
+            ],
+            [
+              0.2253875732421875,
+              0.571622947410301,
+              0.15391770005226135
+            ],
+            [
+              0.20985740025838215,
+              0.5972582781756366,
+              0.9845867156982422
+            ],
+            [
+              0.23050320943196614,
+              0.5962394431785301,
+              0.9840323328971863
+            ],
+            [
+              0.20199712117513022,
+              0.6351812292028356,
+              0.9498419761657715
+            ],
+            [
+              0.239663569132487,
+              0.6368451718930845,
+              0.8544595837593079
+            ],
+            [
+              0.20176267623901367,
+              0.6208292078088831,
+              0.6176058650016785
+            ],
+            [
+              0.23418391545613607,
+              0.6361643473307291,
+              0.31490421295166016
+            ],
+            [
+              0.2136624813079834,
+              0.6747669361255787,
+              0.9962674975395203
+            ],
+            [
+              0.22759618759155273,
+              0.6737279256184896,
+              0.9943243265151978
+            ],
+            [
+              0.2125637690226237,
+              0.7382034301757813,
+              0.9932015538215637
+            ],
+            [
+              0.22391783396402995,
+              0.7315590187355324,
+              0.9846241474151611
+            ],
+            [
+              0.21418511072794597,
+              0.8036963568793403,
+              0.99128258228302
+            ],
+            [
+              0.2331316630045573,
+              0.7805296156141494,
+              0.9865174889564514
+            ]
+          ]
+        },
+        {
+          "frame_id": 169,
+          "timestamp_seconds": 5.633,
+          "bbox": {
+            "center_x": 0.21,
+            "center_y": 0.7007,
+            "width": 0.0493,
+            "height": 0.2707,
+            "bottom_y": 0.8361
+          },
+          "normalized_lateral_displacement": 6.0803,
+          "consecutive_displacement": 0.3319,
+          "velocity": 9.9568,
+          "acceleration": 14.022,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.2027870496114095,
+              0.5781377156575521,
+              0.016829973086714745
+            ],
+            [
+              0.20305724143981935,
+              0.5727723298249421,
+              0.00915003102272749
+            ],
+            [
+              0.20482813517252604,
+              0.5732764350043402,
+              0.004474503453820944
+            ],
+            [
+              0.20305275917053223,
+              0.5746063797562211,
+              0.23473180830478668
+            ],
+            [
+              0.21410814921061197,
+              0.5748279147677952,
+              0.12392839789390564
+            ],
+            [
+              0.1985444704691569,
+              0.6014637134693287,
+              0.9749028086662292
+            ],
+            [
+              0.22012882232666015,
+              0.6027048746744792,
+              0.9600704908370972
+            ],
+            [
+              0.19176336924235027,
+              0.6377815529152199,
+              0.8478188514709473
+            ],
+            [
+              0.2263307253519694,
+              0.6409372965494792,
+              0.6213776469230652
+            ],
+            [
+              0.18893113136291503,
+              0.6282379150390625,
+              0.3946450650691986
+            ],
+            [
+              0.22471612294514973,
+              0.6572196677879051,
+              0.21428002417087555
+            ],
+            [
+              0.20087636311848958,
+              0.6819820827907986,
+              0.9874649047851562
+            ],
+            [
+              0.21549371083577473,
+              0.6823631004050926,
+              0.9788174033164978
+            ],
+            [
+              0.20302934646606446,
+              0.7501875135633681,
+              0.9776174426078796
+            ],
+            [
+              0.20857378641764324,
+              0.7486438892505787,
+              0.9621150493621826
+            ],
+            [
+              0.21199312210083007,
+              0.8097101847330729,
+              0.9766100645065308
+            ],
+            [
+              0.20624165534973143,
+              0.8109528718171296,
+              0.9647545218467712
+            ]
+          ]
+        },
+        {
+          "frame_id": 170,
+          "timestamp_seconds": 5.667,
+          "bbox": {
+            "center_x": 0.1917,
+            "center_y": 0.7092,
+            "width": 0.0497,
+            "height": 0.2847,
+            "bottom_y": 0.8516
+          },
+          "normalized_lateral_displacement": 6.5146,
+          "consecutive_displacement": 0.4789,
+          "velocity": 14.3661,
+          "acceleration": 132.279,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.1799709955851237,
+              0.5796584517867477,
+              0.20619885623455048
+            ],
+            [
+              0.18131507237752278,
+              0.5743115460431134,
+              0.16557414829730988
+            ],
+            [
+              0.18171397844950357,
+              0.5738678543655961,
+              0.011765140108764172
+            ],
+            [
+              0.18726946512858073,
+              0.5754296761971933,
+              0.5238745808601379
+            ],
+            [
+              0.19420817693074544,
+              0.5728632609049479,
+              0.020019693300127983
+            ],
+            [
+              0.18675311406453451,
+              0.6026867336697048,
+              0.9918652176856995
+            ],
+            [
+              0.20433130264282226,
+              0.6004822907624421,
+              0.9250600934028625
+            ],
+            [
+              0.1810322920481364,
+              0.6479897958260995,
+              0.9797021150588989
+            ],
+            [
+              0.2064500331878662,
+              0.6418745817961516,
+              0.17885969579219818
+            ],
+            [
+              0.1681527614593506,
+              0.640920568395544,
+              0.8500038981437683
+            ],
+            [
+              0.19187560081481933,
+              0.6480893735532407,
+              0.046693652868270874
+            ],
+            [
+              0.1904594898223877,
+              0.686016845703125,
+              0.9902055859565735
+            ],
+            [
+              0.20295918782552083,
+              0.6844918145073785,
+              0.9490832686424255
+            ],
+            [
+              0.1917560895284017,
+              0.7573362562391494,
+              0.9776710271835327
+            ],
+            [
+              0.19374545415242514,
+              0.7512408786349827,
+              0.7896487712860107
+            ],
+            [
+              0.19702224731445311,
+              0.8274737887912327,
+              0.9578881859779358
+            ],
+            [
+              0.1973269462585449,
+              0.8151145652488426,
+              0.7986606359481812
+            ]
+          ]
+        },
+        {
+          "frame_id": 171,
+          "timestamp_seconds": 5.7,
+          "bbox": {
+            "center_x": 0.1813,
+            "center_y": 0.7163,
+            "width": 0.0538,
+            "height": 0.2849,
+            "bottom_y": 0.8587
+          },
+          "normalized_lateral_displacement": 6.7614,
+          "consecutive_displacement": 0.2989,
+          "velocity": 8.9656,
+          "acceleration": -162.015,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.16476885477701822,
+              0.5899696632667825,
+              0.0960828959941864
+            ],
+            [
+              0.1658015251159668,
+              0.5845499674479167,
+              0.08681706339120865
+            ],
+            [
+              0.16687132517496744,
+              0.5841291639539931,
+              0.009461859241127968
+            ],
+            [
+              0.17082395553588867,
+              0.5857003106011285,
+              0.5584131479263306
+            ],
+            [
+              0.1808910846710205,
+              0.5829468903718171,
+              0.05802144110202789
+            ],
+            [
+              0.17007163365681965,
+              0.6119682594581887,
+              0.9913479685783386
+            ],
+            [
+              0.1909685770670573,
+              0.6089815492983217,
+              0.952480673789978
+            ],
+            [
+              0.1648101806640625,
+              0.6558291965060764,
+              0.955512523651123
+            ],
+            [
+              0.19086143175760906,
+              0.6452588116681134,
+              0.1453840136528015
+            ],
+            [
+              0.159508482615153,
+              0.6435639558015046,
+              0.7054643630981445
+            ],
+            [
+              0.17475322087605794,
+              0.6437095924660011,
+              0.031959932297468185
+            ],
+            [
+              0.1763933817545573,
+              0.6914155748155382,
+              0.991987943649292
+            ],
+            [
+              0.19071858723958332,
+              0.689753101490162,
+              0.9750596880912781
+            ],
+            [
+              0.17781101862589518,
+              0.7601818508572049,
+              0.9893988370895386
+            ],
+            [
+              0.17882768313090006,
+              0.7580137464735243,
+              0.9558457136154175
+            ],
+            [
+              0.18680251439412435,
+              0.8296742757161458,
+              0.9898301959037781
+            ],
+            [
+              0.17825344403584797,
+              0.8278622097439237,
+              0.9737012982368469
+            ]
+          ]
+        },
+        {
+          "frame_id": 172,
+          "timestamp_seconds": 5.733,
+          "bbox": {
+            "center_x": 0.1682,
+            "center_y": 0.7277,
+            "width": 0.0545,
+            "height": 0.2945,
+            "bottom_y": 0.8749
+          },
+          "normalized_lateral_displacement": 7.0723,
+          "consecutive_displacement": 0.4121,
+          "velocity": 12.3641,
+          "acceleration": 101.955,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.15645464261372885,
+              0.6024418583622685,
+              0.135419100522995
+            ],
+            [
+              0.1582148234049479,
+              0.5966495090060764,
+              0.08441755920648575
+            ],
+            [
+              0.15712622006734211,
+              0.5962545889395254,
+              0.01434484962373972
+            ],
+            [
+              0.162503178914388,
+              0.5985032258210359,
+              0.4073789119720459
+            ],
+            [
+              0.16594241460164388,
+              0.5964625040690105,
+              0.06389142572879791
+            ],
+            [
+              0.16337350209554036,
+              0.6255183467158565,
+              0.9746777415275574
+            ],
+            [
+              0.17071448961893718,
+              0.6234302662037037,
+              0.8990052342414856
+            ],
+            [
+              0.15494308471679688,
+              0.6664254647714121,
+              0.8531802296638489
+            ],
+            [
+              0.16344183286031086,
+              0.6609559800889757,
+              0.22094811499118805
+            ],
+            [
+              0.14526872634887694,
+              0.6618014300311054,
+              0.7129703164100647
+            ],
+            [
+              0.15043506622314454,
+              0.6585945977105034,
+              0.20733901858329773
+            ],
+            [
+              0.16594765981038412,
+              0.7128104315863715,
+              0.9846766591072083
+            ],
+            [
+              0.1686436335245768,
+              0.7113506175853588,
+              0.9649747014045715
+            ],
+            [
+              0.16830747922261555,
+              0.7793862802010996,
+              0.9904899597167969
+            ],
+            [
+              0.1629835287729899,
+              0.7782425491898148,
+              0.9796864986419678
+            ],
+            [
+              0.17946577072143555,
+              0.8476350572374132,
+              0.9810929894447327
+            ],
+            [
+              0.15826009114583334,
+              0.8430024888780382,
+              0.9699583053588867
+            ]
+          ]
+        },
+        {
+          "frame_id": 173,
+          "timestamp_seconds": 5.767,
+          "bbox": {
+            "center_x": 0.1542,
+            "center_y": 0.7373,
+            "width": 0.0595,
+            "height": 0.3018,
+            "bottom_y": 0.8882
+          },
+          "normalized_lateral_displacement": 7.4046,
+          "consecutive_displacement": 0.4029,
+          "velocity": 12.086,
+          "acceleration": -8.343,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.13784437179565429,
+              0.6018126311125579,
+              0.019542839378118515
+            ],
+            [
+              0.13813958168029786,
+              0.5959705494068287,
+              0.016543446108698845
+            ],
+            [
+              0.14002869923909506,
+              0.5953111436631945,
+              0.0023041951935738325
+            ],
+            [
+              0.14151962598164877,
+              0.5980190700954862,
+              0.30130645632743835
+            ],
+            [
+              0.1536206563313802,
+              0.5946808991608796,
+              0.049859195947647095
+            ],
+            [
+              0.1422119617462158,
+              0.6276493778935185,
+              0.9796556234359741
+            ],
+            [
+              0.16268296241760255,
+              0.6243998774775752,
+              0.8803682923316956
+            ],
+            [
+              0.1379541873931885,
+              0.6770203766999421,
+              0.9669749140739441
+            ],
+            [
+              0.1626226266225179,
+              0.6664983678747106,
+              0.22301168739795685
+            ],
+            [
+              0.1281729539235433,
+              0.6620457967122396,
+              0.8695858716964722
+            ],
+            [
+              0.1477615197499593,
+              0.6638324878833912,
+              0.11005418002605438
+            ],
+            [
+              0.14741989771525066,
+              0.7164756492332176,
+              0.9928033947944641
+            ],
+            [
+              0.15956611633300782,
+              0.715224767614294,
+              0.9792965054512024
+            ],
+            [
+              0.15689860979715983,
+              0.7892102276837384,
+              0.9932538866996765
+            ],
+            [
+              0.14686485926310222,
+              0.7878603334780092,
+              0.9771572947502136
+            ],
+            [
+              0.16648023923238117,
+              0.8611243353949652,
+              0.9891349077224731
+            ],
+            [
+              0.13943328857421874,
+              0.8499771683304398,
+              0.9779191613197327
+            ]
+          ]
+        },
+        {
+          "frame_id": 174,
+          "timestamp_seconds": 5.8,
+          "bbox": {
+            "center_x": 0.1393,
+            "center_y": 0.7445,
+            "width": 0.0594,
+            "height": 0.3109,
+            "bottom_y": 0.8999
+          },
+          "normalized_lateral_displacement": 7.7582,
+          "consecutive_displacement": 0.3927,
+          "velocity": 11.7821,
+          "acceleration": -9.117,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.11900854110717773,
+              0.6026978669343172,
+              0.032460473477840424
+            ],
+            [
+              0.11993741989135742,
+              0.5966662371600115,
+              0.025541361421346664
+            ],
+            [
+              0.12111523151397705,
+              0.5958908646195024,
+              0.0028077703900635242
+            ],
+            [
+              0.12493758201599121,
+              0.5981720535843461,
+              0.37908998131752014
+            ],
+            [
+              0.13622481028238934,
+              0.5946111608434607,
+              0.03832735866308212
+            ],
+            [
+              0.12556532224019368,
+              0.6272395381221065,
+              0.98826003074646
+            ],
+            [
+              0.14802548090616863,
+              0.6239424528899016,
+              0.9538908004760742
+            ],
+            [
+              0.12058508396148682,
+              0.6802217836733218,
+              0.9633148312568665
+            ],
+            [
+              0.1489000638326009,
+              0.6643438268590857,
+              0.21112798154354095
+            ],
+            [
+              0.11165754795074463,
+              0.6589589436848958,
+              0.7950618267059326
+            ],
+            [
+              0.13581573168436686,
+              0.6548017148618345,
+              0.05468904972076416
+            ],
+            [
+              0.13275386492411295,
+              0.7157101101345487,
+              0.9938734769821167
+            ],
+            [
+              0.1473515510559082,
+              0.7135733710394965,
+              0.9854039549827576
+            ],
+            [
+              0.14307438532511393,
+              0.7970204671223958,
+              0.9941666126251221
+            ],
+            [
+              0.13476635615030924,
+              0.7914832221137152,
+              0.9838302731513977
+            ],
+            [
+              0.15626586278279622,
+              0.8731673629195602,
+              0.993492066860199
+            ],
+            [
+              0.12197182178497315,
+              0.8562931767216435,
+              0.9898481965065002
+            ]
+          ]
+        },
+        {
+          "frame_id": 175,
+          "timestamp_seconds": 5.833,
+          "bbox": {
+            "center_x": 0.1236,
+            "center_y": 0.7494,
+            "width": 0.0614,
+            "height": 0.3265,
+            "bottom_y": 0.9126
+          },
+          "normalized_lateral_displacement": 8.1308,
+          "consecutive_displacement": 0.3903,
+          "velocity": 11.7098,
+          "acceleration": -2.169,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.10639184315999349,
+              0.5991321139865451,
+              0.03139854595065117
+            ],
+            [
+              0.10727664629618326,
+              0.5932282624421297,
+              0.027977392077445984
+            ],
+            [
+              0.10848007202148438,
+              0.5924645317925348,
+              0.0034036783035844564
+            ],
+            [
+              0.11091286341349284,
+              0.5957317776150174,
+              0.504906177520752
+            ],
+            [
+              0.1230093002319336,
+              0.5922599509910301,
+              0.07476657629013062
+            ],
+            [
+              0.10859313011169433,
+              0.6259215743453415,
+              0.9917435050010681
+            ],
+            [
+              0.13435349464416504,
+              0.6217559814453125,
+              0.9651200175285339
+            ],
+            [
+              0.10370294253031413,
+              0.6818620469835069,
+              0.9683110117912292
+            ],
+            [
+              0.1333912213643392,
+              0.6680357191297743,
+              0.31320157647132874
+            ],
+            [
+              0.09698422749837239,
+              0.6633777759693287,
+              0.7900782227516174
+            ],
+            [
+              0.11709569295247396,
+              0.6655969690393518,
+              0.0831439271569252
+            ],
+            [
+              0.11504890124003092,
+              0.7172683715820313,
+              0.9938827753067017
+            ],
+            [
+              0.131387726465861,
+              0.7161124335394965,
+              0.9850910902023315
+            ],
+            [
+              0.12620422045389812,
+              0.7981081362123843,
+              0.9931125044822693
+            ],
+            [
+              0.11466649373372396,
+              0.7969031439887153,
+              0.9796199202537537
+            ],
+            [
+              0.13994048436482748,
+              0.8712897406684028,
+              0.9902130961418152
+            ],
+            [
+              0.10304425557454427,
+              0.8659651014539931,
+              0.9812735319137573
+            ]
+          ]
+        },
+        {
+          "frame_id": 176,
+          "timestamp_seconds": 5.867,
+          "bbox": {
+            "center_x": 0.1086,
+            "center_y": 0.7459,
+            "width": 0.066,
+            "height": 0.3302,
+            "bottom_y": 0.911
+          },
+          "normalized_lateral_displacement": 8.4868,
+          "consecutive_displacement": 0.3656,
+          "velocity": 10.9666,
+          "acceleration": -22.296,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.08732021649678548,
+              0.5964685510706018,
+              0.08656494319438934
+            ],
+            [
+              0.0889036496480306,
+              0.5906400327329282,
+              0.1036207303404808
+            ],
+            [
+              0.08936928908030192,
+              0.5897063078703704,
+              0.008277060464024544
+            ],
+            [
+              0.0939178705215454,
+              0.5925485116464121,
+              0.7207725644111633
+            ],
+            [
+              0.10448137919108073,
+              0.5885892514829283,
+              0.06683126837015152
+            ],
+            [
+              0.09094664255777994,
+              0.6257839626736111,
+              0.9913803935050964
+            ],
+            [
+              0.11753511428833008,
+              0.6198251794885706,
+              0.9790456295013428
+            ],
+            [
+              0.08601343631744385,
+              0.6831843058268229,
+              0.9489260911941528
+            ],
+            [
+              0.11754815578460694,
+              0.6621960675274884,
+              0.32511237263679504
+            ],
+            [
+              0.07958834966023763,
+              0.6591384322554977,
+              0.6639403104782104
+            ],
+            [
+              0.10012891292572021,
+              0.6524026376229746,
+              0.0698869451880455
+            ],
+            [
+              0.09662578900655111,
+              0.7200433801721644,
+              0.9926179051399231
+            ],
+            [
+              0.1143904447555542,
+              0.7168613009982638,
+              0.9877133369445801
+            ],
+            [
+              0.10782950719197591,
+              0.8029066297743056,
+              0.9880848526954651
+            ],
+            [
+              0.09958451588948568,
+              0.7965723108362268,
+              0.9802536964416504
+            ],
+            [
+              0.12615014712015787,
+              0.876036693431713,
+              0.984714925289154
+            ],
+            [
+              0.08959848086039225,
+              0.8619434497974537,
+              0.9845364689826965
+            ]
+          ]
+        },
+        {
+          "frame_id": 177,
+          "timestamp_seconds": 5.9,
+          "bbox": {
+            "center_x": 0.0904,
+            "center_y": 0.74,
+            "width": 0.0639,
+            "height": 0.3321,
+            "bottom_y": 0.9061
+          },
+          "normalized_lateral_displacement": 8.9187,
+          "consecutive_displacement": 0.4541,
+          "velocity": 13.6219,
+          "acceleration": 79.659,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.07149436473846435,
+              0.5925627531828703,
+              0.01655465178191662
+            ],
+            [
+              0.07205070654551188,
+              0.5867831759982639,
+              0.01478583738207817
+            ],
+            [
+              0.07386096318562825,
+              0.5858945493344907,
+              0.002366595435887575
+            ],
+            [
+              0.07486650149027506,
+              0.5880865026403357,
+              0.5378537178039551
+            ],
+            [
+              0.08892828623453776,
+              0.5843067310474537,
+              0.12975314259529114
+            ],
+            [
+              0.07254865169525146,
+              0.6185595477068866,
+              0.9929589033126831
+            ],
+            [
+              0.1011885404586792,
+              0.6131442599826389,
+              0.9822599291801453
+            ],
+            [
+              0.06640775203704834,
+              0.6751144974320024,
+              0.930656909942627
+            ],
+            [
+              0.10377907752990723,
+              0.6557718347620081,
+              0.42384979128837585
+            ],
+            [
+              0.06687934398651123,
+              0.6755583586516204,
+              0.38736674189567566
+            ],
+            [
+              0.09112195173899333,
+              0.6640801888925058,
+              0.0558982715010643
+            ],
+            [
+              0.07842895984649659,
+              0.7134917082609954,
+              0.9908474683761597
+            ],
+            [
+              0.0980744202931722,
+              0.7117552580656828,
+              0.9839995503425598
+            ],
+            [
+              0.0855076789855957,
+              0.7983837551540799,
+              0.9897112846374512
+            ],
+            [
+              0.08218765258789062,
+              0.7959975631148727,
+              0.9821343421936035
+            ],
+            [
+              0.10691311359405517,
+              0.8715447319878472,
+              0.9920449256896973
+            ],
+            [
+              0.07272952397664388,
+              0.8727457682291667,
+              0.9896152019500732
+            ]
+          ]
+        },
+        {
+          "frame_id": 178,
+          "timestamp_seconds": 5.933,
+          "bbox": {
+            "center_x": 0.0718,
+            "center_y": 0.7393,
+            "width": 0.064,
+            "height": 0.3467,
+            "bottom_y": 0.9126
+          },
+          "normalized_lateral_displacement": 9.3602,
+          "consecutive_displacement": 0.4417,
+          "velocity": 13.2522,
+          "acceleration": -11.091,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.05882449150085449,
+              0.5829589278609665,
+              0.013406534679234028
+            ],
+            [
+              0.059048183759053546,
+              0.5772070425528067,
+              0.0116495406255126
+            ],
+            [
+              0.06094645659128825,
+              0.5764511673538774,
+              0.002958871889859438
+            ],
+            [
+              0.058498573303222653,
+              0.5800090648509838,
+              0.6313050389289856
+            ],
+            [
+              0.07370915412902831,
+              0.5771347611038773,
+              0.2929140627384186
+            ],
+            [
+              0.053522038459777835,
+              0.6128317373770255,
+              0.9951046705245972
+            ],
+            [
+              0.08342997233072917,
+              0.6091226648401331,
+              0.9868348240852356
+            ],
+            [
+              0.04795242547988891,
+              0.6709859212239583,
+              0.9440233111381531
+            ],
+            [
+              0.08557124137878418,
+              0.6547608552155672,
+              0.4830118715763092
+            ],
+            [
+              0.046333813667297365,
+              0.661642908166956,
+              0.40697723627090454
+            ],
+            [
+              0.07259240945180258,
+              0.6622264155635127,
+              0.05835907906293869
+            ],
+            [
+              0.05851935148239136,
+              0.7117460462782118,
+              0.9876270890235901
+            ],
+            [
+              0.07942012151082357,
+              0.7108844333224826,
+              0.9778416156768799
+            ],
+            [
+              0.06463403701782226,
+              0.8044998168945312,
+              0.9893952012062073
+            ],
+            [
+              0.0652281641960144,
+              0.8003534952799479,
+              0.9799051284790039
+            ],
+            [
+              0.08809001445770263,
+              0.8805979410807292,
+              0.9900398850440979
+            ],
+            [
+              0.05621086359024048,
+              0.8806221856011285,
+              0.9865942001342773
+            ]
+          ]
+        },
+        {
+          "frame_id": 179,
+          "timestamp_seconds": 5.967,
+          "bbox": {
+            "center_x": 0.0516,
+            "center_y": 0.7409,
+            "width": 0.0659,
+            "height": 0.3535,
+            "bottom_y": 0.9176
+          },
+          "normalized_lateral_displacement": 9.8396,
+          "consecutive_displacement": 0.4809,
+          "velocity": 14.427,
+          "acceleration": 35.244,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.029402917623519896,
+              0.5757103814019098,
+              0.019316231831908226
+            ],
+            [
+              0.029747694730758667,
+              0.5686369719328703,
+              0.012845837511122227
+            ],
+            [
+              0.03225826621055603,
+              0.5684816713686343,
+              0.0019288117764517665
+            ],
+            [
+              0.03411340316136678,
+              0.570370031286169,
+              0.30480852723121643
+            ],
+            [
+              0.049711139996846516,
+              0.5677216706452546,
+              0.0874059721827507
+            ],
+            [
+              0.031796008348464966,
+              0.6049846507884838,
+              0.9917156100273132
+            ],
+            [
+              0.0628381609916687,
+              0.6052940086082176,
+              0.9699904918670654
+            ],
+            [
+              0.02562704086303711,
+              0.6662204883716725,
+              0.9651488661766052
+            ],
+            [
+              0.06835987567901611,
+              0.666642987286603,
+              0.5781146883964539
+            ],
+            [
+              0.030253219604492187,
+              0.6577382970739294,
+              0.42093998193740845
+            ],
+            [
+              0.054726052284240725,
+              0.6739616676613137,
+              0.07783325761556625
+            ],
+            [
+              0.03773492972056071,
+              0.7121749312789352,
+              0.9855086207389832
+            ],
+            [
+              0.059494853019714355,
+              0.7125395033094618,
+              0.9704946279525757
+            ],
+            [
+              0.03929051955540975,
+              0.8050856978804977,
+              0.9852074384689331
+            ],
+            [
+              0.04381192922592163,
+              0.8032048543294271,
+              0.9748151302337646
+            ],
+            [
+              0.06473541259765625,
+              0.8778817070855035,
+              0.9812102913856506
+            ],
+            [
+              0.042012961705525716,
+              0.8868904961480035,
+              0.9762085676193237
+            ]
+          ]
+        },
+        {
+          "frame_id": 180,
+          "timestamp_seconds": 6.0,
+          "bbox": {
+            "center_x": 0.0336,
+            "center_y": 0.7465,
+            "width": 0.0656,
+            "height": 0.3332,
+            "bottom_y": 0.9131
+          },
+          "normalized_lateral_displacement": 10.2667,
+          "consecutive_displacement": 0.4474,
+          "velocity": 13.4215,
+          "acceleration": -30.165,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.02166581948598226,
+              0.5897107159649885,
+              0.007623417768627405
+            ],
+            [
+              0.020962077379226684,
+              0.582637306495949,
+              0.0022695581428706646
+            ],
+            [
+              0.024540515740712483,
+              0.5834359063042535,
+              0.0013365924824029207
+            ],
+            [
+              0.019157608350118,
+              0.5812607376663773,
+              0.058308299630880356
+            ],
+            [
+              0.03577261765797933,
+              0.5820040102358217,
+              0.05009109899401665
+            ],
+            [
+              0.012516817450523377,
+              0.6128961633752894,
+              0.9548653960227966
+            ],
+            [
+              0.04382831255594889,
+              0.6184071858723958,
+              0.9245057106018066
+            ],
+            [
+              0.003466683626174927,
+              0.6646872061270255,
+              0.8179394602775574
+            ],
+            [
+              0.05140907764434814,
+              0.6736750849971065,
+              0.5331692099571228
+            ],
+            [
+              0.0087882399559021,
+              0.6642588862666378,
+              0.1597963124513626
+            ],
+            [
+              0.043058220545450845,
+              0.6801593356662327,
+              0.0801708996295929
+            ],
+            [
+              0.01684388518333435,
+              0.7220798068576388,
+              0.9773467183113098
+            ],
+            [
+              0.036897242069244385,
+              0.7231714884440105,
+              0.9579867124557495
+            ],
+            [
+              0.014694929122924805,
+              0.8071719699435764,
+              0.9511888027191162
+            ],
+            [
+              0.02357293963432312,
+              0.8029054994936342,
+              0.905797004699707
+            ],
+            [
+              0.03527263005574544,
+              0.8793700041594329,
+              0.9710263013839722
+            ],
+            [
+              0.02692514657974243,
+              0.8803567391854745,
+              0.9548972249031067
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "track_id": 224,
+      "event_start_frame": 154,
+      "event_end_frame": 163,
+      "duration_seconds": 0.333,
+      "total_frames": 10,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 2.51,
+      "total_lateral_displacement": 0.0502,
+      "roadway_entry_candidate_frame": 158,
+      "peak_motion_frame": 163,
+      "all_frames": [
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163
+      ],
+      "velocities": [
+        0.0,
+        7.4609,
+        8.8551,
+        13.8975,
+        10.6922,
+        9.45,
+        10.6405,
+        9.6526,
+        14.6755,
+        19.9883
+      ],
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 154,
+          "timestamp_seconds": 5.133,
+          "bbox": {
+            "center_x": 0.7912,
+            "center_y": 0.6729,
+            "width": 0.0175,
+            "height": 0.0992,
+            "bottom_y": 0.7225
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 155,
+          "timestamp_seconds": 5.167,
+          "bbox": {
+            "center_x": 0.7955,
+            "center_y": 0.6704,
+            "width": 0.0167,
+            "height": 0.1034,
+            "bottom_y": 0.7221
+          },
+          "normalized_lateral_displacement": 0.215,
+          "consecutive_displacement": 0.2487,
+          "velocity": 7.4609,
+          "acceleration": 223.827,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 156,
+          "timestamp_seconds": 5.2,
+          "bbox": {
+            "center_x": 0.8001,
+            "center_y": 0.6667,
+            "width": 0.0172,
+            "height": 0.104,
+            "bottom_y": 0.7187
+          },
+          "normalized_lateral_displacement": 0.445,
+          "consecutive_displacement": 0.2952,
+          "velocity": 8.8551,
+          "acceleration": 41.826,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 157,
+          "timestamp_seconds": 5.233,
+          "bbox": {
+            "center_x": 0.8051,
+            "center_y": 0.6589,
+            "width": 0.0169,
+            "height": 0.1083,
+            "bottom_y": 0.7131
+          },
+          "normalized_lateral_displacement": 0.695,
+          "consecutive_displacement": 0.4632,
+          "velocity": 13.8975,
+          "acceleration": 151.272,
+          "trajectory_direction": "moving_up",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 158,
+          "timestamp_seconds": 5.267,
+          "bbox": {
+            "center_x": 0.811,
+            "center_y": 0.6549,
+            "width": 0.0162,
+            "height": 0.1089,
+            "bottom_y": 0.7094
+          },
+          "normalized_lateral_displacement": 0.99,
+          "consecutive_displacement": 0.3564,
+          "velocity": 10.6922,
+          "acceleration": -96.159,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 159,
+          "timestamp_seconds": 5.3,
+          "bbox": {
+            "center_x": 0.8173,
+            "center_y": 0.6549,
+            "width": 0.0154,
+            "height": 0.1124,
+            "bottom_y": 0.7111
+          },
+          "normalized_lateral_displacement": 1.305,
+          "consecutive_displacement": 0.315,
+          "velocity": 9.45,
+          "acceleration": -37.266,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 160,
+          "timestamp_seconds": 5.333,
+          "bbox": {
+            "center_x": 0.8227,
+            "center_y": 0.6503,
+            "width": 0.0163,
+            "height": 0.1079,
+            "bottom_y": 0.7043
+          },
+          "normalized_lateral_displacement": 1.575,
+          "consecutive_displacement": 0.3547,
+          "velocity": 10.6405,
+          "acceleration": 35.715,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 161,
+          "timestamp_seconds": 5.367,
+          "bbox": {
+            "center_x": 0.8281,
+            "center_y": 0.6538,
+            "width": 0.016,
+            "height": 0.1063,
+            "bottom_y": 0.7069
+          },
+          "normalized_lateral_displacement": 1.845,
+          "consecutive_displacement": 0.3218,
+          "velocity": 9.6526,
+          "acceleration": -29.637,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 162,
+          "timestamp_seconds": 5.4,
+          "bbox": {
+            "center_x": 0.8345,
+            "center_y": 0.6464,
+            "width": 0.0154,
+            "height": 0.0949,
+            "bottom_y": 0.6938
+          },
+          "normalized_lateral_displacement": 2.165,
+          "consecutive_displacement": 0.4892,
+          "velocity": 14.6755,
+          "acceleration": 150.687,
+          "trajectory_direction": "moving_up",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 163,
+          "timestamp_seconds": 5.433,
+          "bbox": {
+            "center_x": 0.8414,
+            "center_y": 0.635,
+            "width": 0.0155,
+            "height": 0.0744,
+            "bottom_y": 0.6722
+          },
+          "normalized_lateral_displacement": 2.51,
+          "consecutive_displacement": 0.6663,
+          "velocity": 19.9883,
+          "acceleration": 159.384,
+          "trajectory_direction": "moving_up",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 226,
+      "event_start_frame": 161,
+      "event_end_frame": 174,
+      "duration_seconds": 0.467,
+      "total_frames": 14,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 2.5371,
+      "total_lateral_displacement": 0.0523,
+      "roadway_entry_candidate_frame": 166,
+      "peak_motion_frame": 171,
+      "all_frames": [
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174
+      ],
+      "velocities": [
+        0.0,
+        5.3669,
+        5.4859,
+        9.9324,
+        5.4491,
+        9.2455,
+        8.442,
+        9.584,
+        9.7766,
+        16.2121,
+        16.4661,
+        12.8866,
+        7.9404,
+        7.4831
+      ],
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 161,
+          "timestamp_seconds": 5.367,
+          "bbox": {
+            "center_x": 0.1544,
+            "center_y": 0.6249,
+            "width": 0.0209,
+            "height": 0.0795,
+            "bottom_y": 0.6647
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 162,
+          "timestamp_seconds": 5.4,
+          "bbox": {
+            "center_x": 0.152,
+            "center_y": 0.6221,
+            "width": 0.0214,
+            "height": 0.0827,
+            "bottom_y": 0.6635
+          },
+          "normalized_lateral_displacement": 0.1164,
+          "consecutive_displacement": 0.1789,
+          "velocity": 5.3669,
+          "acceleration": 161.007,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 163,
+          "timestamp_seconds": 5.433,
+          "bbox": {
+            "center_x": 0.1485,
+            "center_y": 0.6207,
+            "width": 0.0198,
+            "height": 0.0817,
+            "bottom_y": 0.6616
+          },
+          "normalized_lateral_displacement": 0.2862,
+          "consecutive_displacement": 0.1829,
+          "velocity": 5.4859,
+          "acceleration": 3.57,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 164,
+          "timestamp_seconds": 5.467,
+          "bbox": {
+            "center_x": 0.1442,
+            "center_y": 0.6154,
+            "width": 0.0207,
+            "height": 0.0904,
+            "bottom_y": 0.6606
+          },
+          "normalized_lateral_displacement": 0.4948,
+          "consecutive_displacement": 0.3311,
+          "velocity": 9.9324,
+          "acceleration": 133.395,
+          "trajectory_direction": "moving_up",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 165,
+          "timestamp_seconds": 5.5,
+          "bbox": {
+            "center_x": 0.1411,
+            "center_y": 0.6133,
+            "width": 0.0225,
+            "height": 0.095,
+            "bottom_y": 0.6609
+          },
+          "normalized_lateral_displacement": 0.6452,
+          "consecutive_displacement": 0.1816,
+          "velocity": 5.4491,
+          "acceleration": -134.499,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 166,
+          "timestamp_seconds": 5.533,
+          "bbox": {
+            "center_x": 0.1381,
+            "center_y": 0.6189,
+            "width": 0.0206,
+            "height": 0.0902,
+            "bottom_y": 0.664
+          },
+          "normalized_lateral_displacement": 0.7907,
+          "consecutive_displacement": 0.3082,
+          "velocity": 9.2455,
+          "acceleration": 113.892,
+          "trajectory_direction": "moving_down",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 167,
+          "timestamp_seconds": 5.567,
+          "bbox": {
+            "center_x": 0.1334,
+            "center_y": 0.6223,
+            "width": 0.0194,
+            "height": 0.0878,
+            "bottom_y": 0.6662
+          },
+          "normalized_lateral_displacement": 1.0187,
+          "consecutive_displacement": 0.2814,
+          "velocity": 8.442,
+          "acceleration": -24.105,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 168,
+          "timestamp_seconds": 5.6,
+          "bbox": {
+            "center_x": 0.129,
+            "center_y": 0.6272,
+            "width": 0.0197,
+            "height": 0.0902,
+            "bottom_y": 0.6723
+          },
+          "normalized_lateral_displacement": 1.2322,
+          "consecutive_displacement": 0.3195,
+          "velocity": 9.584,
+          "acceleration": 34.26,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 169,
+          "timestamp_seconds": 5.633,
+          "bbox": {
+            "center_x": 0.1242,
+            "center_y": 0.6319,
+            "width": 0.0215,
+            "height": 0.0927,
+            "bottom_y": 0.6782
+          },
+          "normalized_lateral_displacement": 1.465,
+          "consecutive_displacement": 0.3259,
+          "velocity": 9.7766,
+          "acceleration": 5.778,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 170,
+          "timestamp_seconds": 5.667,
+          "bbox": {
+            "center_x": 0.1211,
+            "center_y": 0.6426,
+            "width": 0.0205,
+            "height": 0.0948,
+            "bottom_y": 0.69
+          },
+          "normalized_lateral_displacement": 1.6154,
+          "consecutive_displacement": 0.5404,
+          "velocity": 16.2121,
+          "acceleration": 193.065,
+          "trajectory_direction": "moving_down",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 171,
+          "timestamp_seconds": 5.7,
+          "bbox": {
+            "center_x": 0.116,
+            "center_y": 0.6527,
+            "width": 0.0211,
+            "height": 0.096,
+            "bottom_y": 0.7007
+          },
+          "normalized_lateral_displacement": 1.8628,
+          "consecutive_displacement": 0.5489,
+          "velocity": 16.4661,
+          "acceleration": 7.62,
+          "trajectory_direction": "moving_down",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 172,
+          "timestamp_seconds": 5.733,
+          "bbox": {
+            "center_x": 0.112,
+            "center_y": 0.6606,
+            "width": 0.0193,
+            "height": 0.0908,
+            "bottom_y": 0.706
+          },
+          "normalized_lateral_displacement": 2.0568,
+          "consecutive_displacement": 0.4296,
+          "velocity": 12.8866,
+          "acceleration": -107.385,
+          "trajectory_direction": "moving_down",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 173,
+          "timestamp_seconds": 5.767,
+          "bbox": {
+            "center_x": 0.1071,
+            "center_y": 0.663,
+            "width": 0.0208,
+            "height": 0.0963,
+            "bottom_y": 0.7111
+          },
+          "normalized_lateral_displacement": 2.2945,
+          "consecutive_displacement": 0.2647,
+          "velocity": 7.9404,
+          "acceleration": -148.386,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 174,
+          "timestamp_seconds": 5.8,
+          "bbox": {
+            "center_x": 0.1021,
+            "center_y": 0.6642,
+            "width": 0.0204,
+            "height": 0.0993,
+            "bottom_y": 0.7139
+          },
+          "normalized_lateral_displacement": 2.5371,
+          "consecutive_displacement": 0.2494,
+          "velocity": 7.4831,
+          "acceleration": -13.719,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    }
+  ]
+}

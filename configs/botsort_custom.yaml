@@ -1,0 +1,16 @@
+# BoT-SORT Custom Tracker Configuration
+# Reference: https://github.com/crowd-dataset/crowd/blob/main/bbox_custom_tracker.yaml
+# Note: track_buffer is dynamically updated per video based on video FPS (track_buffer_sec * FPS)
+
+tracker_type: botsort
+with_reid: true
+gmc_method: sparseOptFlow
+appearance_thresh: 0.25
+match_thresh: 0.6
+new_track_thresh: 0.7
+proximity_thresh: 0.5
+track_high_thresh: 0.7
+track_low_thresh: 0.3
+fuse_score: true
+model: auto
+track_buffer: 60  # default fallback, replaced per-video dynamically
