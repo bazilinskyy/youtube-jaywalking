@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 import cv2
 import numpy as np
 import torch
@@ -39,6 +39,7 @@ class PedestrianMotionExtractor:
             return self._empty_result("none")
 
         tracks: Dict[int, List[float]] = {}
+        track_frames: Dict[int, List[int]] = {}
         frame_idx = 0
 
         while cap.isOpened():
@@ -66,7 +67,9 @@ class PedestrianMotionExtractor:
                     cx = ((box[0] + box[2]) / 2.0) / max(w, 1)
                     if tid not in tracks:
                         tracks[tid] = []
+                        track_frames[tid] = []
                     tracks[tid].append(cx)
+                    track_frames[tid].append(frame_idx)
 
         cap.release()
 
@@ -74,7 +77,7 @@ class PedestrianMotionExtractor:
         if not valid_tracks:
             return self._empty_result("none")
 
-        # Select primary track by maximum horizontal span (crossing activity)
+        # Select primary track by maximum horizontal span
         primary_tid = max(valid_tracks.keys(), key=lambda tid: max(valid_tracks[tid]) - min(valid_tracks[tid]))
         xs = valid_tracks[primary_tid]
         start_x = xs[0]
@@ -122,6 +125,65 @@ class PedestrianMotionExtractor:
             "tracked_frames": 0,
             "formatted_context": self._format_context("unknown", "unknown", 0.0, "unknown", confidence),
         }
+
+    def detect_crossing_segment(self, video_path: Union[str, Path]) -> Tuple[Optional[int], Optional[int], Dict[str, Any]]:
+        """Detects primary pedestrian crossing segment start and end frame indices."""
+        cap = cv2.VideoCapture(str(video_path))
+        if not cap.isOpened():
+            return None, None, self._empty_result("none")
+
+        w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        if w <= 0:
+            cap.release()
+            return None, None, self._empty_result("none")
+
+        tracks: Dict[int, List[float]] = {}
+        track_frames: Dict[int, List[int]] = {}
+        frame_idx = 0
+
+        while cap.isOpened():
+            ret, frame = cap.read()
+            if not ret:
+                break
+            frame_idx += 1
+            if frame_idx % self.stride != 0:
+                continue
+
+            results = self.model.track(
+                frame,
+                tracker="bytetrack.yaml",
+                persist=True,
+                classes=[0],
+                conf=self.conf_thresh,
+                verbose=False,
+                device=self.device,
+            )
+
+            if results and len(results) > 0 and results[0].boxes is not None and results[0].boxes.id is not None:
+                boxes = results[0].boxes.xyxy.cpu().numpy()
+                tids = results[0].boxes.id.int().cpu().tolist()
+                for box, tid in zip(boxes, tids):
+                    cx = ((box[0] + box[2]) / 2.0) / max(w, 1)
+                    if tid not in tracks:
+                        tracks[tid] = []
+                        track_frames[tid] = []
+                    tracks[tid].append(cx)
+                    track_frames[tid].append(frame_idx)
+
+        cap.release()
+
+        valid_tracks = {tid: xs for tid, xs in tracks.items() if len(xs) >= 3}
+        if not valid_tracks:
+            return None, None, self._empty_result("none")
+
+        primary_tid = max(valid_tracks.keys(), key=lambda tid: max(valid_tracks[tid]) - min(valid_tracks[tid]))
+        xs = valid_tracks[primary_tid]
+        f_indices = track_frames[primary_tid]
+        start_frame = f_indices[0]
+        end_frame = f_indices[-1]
+
+        motion_info = self.extract(video_path)
+        return start_frame, end_frame, motion_info
 
     @staticmethod
     def _format_context(

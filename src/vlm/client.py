@@ -24,7 +24,7 @@ class OllamaClient:
         model: str = "qwen2.5vl:7b",
         temperature: float = 0.0,
         seed: Optional[int] = 42,
-        max_tokens: int = 10,
+        max_tokens: int = 300,
         timeout_seconds: int = 60,
     ) -> None:
         self.base_url = base_url
@@ -37,11 +37,13 @@ class OllamaClient:
     def generate_chat(
         self,
         prompt: str,
-        base64_images: Union[str, list[str]],
+        base64_images: Optional[Union[str, List[str]]] = None,
         num_ctx: int = 16384,
     ) -> str:
-        """Sends one or more images and text prompt to Ollama chat endpoint."""
-        if isinstance(base64_images, str):
+        """Sends text prompt and optional images to Ollama chat endpoint."""
+        if base64_images is None:
+            images_list = []
+        elif isinstance(base64_images, str):
             images_list = [base64_images]
         else:
             images_list = list(base64_images)
@@ -54,15 +56,16 @@ class OllamaClient:
         if self.seed is not None:
             options["seed"] = self.seed
 
+        msg_obj: Dict[str, Any] = {
+            "role": "user",
+            "content": prompt,
+        }
+        if images_list:
+            msg_obj["images"] = images_list
+
         payload: Dict[str, Any] = {
             "model": self.model,
-            "messages": [
-                {
-                    "role": "user",
-                    "content": prompt,
-                    "images": images_list,
-                }
-            ],
+            "messages": [msg_obj],
             "stream": False,
             "options": options,
         }

@@ -23,7 +23,7 @@ def main():
     parser = argparse.ArgumentParser(description="Evaluate Jaywalking Detection Pipeline against Ground Truth")
     parser.add_argument(
         "--mode",
-        choices=["vlm", "balanced", "high_precision", "safety", "high_recall", "cv", "ensemble"],
+        choices=["vlm", "balanced", "high_precision", "safety", "high_recall", "cv", "ensemble", "alpamayo", "full_video", "event_alpamayo", "alpamayo_gemma"],
         default="balanced",
         help="Pipeline mode ('balanced', 'high_precision', 'safety', 'vlm', 'cv', 'ensemble')",
     )

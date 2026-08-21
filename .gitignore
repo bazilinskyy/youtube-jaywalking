@@ -34,6 +34,8 @@ check.py
 config
 config.json
 secret
+default.secret
+*.secret
 mapping_queue.csv
 last_updated_pytube.txt
 
@@ -64,3 +66,15 @@ upgrade_log.json
 myenv/
 !data/ground_truth.csv
 !data/heldout_ground_truth.csv
+
+# Output media and checkpoints
+outputs/**/*.mp4
+outputs/**/*.png
+outputs/keypoint_analysis/visualizations/
+outputs/annotated_videos/
+outputs/pose_diagnostics/
+outputs/error_forensics/**/*.jpg
+*.pt
+experiments/alpamayo1.5/
+experiments/alpamayo_r1/
+experiments/oom-free-alpamayo/

@@ -1,0 +1,5977 @@
+{
+  "video_path": "data/raw_clips/video_0168.mp4",
+  "total_frames": 120,
+  "fps": 30.0,
+  "duration_seconds": 4.0,
+  "width": 1920,
+  "height": 1080,
+  "total_pedestrian_tracks": 21,
+  "tracks": [
+    {
+      "track_id": 3294,
+      "event_start_frame": 2,
+      "event_end_frame": 39,
+      "duration_seconds": 1.267,
+      "total_frames": 38,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 3.905,
+      "total_lateral_displacement": 0.0781,
+      "roadway_entry_candidate_frame": 17,
+      "peak_motion_frame": 34,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 2,
+          "timestamp_seconds": 0.067,
+          "bbox": {
+            "center_x": 0.2776,
+            "center_y": 0.6485,
+            "width": 0.0126,
+            "height": 0.056,
+            "bottom_y": 0.6765
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 3,
+          "timestamp_seconds": 0.1,
+          "bbox": {
+            "center_x": 0.2776,
+            "center_y": 0.6485,
+            "width": 0.0126,
+            "height": 0.056,
+            "bottom_y": 0.6765
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 4,
+          "timestamp_seconds": 0.133,
+          "bbox": {
+            "center_x": 0.2776,
+            "center_y": 0.6485,
+            "width": 0.0126,
+            "height": 0.056,
+            "bottom_y": 0.6765
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 5,
+          "timestamp_seconds": 0.167,
+          "bbox": {
+            "center_x": 0.2776,
+            "center_y": 0.6485,
+            "width": 0.0126,
+            "height": 0.056,
+            "bottom_y": 0.6765
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 6,
+          "timestamp_seconds": 0.2,
+          "bbox": {
+            "center_x": 0.2776,
+            "center_y": 0.6485,
+            "width": 0.0126,
+            "height": 0.056,
+            "bottom_y": 0.6766
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 7,
+          "timestamp_seconds": 0.233,
+          "bbox": {
+            "center_x": 0.2762,
+            "center_y": 0.6495,
+            "width": 0.0131,
+            "height": 0.0585,
+            "bottom_y": 0.6788
+          },
+          "normalized_lateral_displacement": 0.07,
+          "consecutive_displacement": 0.086,
+          "velocity": 2.5807,
+          "acceleration": 77.421,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 8,
+          "timestamp_seconds": 0.267,
+          "bbox": {
+            "center_x": 0.2757,
+            "center_y": 0.6499,
+            "width": 0.0134,
+            "height": 0.0593,
+            "bottom_y": 0.6795
+          },
+          "normalized_lateral_displacement": 0.095,
+          "consecutive_displacement": 0.032,
+          "velocity": 0.9605,
+          "acceleration": -48.606,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 9,
+          "timestamp_seconds": 0.3,
+          "bbox": {
+            "center_x": 0.2739,
+            "center_y": 0.6489,
+            "width": 0.0134,
+            "height": 0.0596,
+            "bottom_y": 0.6787
+          },
+          "normalized_lateral_displacement": 0.185,
+          "consecutive_displacement": 0.103,
+          "velocity": 3.0887,
+          "acceleration": 63.846,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 10,
+          "timestamp_seconds": 0.333,
+          "bbox": {
+            "center_x": 0.2723,
+            "center_y": 0.6491,
+            "width": 0.0135,
+            "height": 0.0604,
+            "bottom_y": 0.6794
+          },
+          "normalized_lateral_displacement": 0.265,
+          "consecutive_displacement": 0.0806,
+          "velocity": 2.4187,
+          "acceleration": -20.1,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 11,
+          "timestamp_seconds": 0.367,
+          "bbox": {
+            "center_x": 0.2702,
+            "center_y": 0.6498,
+            "width": 0.0135,
+            "height": 0.0612,
+            "bottom_y": 0.6804
+          },
+          "normalized_lateral_displacement": 0.37,
+          "consecutive_displacement": 0.1107,
+          "velocity": 3.3204,
+          "acceleration": 27.051,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 12,
+          "timestamp_seconds": 0.4,
+          "bbox": {
+            "center_x": 0.2679,
+            "center_y": 0.6503,
+            "width": 0.0135,
+            "height": 0.0614,
+            "bottom_y": 0.681
+          },
+          "normalized_lateral_displacement": 0.485,
+          "consecutive_displacement": 0.1177,
+          "velocity": 3.5306,
+          "acceleration": 6.306,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 13,
+          "timestamp_seconds": 0.433,
+          "bbox": {
+            "center_x": 0.2661,
+            "center_y": 0.6506,
+            "width": 0.0135,
+            "height": 0.0618,
+            "bottom_y": 0.6815
+          },
+          "normalized_lateral_displacement": 0.575,
+          "consecutive_displacement": 0.0912,
+          "velocity": 2.7372,
+          "acceleration": -23.802,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 14,
+          "timestamp_seconds": 0.467,
+          "bbox": {
+            "center_x": 0.2641,
+            "center_y": 0.6498,
+            "width": 0.0142,
+            "height": 0.0657,
+            "bottom_y": 0.6827
+          },
+          "normalized_lateral_displacement": 0.675,
+          "consecutive_displacement": 0.1077,
+          "velocity": 3.2311,
+          "acceleration": 14.817,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 15,
+          "timestamp_seconds": 0.5,
+          "bbox": {
+            "center_x": 0.2626,
+            "center_y": 0.6494,
+            "width": 0.0141,
+            "height": 0.0663,
+            "bottom_y": 0.6825
+          },
+          "normalized_lateral_displacement": 0.75,
+          "consecutive_displacement": 0.0776,
+          "velocity": 2.3286,
+          "acceleration": -27.075,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 16,
+          "timestamp_seconds": 0.533,
+          "bbox": {
+            "center_x": 0.2604,
+            "center_y": 0.6497,
+            "width": 0.0139,
+            "height": 0.0663,
+            "bottom_y": 0.6828
+          },
+          "normalized_lateral_displacement": 0.86,
+          "consecutive_displacement": 0.111,
+          "velocity": 3.3305,
+          "acceleration": 30.057,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 17,
+          "timestamp_seconds": 0.567,
+          "bbox": {
+            "center_x": 0.2586,
+            "center_y": 0.6498,
+            "width": 0.0133,
+            "height": 0.0643,
+            "bottom_y": 0.682
+          },
+          "normalized_lateral_displacement": 0.95,
+          "consecutive_displacement": 0.0901,
+          "velocity": 2.7042,
+          "acceleration": -18.789,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 18,
+          "timestamp_seconds": 0.6,
+          "bbox": {
+            "center_x": 0.2567,
+            "center_y": 0.6481,
+            "width": 0.0134,
+            "height": 0.0656,
+            "bottom_y": 0.6809
+          },
+          "normalized_lateral_displacement": 1.045,
+          "consecutive_displacement": 0.1275,
+          "velocity": 3.8243,
+          "acceleration": 33.603,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 19,
+          "timestamp_seconds": 0.633,
+          "bbox": {
+            "center_x": 0.255,
+            "center_y": 0.6477,
+            "width": 0.013,
+            "height": 0.0642,
+            "bottom_y": 0.6798
+          },
+          "normalized_lateral_displacement": 1.13,
+          "consecutive_displacement": 0.0873,
+          "velocity": 2.6196,
+          "acceleration": -36.141,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 20,
+          "timestamp_seconds": 0.667,
+          "bbox": {
+            "center_x": 0.2534,
+            "center_y": 0.648,
+            "width": 0.0128,
+            "height": 0.0633,
+            "bottom_y": 0.6796
+          },
+          "normalized_lateral_displacement": 1.21,
+          "consecutive_displacement": 0.0814,
+          "velocity": 2.4418,
+          "acceleration": -5.334,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 21,
+          "timestamp_seconds": 0.7,
+          "bbox": {
+            "center_x": 0.2514,
+            "center_y": 0.6488,
+            "width": 0.0125,
+            "height": 0.0617,
+            "bottom_y": 0.6796
+          },
+          "normalized_lateral_displacement": 1.31,
+          "consecutive_displacement": 0.1077,
+          "velocity": 3.2311,
+          "acceleration": 23.679,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 22,
+          "timestamp_seconds": 0.733,
+          "bbox": {
+            "center_x": 0.2482,
+            "center_y": 0.6489,
+            "width": 0.013,
+            "height": 0.0643,
+            "bottom_y": 0.681
+          },
+          "normalized_lateral_displacement": 1.47,
+          "consecutive_displacement": 0.1601,
+          "velocity": 4.8023,
+          "acceleration": 47.136,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 23,
+          "timestamp_seconds": 0.767,
+          "bbox": {
+            "center_x": 0.2464,
+            "center_y": 0.6493,
+            "width": 0.0132,
+            "height": 0.0652,
+            "bottom_y": 0.682
+          },
+          "normalized_lateral_displacement": 1.56,
+          "consecutive_displacement": 0.0922,
+          "velocity": 2.7659,
+          "acceleration": -61.092,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 24,
+          "timestamp_seconds": 0.8,
+          "bbox": {
+            "center_x": 0.2437,
+            "center_y": 0.6499,
+            "width": 0.0134,
+            "height": 0.0658,
+            "bottom_y": 0.6828
+          },
+          "normalized_lateral_displacement": 1.695,
+          "consecutive_displacement": 0.1383,
+          "velocity": 4.1488,
+          "acceleration": 41.487,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 25,
+          "timestamp_seconds": 0.833,
+          "bbox": {
+            "center_x": 0.2407,
+            "center_y": 0.6511,
+            "width": 0.0141,
+            "height": 0.0688,
+            "bottom_y": 0.6855
+          },
+          "normalized_lateral_displacement": 1.845,
+          "consecutive_displacement": 0.1616,
+          "velocity": 4.8466,
+          "acceleration": 20.934,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 26,
+          "timestamp_seconds": 0.867,
+          "bbox": {
+            "center_x": 0.238,
+            "center_y": 0.6523,
+            "width": 0.0142,
+            "height": 0.0689,
+            "bottom_y": 0.6868
+          },
+          "normalized_lateral_displacement": 1.98,
+          "consecutive_displacement": 0.1477,
+          "velocity": 4.432,
+          "acceleration": -12.438,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 27,
+          "timestamp_seconds": 0.9,
+          "bbox": {
+            "center_x": 0.2353,
+            "center_y": 0.6527,
+            "width": 0.0143,
+            "height": 0.0694,
+            "bottom_y": 0.6874
+          },
+          "normalized_lateral_displacement": 2.115,
+          "consecutive_displacement": 0.1365,
+          "velocity": 4.0942,
+          "acceleration": -10.134,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 28,
+          "timestamp_seconds": 0.933,
+          "bbox": {
+            "center_x": 0.2322,
+            "center_y": 0.6518,
+            "width": 0.014,
+            "height": 0.0679,
+            "bottom_y": 0.6857
+          },
+          "normalized_lateral_displacement": 2.27,
+          "consecutive_displacement": 0.1614,
+          "velocity": 4.842,
+          "acceleration": 22.434,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 29,
+          "timestamp_seconds": 0.967,
+          "bbox": {
+            "center_x": 0.2293,
+            "center_y": 0.6515,
+            "width": 0.0142,
+            "height": 0.0687,
+            "bottom_y": 0.6858
+          },
+          "normalized_lateral_displacement": 2.415,
+          "consecutive_displacement": 0.1458,
+          "velocity": 4.3732,
+          "acceleration": -14.064,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 30,
+          "timestamp_seconds": 1.0,
+          "bbox": {
+            "center_x": 0.227,
+            "center_y": 0.6513,
+            "width": 0.014,
+            "height": 0.0683,
+            "bottom_y": 0.6854
+          },
+          "normalized_lateral_displacement": 2.53,
+          "consecutive_displacement": 0.1154,
+          "velocity": 3.463,
+          "acceleration": -27.306,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 31,
+          "timestamp_seconds": 1.033,
+          "bbox": {
+            "center_x": 0.2235,
+            "center_y": 0.6516,
+            "width": 0.0143,
+            "height": 0.0698,
+            "bottom_y": 0.6865
+          },
+          "normalized_lateral_displacement": 2.705,
+          "consecutive_displacement": 0.1756,
+          "velocity": 5.2693,
+          "acceleration": 54.189,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 32,
+          "timestamp_seconds": 1.067,
+          "bbox": {
+            "center_x": 0.2207,
+            "center_y": 0.651,
+            "width": 0.0141,
+            "height": 0.0695,
+            "bottom_y": 0.6857
+          },
+          "normalized_lateral_displacement": 2.845,
+          "consecutive_displacement": 0.1432,
+          "velocity": 4.2953,
+          "acceleration": -29.22,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 33,
+          "timestamp_seconds": 1.1,
+          "bbox": {
+            "center_x": 0.2178,
+            "center_y": 0.6504,
+            "width": 0.0136,
+            "height": 0.0677,
+            "bottom_y": 0.6843
+          },
+          "normalized_lateral_displacement": 2.99,
+          "consecutive_displacement": 0.1481,
+          "velocity": 4.4421,
+          "acceleration": 4.404,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 34,
+          "timestamp_seconds": 1.133,
+          "bbox": {
+            "center_x": 0.2144,
+            "center_y": 0.6517,
+            "width": 0.0137,
+            "height": 0.0684,
+            "bottom_y": 0.6859
+          },
+          "normalized_lateral_displacement": 3.16,
+          "consecutive_displacement": 0.182,
+          "velocity": 5.4601,
+          "acceleration": 30.54,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 35,
+          "timestamp_seconds": 1.167,
+          "bbox": {
+            "center_x": 0.2112,
+            "center_y": 0.6512,
+            "width": 0.0142,
+            "height": 0.0721,
+            "bottom_y": 0.6873
+          },
+          "normalized_lateral_displacement": 3.32,
+          "consecutive_displacement": 0.1619,
+          "velocity": 4.8582,
+          "acceleration": -18.057,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 36,
+          "timestamp_seconds": 1.2,
+          "bbox": {
+            "center_x": 0.2084,
+            "center_y": 0.6512,
+            "width": 0.0141,
+            "height": 0.0729,
+            "bottom_y": 0.6876
+          },
+          "normalized_lateral_displacement": 3.46,
+          "consecutive_displacement": 0.14,
+          "velocity": 4.2,
+          "acceleration": -19.746,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 37,
+          "timestamp_seconds": 1.233,
+          "bbox": {
+            "center_x": 0.205,
+            "center_y": 0.6521,
+            "width": 0.0134,
+            "height": 0.0706,
+            "bottom_y": 0.6874
+          },
+          "normalized_lateral_displacement": 3.63,
+          "consecutive_displacement": 0.1759,
+          "velocity": 5.2757,
+          "acceleration": 32.271,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 38,
+          "timestamp_seconds": 1.267,
+          "bbox": {
+            "center_x": 0.202,
+            "center_y": 0.6538,
+            "width": 0.0136,
+            "height": 0.0723,
+            "bottom_y": 0.6899
+          },
+          "normalized_lateral_displacement": 3.78,
+          "consecutive_displacement": 0.1724,
+          "velocity": 5.1723,
+          "acceleration": -3.102,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 39,
+          "timestamp_seconds": 1.3,
+          "bbox": {
+            "center_x": 0.1995,
+            "center_y": 0.6553,
+            "width": 0.0137,
+            "height": 0.0718,
+            "bottom_y": 0.6913
+          },
+          "normalized_lateral_displacement": 3.905,
+          "consecutive_displacement": 0.1458,
+          "velocity": 4.3732,
+          "acceleration": -23.973,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3295,
+      "event_start_frame": 2,
+      "event_end_frame": 10,
+      "duration_seconds": 0.3,
+      "total_frames": 9,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 0.145,
+      "total_lateral_displacement": 0.0029,
+      "roadway_entry_candidate_frame": 2,
+      "peak_motion_frame": 10,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 2,
+          "timestamp_seconds": 0.067,
+          "bbox": {
+            "center_x": 0.2878,
+            "center_y": 0.6468,
+            "width": 0.0104,
+            "height": 0.0584,
+            "bottom_y": 0.676
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 3,
+          "timestamp_seconds": 0.1,
+          "bbox": {
+            "center_x": 0.2878,
+            "center_y": 0.6468,
+            "width": 0.0104,
+            "height": 0.0584,
+            "bottom_y": 0.676
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 4,
+          "timestamp_seconds": 0.133,
+          "bbox": {
+            "center_x": 0.2878,
+            "center_y": 0.6468,
+            "width": 0.0104,
+            "height": 0.0584,
+            "bottom_y": 0.676
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 5,
+          "timestamp_seconds": 0.167,
+          "bbox": {
+            "center_x": 0.2878,
+            "center_y": 0.6468,
+            "width": 0.0104,
+            "height": 0.0584,
+            "bottom_y": 0.676
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 6,
+          "timestamp_seconds": 0.2,
+          "bbox": {
+            "center_x": 0.2878,
+            "center_y": 0.6468,
+            "width": 0.0104,
+            "height": 0.0584,
+            "bottom_y": 0.676
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 7,
+          "timestamp_seconds": 0.233,
+          "bbox": {
+            "center_x": 0.2869,
+            "center_y": 0.6474,
+            "width": 0.0108,
+            "height": 0.0607,
+            "bottom_y": 0.6777
+          },
+          "normalized_lateral_displacement": 0.045,
+          "consecutive_displacement": 0.0541,
+          "velocity": 1.6225,
+          "acceleration": 48.675,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 8,
+          "timestamp_seconds": 0.267,
+          "bbox": {
+            "center_x": 0.2866,
+            "center_y": 0.6476,
+            "width": 0.011,
+            "height": 0.0615,
+            "bottom_y": 0.6783
+          },
+          "normalized_lateral_displacement": 0.06,
+          "consecutive_displacement": 0.018,
+          "velocity": 0.5408,
+          "acceleration": -32.451,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 9,
+          "timestamp_seconds": 0.3,
+          "bbox": {
+            "center_x": 0.286,
+            "center_y": 0.6477,
+            "width": 0.0111,
+            "height": 0.0614,
+            "bottom_y": 0.6784
+          },
+          "normalized_lateral_displacement": 0.09,
+          "consecutive_displacement": 0.0304,
+          "velocity": 0.9124,
+          "acceleration": 11.148,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 10,
+          "timestamp_seconds": 0.333,
+          "bbox": {
+            "center_x": 0.2849,
+            "center_y": 0.6488,
+            "width": 0.0116,
+            "height": 0.0636,
+            "bottom_y": 0.6807
+          },
+          "normalized_lateral_displacement": 0.145,
+          "consecutive_displacement": 0.0778,
+          "velocity": 2.3335,
+          "acceleration": 42.633,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3293,
+      "event_start_frame": 10,
+      "event_end_frame": 90,
+      "duration_seconds": 2.7,
+      "total_frames": 19,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 0.0056,
+      "total_lateral_displacement": 0.0005,
+      "roadway_entry_candidate_frame": 10,
+      "peak_motion_frame": 90,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 10,
+          "timestamp_seconds": 0.333,
+          "bbox": {
+            "center_x": 0.8652,
+            "center_y": 0.3179,
+            "width": 0.2648,
+            "height": 0.6317,
+            "bottom_y": 0.6337
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 16,
+          "timestamp_seconds": 0.533,
+          "bbox": {
+            "center_x": 0.8651,
+            "center_y": 0.3213,
+            "width": 0.2678,
+            "height": 0.6385,
+            "bottom_y": 0.6405
+          },
+          "normalized_lateral_displacement": 0.0004,
+          "consecutive_displacement": 0.0127,
+          "velocity": 0.0635,
+          "acceleration": 0.3175,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 19,
+          "timestamp_seconds": 0.633,
+          "bbox": {
+            "center_x": 0.8656,
+            "center_y": 0.3196,
+            "width": 0.2664,
+            "height": 0.6345,
+            "bottom_y": 0.6368
+          },
+          "normalized_lateral_displacement": 0.0015,
+          "consecutive_displacement": 0.0066,
+          "velocity": 0.0661,
+          "acceleration": 0.026,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 20,
+          "timestamp_seconds": 0.667,
+          "bbox": {
+            "center_x": 0.8644,
+            "center_y": 0.3196,
+            "width": 0.267,
+            "height": 0.6341,
+            "bottom_y": 0.6367
+          },
+          "normalized_lateral_displacement": 0.003,
+          "consecutive_displacement": 0.0045,
+          "velocity": 0.1344,
+          "acceleration": 2.049,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 23,
+          "timestamp_seconds": 0.767,
+          "bbox": {
+            "center_x": 0.8637,
+            "center_y": 0.3195,
+            "width": 0.2682,
+            "height": 0.6358,
+            "bottom_y": 0.6374
+          },
+          "normalized_lateral_displacement": 0.0056,
+          "consecutive_displacement": 0.0026,
+          "velocity": 0.0264,
+          "acceleration": -1.08,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 52,
+          "timestamp_seconds": 1.733,
+          "bbox": {
+            "center_x": 0.8656,
+            "center_y": 0.3175,
+            "width": 0.2667,
+            "height": 0.6311,
+            "bottom_y": 0.633
+          },
+          "normalized_lateral_displacement": 0.0015,
+          "consecutive_displacement": 0.0103,
+          "velocity": 0.0107,
+          "acceleration": -0.0162,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 53,
+          "timestamp_seconds": 1.767,
+          "bbox": {
+            "center_x": 0.8655,
+            "center_y": 0.3174,
+            "width": 0.2669,
+            "height": 0.6306,
+            "bottom_y": 0.6327
+          },
+          "normalized_lateral_displacement": 0.0011,
+          "consecutive_displacement": 0.0005,
+          "velocity": 0.0158,
+          "acceleration": 0.153,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 54,
+          "timestamp_seconds": 1.8,
+          "bbox": {
+            "center_x": 0.8654,
+            "center_y": 0.3181,
+            "width": 0.2675,
+            "height": 0.6317,
+            "bottom_y": 0.634
+          },
+          "normalized_lateral_displacement": 0.0007,
+          "consecutive_displacement": 0.0026,
+          "velocity": 0.0792,
+          "acceleration": 1.902,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 55,
+          "timestamp_seconds": 1.833,
+          "bbox": {
+            "center_x": 0.8653,
+            "center_y": 0.3179,
+            "width": 0.2674,
+            "height": 0.6308,
+            "bottom_y": 0.6333
+          },
+          "normalized_lateral_displacement": 0.0004,
+          "consecutive_displacement": 0.0008,
+          "velocity": 0.025,
+          "acceleration": -1.626,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 66,
+          "timestamp_seconds": 2.2,
+          "bbox": {
+            "center_x": 0.8654,
+            "center_y": 0.3177,
+            "width": 0.2679,
+            "height": 0.6317,
+            "bottom_y": 0.6336
+          },
+          "normalized_lateral_displacement": 0.0007,
+          "consecutive_displacement": 0.0008,
+          "velocity": 0.0023,
+          "acceleration": -0.0619,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 69,
+          "timestamp_seconds": 2.3,
+          "bbox": {
+            "center_x": 0.8648,
+            "center_y": 0.3164,
+            "width": 0.2675,
+            "height": 0.6294,
+            "bottom_y": 0.6311
+          },
+          "normalized_lateral_displacement": 0.0015,
+          "consecutive_displacement": 0.0053,
+          "velocity": 0.0534,
+          "acceleration": 0.511,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 71,
+          "timestamp_seconds": 2.367,
+          "bbox": {
+            "center_x": 0.8647,
+            "center_y": 0.3166,
+            "width": 0.2681,
+            "height": 0.63,
+            "bottom_y": 0.6316
+          },
+          "normalized_lateral_displacement": 0.0019,
+          "consecutive_displacement": 0.0008,
+          "velocity": 0.0125,
+          "acceleration": -0.6135,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 74,
+          "timestamp_seconds": 2.467,
+          "bbox": {
+            "center_x": 0.8649,
+            "center_y": 0.3191,
+            "width": 0.2695,
+            "height": 0.6337,
+            "bottom_y": 0.636
+          },
+          "normalized_lateral_displacement": 0.0011,
+          "consecutive_displacement": 0.0094,
+          "velocity": 0.0936,
+          "acceleration": 0.811,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 75,
+          "timestamp_seconds": 2.5,
+          "bbox": {
+            "center_x": 0.8653,
+            "center_y": 0.3181,
+            "width": 0.2689,
+            "height": 0.6327,
+            "bottom_y": 0.6345
+          },
+          "normalized_lateral_displacement": 0.0004,
+          "consecutive_displacement": 0.004,
+          "velocity": 0.1206,
+          "acceleration": 0.81,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 76,
+          "timestamp_seconds": 2.533,
+          "bbox": {
+            "center_x": 0.8655,
+            "center_y": 0.3181,
+            "width": 0.2688,
+            "height": 0.6327,
+            "bottom_y": 0.6344
+          },
+          "normalized_lateral_displacement": 0.0011,
+          "consecutive_displacement": 0.0007,
+          "velocity": 0.0224,
+          "acceleration": -2.946,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 78,
+          "timestamp_seconds": 2.6,
+          "bbox": {
+            "center_x": 0.8653,
+            "center_y": 0.3178,
+            "width": 0.2676,
+            "height": 0.6296,
+            "bottom_y": 0.6326
+          },
+          "normalized_lateral_displacement": 0.0004,
+          "consecutive_displacement": 0.0013,
+          "velocity": 0.0202,
+          "acceleration": -0.033,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 88,
+          "timestamp_seconds": 2.933,
+          "bbox": {
+            "center_x": 0.8652,
+            "center_y": 0.3195,
+            "width": 0.2697,
+            "height": 0.6358,
+            "bottom_y": 0.6373
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0064,
+          "velocity": 0.0191,
+          "acceleration": -0.0033,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 89,
+          "timestamp_seconds": 2.967,
+          "bbox": {
+            "center_x": 0.865,
+            "center_y": 0.3203,
+            "width": 0.27,
+            "height": 0.6377,
+            "bottom_y": 0.6391
+          },
+          "normalized_lateral_displacement": 0.0007,
+          "consecutive_displacement": 0.0031,
+          "velocity": 0.0923,
+          "acceleration": 2.196,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 90,
+          "timestamp_seconds": 3.0,
+          "bbox": {
+            "center_x": 0.8647,
+            "center_y": 0.3187,
+            "width": 0.2691,
+            "height": 0.6339,
+            "bottom_y": 0.6357
+          },
+          "normalized_lateral_displacement": 0.0019,
+          "consecutive_displacement": 0.0061,
+          "velocity": 0.1823,
+          "acceleration": 2.7,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3305,
+      "event_start_frame": 14,
+      "event_end_frame": 17,
+      "duration_seconds": 0.133,
+      "total_frames": 4,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 0.8169,
+      "total_lateral_displacement": 0.0184,
+      "roadway_entry_candidate_frame": 14,
+      "peak_motion_frame": 16,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 14,
+          "timestamp_seconds": 0.467,
+          "bbox": {
+            "center_x": 0.0304,
+            "center_y": 0.6148,
+            "width": 0.022,
+            "height": 0.0396,
+            "bottom_y": 0.6346
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 15,
+          "timestamp_seconds": 0.5,
+          "bbox": {
+            "center_x": 0.0256,
+            "center_y": 0.6148,
+            "width": 0.0213,
+            "height": 0.0386,
+            "bottom_y": 0.6341
+          },
+          "normalized_lateral_displacement": 0.2131,
+          "consecutive_displacement": 0.2131,
+          "velocity": 6.3929,
+          "acceleration": 191.787,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 16,
+          "timestamp_seconds": 0.533,
+          "bbox": {
+            "center_x": 0.0185,
+            "center_y": 0.6152,
+            "width": 0.0228,
+            "height": 0.0412,
+            "bottom_y": 0.6358
+          },
+          "normalized_lateral_displacement": 0.5283,
+          "consecutive_displacement": 0.3157,
+          "velocity": 9.4712,
+          "acceleration": 92.349,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 17,
+          "timestamp_seconds": 0.567,
+          "bbox": {
+            "center_x": 0.012,
+            "center_y": 0.6152,
+            "width": 0.024,
+            "height": 0.044,
+            "bottom_y": 0.6371
+          },
+          "normalized_lateral_displacement": 0.8169,
+          "consecutive_displacement": 0.2886,
+          "velocity": 8.657,
+          "acceleration": -24.426,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3312,
+      "event_start_frame": 17,
+      "event_end_frame": 22,
+      "duration_seconds": 0.2,
+      "total_frames": 5,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 1.235,
+      "total_lateral_displacement": 0.0247,
+      "roadway_entry_candidate_frame": 21,
+      "peak_motion_frame": 22,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 17,
+          "timestamp_seconds": 0.567,
+          "bbox": {
+            "center_x": 0.8226,
+            "center_y": 0.6409,
+            "width": 0.0195,
+            "height": 0.0858,
+            "bottom_y": 0.6838
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 18,
+          "timestamp_seconds": 0.6,
+          "bbox": {
+            "center_x": 0.8239,
+            "center_y": 0.6369,
+            "width": 0.0182,
+            "height": 0.08,
+            "bottom_y": 0.6769
+          },
+          "normalized_lateral_displacement": 0.065,
+          "consecutive_displacement": 0.2103,
+          "velocity": 6.3089,
+          "acceleration": 189.267,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 19,
+          "timestamp_seconds": 0.633,
+          "bbox": {
+            "center_x": 0.8281,
+            "center_y": 0.6365,
+            "width": 0.0187,
+            "height": 0.0825,
+            "bottom_y": 0.6778
+          },
+          "normalized_lateral_displacement": 0.275,
+          "consecutive_displacement": 0.211,
+          "velocity": 6.3285,
+          "acceleration": 0.588,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 21,
+          "timestamp_seconds": 0.7,
+          "bbox": {
+            "center_x": 0.839,
+            "center_y": 0.628,
+            "width": 0.0197,
+            "height": 0.0862,
+            "bottom_y": 0.671
+          },
+          "normalized_lateral_displacement": 0.82,
+          "consecutive_displacement": 0.6911,
+          "velocity": 10.3668,
+          "acceleration": 60.5745,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 22,
+          "timestamp_seconds": 0.733,
+          "bbox": {
+            "center_x": 0.8473,
+            "center_y": 0.6233,
+            "width": 0.0187,
+            "height": 0.0815,
+            "bottom_y": 0.6641
+          },
+          "normalized_lateral_displacement": 1.235,
+          "consecutive_displacement": 0.4769,
+          "velocity": 14.3075,
+          "acceleration": 118.221,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3318,
+      "event_start_frame": 21,
+      "event_end_frame": 22,
+      "duration_seconds": 0.067,
+      "total_frames": 2,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 0.2209,
+      "total_lateral_displacement": 0.0054,
+      "roadway_entry_candidate_frame": 21,
+      "peak_motion_frame": 22,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 21,
+          "timestamp_seconds": 0.7,
+          "bbox": {
+            "center_x": 0.0181,
+            "center_y": 0.6424,
+            "width": 0.0235,
+            "height": 0.0977,
+            "bottom_y": 0.6913
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 22,
+          "timestamp_seconds": 0.733,
+          "bbox": {
+            "center_x": 0.0127,
+            "center_y": 0.6476,
+            "width": 0.0254,
+            "height": 0.1094,
+            "bottom_y": 0.7023
+          },
+          "normalized_lateral_displacement": 0.2209,
+          "consecutive_displacement": 0.3066,
+          "velocity": 9.1984,
+          "acceleration": 275.952,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3331,
+      "event_start_frame": 29,
+      "event_end_frame": 31,
+      "duration_seconds": 0.1,
+      "total_frames": 3,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 0.3112,
+      "total_lateral_displacement": 0.0072,
+      "roadway_entry_candidate_frame": 29,
+      "peak_motion_frame": 31,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 29,
+          "timestamp_seconds": 0.967,
+          "bbox": {
+            "center_x": 0.68,
+            "center_y": 0.5992,
+            "width": 0.0235,
+            "height": 0.0677,
+            "bottom_y": 0.633
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 30,
+          "timestamp_seconds": 1.0,
+          "bbox": {
+            "center_x": 0.6826,
+            "center_y": 0.5992,
+            "width": 0.0228,
+            "height": 0.0658,
+            "bottom_y": 0.6321
+          },
+          "normalized_lateral_displacement": 0.1124,
+          "consecutive_displacement": 0.1124,
+          "velocity": 3.3718,
+          "acceleration": 101.154,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 31,
+          "timestamp_seconds": 1.033,
+          "bbox": {
+            "center_x": 0.6872,
+            "center_y": 0.598,
+            "width": 0.0231,
+            "height": 0.0665,
+            "bottom_y": 0.6313
+          },
+          "normalized_lateral_displacement": 0.3112,
+          "consecutive_displacement": 0.2055,
+          "velocity": 6.1651,
+          "acceleration": 83.799,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3337,
+      "event_start_frame": 32,
+      "event_end_frame": 47,
+      "duration_seconds": 0.533,
+      "total_frames": 16,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 4.4083,
+      "total_lateral_displacement": 0.1058,
+      "roadway_entry_candidate_frame": 35,
+      "peak_motion_frame": 47,
+      "is_dominant_crossing_candidate": true,
+      "frames": [
+        {
+          "frame_id": 32,
+          "timestamp_seconds": 1.067,
+          "bbox": {
+            "center_x": 0.7091,
+            "center_y": 0.6012,
+            "width": 0.0192,
+            "height": 0.0569,
+            "bottom_y": 0.6297
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 33,
+          "timestamp_seconds": 1.1,
+          "bbox": {
+            "center_x": 0.7142,
+            "center_y": 0.5985,
+            "width": 0.019,
+            "height": 0.0562,
+            "bottom_y": 0.6266
+          },
+          "normalized_lateral_displacement": 0.2125,
+          "consecutive_displacement": 0.2404,
+          "velocity": 7.2133,
+          "acceleration": 216.399,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 34,
+          "timestamp_seconds": 1.133,
+          "bbox": {
+            "center_x": 0.7203,
+            "center_y": 0.5967,
+            "width": 0.0194,
+            "height": 0.0572,
+            "bottom_y": 0.6253
+          },
+          "normalized_lateral_displacement": 0.4667,
+          "consecutive_displacement": 0.265,
+          "velocity": 7.95,
+          "acceleration": 22.101,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 35,
+          "timestamp_seconds": 1.167,
+          "bbox": {
+            "center_x": 0.726,
+            "center_y": 0.5954,
+            "width": 0.0198,
+            "height": 0.0582,
+            "bottom_y": 0.6245
+          },
+          "normalized_lateral_displacement": 0.7042,
+          "consecutive_displacement": 0.2436,
+          "velocity": 7.308,
+          "acceleration": -19.26,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 36,
+          "timestamp_seconds": 1.2,
+          "bbox": {
+            "center_x": 0.7319,
+            "center_y": 0.5932,
+            "width": 0.0191,
+            "height": 0.0559,
+            "bottom_y": 0.6211
+          },
+          "normalized_lateral_displacement": 0.95,
+          "consecutive_displacement": 0.2624,
+          "velocity": 7.871,
+          "acceleration": 16.89,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 37,
+          "timestamp_seconds": 1.233,
+          "bbox": {
+            "center_x": 0.7381,
+            "center_y": 0.5934,
+            "width": 0.0203,
+            "height": 0.0591,
+            "bottom_y": 0.623
+          },
+          "normalized_lateral_displacement": 1.2083,
+          "consecutive_displacement": 0.2585,
+          "velocity": 7.754,
+          "acceleration": -3.51,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 38,
+          "timestamp_seconds": 1.267,
+          "bbox": {
+            "center_x": 0.7444,
+            "center_y": 0.5937,
+            "width": 0.0211,
+            "height": 0.0613,
+            "bottom_y": 0.6243
+          },
+          "normalized_lateral_displacement": 1.4708,
+          "consecutive_displacement": 0.2628,
+          "velocity": 7.8839,
+          "acceleration": 3.897,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 39,
+          "timestamp_seconds": 1.3,
+          "bbox": {
+            "center_x": 0.7507,
+            "center_y": 0.5939,
+            "width": 0.0217,
+            "height": 0.0631,
+            "bottom_y": 0.6254
+          },
+          "normalized_lateral_displacement": 1.7333,
+          "consecutive_displacement": 0.2626,
+          "velocity": 7.879,
+          "acceleration": -0.147,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 40,
+          "timestamp_seconds": 1.333,
+          "bbox": {
+            "center_x": 0.7577,
+            "center_y": 0.5938,
+            "width": 0.0228,
+            "height": 0.0661,
+            "bottom_y": 0.6269
+          },
+          "normalized_lateral_displacement": 2.025,
+          "consecutive_displacement": 0.2917,
+          "velocity": 8.7509,
+          "acceleration": 26.157,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 41,
+          "timestamp_seconds": 1.367,
+          "bbox": {
+            "center_x": 0.7647,
+            "center_y": 0.5938,
+            "width": 0.0235,
+            "height": 0.0681,
+            "bottom_y": 0.6278
+          },
+          "normalized_lateral_displacement": 2.3167,
+          "consecutive_displacement": 0.2917,
+          "velocity": 8.75,
+          "acceleration": -0.027,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 42,
+          "timestamp_seconds": 1.4,
+          "bbox": {
+            "center_x": 0.7723,
+            "center_y": 0.594,
+            "width": 0.0248,
+            "height": 0.072,
+            "bottom_y": 0.63
+          },
+          "normalized_lateral_displacement": 2.6333,
+          "consecutive_displacement": 0.3168,
+          "velocity": 9.5033,
+          "acceleration": 22.599,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 43,
+          "timestamp_seconds": 1.433,
+          "bbox": {
+            "center_x": 0.78,
+            "center_y": 0.5955,
+            "width": 0.0264,
+            "height": 0.0777,
+            "bottom_y": 0.6344
+          },
+          "normalized_lateral_displacement": 2.9542,
+          "consecutive_displacement": 0.3269,
+          "velocity": 9.8059,
+          "acceleration": 9.078,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 44,
+          "timestamp_seconds": 1.467,
+          "bbox": {
+            "center_x": 0.7879,
+            "center_y": 0.5972,
+            "width": 0.0274,
+            "height": 0.0819,
+            "bottom_y": 0.6381
+          },
+          "normalized_lateral_displacement": 3.2833,
+          "consecutive_displacement": 0.3367,
+          "velocity": 10.1011,
+          "acceleration": 8.856,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 45,
+          "timestamp_seconds": 1.5,
+          "bbox": {
+            "center_x": 0.7962,
+            "center_y": 0.601,
+            "width": 0.0308,
+            "height": 0.0941,
+            "bottom_y": 0.6481
+          },
+          "normalized_lateral_displacement": 3.6292,
+          "consecutive_displacement": 0.3804,
+          "velocity": 11.4107,
+          "acceleration": 39.288,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 46,
+          "timestamp_seconds": 1.533,
+          "bbox": {
+            "center_x": 0.8055,
+            "center_y": 0.603,
+            "width": 0.033,
+            "height": 0.1033,
+            "bottom_y": 0.6546
+          },
+          "normalized_lateral_displacement": 4.0167,
+          "consecutive_displacement": 0.3964,
+          "velocity": 11.8908,
+          "acceleration": 14.403,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 47,
+          "timestamp_seconds": 1.567,
+          "bbox": {
+            "center_x": 0.8149,
+            "center_y": 0.605,
+            "width": 0.0357,
+            "height": 0.1153,
+            "bottom_y": 0.6626
+          },
+          "normalized_lateral_displacement": 4.4083,
+          "consecutive_displacement": 0.4004,
+          "velocity": 12.013,
+          "acceleration": 3.666,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3363,
+      "event_start_frame": 49,
+      "event_end_frame": 57,
+      "duration_seconds": 0.3,
+      "total_frames": 7,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 0.025,
+      "total_lateral_displacement": 0.0001,
+      "roadway_entry_candidate_frame": 49,
+      "peak_motion_frame": 51,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 49,
+          "timestamp_seconds": 1.633,
+          "bbox": {
+            "center_x": 0.4104,
+            "center_y": 0.6492,
+            "width": 0.0096,
+            "height": 0.0405,
+            "bottom_y": 0.6694
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 50,
+          "timestamp_seconds": 1.667,
+          "bbox": {
+            "center_x": 0.4106,
+            "center_y": 0.6483,
+            "width": 0.0093,
+            "height": 0.039,
+            "bottom_y": 0.6678
+          },
+          "normalized_lateral_displacement": 0.01,
+          "consecutive_displacement": 0.0461,
+          "velocity": 1.3829,
+          "acceleration": 41.487,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 51,
+          "timestamp_seconds": 1.7,
+          "bbox": {
+            "center_x": 0.4101,
+            "center_y": 0.6461,
+            "width": 0.0097,
+            "height": 0.0407,
+            "bottom_y": 0.6664
+          },
+          "normalized_lateral_displacement": 0.015,
+          "consecutive_displacement": 0.1128,
+          "velocity": 3.3842,
+          "acceleration": 60.039,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 52,
+          "timestamp_seconds": 1.733,
+          "bbox": {
+            "center_x": 0.4099,
+            "center_y": 0.6451,
+            "width": 0.0092,
+            "height": 0.0378,
+            "bottom_y": 0.664
+          },
+          "normalized_lateral_displacement": 0.025,
+          "consecutive_displacement": 0.051,
+          "velocity": 1.5297,
+          "acceleration": -55.635,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 53,
+          "timestamp_seconds": 1.767,
+          "bbox": {
+            "center_x": 0.4101,
+            "center_y": 0.6452,
+            "width": 0.0096,
+            "height": 0.0389,
+            "bottom_y": 0.6646
+          },
+          "normalized_lateral_displacement": 0.015,
+          "consecutive_displacement": 0.0112,
+          "velocity": 0.3354,
+          "acceleration": -35.829,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 54,
+          "timestamp_seconds": 1.8,
+          "bbox": {
+            "center_x": 0.4103,
+            "center_y": 0.6448,
+            "width": 0.0102,
+            "height": 0.0409,
+            "bottom_y": 0.6652
+          },
+          "normalized_lateral_displacement": 0.005,
+          "consecutive_displacement": 0.0224,
+          "velocity": 0.6708,
+          "acceleration": 10.062,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 57,
+          "timestamp_seconds": 1.9,
+          "bbox": {
+            "center_x": 0.4105,
+            "center_y": 0.6483,
+            "width": 0.0107,
+            "height": 0.0425,
+            "bottom_y": 0.6695
+          },
+          "normalized_lateral_displacement": 0.005,
+          "consecutive_displacement": 0.1753,
+          "velocity": 1.7529,
+          "acceleration": 10.821,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3365,
+      "event_start_frame": 50,
+      "event_end_frame": 79,
+      "duration_seconds": 1.0,
+      "total_frames": 29,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 6.8697,
+      "total_lateral_displacement": 0.1635,
+      "roadway_entry_candidate_frame": 54,
+      "peak_motion_frame": 75,
+      "is_dominant_crossing_candidate": true,
+      "frames": [
+        {
+          "frame_id": 50,
+          "timestamp_seconds": 1.667,
+          "bbox": {
+            "center_x": 0.1821,
+            "center_y": 0.6265,
+            "width": 0.0156,
+            "height": 0.0363,
+            "bottom_y": 0.6447
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 51,
+          "timestamp_seconds": 1.7,
+          "bbox": {
+            "center_x": 0.1785,
+            "center_y": 0.6243,
+            "width": 0.0149,
+            "height": 0.0346,
+            "bottom_y": 0.6416
+          },
+          "normalized_lateral_displacement": 0.1513,
+          "consecutive_displacement": 0.1773,
+          "velocity": 5.3181,
+          "acceleration": 159.543,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 52,
+          "timestamp_seconds": 1.733,
+          "bbox": {
+            "center_x": 0.1745,
+            "center_y": 0.6229,
+            "width": 0.0141,
+            "height": 0.0328,
+            "bottom_y": 0.6393
+          },
+          "normalized_lateral_displacement": 0.3193,
+          "consecutive_displacement": 0.1781,
+          "velocity": 5.3419,
+          "acceleration": 0.714,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 53,
+          "timestamp_seconds": 1.767,
+          "bbox": {
+            "center_x": 0.1699,
+            "center_y": 0.6218,
+            "width": 0.0141,
+            "height": 0.0327,
+            "bottom_y": 0.6381
+          },
+          "normalized_lateral_displacement": 0.5126,
+          "consecutive_displacement": 0.1987,
+          "velocity": 5.9618,
+          "acceleration": 18.597,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 54,
+          "timestamp_seconds": 1.8,
+          "bbox": {
+            "center_x": 0.1656,
+            "center_y": 0.6212,
+            "width": 0.0141,
+            "height": 0.0324,
+            "bottom_y": 0.6374
+          },
+          "normalized_lateral_displacement": 0.6933,
+          "consecutive_displacement": 0.1824,
+          "velocity": 5.4727,
+          "acceleration": -14.673,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 55,
+          "timestamp_seconds": 1.833,
+          "bbox": {
+            "center_x": 0.1614,
+            "center_y": 0.6211,
+            "width": 0.0139,
+            "height": 0.0317,
+            "bottom_y": 0.6369
+          },
+          "normalized_lateral_displacement": 0.8697,
+          "consecutive_displacement": 0.1765,
+          "velocity": 5.2956,
+          "acceleration": -5.313,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 56,
+          "timestamp_seconds": 1.867,
+          "bbox": {
+            "center_x": 0.1568,
+            "center_y": 0.6215,
+            "width": 0.0142,
+            "height": 0.0321,
+            "bottom_y": 0.6375
+          },
+          "normalized_lateral_displacement": 1.063,
+          "consecutive_displacement": 0.194,
+          "velocity": 5.8202,
+          "acceleration": 15.738,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 57,
+          "timestamp_seconds": 1.9,
+          "bbox": {
+            "center_x": 0.1524,
+            "center_y": 0.6224,
+            "width": 0.0143,
+            "height": 0.0321,
+            "bottom_y": 0.6384
+          },
+          "normalized_lateral_displacement": 1.2479,
+          "consecutive_displacement": 0.1887,
+          "velocity": 5.6611,
+          "acceleration": -4.773,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 58,
+          "timestamp_seconds": 1.933,
+          "bbox": {
+            "center_x": 0.1473,
+            "center_y": 0.6243,
+            "width": 0.0152,
+            "height": 0.034,
+            "bottom_y": 0.6413
+          },
+          "normalized_lateral_displacement": 1.4622,
+          "consecutive_displacement": 0.2287,
+          "velocity": 6.8602,
+          "acceleration": 35.973,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 59,
+          "timestamp_seconds": 1.967,
+          "bbox": {
+            "center_x": 0.1426,
+            "center_y": 0.6264,
+            "width": 0.0153,
+            "height": 0.0338,
+            "bottom_y": 0.6433
+          },
+          "normalized_lateral_displacement": 1.6597,
+          "consecutive_displacement": 0.2163,
+          "velocity": 6.4888,
+          "acceleration": -11.142,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 60,
+          "timestamp_seconds": 2.0,
+          "bbox": {
+            "center_x": 0.1377,
+            "center_y": 0.6276,
+            "width": 0.0159,
+            "height": 0.0348,
+            "bottom_y": 0.645
+          },
+          "normalized_lateral_displacement": 1.8655,
+          "consecutive_displacement": 0.212,
+          "velocity": 6.359,
+          "acceleration": -3.894,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 61,
+          "timestamp_seconds": 2.033,
+          "bbox": {
+            "center_x": 0.1329,
+            "center_y": 0.6294,
+            "width": 0.0162,
+            "height": 0.0351,
+            "bottom_y": 0.647
+          },
+          "normalized_lateral_displacement": 2.0672,
+          "consecutive_displacement": 0.2154,
+          "velocity": 6.4619,
+          "acceleration": 3.087,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 62,
+          "timestamp_seconds": 2.067,
+          "bbox": {
+            "center_x": 0.1276,
+            "center_y": 0.6303,
+            "width": 0.0164,
+            "height": 0.035,
+            "bottom_y": 0.6478
+          },
+          "normalized_lateral_displacement": 2.2899,
+          "consecutive_displacement": 0.2259,
+          "velocity": 6.7763,
+          "acceleration": 9.432,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 63,
+          "timestamp_seconds": 2.1,
+          "bbox": {
+            "center_x": 0.1223,
+            "center_y": 0.6318,
+            "width": 0.0158,
+            "height": 0.0328,
+            "bottom_y": 0.6481
+          },
+          "normalized_lateral_displacement": 2.5126,
+          "consecutive_displacement": 0.2314,
+          "velocity": 6.9431,
+          "acceleration": 5.004,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 64,
+          "timestamp_seconds": 2.133,
+          "bbox": {
+            "center_x": 0.1172,
+            "center_y": 0.6294,
+            "width": 0.018,
+            "height": 0.0369,
+            "bottom_y": 0.6479
+          },
+          "normalized_lateral_displacement": 2.7269,
+          "consecutive_displacement": 0.2368,
+          "velocity": 7.1048,
+          "acceleration": 4.851,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 65,
+          "timestamp_seconds": 2.167,
+          "bbox": {
+            "center_x": 0.1109,
+            "center_y": 0.6296,
+            "width": 0.0181,
+            "height": 0.0362,
+            "bottom_y": 0.6477
+          },
+          "normalized_lateral_displacement": 2.9916,
+          "consecutive_displacement": 0.2648,
+          "velocity": 7.9452,
+          "acceleration": 25.212,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 66,
+          "timestamp_seconds": 2.2,
+          "bbox": {
+            "center_x": 0.1062,
+            "center_y": 0.6272,
+            "width": 0.019,
+            "height": 0.0379,
+            "bottom_y": 0.6462
+          },
+          "normalized_lateral_displacement": 3.1891,
+          "consecutive_displacement": 0.2217,
+          "velocity": 6.6521,
+          "acceleration": -38.793,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 67,
+          "timestamp_seconds": 2.233,
+          "bbox": {
+            "center_x": 0.1005,
+            "center_y": 0.6244,
+            "width": 0.0215,
+            "height": 0.0434,
+            "bottom_y": 0.6461
+          },
+          "normalized_lateral_displacement": 3.4286,
+          "consecutive_displacement": 0.2668,
+          "velocity": 8.0049,
+          "acceleration": 40.584,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 68,
+          "timestamp_seconds": 2.267,
+          "bbox": {
+            "center_x": 0.0947,
+            "center_y": 0.6218,
+            "width": 0.0231,
+            "height": 0.0471,
+            "bottom_y": 0.6453
+          },
+          "normalized_lateral_displacement": 3.6723,
+          "consecutive_displacement": 0.2671,
+          "velocity": 8.0119,
+          "acceleration": 0.21,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 69,
+          "timestamp_seconds": 2.3,
+          "bbox": {
+            "center_x": 0.0889,
+            "center_y": 0.6193,
+            "width": 0.0247,
+            "height": 0.051,
+            "bottom_y": 0.6448
+          },
+          "normalized_lateral_displacement": 3.916,
+          "consecutive_displacement": 0.2654,
+          "velocity": 7.9612,
+          "acceleration": -1.521,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 70,
+          "timestamp_seconds": 2.333,
+          "bbox": {
+            "center_x": 0.0818,
+            "center_y": 0.6212,
+            "width": 0.029,
+            "height": 0.0606,
+            "bottom_y": 0.6516
+          },
+          "normalized_lateral_displacement": 4.2143,
+          "consecutive_displacement": 0.3088,
+          "velocity": 9.2645,
+          "acceleration": 39.099,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 71,
+          "timestamp_seconds": 2.367,
+          "bbox": {
+            "center_x": 0.0755,
+            "center_y": 0.6203,
+            "width": 0.0308,
+            "height": 0.0666,
+            "bottom_y": 0.6536
+          },
+          "normalized_lateral_displacement": 4.479,
+          "consecutive_displacement": 0.2674,
+          "velocity": 8.0218,
+          "acceleration": -37.281,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 73,
+          "timestamp_seconds": 2.433,
+          "bbox": {
+            "center_x": 0.0625,
+            "center_y": 0.6257,
+            "width": 0.0421,
+            "height": 0.0959,
+            "bottom_y": 0.6736
+          },
+          "normalized_lateral_displacement": 5.0252,
+          "consecutive_displacement": 0.5915,
+          "velocity": 8.872,
+          "acceleration": 12.753,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 74,
+          "timestamp_seconds": 2.467,
+          "bbox": {
+            "center_x": 0.0567,
+            "center_y": 0.6282,
+            "width": 0.0459,
+            "height": 0.1101,
+            "bottom_y": 0.6833
+          },
+          "normalized_lateral_displacement": 5.2689,
+          "consecutive_displacement": 0.2654,
+          "velocity": 7.9612,
+          "acceleration": -27.324,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 75,
+          "timestamp_seconds": 2.5,
+          "bbox": {
+            "center_x": 0.049,
+            "center_y": 0.6298,
+            "width": 0.0456,
+            "height": 0.1152,
+            "bottom_y": 0.6874
+          },
+          "normalized_lateral_displacement": 5.5924,
+          "consecutive_displacement": 0.3304,
+          "velocity": 9.9132,
+          "acceleration": 58.56,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 76,
+          "timestamp_seconds": 2.533,
+          "bbox": {
+            "center_x": 0.0413,
+            "center_y": 0.6288,
+            "width": 0.044,
+            "height": 0.1166,
+            "bottom_y": 0.6871
+          },
+          "normalized_lateral_displacement": 5.916,
+          "consecutive_displacement": 0.3262,
+          "velocity": 9.7874,
+          "acceleration": -3.774,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 77,
+          "timestamp_seconds": 2.567,
+          "bbox": {
+            "center_x": 0.0335,
+            "center_y": 0.6291,
+            "width": 0.0413,
+            "height": 0.1145,
+            "bottom_y": 0.6863
+          },
+          "normalized_lateral_displacement": 6.2437,
+          "consecutive_displacement": 0.328,
+          "velocity": 9.8392,
+          "acceleration": 1.554,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 78,
+          "timestamp_seconds": 2.6,
+          "bbox": {
+            "center_x": 0.0264,
+            "center_y": 0.6277,
+            "width": 0.0398,
+            "height": 0.1154,
+            "bottom_y": 0.6853
+          },
+          "normalized_lateral_displacement": 6.542,
+          "consecutive_displacement": 0.3041,
+          "velocity": 9.1219,
+          "acceleration": -21.519,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 79,
+          "timestamp_seconds": 2.633,
+          "bbox": {
+            "center_x": 0.0186,
+            "center_y": 0.627,
+            "width": 0.0373,
+            "height": 0.1145,
+            "bottom_y": 0.6843
+          },
+          "normalized_lateral_displacement": 6.8697,
+          "consecutive_displacement": 0.329,
+          "velocity": 9.8714,
+          "acceleration": 22.485,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3367,
+      "event_start_frame": 53,
+      "event_end_frame": 67,
+      "duration_seconds": 0.5,
+      "total_frames": 12,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 3.56,
+      "total_lateral_displacement": 0.0712,
+      "roadway_entry_candidate_frame": 56,
+      "peak_motion_frame": 67,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 53,
+          "timestamp_seconds": 1.767,
+          "bbox": {
+            "center_x": 0.1499,
+            "center_y": 0.6293,
+            "width": 0.0131,
+            "height": 0.0431,
+            "bottom_y": 0.6509
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 54,
+          "timestamp_seconds": 1.8,
+          "bbox": {
+            "center_x": 0.1454,
+            "center_y": 0.6297,
+            "width": 0.013,
+            "height": 0.0426,
+            "bottom_y": 0.651
+          },
+          "normalized_lateral_displacement": 0.225,
+          "consecutive_displacement": 0.2259,
+          "velocity": 6.7766,
+          "acceleration": 203.298,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 56,
+          "timestamp_seconds": 1.867,
+          "bbox": {
+            "center_x": 0.1351,
+            "center_y": 0.6297,
+            "width": 0.0108,
+            "height": 0.0345,
+            "bottom_y": 0.6469
+          },
+          "normalized_lateral_displacement": 0.74,
+          "consecutive_displacement": 0.515,
+          "velocity": 7.725,
+          "acceleration": 14.226,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 57,
+          "timestamp_seconds": 1.9,
+          "bbox": {
+            "center_x": 0.1296,
+            "center_y": 0.6305,
+            "width": 0.0116,
+            "height": 0.0357,
+            "bottom_y": 0.6484
+          },
+          "normalized_lateral_displacement": 1.015,
+          "consecutive_displacement": 0.2779,
+          "velocity": 8.3368,
+          "acceleration": 18.354,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 58,
+          "timestamp_seconds": 1.933,
+          "bbox": {
+            "center_x": 0.1253,
+            "center_y": 0.6312,
+            "width": 0.0133,
+            "height": 0.0406,
+            "bottom_y": 0.6515
+          },
+          "normalized_lateral_displacement": 1.23,
+          "consecutive_displacement": 0.2178,
+          "velocity": 6.5349,
+          "acceleration": -54.057,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 59,
+          "timestamp_seconds": 1.967,
+          "bbox": {
+            "center_x": 0.1205,
+            "center_y": 0.6321,
+            "width": 0.0124,
+            "height": 0.0363,
+            "bottom_y": 0.6502
+          },
+          "normalized_lateral_displacement": 1.47,
+          "consecutive_displacement": 0.2442,
+          "velocity": 7.3255,
+          "acceleration": 23.718,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 60,
+          "timestamp_seconds": 2.0,
+          "bbox": {
+            "center_x": 0.1156,
+            "center_y": 0.6338,
+            "width": 0.0121,
+            "height": 0.0343,
+            "bottom_y": 0.6509
+          },
+          "normalized_lateral_displacement": 1.715,
+          "consecutive_displacement": 0.2593,
+          "velocity": 7.7798,
+          "acceleration": 13.629,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 61,
+          "timestamp_seconds": 2.033,
+          "bbox": {
+            "center_x": 0.1106,
+            "center_y": 0.6339,
+            "width": 0.0121,
+            "height": 0.033,
+            "bottom_y": 0.6505
+          },
+          "normalized_lateral_displacement": 1.965,
+          "consecutive_displacement": 0.25,
+          "velocity": 7.5015,
+          "acceleration": -8.349,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 62,
+          "timestamp_seconds": 2.067,
+          "bbox": {
+            "center_x": 0.1057,
+            "center_y": 0.6337,
+            "width": 0.0121,
+            "height": 0.0319,
+            "bottom_y": 0.6496
+          },
+          "normalized_lateral_displacement": 2.21,
+          "consecutive_displacement": 0.2452,
+          "velocity": 7.3561,
+          "acceleration": -4.362,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 63,
+          "timestamp_seconds": 2.1,
+          "bbox": {
+            "center_x": 0.1009,
+            "center_y": 0.632,
+            "width": 0.0126,
+            "height": 0.0322,
+            "bottom_y": 0.6481
+          },
+          "normalized_lateral_displacement": 2.45,
+          "consecutive_displacement": 0.2546,
+          "velocity": 7.6382,
+          "acceleration": 8.463,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 66,
+          "timestamp_seconds": 2.2,
+          "bbox": {
+            "center_x": 0.0844,
+            "center_y": 0.6267,
+            "width": 0.0128,
+            "height": 0.0309,
+            "bottom_y": 0.6422
+          },
+          "normalized_lateral_displacement": 3.275,
+          "consecutive_displacement": 0.8665,
+          "velocity": 8.6652,
+          "acceleration": 10.27,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 67,
+          "timestamp_seconds": 2.233,
+          "bbox": {
+            "center_x": 0.0787,
+            "center_y": 0.6234,
+            "width": 0.0139,
+            "height": 0.0316,
+            "bottom_y": 0.6392
+          },
+          "normalized_lateral_displacement": 3.56,
+          "consecutive_displacement": 0.3293,
+          "velocity": 9.8795,
+          "acceleration": 36.429,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3376,
+      "event_start_frame": 72,
+      "event_end_frame": 75,
+      "duration_seconds": 0.133,
+      "total_frames": 3,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 0.14,
+      "total_lateral_displacement": 0.0028,
+      "roadway_entry_candidate_frame": 72,
+      "peak_motion_frame": 73,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 72,
+          "timestamp_seconds": 2.4,
+          "bbox": {
+            "center_x": 0.4186,
+            "center_y": 0.6517,
+            "width": 0.016,
+            "height": 0.0296,
+            "bottom_y": 0.6665
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 73,
+          "timestamp_seconds": 2.433,
+          "bbox": {
+            "center_x": 0.4196,
+            "center_y": 0.6466,
+            "width": 0.0205,
+            "height": 0.0382,
+            "bottom_y": 0.6657
+          },
+          "normalized_lateral_displacement": 0.05,
+          "consecutive_displacement": 0.2599,
+          "velocity": 7.7957,
+          "acceleration": 233.871,
+          "trajectory_direction": "moving_up",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 75,
+          "timestamp_seconds": 2.5,
+          "bbox": {
+            "center_x": 0.4214,
+            "center_y": 0.6422,
+            "width": 0.0226,
+            "height": 0.0432,
+            "bottom_y": 0.6638
+          },
+          "normalized_lateral_displacement": 0.14,
+          "consecutive_displacement": 0.2377,
+          "velocity": 3.5655,
+          "acceleration": -63.453,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3378,
+      "event_start_frame": 73,
+      "event_end_frame": 120,
+      "duration_seconds": 1.6,
+      "total_frames": 40,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 9.085,
+      "total_lateral_displacement": 0.1817,
+      "roadway_entry_candidate_frame": 80,
+      "peak_motion_frame": 120,
+      "is_dominant_crossing_candidate": true,
+      "frames": [
+        {
+          "frame_id": 73,
+          "timestamp_seconds": 2.433,
+          "bbox": {
+            "center_x": 0.2183,
+            "center_y": 0.6433,
+            "width": 0.0119,
+            "height": 0.0546,
+            "bottom_y": 0.6706
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 74,
+          "timestamp_seconds": 2.467,
+          "bbox": {
+            "center_x": 0.2171,
+            "center_y": 0.64,
+            "width": 0.0128,
+            "height": 0.0587,
+            "bottom_y": 0.6694
+          },
+          "normalized_lateral_displacement": 0.06,
+          "consecutive_displacement": 0.1756,
+          "velocity": 5.2671,
+          "acceleration": 158.013,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 75,
+          "timestamp_seconds": 2.5,
+          "bbox": {
+            "center_x": 0.2152,
+            "center_y": 0.638,
+            "width": 0.0131,
+            "height": 0.0598,
+            "bottom_y": 0.6679
+          },
+          "normalized_lateral_displacement": 0.155,
+          "consecutive_displacement": 0.1379,
+          "velocity": 4.1379,
+          "acceleration": -33.876,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 76,
+          "timestamp_seconds": 2.533,
+          "bbox": {
+            "center_x": 0.212,
+            "center_y": 0.6379,
+            "width": 0.0126,
+            "height": 0.0579,
+            "bottom_y": 0.6668
+          },
+          "normalized_lateral_displacement": 0.315,
+          "consecutive_displacement": 0.1601,
+          "velocity": 4.8023,
+          "acceleration": 19.932,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 77,
+          "timestamp_seconds": 2.567,
+          "bbox": {
+            "center_x": 0.2095,
+            "center_y": 0.6372,
+            "width": 0.0125,
+            "height": 0.0571,
+            "bottom_y": 0.6657
+          },
+          "normalized_lateral_displacement": 0.44,
+          "consecutive_displacement": 0.1298,
+          "velocity": 3.8942,
+          "acceleration": -27.243,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 78,
+          "timestamp_seconds": 2.6,
+          "bbox": {
+            "center_x": 0.2064,
+            "center_y": 0.6362,
+            "width": 0.0127,
+            "height": 0.0588,
+            "bottom_y": 0.6656
+          },
+          "normalized_lateral_displacement": 0.595,
+          "consecutive_displacement": 0.1629,
+          "velocity": 4.8859,
+          "acceleration": 29.751,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 79,
+          "timestamp_seconds": 2.633,
+          "bbox": {
+            "center_x": 0.2039,
+            "center_y": 0.6366,
+            "width": 0.0127,
+            "height": 0.059,
+            "bottom_y": 0.6661
+          },
+          "normalized_lateral_displacement": 0.72,
+          "consecutive_displacement": 0.1266,
+          "velocity": 3.7977,
+          "acceleration": -32.646,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 80,
+          "timestamp_seconds": 2.667,
+          "bbox": {
+            "center_x": 0.2018,
+            "center_y": 0.6395,
+            "width": 0.0122,
+            "height": 0.0568,
+            "bottom_y": 0.6678
+          },
+          "normalized_lateral_displacement": 0.825,
+          "consecutive_displacement": 0.179,
+          "velocity": 5.3708,
+          "acceleration": 47.193,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 83,
+          "timestamp_seconds": 2.767,
+          "bbox": {
+            "center_x": 0.194,
+            "center_y": 0.6464,
+            "width": 0.0125,
+            "height": 0.0587,
+            "bottom_y": 0.6758
+          },
+          "normalized_lateral_displacement": 1.215,
+          "consecutive_displacement": 0.5207,
+          "velocity": 5.207,
+          "acceleration": -1.638,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 90,
+          "timestamp_seconds": 3.0,
+          "bbox": {
+            "center_x": 0.1733,
+            "center_y": 0.6543,
+            "width": 0.0138,
+            "height": 0.0654,
+            "bottom_y": 0.687
+          },
+          "normalized_lateral_displacement": 2.25,
+          "consecutive_displacement": 1.1078,
+          "velocity": 4.7478,
+          "acceleration": -1.968,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 91,
+          "timestamp_seconds": 3.033,
+          "bbox": {
+            "center_x": 0.1705,
+            "center_y": 0.6554,
+            "width": 0.0137,
+            "height": 0.0653,
+            "bottom_y": 0.6881
+          },
+          "normalized_lateral_displacement": 2.39,
+          "consecutive_displacement": 0.1504,
+          "velocity": 4.5125,
+          "acceleration": -7.059,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 92,
+          "timestamp_seconds": 3.067,
+          "bbox": {
+            "center_x": 0.167,
+            "center_y": 0.6573,
+            "width": 0.0137,
+            "height": 0.0654,
+            "bottom_y": 0.69
+          },
+          "normalized_lateral_displacement": 2.565,
+          "consecutive_displacement": 0.1991,
+          "velocity": 5.9737,
+          "acceleration": 43.836,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 93,
+          "timestamp_seconds": 3.1,
+          "bbox": {
+            "center_x": 0.1634,
+            "center_y": 0.6601,
+            "width": 0.0136,
+            "height": 0.0653,
+            "bottom_y": 0.6927
+          },
+          "normalized_lateral_displacement": 2.745,
+          "consecutive_displacement": 0.228,
+          "velocity": 6.8411,
+          "acceleration": 26.022,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 94,
+          "timestamp_seconds": 3.133,
+          "bbox": {
+            "center_x": 0.1599,
+            "center_y": 0.6629,
+            "width": 0.0137,
+            "height": 0.0658,
+            "bottom_y": 0.6957
+          },
+          "normalized_lateral_displacement": 2.92,
+          "consecutive_displacement": 0.2241,
+          "velocity": 6.7233,
+          "acceleration": -3.534,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 95,
+          "timestamp_seconds": 3.167,
+          "bbox": {
+            "center_x": 0.1563,
+            "center_y": 0.665,
+            "width": 0.0142,
+            "height": 0.0674,
+            "bottom_y": 0.6987
+          },
+          "normalized_lateral_displacement": 3.1,
+          "consecutive_displacement": 0.2084,
+          "velocity": 6.2516,
+          "acceleration": -14.151,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 96,
+          "timestamp_seconds": 3.2,
+          "bbox": {
+            "center_x": 0.1529,
+            "center_y": 0.6664,
+            "width": 0.0145,
+            "height": 0.0694,
+            "bottom_y": 0.701
+          },
+          "normalized_lateral_displacement": 3.27,
+          "consecutive_displacement": 0.1838,
+          "velocity": 5.5154,
+          "acceleration": -22.086,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 97,
+          "timestamp_seconds": 3.233,
+          "bbox": {
+            "center_x": 0.1495,
+            "center_y": 0.6676,
+            "width": 0.0149,
+            "height": 0.0712,
+            "bottom_y": 0.7032
+          },
+          "normalized_lateral_displacement": 3.44,
+          "consecutive_displacement": 0.1803,
+          "velocity": 5.4083,
+          "acceleration": -3.213,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 98,
+          "timestamp_seconds": 3.267,
+          "bbox": {
+            "center_x": 0.1462,
+            "center_y": 0.6682,
+            "width": 0.0151,
+            "height": 0.072,
+            "bottom_y": 0.7042
+          },
+          "normalized_lateral_displacement": 3.605,
+          "consecutive_displacement": 0.1677,
+          "velocity": 5.0312,
+          "acceleration": -11.313,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 99,
+          "timestamp_seconds": 3.3,
+          "bbox": {
+            "center_x": 0.1423,
+            "center_y": 0.6661,
+            "width": 0.0157,
+            "height": 0.0759,
+            "bottom_y": 0.7041
+          },
+          "normalized_lateral_displacement": 3.8,
+          "consecutive_displacement": 0.2215,
+          "velocity": 6.6442,
+          "acceleration": 48.39,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 100,
+          "timestamp_seconds": 3.333,
+          "bbox": {
+            "center_x": 0.1382,
+            "center_y": 0.6668,
+            "width": 0.0154,
+            "height": 0.0747,
+            "bottom_y": 0.7042
+          },
+          "normalized_lateral_displacement": 4.005,
+          "consecutive_displacement": 0.208,
+          "velocity": 6.239,
+          "acceleration": -12.156,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 101,
+          "timestamp_seconds": 3.367,
+          "bbox": {
+            "center_x": 0.1345,
+            "center_y": 0.6666,
+            "width": 0.0152,
+            "height": 0.0732,
+            "bottom_y": 0.7032
+          },
+          "normalized_lateral_displacement": 4.19,
+          "consecutive_displacement": 0.1853,
+          "velocity": 5.5581,
+          "acceleration": -20.427,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 102,
+          "timestamp_seconds": 3.4,
+          "bbox": {
+            "center_x": 0.1299,
+            "center_y": 0.6641,
+            "width": 0.0157,
+            "height": 0.076,
+            "bottom_y": 0.7021
+          },
+          "normalized_lateral_displacement": 4.42,
+          "consecutive_displacement": 0.2618,
+          "velocity": 7.8532,
+          "acceleration": 68.853,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 103,
+          "timestamp_seconds": 3.433,
+          "bbox": {
+            "center_x": 0.1252,
+            "center_y": 0.6632,
+            "width": 0.0157,
+            "height": 0.0758,
+            "bottom_y": 0.7011
+          },
+          "normalized_lateral_displacement": 4.655,
+          "consecutive_displacement": 0.2393,
+          "velocity": 7.1781,
+          "acceleration": -20.253,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 104,
+          "timestamp_seconds": 3.467,
+          "bbox": {
+            "center_x": 0.1216,
+            "center_y": 0.6619,
+            "width": 0.0158,
+            "height": 0.077,
+            "bottom_y": 0.7004
+          },
+          "normalized_lateral_displacement": 4.835,
+          "consecutive_displacement": 0.1914,
+          "velocity": 5.7413,
+          "acceleration": -43.104,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 105,
+          "timestamp_seconds": 3.5,
+          "bbox": {
+            "center_x": 0.117,
+            "center_y": 0.6606,
+            "width": 0.0159,
+            "height": 0.0777,
+            "bottom_y": 0.6995
+          },
+          "normalized_lateral_displacement": 5.065,
+          "consecutive_displacement": 0.239,
+          "velocity": 7.1703,
+          "acceleration": 42.87,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 106,
+          "timestamp_seconds": 3.533,
+          "bbox": {
+            "center_x": 0.1124,
+            "center_y": 0.6606,
+            "width": 0.0161,
+            "height": 0.0788,
+            "bottom_y": 0.7
+          },
+          "normalized_lateral_displacement": 5.295,
+          "consecutive_displacement": 0.23,
+          "velocity": 6.9,
+          "acceleration": -8.109,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 107,
+          "timestamp_seconds": 3.567,
+          "bbox": {
+            "center_x": 0.1083,
+            "center_y": 0.6606,
+            "width": 0.0162,
+            "height": 0.0789,
+            "bottom_y": 0.7001
+          },
+          "normalized_lateral_displacement": 5.5,
+          "consecutive_displacement": 0.205,
+          "velocity": 6.15,
+          "acceleration": -22.5,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 108,
+          "timestamp_seconds": 3.6,
+          "bbox": {
+            "center_x": 0.1033,
+            "center_y": 0.6609,
+            "width": 0.0161,
+            "height": 0.0789,
+            "bottom_y": 0.7003
+          },
+          "normalized_lateral_displacement": 5.75,
+          "consecutive_displacement": 0.2504,
+          "velocity": 7.5135,
+          "acceleration": 40.905,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 109,
+          "timestamp_seconds": 3.633,
+          "bbox": {
+            "center_x": 0.0984,
+            "center_y": 0.6618,
+            "width": 0.0163,
+            "height": 0.0804,
+            "bottom_y": 0.7019
+          },
+          "normalized_lateral_displacement": 5.995,
+          "consecutive_displacement": 0.2491,
+          "velocity": 7.473,
+          "acceleration": -1.215,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 110,
+          "timestamp_seconds": 3.667,
+          "bbox": {
+            "center_x": 0.0933,
+            "center_y": 0.6625,
+            "width": 0.0161,
+            "height": 0.0792,
+            "bottom_y": 0.7021
+          },
+          "normalized_lateral_displacement": 6.25,
+          "consecutive_displacement": 0.2574,
+          "velocity": 7.7217,
+          "acceleration": 7.461,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 111,
+          "timestamp_seconds": 3.7,
+          "bbox": {
+            "center_x": 0.0881,
+            "center_y": 0.6644,
+            "width": 0.0162,
+            "height": 0.0792,
+            "bottom_y": 0.704
+          },
+          "normalized_lateral_displacement": 6.51,
+          "consecutive_displacement": 0.2768,
+          "velocity": 8.3044,
+          "acceleration": 17.481,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 112,
+          "timestamp_seconds": 3.733,
+          "bbox": {
+            "center_x": 0.0829,
+            "center_y": 0.6662,
+            "width": 0.0164,
+            "height": 0.0805,
+            "bottom_y": 0.7064
+          },
+          "normalized_lateral_displacement": 6.77,
+          "consecutive_displacement": 0.2751,
+          "velocity": 8.2541,
+          "acceleration": -1.509,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 113,
+          "timestamp_seconds": 3.767,
+          "bbox": {
+            "center_x": 0.0777,
+            "center_y": 0.6674,
+            "width": 0.0165,
+            "height": 0.0807,
+            "bottom_y": 0.7077
+          },
+          "normalized_lateral_displacement": 7.03,
+          "consecutive_displacement": 0.2668,
+          "velocity": 8.005,
+          "acceleration": -7.473,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 114,
+          "timestamp_seconds": 3.8,
+          "bbox": {
+            "center_x": 0.0717,
+            "center_y": 0.6692,
+            "width": 0.0169,
+            "height": 0.082,
+            "bottom_y": 0.7102
+          },
+          "normalized_lateral_displacement": 7.33,
+          "consecutive_displacement": 0.3132,
+          "velocity": 9.3963,
+          "acceleration": 41.739,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 115,
+          "timestamp_seconds": 3.833,
+          "bbox": {
+            "center_x": 0.0665,
+            "center_y": 0.6711,
+            "width": 0.0171,
+            "height": 0.0831,
+            "bottom_y": 0.7127
+          },
+          "normalized_lateral_displacement": 7.59,
+          "consecutive_displacement": 0.2768,
+          "velocity": 8.3044,
+          "acceleration": -32.757,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 116,
+          "timestamp_seconds": 3.867,
+          "bbox": {
+            "center_x": 0.0609,
+            "center_y": 0.6725,
+            "width": 0.0175,
+            "height": 0.0853,
+            "bottom_y": 0.7151
+          },
+          "normalized_lateral_displacement": 7.87,
+          "consecutive_displacement": 0.2886,
+          "velocity": 8.6585,
+          "acceleration": 10.623,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 117,
+          "timestamp_seconds": 3.9,
+          "bbox": {
+            "center_x": 0.0551,
+            "center_y": 0.6735,
+            "width": 0.018,
+            "height": 0.0872,
+            "bottom_y": 0.7171
+          },
+          "normalized_lateral_displacement": 8.16,
+          "consecutive_displacement": 0.2943,
+          "velocity": 8.8284,
+          "acceleration": 5.097,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 118,
+          "timestamp_seconds": 3.933,
+          "bbox": {
+            "center_x": 0.0495,
+            "center_y": 0.673,
+            "width": 0.0179,
+            "height": 0.0867,
+            "bottom_y": 0.7164
+          },
+          "normalized_lateral_displacement": 8.44,
+          "consecutive_displacement": 0.2811,
+          "velocity": 8.4334,
+          "acceleration": -11.85,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 119,
+          "timestamp_seconds": 3.967,
+          "bbox": {
+            "center_x": 0.0433,
+            "center_y": 0.6737,
+            "width": 0.0184,
+            "height": 0.0898,
+            "bottom_y": 0.7186
+          },
+          "normalized_lateral_displacement": 8.75,
+          "consecutive_displacement": 0.312,
+          "velocity": 9.3591,
+          "acceleration": 27.771,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 120,
+          "timestamp_seconds": 4.0,
+          "bbox": {
+            "center_x": 0.0366,
+            "center_y": 0.6748,
+            "width": 0.0188,
+            "height": 0.0925,
+            "bottom_y": 0.721
+          },
+          "normalized_lateral_displacement": 9.085,
+          "consecutive_displacement": 0.3395,
+          "velocity": 10.1845,
+          "acceleration": 24.762,
+          "trajectory_direction": "moving_left",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3383,
+      "event_start_frame": 77,
+      "event_end_frame": 81,
+      "duration_seconds": 0.167,
+      "total_frames": 4,
+      "valid_keypoint_frames": 1,
+      "keypoint_coverage_ratio": 0.25,
+      "normalized_motion_score": 0.112,
+      "total_lateral_displacement": 0.0025,
+      "roadway_entry_candidate_frame": 77,
+      "peak_motion_frame": 80,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 77,
+          "timestamp_seconds": 2.567,
+          "bbox": {
+            "center_x": 0.0122,
+            "center_y": 0.6325,
+            "width": 0.0245,
+            "height": 0.1136,
+            "bottom_y": 0.6893
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": true,
+          "keypoints": [
+            [
+              0.002258272965749105,
+              0.6412836145471643,
+              0.041334785521030426
+            ],
+            [
+              0.0022460018595059712,
+              0.6360156589084202,
+              0.027301829308271408
+            ],
+            [
+              0.0019069049507379533,
+              0.6362993028428819,
+              0.026597727090120316
+            ],
+            [
+              0.0011794112622737884,
+              0.6374873408564815,
+              0.04113445430994034
+            ],
+            [
+              0.0016828807691733041,
+              0.637857112178096,
+              0.04275272786617279
+            ],
+            [
+              0.003772835930188497,
+              0.6604389331958912,
+              0.1449585258960724
+            ],
+            [
+              0.002447955310344696,
+              0.6612469708478009,
+              0.09488455206155777
+            ],
+            [
+              0.007114672660827636,
+              0.690377355504919,
+              0.16731373965740204
+            ],
+            [
+              0.006899428367614746,
+              0.6913777669270833,
+              0.07571279257535934
+            ],
+            [
+              0.004979364573955536,
+              0.6887357923719618,
+              0.16501744091510773
+            ],
+            [
+              0.0059288730223973594,
+              0.6889112684461806,
+              0.0936942994594574
+            ],
+            [
+              0.004366002480189006,
+              0.7164620293511285,
+              0.19616584479808807
+            ],
+            [
+              0.0040248967707157135,
+              0.7171772144458912,
+              0.15971074998378754
+            ],
+            [
+              0.010082830985387167,
+              0.7207916259765625,
+              0.18566012382507324
+            ],
+            [
+              0.009421478708585103,
+              0.721457756890191,
+              0.15127032995224
+            ],
+            [
+              0.014102721214294433,
+              0.7741589581524885,
+              0.20990900695323944
+            ],
+            [
+              0.013682278990745544,
+              0.774336412217882,
+              0.1772584319114685
+            ]
+          ]
+        },
+        {
+          "frame_id": 78,
+          "timestamp_seconds": 2.6,
+          "bbox": {
+            "center_x": 0.0111,
+            "center_y": 0.6346,
+            "width": 0.0222,
+            "height": 0.1193,
+            "bottom_y": 0.6943
+          },
+          "normalized_lateral_displacement": 0.0493,
+          "consecutive_displacement": 0.1062,
+          "velocity": 3.1856,
+          "acceleration": 95.568,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 80,
+          "timestamp_seconds": 2.667,
+          "bbox": {
+            "center_x": 0.0117,
+            "center_y": 0.6268,
+            "width": 0.0233,
+            "height": 0.1197,
+            "bottom_y": 0.6866
+          },
+          "normalized_lateral_displacement": 0.0224,
+          "consecutive_displacement": 0.3504,
+          "velocity": 5.2562,
+          "acceleration": 31.059,
+          "trajectory_direction": "moving_up",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 81,
+          "timestamp_seconds": 2.7,
+          "bbox": {
+            "center_x": 0.0097,
+            "center_y": 0.6242,
+            "width": 0.0193,
+            "height": 0.1097,
+            "bottom_y": 0.679
+          },
+          "normalized_lateral_displacement": 0.112,
+          "consecutive_displacement": 0.1469,
+          "velocity": 4.4079,
+          "acceleration": -25.449,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3390,
+      "event_start_frame": 81,
+      "event_end_frame": 120,
+      "duration_seconds": 1.333,
+      "total_frames": 38,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 1.995,
+      "total_lateral_displacement": 0.0399,
+      "roadway_entry_candidate_frame": 103,
+      "peak_motion_frame": 119,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 81,
+          "timestamp_seconds": 2.7,
+          "bbox": {
+            "center_x": 0.4266,
+            "center_y": 0.6413,
+            "width": 0.0116,
+            "height": 0.0439,
+            "bottom_y": 0.6632
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 82,
+          "timestamp_seconds": 2.733,
+          "bbox": {
+            "center_x": 0.4281,
+            "center_y": 0.6432,
+            "width": 0.0115,
+            "height": 0.0431,
+            "bottom_y": 0.6647
+          },
+          "normalized_lateral_displacement": 0.075,
+          "consecutive_displacement": 0.121,
+          "velocity": 3.6311,
+          "acceleration": 108.933,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 83,
+          "timestamp_seconds": 2.767,
+          "bbox": {
+            "center_x": 0.4291,
+            "center_y": 0.6457,
+            "width": 0.0115,
+            "height": 0.043,
+            "bottom_y": 0.6672
+          },
+          "normalized_lateral_displacement": 0.125,
+          "consecutive_displacement": 0.1346,
+          "velocity": 4.0389,
+          "acceleration": 12.234,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 84,
+          "timestamp_seconds": 2.8,
+          "bbox": {
+            "center_x": 0.43,
+            "center_y": 0.6445,
+            "width": 0.0134,
+            "height": 0.0496,
+            "bottom_y": 0.6693
+          },
+          "normalized_lateral_displacement": 0.17,
+          "consecutive_displacement": 0.075,
+          "velocity": 2.25,
+          "acceleration": -53.667,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 85,
+          "timestamp_seconds": 2.833,
+          "bbox": {
+            "center_x": 0.4308,
+            "center_y": 0.6442,
+            "width": 0.0143,
+            "height": 0.0523,
+            "bottom_y": 0.6704
+          },
+          "normalized_lateral_displacement": 0.21,
+          "consecutive_displacement": 0.0427,
+          "velocity": 1.2816,
+          "acceleration": -29.052,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 86,
+          "timestamp_seconds": 2.867,
+          "bbox": {
+            "center_x": 0.4325,
+            "center_y": 0.6434,
+            "width": 0.0142,
+            "height": 0.0512,
+            "bottom_y": 0.669
+          },
+          "normalized_lateral_displacement": 0.295,
+          "consecutive_displacement": 0.0939,
+          "velocity": 2.8182,
+          "acceleration": 46.098,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 87,
+          "timestamp_seconds": 2.9,
+          "bbox": {
+            "center_x": 0.4328,
+            "center_y": 0.6439,
+            "width": 0.0146,
+            "height": 0.052,
+            "bottom_y": 0.6699
+          },
+          "normalized_lateral_displacement": 0.31,
+          "consecutive_displacement": 0.0292,
+          "velocity": 0.8746,
+          "acceleration": -58.308,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 88,
+          "timestamp_seconds": 2.933,
+          "bbox": {
+            "center_x": 0.433,
+            "center_y": 0.6449,
+            "width": 0.0154,
+            "height": 0.0548,
+            "bottom_y": 0.6723
+          },
+          "normalized_lateral_displacement": 0.32,
+          "consecutive_displacement": 0.051,
+          "velocity": 1.5297,
+          "acceleration": 19.653,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 89,
+          "timestamp_seconds": 2.967,
+          "bbox": {
+            "center_x": 0.434,
+            "center_y": 0.6452,
+            "width": 0.016,
+            "height": 0.0571,
+            "bottom_y": 0.6737
+          },
+          "normalized_lateral_displacement": 0.37,
+          "consecutive_displacement": 0.0522,
+          "velocity": 1.566,
+          "acceleration": 1.089,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 90,
+          "timestamp_seconds": 3.0,
+          "bbox": {
+            "center_x": 0.4348,
+            "center_y": 0.6448,
+            "width": 0.0159,
+            "height": 0.0565,
+            "bottom_y": 0.6731
+          },
+          "normalized_lateral_displacement": 0.41,
+          "consecutive_displacement": 0.0447,
+          "velocity": 1.3416,
+          "acceleration": -6.732,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 91,
+          "timestamp_seconds": 3.033,
+          "bbox": {
+            "center_x": 0.4363,
+            "center_y": 0.6468,
+            "width": 0.0153,
+            "height": 0.0553,
+            "bottom_y": 0.6745
+          },
+          "normalized_lateral_displacement": 0.485,
+          "consecutive_displacement": 0.125,
+          "velocity": 3.75,
+          "acceleration": 72.252,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 92,
+          "timestamp_seconds": 3.067,
+          "bbox": {
+            "center_x": 0.4374,
+            "center_y": 0.6502,
+            "width": 0.015,
+            "height": 0.0554,
+            "bottom_y": 0.6779
+          },
+          "normalized_lateral_displacement": 0.54,
+          "consecutive_displacement": 0.1787,
+          "velocity": 5.3603,
+          "acceleration": 48.309,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 93,
+          "timestamp_seconds": 3.1,
+          "bbox": {
+            "center_x": 0.438,
+            "center_y": 0.6544,
+            "width": 0.0135,
+            "height": 0.0509,
+            "bottom_y": 0.6798
+          },
+          "normalized_lateral_displacement": 0.57,
+          "consecutive_displacement": 0.2121,
+          "velocity": 6.364,
+          "acceleration": 30.111,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 94,
+          "timestamp_seconds": 3.133,
+          "bbox": {
+            "center_x": 0.4386,
+            "center_y": 0.6579,
+            "width": 0.0126,
+            "height": 0.0479,
+            "bottom_y": 0.6819
+          },
+          "normalized_lateral_displacement": 0.6,
+          "consecutive_displacement": 0.1776,
+          "velocity": 5.3266,
+          "acceleration": -31.122,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 95,
+          "timestamp_seconds": 3.167,
+          "bbox": {
+            "center_x": 0.4394,
+            "center_y": 0.6614,
+            "width": 0.0126,
+            "height": 0.048,
+            "bottom_y": 0.6854
+          },
+          "normalized_lateral_displacement": 0.64,
+          "consecutive_displacement": 0.1795,
+          "velocity": 5.3854,
+          "acceleration": 1.764,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 96,
+          "timestamp_seconds": 3.2,
+          "bbox": {
+            "center_x": 0.4411,
+            "center_y": 0.6638,
+            "width": 0.0125,
+            "height": 0.0466,
+            "bottom_y": 0.6871
+          },
+          "normalized_lateral_displacement": 0.725,
+          "consecutive_displacement": 0.1471,
+          "velocity": 4.4116,
+          "acceleration": -29.214,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 97,
+          "timestamp_seconds": 3.233,
+          "bbox": {
+            "center_x": 0.4424,
+            "center_y": 0.6647,
+            "width": 0.0133,
+            "height": 0.0481,
+            "bottom_y": 0.6888
+          },
+          "normalized_lateral_displacement": 0.79,
+          "consecutive_displacement": 0.0791,
+          "velocity": 2.3717,
+          "acceleration": -61.197,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 98,
+          "timestamp_seconds": 3.267,
+          "bbox": {
+            "center_x": 0.443,
+            "center_y": 0.6636,
+            "width": 0.0145,
+            "height": 0.0513,
+            "bottom_y": 0.6892
+          },
+          "normalized_lateral_displacement": 0.82,
+          "consecutive_displacement": 0.0626,
+          "velocity": 1.8795,
+          "acceleration": -14.766,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 99,
+          "timestamp_seconds": 3.3,
+          "bbox": {
+            "center_x": 0.4436,
+            "center_y": 0.665,
+            "width": 0.0143,
+            "height": 0.0487,
+            "bottom_y": 0.6894
+          },
+          "normalized_lateral_displacement": 0.85,
+          "consecutive_displacement": 0.0762,
+          "velocity": 2.2847,
+          "acceleration": 12.156,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 100,
+          "timestamp_seconds": 3.333,
+          "bbox": {
+            "center_x": 0.4442,
+            "center_y": 0.6635,
+            "width": 0.0147,
+            "height": 0.0489,
+            "bottom_y": 0.6879
+          },
+          "normalized_lateral_displacement": 0.88,
+          "consecutive_displacement": 0.0808,
+          "velocity": 2.4233,
+          "acceleration": 4.158,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 101,
+          "timestamp_seconds": 3.367,
+          "bbox": {
+            "center_x": 0.4449,
+            "center_y": 0.6609,
+            "width": 0.0157,
+            "height": 0.0514,
+            "bottom_y": 0.6866
+          },
+          "normalized_lateral_displacement": 0.915,
+          "consecutive_displacement": 0.1346,
+          "velocity": 4.0389,
+          "acceleration": 48.468,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 102,
+          "timestamp_seconds": 3.4,
+          "bbox": {
+            "center_x": 0.4453,
+            "center_y": 0.6572,
+            "width": 0.0169,
+            "height": 0.0555,
+            "bottom_y": 0.685
+          },
+          "normalized_lateral_displacement": 0.935,
+          "consecutive_displacement": 0.1861,
+          "velocity": 5.5823,
+          "acceleration": 46.302,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 103,
+          "timestamp_seconds": 3.433,
+          "bbox": {
+            "center_x": 0.4461,
+            "center_y": 0.6532,
+            "width": 0.0179,
+            "height": 0.0596,
+            "bottom_y": 0.6831
+          },
+          "normalized_lateral_displacement": 0.975,
+          "consecutive_displacement": 0.204,
+          "velocity": 6.1188,
+          "acceleration": 16.095,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 104,
+          "timestamp_seconds": 3.467,
+          "bbox": {
+            "center_x": 0.4469,
+            "center_y": 0.6531,
+            "width": 0.0171,
+            "height": 0.0577,
+            "bottom_y": 0.682
+          },
+          "normalized_lateral_displacement": 1.015,
+          "consecutive_displacement": 0.0403,
+          "velocity": 1.2093,
+          "acceleration": -147.285,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 105,
+          "timestamp_seconds": 3.5,
+          "bbox": {
+            "center_x": 0.4479,
+            "center_y": 0.6531,
+            "width": 0.0162,
+            "height": 0.0559,
+            "bottom_y": 0.681
+          },
+          "normalized_lateral_displacement": 1.065,
+          "consecutive_displacement": 0.05,
+          "velocity": 1.5,
+          "acceleration": 8.721,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 108,
+          "timestamp_seconds": 3.6,
+          "bbox": {
+            "center_x": 0.4529,
+            "center_y": 0.6522,
+            "width": 0.0158,
+            "height": 0.0558,
+            "bottom_y": 0.6801
+          },
+          "normalized_lateral_displacement": 1.315,
+          "consecutive_displacement": 0.254,
+          "velocity": 2.5402,
+          "acceleration": 10.402,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 109,
+          "timestamp_seconds": 3.633,
+          "bbox": {
+            "center_x": 0.4539,
+            "center_y": 0.6514,
+            "width": 0.0154,
+            "height": 0.0554,
+            "bottom_y": 0.6791
+          },
+          "normalized_lateral_displacement": 1.365,
+          "consecutive_displacement": 0.064,
+          "velocity": 1.9209,
+          "acceleration": -18.579,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 110,
+          "timestamp_seconds": 3.667,
+          "bbox": {
+            "center_x": 0.4554,
+            "center_y": 0.6513,
+            "width": 0.0152,
+            "height": 0.055,
+            "bottom_y": 0.6788
+          },
+          "normalized_lateral_displacement": 1.44,
+          "consecutive_displacement": 0.0752,
+          "velocity": 2.255,
+          "acceleration": 10.023,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 111,
+          "timestamp_seconds": 3.7,
+          "bbox": {
+            "center_x": 0.4565,
+            "center_y": 0.6527,
+            "width": 0.0158,
+            "height": 0.0572,
+            "bottom_y": 0.6813
+          },
+          "normalized_lateral_displacement": 1.495,
+          "consecutive_displacement": 0.089,
+          "velocity": 2.6707,
+          "acceleration": 12.471,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 112,
+          "timestamp_seconds": 3.733,
+          "bbox": {
+            "center_x": 0.4578,
+            "center_y": 0.654,
+            "width": 0.0163,
+            "height": 0.0578,
+            "bottom_y": 0.6829
+          },
+          "normalized_lateral_displacement": 1.56,
+          "consecutive_displacement": 0.0919,
+          "velocity": 2.7577,
+          "acceleration": 2.61,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 113,
+          "timestamp_seconds": 3.767,
+          "bbox": {
+            "center_x": 0.4588,
+            "center_y": 0.6565,
+            "width": 0.016,
+            "height": 0.0547,
+            "bottom_y": 0.6838
+          },
+          "normalized_lateral_displacement": 1.61,
+          "consecutive_displacement": 0.1346,
+          "velocity": 4.0389,
+          "acceleration": 38.436,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 114,
+          "timestamp_seconds": 3.8,
+          "bbox": {
+            "center_x": 0.4595,
+            "center_y": 0.6583,
+            "width": 0.0161,
+            "height": 0.0534,
+            "bottom_y": 0.685
+          },
+          "normalized_lateral_displacement": 1.645,
+          "consecutive_displacement": 0.0966,
+          "velocity": 2.897,
+          "acceleration": -34.257,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 115,
+          "timestamp_seconds": 3.833,
+          "bbox": {
+            "center_x": 0.4603,
+            "center_y": 0.6595,
+            "width": 0.0163,
+            "height": 0.052,
+            "bottom_y": 0.6855
+          },
+          "normalized_lateral_displacement": 1.685,
+          "consecutive_displacement": 0.0721,
+          "velocity": 2.1633,
+          "acceleration": -22.011,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 116,
+          "timestamp_seconds": 3.867,
+          "bbox": {
+            "center_x": 0.4612,
+            "center_y": 0.6598,
+            "width": 0.017,
+            "height": 0.0528,
+            "bottom_y": 0.6862
+          },
+          "normalized_lateral_displacement": 1.73,
+          "consecutive_displacement": 0.0474,
+          "velocity": 1.423,
+          "acceleration": -22.209,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 117,
+          "timestamp_seconds": 3.9,
+          "bbox": {
+            "center_x": 0.4619,
+            "center_y": 0.6593,
+            "width": 0.0178,
+            "height": 0.0546,
+            "bottom_y": 0.6866
+          },
+          "normalized_lateral_displacement": 1.765,
+          "consecutive_displacement": 0.043,
+          "velocity": 1.2903,
+          "acceleration": -3.981,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 118,
+          "timestamp_seconds": 3.933,
+          "bbox": {
+            "center_x": 0.4628,
+            "center_y": 0.659,
+            "width": 0.0183,
+            "height": 0.0553,
+            "bottom_y": 0.6866
+          },
+          "normalized_lateral_displacement": 1.81,
+          "consecutive_displacement": 0.0474,
+          "velocity": 1.423,
+          "acceleration": 3.981,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 119,
+          "timestamp_seconds": 3.967,
+          "bbox": {
+            "center_x": 0.4645,
+            "center_y": 0.6539,
+            "width": 0.0215,
+            "height": 0.0664,
+            "bottom_y": 0.6871
+          },
+          "normalized_lateral_displacement": 1.895,
+          "consecutive_displacement": 0.2688,
+          "velocity": 8.0638,
+          "acceleration": 199.224,
+          "trajectory_direction": "moving_up",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 120,
+          "timestamp_seconds": 4.0,
+          "bbox": {
+            "center_x": 0.4665,
+            "center_y": 0.6509,
+            "width": 0.0225,
+            "height": 0.0714,
+            "bottom_y": 0.6866
+          },
+          "normalized_lateral_displacement": 1.995,
+          "consecutive_displacement": 0.1803,
+          "velocity": 5.4083,
+          "acceleration": -79.665,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3394,
+      "event_start_frame": 92,
+      "event_end_frame": 119,
+      "duration_seconds": 0.933,
+      "total_frames": 24,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 1.43,
+      "total_lateral_displacement": 0.0286,
+      "roadway_entry_candidate_frame": 113,
+      "peak_motion_frame": 102,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 92,
+          "timestamp_seconds": 3.067,
+          "bbox": {
+            "center_x": 0.6069,
+            "center_y": 0.6397,
+            "width": 0.0102,
+            "height": 0.0538,
+            "bottom_y": 0.6666
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 93,
+          "timestamp_seconds": 3.1,
+          "bbox": {
+            "center_x": 0.6069,
+            "center_y": 0.6422,
+            "width": 0.0102,
+            "height": 0.0535,
+            "bottom_y": 0.6689
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.125,
+          "velocity": 3.75,
+          "acceleration": 112.5,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 95,
+          "timestamp_seconds": 3.167,
+          "bbox": {
+            "center_x": 0.606,
+            "center_y": 0.6496,
+            "width": 0.0096,
+            "height": 0.0503,
+            "bottom_y": 0.6747
+          },
+          "normalized_lateral_displacement": 0.045,
+          "consecutive_displacement": 0.3727,
+          "velocity": 5.5909,
+          "acceleration": 27.6135,
+          "trajectory_direction": "moving_down",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 96,
+          "timestamp_seconds": 3.2,
+          "bbox": {
+            "center_x": 0.6072,
+            "center_y": 0.6517,
+            "width": 0.0096,
+            "height": 0.0496,
+            "bottom_y": 0.6765
+          },
+          "normalized_lateral_displacement": 0.015,
+          "consecutive_displacement": 0.1209,
+          "velocity": 3.628,
+          "acceleration": -58.887,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 98,
+          "timestamp_seconds": 3.267,
+          "bbox": {
+            "center_x": 0.6082,
+            "center_y": 0.6521,
+            "width": 0.0098,
+            "height": 0.0513,
+            "bottom_y": 0.6777
+          },
+          "normalized_lateral_displacement": 0.065,
+          "consecutive_displacement": 0.0539,
+          "velocity": 0.8078,
+          "acceleration": -42.303,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 100,
+          "timestamp_seconds": 3.333,
+          "bbox": {
+            "center_x": 0.6112,
+            "center_y": 0.6489,
+            "width": 0.0099,
+            "height": 0.0518,
+            "bottom_y": 0.6748
+          },
+          "normalized_lateral_displacement": 0.215,
+          "consecutive_displacement": 0.2193,
+          "velocity": 3.2898,
+          "acceleration": 37.23,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 101,
+          "timestamp_seconds": 3.367,
+          "bbox": {
+            "center_x": 0.6123,
+            "center_y": 0.6469,
+            "width": 0.0099,
+            "height": 0.0518,
+            "bottom_y": 0.6728
+          },
+          "normalized_lateral_displacement": 0.27,
+          "consecutive_displacement": 0.1141,
+          "velocity": 3.4238,
+          "acceleration": 4.02,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 102,
+          "timestamp_seconds": 3.4,
+          "bbox": {
+            "center_x": 0.6128,
+            "center_y": 0.643,
+            "width": 0.0095,
+            "height": 0.0504,
+            "bottom_y": 0.6682
+          },
+          "normalized_lateral_displacement": 0.295,
+          "consecutive_displacement": 0.1966,
+          "velocity": 5.8979,
+          "acceleration": 74.223,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 103,
+          "timestamp_seconds": 3.433,
+          "bbox": {
+            "center_x": 0.6143,
+            "center_y": 0.641,
+            "width": 0.0096,
+            "height": 0.0508,
+            "bottom_y": 0.6664
+          },
+          "normalized_lateral_displacement": 0.37,
+          "consecutive_displacement": 0.125,
+          "velocity": 3.75,
+          "acceleration": -64.437,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 104,
+          "timestamp_seconds": 3.467,
+          "bbox": {
+            "center_x": 0.6163,
+            "center_y": 0.6379,
+            "width": 0.0107,
+            "height": 0.0555,
+            "bottom_y": 0.6656
+          },
+          "normalized_lateral_displacement": 0.47,
+          "consecutive_displacement": 0.1845,
+          "velocity": 5.5338,
+          "acceleration": 53.514,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 105,
+          "timestamp_seconds": 3.5,
+          "bbox": {
+            "center_x": 0.6174,
+            "center_y": 0.6362,
+            "width": 0.0108,
+            "height": 0.0556,
+            "bottom_y": 0.664
+          },
+          "normalized_lateral_displacement": 0.525,
+          "consecutive_displacement": 0.1012,
+          "velocity": 3.0373,
+          "acceleration": -74.895,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 106,
+          "timestamp_seconds": 3.533,
+          "bbox": {
+            "center_x": 0.6182,
+            "center_y": 0.6336,
+            "width": 0.0106,
+            "height": 0.0539,
+            "bottom_y": 0.6605
+          },
+          "normalized_lateral_displacement": 0.565,
+          "consecutive_displacement": 0.136,
+          "velocity": 4.0804,
+          "acceleration": 31.293,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 107,
+          "timestamp_seconds": 3.567,
+          "bbox": {
+            "center_x": 0.6201,
+            "center_y": 0.6321,
+            "width": 0.0106,
+            "height": 0.0521,
+            "bottom_y": 0.6581
+          },
+          "normalized_lateral_displacement": 0.66,
+          "consecutive_displacement": 0.121,
+          "velocity": 3.6311,
+          "acceleration": -13.479,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 108,
+          "timestamp_seconds": 3.6,
+          "bbox": {
+            "center_x": 0.6204,
+            "center_y": 0.6312,
+            "width": 0.0095,
+            "height": 0.0465,
+            "bottom_y": 0.6545
+          },
+          "normalized_lateral_displacement": 0.675,
+          "consecutive_displacement": 0.0474,
+          "velocity": 1.423,
+          "acceleration": -66.243,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 109,
+          "timestamp_seconds": 3.633,
+          "bbox": {
+            "center_x": 0.6222,
+            "center_y": 0.63,
+            "width": 0.0099,
+            "height": 0.0476,
+            "bottom_y": 0.6538
+          },
+          "normalized_lateral_displacement": 0.765,
+          "consecutive_displacement": 0.1082,
+          "velocity": 3.245,
+          "acceleration": 54.66,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 110,
+          "timestamp_seconds": 3.667,
+          "bbox": {
+            "center_x": 0.6239,
+            "center_y": 0.6291,
+            "width": 0.0108,
+            "height": 0.0515,
+            "bottom_y": 0.6549
+          },
+          "normalized_lateral_displacement": 0.85,
+          "consecutive_displacement": 0.0962,
+          "velocity": 2.8853,
+          "acceleration": -10.791,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 111,
+          "timestamp_seconds": 3.7,
+          "bbox": {
+            "center_x": 0.6247,
+            "center_y": 0.6291,
+            "width": 0.0107,
+            "height": 0.0512,
+            "bottom_y": 0.6547
+          },
+          "normalized_lateral_displacement": 0.89,
+          "consecutive_displacement": 0.04,
+          "velocity": 1.2,
+          "acceleration": -50.559,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 112,
+          "timestamp_seconds": 3.733,
+          "bbox": {
+            "center_x": 0.626,
+            "center_y": 0.6313,
+            "width": 0.0105,
+            "height": 0.0504,
+            "bottom_y": 0.6565
+          },
+          "normalized_lateral_displacement": 0.955,
+          "consecutive_displacement": 0.1278,
+          "velocity": 3.8331,
+          "acceleration": 78.993,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 113,
+          "timestamp_seconds": 3.767,
+          "bbox": {
+            "center_x": 0.6265,
+            "center_y": 0.6321,
+            "width": 0.0104,
+            "height": 0.0503,
+            "bottom_y": 0.6572
+          },
+          "normalized_lateral_displacement": 0.98,
+          "consecutive_displacement": 0.0472,
+          "velocity": 1.4151,
+          "acceleration": -72.54,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 115,
+          "timestamp_seconds": 3.833,
+          "bbox": {
+            "center_x": 0.6289,
+            "center_y": 0.629,
+            "width": 0.0096,
+            "height": 0.0462,
+            "bottom_y": 0.6521
+          },
+          "normalized_lateral_displacement": 1.1,
+          "consecutive_displacement": 0.196,
+          "velocity": 2.9403,
+          "acceleration": 22.878,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 116,
+          "timestamp_seconds": 3.867,
+          "bbox": {
+            "center_x": 0.6308,
+            "center_y": 0.6281,
+            "width": 0.0093,
+            "height": 0.0439,
+            "bottom_y": 0.65
+          },
+          "normalized_lateral_displacement": 1.195,
+          "consecutive_displacement": 0.1051,
+          "velocity": 3.1536,
+          "acceleration": 6.399,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 117,
+          "timestamp_seconds": 3.9,
+          "bbox": {
+            "center_x": 0.6328,
+            "center_y": 0.6267,
+            "width": 0.009,
+            "height": 0.0418,
+            "bottom_y": 0.6476
+          },
+          "normalized_lateral_displacement": 1.295,
+          "consecutive_displacement": 0.1221,
+          "velocity": 3.662,
+          "acceleration": 15.252,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 118,
+          "timestamp_seconds": 3.933,
+          "bbox": {
+            "center_x": 0.6348,
+            "center_y": 0.6254,
+            "width": 0.0089,
+            "height": 0.0392,
+            "bottom_y": 0.645
+          },
+          "normalized_lateral_displacement": 1.395,
+          "consecutive_displacement": 0.1193,
+          "velocity": 3.5781,
+          "acceleration": -2.517,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 119,
+          "timestamp_seconds": 3.967,
+          "bbox": {
+            "center_x": 0.6355,
+            "center_y": 0.6272,
+            "width": 0.01,
+            "height": 0.0439,
+            "bottom_y": 0.6491
+          },
+          "normalized_lateral_displacement": 1.43,
+          "consecutive_displacement": 0.0966,
+          "velocity": 2.897,
+          "acceleration": -20.433,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3402,
+      "event_start_frame": 97,
+      "event_end_frame": 120,
+      "duration_seconds": 0.8,
+      "total_frames": 13,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 2.085,
+      "total_lateral_displacement": 0.0417,
+      "roadway_entry_candidate_frame": 109,
+      "peak_motion_frame": 101,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 97,
+          "timestamp_seconds": 3.233,
+          "bbox": {
+            "center_x": 0.6139,
+            "center_y": 0.6505,
+            "width": 0.0109,
+            "height": 0.0537,
+            "bottom_y": 0.6773
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 98,
+          "timestamp_seconds": 3.267,
+          "bbox": {
+            "center_x": 0.6158,
+            "center_y": 0.6498,
+            "width": 0.0111,
+            "height": 0.055,
+            "bottom_y": 0.6773
+          },
+          "normalized_lateral_displacement": 0.095,
+          "consecutive_displacement": 0.1012,
+          "velocity": 3.0373,
+          "acceleration": 91.119,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 99,
+          "timestamp_seconds": 3.3,
+          "bbox": {
+            "center_x": 0.6175,
+            "center_y": 0.648,
+            "width": 0.0115,
+            "height": 0.0567,
+            "bottom_y": 0.6764
+          },
+          "normalized_lateral_displacement": 0.18,
+          "consecutive_displacement": 0.1238,
+          "velocity": 3.7138,
+          "acceleration": 20.295,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 100,
+          "timestamp_seconds": 3.333,
+          "bbox": {
+            "center_x": 0.6192,
+            "center_y": 0.6477,
+            "width": 0.011,
+            "height": 0.0544,
+            "bottom_y": 0.6749
+          },
+          "normalized_lateral_displacement": 0.265,
+          "consecutive_displacement": 0.0863,
+          "velocity": 2.5894,
+          "acceleration": -33.732,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 101,
+          "timestamp_seconds": 3.367,
+          "bbox": {
+            "center_x": 0.6205,
+            "center_y": 0.6446,
+            "width": 0.0115,
+            "height": 0.0572,
+            "bottom_y": 0.6733
+          },
+          "normalized_lateral_displacement": 0.33,
+          "consecutive_displacement": 0.1681,
+          "velocity": 5.0423,
+          "acceleration": 73.587,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 102,
+          "timestamp_seconds": 3.4,
+          "bbox": {
+            "center_x": 0.6211,
+            "center_y": 0.6443,
+            "width": 0.0112,
+            "height": 0.0547,
+            "bottom_y": 0.6717
+          },
+          "normalized_lateral_displacement": 0.36,
+          "consecutive_displacement": 0.0335,
+          "velocity": 1.0062,
+          "acceleration": -121.083,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 108,
+          "timestamp_seconds": 3.6,
+          "bbox": {
+            "center_x": 0.6317,
+            "center_y": 0.6368,
+            "width": 0.012,
+            "height": 0.0576,
+            "bottom_y": 0.6656
+          },
+          "normalized_lateral_displacement": 0.89,
+          "consecutive_displacement": 0.6492,
+          "velocity": 3.2462,
+          "acceleration": 11.2,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 109,
+          "timestamp_seconds": 3.633,
+          "bbox": {
+            "center_x": 0.6333,
+            "center_y": 0.6379,
+            "width": 0.0122,
+            "height": 0.0566,
+            "bottom_y": 0.6662
+          },
+          "normalized_lateral_displacement": 0.97,
+          "consecutive_displacement": 0.0971,
+          "velocity": 2.9125,
+          "acceleration": -10.011,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 112,
+          "timestamp_seconds": 3.733,
+          "bbox": {
+            "center_x": 0.6401,
+            "center_y": 0.6372,
+            "width": 0.0126,
+            "height": 0.0582,
+            "bottom_y": 0.6663
+          },
+          "normalized_lateral_displacement": 1.31,
+          "consecutive_displacement": 0.3418,
+          "velocity": 3.418,
+          "acceleration": 5.055,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 113,
+          "timestamp_seconds": 3.767,
+          "bbox": {
+            "center_x": 0.6421,
+            "center_y": 0.6359,
+            "width": 0.0125,
+            "height": 0.0585,
+            "bottom_y": 0.6652
+          },
+          "normalized_lateral_displacement": 1.41,
+          "consecutive_displacement": 0.1193,
+          "velocity": 3.5781,
+          "acceleration": 4.803,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 114,
+          "timestamp_seconds": 3.8,
+          "bbox": {
+            "center_x": 0.6435,
+            "center_y": 0.6359,
+            "width": 0.0126,
+            "height": 0.0584,
+            "bottom_y": 0.6651
+          },
+          "normalized_lateral_displacement": 1.48,
+          "consecutive_displacement": 0.07,
+          "velocity": 2.1,
+          "acceleration": -44.343,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 115,
+          "timestamp_seconds": 3.833,
+          "bbox": {
+            "center_x": 0.6455,
+            "center_y": 0.6369,
+            "width": 0.0122,
+            "height": 0.0566,
+            "bottom_y": 0.6652
+          },
+          "normalized_lateral_displacement": 1.58,
+          "consecutive_displacement": 0.1118,
+          "velocity": 3.3541,
+          "acceleration": 37.623,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 120,
+          "timestamp_seconds": 4.0,
+          "bbox": {
+            "center_x": 0.6556,
+            "center_y": 0.6318,
+            "width": 0.0114,
+            "height": 0.0515,
+            "bottom_y": 0.6576
+          },
+          "normalized_lateral_displacement": 2.085,
+          "consecutive_displacement": 0.5657,
+          "velocity": 3.3944,
+          "acceleration": 0.2418,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3404,
+      "event_start_frame": 98,
+      "event_end_frame": 100,
+      "duration_seconds": 0.1,
+      "total_frames": 3,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 0.09,
+      "total_lateral_displacement": 0.0018,
+      "roadway_entry_candidate_frame": 98,
+      "peak_motion_frame": 100,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 98,
+          "timestamp_seconds": 3.267,
+          "bbox": {
+            "center_x": 0.5812,
+            "center_y": 0.6442,
+            "width": 0.0065,
+            "height": 0.0331,
+            "bottom_y": 0.6608
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 99,
+          "timestamp_seconds": 3.3,
+          "bbox": {
+            "center_x": 0.5825,
+            "center_y": 0.6432,
+            "width": 0.0065,
+            "height": 0.0327,
+            "bottom_y": 0.6596
+          },
+          "normalized_lateral_displacement": 0.065,
+          "consecutive_displacement": 0.082,
+          "velocity": 2.4602,
+          "acceleration": 73.806,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 100,
+          "timestamp_seconds": 3.333,
+          "bbox": {
+            "center_x": 0.583,
+            "center_y": 0.6412,
+            "width": 0.0063,
+            "height": 0.0316,
+            "bottom_y": 0.657
+          },
+          "normalized_lateral_displacement": 0.09,
+          "consecutive_displacement": 0.1031,
+          "velocity": 3.0923,
+          "acceleration": 18.963,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3405,
+      "event_start_frame": 98,
+      "event_end_frame": 120,
+      "duration_seconds": 0.767,
+      "total_frames": 19,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 2.755,
+      "total_lateral_displacement": 0.0551,
+      "roadway_entry_candidate_frame": 106,
+      "peak_motion_frame": 104,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 98,
+          "timestamp_seconds": 3.267,
+          "bbox": {
+            "center_x": 0.6688,
+            "center_y": 0.6504,
+            "width": 0.0115,
+            "height": 0.0569,
+            "bottom_y": 0.6789
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 99,
+          "timestamp_seconds": 3.3,
+          "bbox": {
+            "center_x": 0.6708,
+            "center_y": 0.6476,
+            "width": 0.0114,
+            "height": 0.0564,
+            "bottom_y": 0.6759
+          },
+          "normalized_lateral_displacement": 0.1,
+          "consecutive_displacement": 0.172,
+          "velocity": 5.1614,
+          "acceleration": 154.842,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 100,
+          "timestamp_seconds": 3.333,
+          "bbox": {
+            "center_x": 0.6735,
+            "center_y": 0.6476,
+            "width": 0.0116,
+            "height": 0.057,
+            "bottom_y": 0.6761
+          },
+          "normalized_lateral_displacement": 0.235,
+          "consecutive_displacement": 0.135,
+          "velocity": 4.05,
+          "acceleration": -33.342,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 101,
+          "timestamp_seconds": 3.367,
+          "bbox": {
+            "center_x": 0.6759,
+            "center_y": 0.6467,
+            "width": 0.0111,
+            "height": 0.054,
+            "bottom_y": 0.6737
+          },
+          "normalized_lateral_displacement": 0.355,
+          "consecutive_displacement": 0.1282,
+          "velocity": 3.8448,
+          "acceleration": -6.156,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 102,
+          "timestamp_seconds": 3.4,
+          "bbox": {
+            "center_x": 0.6783,
+            "center_y": 0.6446,
+            "width": 0.0108,
+            "height": 0.0526,
+            "bottom_y": 0.6709
+          },
+          "normalized_lateral_displacement": 0.475,
+          "consecutive_displacement": 0.1595,
+          "velocity": 4.7836,
+          "acceleration": 28.164,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 103,
+          "timestamp_seconds": 3.433,
+          "bbox": {
+            "center_x": 0.6811,
+            "center_y": 0.6441,
+            "width": 0.0098,
+            "height": 0.0478,
+            "bottom_y": 0.668
+          },
+          "normalized_lateral_displacement": 0.615,
+          "consecutive_displacement": 0.1422,
+          "velocity": 4.2664,
+          "acceleration": -15.516,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 104,
+          "timestamp_seconds": 3.467,
+          "bbox": {
+            "center_x": 0.6829,
+            "center_y": 0.6396,
+            "width": 0.0108,
+            "height": 0.0527,
+            "bottom_y": 0.666
+          },
+          "normalized_lateral_displacement": 0.705,
+          "consecutive_displacement": 0.2423,
+          "velocity": 7.27,
+          "acceleration": 90.108,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 105,
+          "timestamp_seconds": 3.5,
+          "bbox": {
+            "center_x": 0.6856,
+            "center_y": 0.6414,
+            "width": 0.0102,
+            "height": 0.0503,
+            "bottom_y": 0.6666
+          },
+          "normalized_lateral_displacement": 0.84,
+          "consecutive_displacement": 0.1622,
+          "velocity": 4.8675,
+          "acceleration": -72.075,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 106,
+          "timestamp_seconds": 3.533,
+          "bbox": {
+            "center_x": 0.6882,
+            "center_y": 0.6428,
+            "width": 0.0095,
+            "height": 0.0468,
+            "bottom_y": 0.6662
+          },
+          "normalized_lateral_displacement": 0.97,
+          "consecutive_displacement": 0.1476,
+          "velocity": 4.4294,
+          "acceleration": -13.143,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 107,
+          "timestamp_seconds": 3.567,
+          "bbox": {
+            "center_x": 0.6899,
+            "center_y": 0.639,
+            "width": 0.0114,
+            "height": 0.0563,
+            "bottom_y": 0.6672
+          },
+          "normalized_lateral_displacement": 1.055,
+          "consecutive_displacement": 0.2081,
+          "velocity": 6.2444,
+          "acceleration": 54.45,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 108,
+          "timestamp_seconds": 3.6,
+          "bbox": {
+            "center_x": 0.6922,
+            "center_y": 0.6363,
+            "width": 0.0118,
+            "height": 0.0586,
+            "bottom_y": 0.6656
+          },
+          "normalized_lateral_displacement": 1.17,
+          "consecutive_displacement": 0.1773,
+          "velocity": 5.3202,
+          "acceleration": -27.726,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 109,
+          "timestamp_seconds": 3.633,
+          "bbox": {
+            "center_x": 0.6948,
+            "center_y": 0.6381,
+            "width": 0.0111,
+            "height": 0.0548,
+            "bottom_y": 0.6655
+          },
+          "normalized_lateral_displacement": 1.3,
+          "consecutive_displacement": 0.1581,
+          "velocity": 4.7434,
+          "acceleration": -17.304,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 114,
+          "timestamp_seconds": 3.8,
+          "bbox": {
+            "center_x": 0.7091,
+            "center_y": 0.6341,
+            "width": 0.0126,
+            "height": 0.0617,
+            "bottom_y": 0.665
+          },
+          "normalized_lateral_displacement": 2.015,
+          "consecutive_displacement": 0.7424,
+          "velocity": 4.4547,
+          "acceleration": -1.7322,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 115,
+          "timestamp_seconds": 3.833,
+          "bbox": {
+            "center_x": 0.7121,
+            "center_y": 0.6346,
+            "width": 0.0126,
+            "height": 0.0614,
+            "bottom_y": 0.6653
+          },
+          "normalized_lateral_displacement": 2.165,
+          "consecutive_displacement": 0.1521,
+          "velocity": 4.5621,
+          "acceleration": 3.222,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 116,
+          "timestamp_seconds": 3.867,
+          "bbox": {
+            "center_x": 0.7142,
+            "center_y": 0.6368,
+            "width": 0.0119,
+            "height": 0.0584,
+            "bottom_y": 0.666
+          },
+          "normalized_lateral_displacement": 2.27,
+          "consecutive_displacement": 0.1521,
+          "velocity": 4.5621,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 117,
+          "timestamp_seconds": 3.9,
+          "bbox": {
+            "center_x": 0.7169,
+            "center_y": 0.6346,
+            "width": 0.0124,
+            "height": 0.0602,
+            "bottom_y": 0.6646
+          },
+          "normalized_lateral_displacement": 2.405,
+          "consecutive_displacement": 0.1741,
+          "velocity": 5.2242,
+          "acceleration": 19.863,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 118,
+          "timestamp_seconds": 3.933,
+          "bbox": {
+            "center_x": 0.7191,
+            "center_y": 0.6332,
+            "width": 0.0132,
+            "height": 0.0633,
+            "bottom_y": 0.6649
+          },
+          "normalized_lateral_displacement": 2.515,
+          "consecutive_displacement": 0.1304,
+          "velocity": 3.9115,
+          "acceleration": -39.381,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 119,
+          "timestamp_seconds": 3.967,
+          "bbox": {
+            "center_x": 0.7221,
+            "center_y": 0.6326,
+            "width": 0.0129,
+            "height": 0.062,
+            "bottom_y": 0.6636
+          },
+          "normalized_lateral_displacement": 2.665,
+          "consecutive_displacement": 0.153,
+          "velocity": 4.5891,
+          "acceleration": 20.328,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 120,
+          "timestamp_seconds": 4.0,
+          "bbox": {
+            "center_x": 0.7239,
+            "center_y": 0.6306,
+            "width": 0.014,
+            "height": 0.0662,
+            "bottom_y": 0.6637
+          },
+          "normalized_lateral_displacement": 2.755,
+          "consecutive_displacement": 0.1345,
+          "velocity": 4.0361,
+          "acceleration": -16.59,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3406,
+      "event_start_frame": 98,
+      "event_end_frame": 114,
+      "duration_seconds": 0.567,
+      "total_frames": 15,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 1.54,
+      "total_lateral_displacement": 0.0308,
+      "roadway_entry_candidate_frame": 107,
+      "peak_motion_frame": 99,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 98,
+          "timestamp_seconds": 3.267,
+          "bbox": {
+            "center_x": 0.6544,
+            "center_y": 0.6592,
+            "width": 0.0129,
+            "height": 0.0385,
+            "bottom_y": 0.6785
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 99,
+          "timestamp_seconds": 3.3,
+          "bbox": {
+            "center_x": 0.6564,
+            "center_y": 0.6548,
+            "width": 0.0151,
+            "height": 0.0455,
+            "bottom_y": 0.6776
+          },
+          "normalized_lateral_displacement": 0.1,
+          "consecutive_displacement": 0.2417,
+          "velocity": 7.2498,
+          "acceleration": 217.494,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 100,
+          "timestamp_seconds": 3.333,
+          "bbox": {
+            "center_x": 0.6582,
+            "center_y": 0.6504,
+            "width": 0.0177,
+            "height": 0.0537,
+            "bottom_y": 0.6772
+          },
+          "normalized_lateral_displacement": 0.19,
+          "consecutive_displacement": 0.2377,
+          "velocity": 7.1309,
+          "acceleration": -3.567,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 101,
+          "timestamp_seconds": 3.367,
+          "bbox": {
+            "center_x": 0.6603,
+            "center_y": 0.6472,
+            "width": 0.0187,
+            "height": 0.0575,
+            "bottom_y": 0.676
+          },
+          "normalized_lateral_displacement": 0.295,
+          "consecutive_displacement": 0.1914,
+          "velocity": 5.7413,
+          "acceleration": -41.688,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 103,
+          "timestamp_seconds": 3.433,
+          "bbox": {
+            "center_x": 0.6648,
+            "center_y": 0.6476,
+            "width": 0.0153,
+            "height": 0.0473,
+            "bottom_y": 0.6713
+          },
+          "normalized_lateral_displacement": 0.52,
+          "consecutive_displacement": 0.2259,
+          "velocity": 3.3883,
+          "acceleration": -35.295,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 104,
+          "timestamp_seconds": 3.467,
+          "bbox": {
+            "center_x": 0.6673,
+            "center_y": 0.645,
+            "width": 0.016,
+            "height": 0.05,
+            "bottom_y": 0.67
+          },
+          "normalized_lateral_displacement": 0.645,
+          "consecutive_displacement": 0.1803,
+          "velocity": 5.4104,
+          "acceleration": 60.663,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 105,
+          "timestamp_seconds": 3.5,
+          "bbox": {
+            "center_x": 0.6691,
+            "center_y": 0.6424,
+            "width": 0.0174,
+            "height": 0.0552,
+            "bottom_y": 0.67
+          },
+          "normalized_lateral_displacement": 0.735,
+          "consecutive_displacement": 0.1581,
+          "velocity": 4.7434,
+          "acceleration": -20.01,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 106,
+          "timestamp_seconds": 3.533,
+          "bbox": {
+            "center_x": 0.6714,
+            "center_y": 0.6418,
+            "width": 0.017,
+            "height": 0.0548,
+            "bottom_y": 0.6692
+          },
+          "normalized_lateral_displacement": 0.85,
+          "consecutive_displacement": 0.1188,
+          "velocity": 3.5655,
+          "acceleration": -35.337,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 107,
+          "timestamp_seconds": 3.567,
+          "bbox": {
+            "center_x": 0.6736,
+            "center_y": 0.64,
+            "width": 0.0179,
+            "height": 0.0587,
+            "bottom_y": 0.6693
+          },
+          "normalized_lateral_displacement": 0.96,
+          "consecutive_displacement": 0.1421,
+          "velocity": 4.2638,
+          "acceleration": 20.949,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 108,
+          "timestamp_seconds": 3.6,
+          "bbox": {
+            "center_x": 0.6747,
+            "center_y": 0.6378,
+            "width": 0.0181,
+            "height": 0.0604,
+            "bottom_y": 0.668
+          },
+          "normalized_lateral_displacement": 1.015,
+          "consecutive_displacement": 0.123,
+          "velocity": 3.6895,
+          "acceleration": -17.229,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 109,
+          "timestamp_seconds": 3.633,
+          "bbox": {
+            "center_x": 0.6776,
+            "center_y": 0.6394,
+            "width": 0.0178,
+            "height": 0.0603,
+            "bottom_y": 0.6696
+          },
+          "normalized_lateral_displacement": 1.16,
+          "consecutive_displacement": 0.1656,
+          "velocity": 4.9681,
+          "acceleration": 38.358,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 110,
+          "timestamp_seconds": 3.667,
+          "bbox": {
+            "center_x": 0.6806,
+            "center_y": 0.6409,
+            "width": 0.0168,
+            "height": 0.0577,
+            "bottom_y": 0.6698
+          },
+          "normalized_lateral_displacement": 1.31,
+          "consecutive_displacement": 0.1677,
+          "velocity": 5.0312,
+          "acceleration": 1.893,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 111,
+          "timestamp_seconds": 3.7,
+          "bbox": {
+            "center_x": 0.6821,
+            "center_y": 0.6388,
+            "width": 0.0178,
+            "height": 0.0618,
+            "bottom_y": 0.6697
+          },
+          "normalized_lateral_displacement": 1.385,
+          "consecutive_displacement": 0.129,
+          "velocity": 3.871,
+          "acceleration": -34.806,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 112,
+          "timestamp_seconds": 3.733,
+          "bbox": {
+            "center_x": 0.6826,
+            "center_y": 0.6372,
+            "width": 0.0178,
+            "height": 0.0639,
+            "bottom_y": 0.6691
+          },
+          "normalized_lateral_displacement": 1.41,
+          "consecutive_displacement": 0.0838,
+          "velocity": 2.5145,
+          "acceleration": -40.695,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 114,
+          "timestamp_seconds": 3.8,
+          "bbox": {
+            "center_x": 0.6852,
+            "center_y": 0.6336,
+            "width": 0.0178,
+            "height": 0.0661,
+            "bottom_y": 0.6667
+          },
+          "normalized_lateral_displacement": 1.54,
+          "consecutive_displacement": 0.222,
+          "velocity": 3.3305,
+          "acceleration": 12.24,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    },
+    {
+      "track_id": 3431,
+      "event_start_frame": 116,
+      "event_end_frame": 120,
+      "duration_seconds": 0.167,
+      "total_frames": 5,
+      "valid_keypoint_frames": 0,
+      "keypoint_coverage_ratio": 0.0,
+      "normalized_motion_score": 1.085,
+      "total_lateral_displacement": 0.0217,
+      "roadway_entry_candidate_frame": 119,
+      "peak_motion_frame": 118,
+      "is_dominant_crossing_candidate": false,
+      "frames": [
+        {
+          "frame_id": 116,
+          "timestamp_seconds": 3.867,
+          "bbox": {
+            "center_x": 0.9287,
+            "center_y": 0.6426,
+            "width": 0.0183,
+            "height": 0.0939,
+            "bottom_y": 0.6895
+          },
+          "normalized_lateral_displacement": 0.0,
+          "consecutive_displacement": 0.0,
+          "velocity": 0.0,
+          "acceleration": 0.0,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 117,
+          "timestamp_seconds": 3.9,
+          "bbox": {
+            "center_x": 0.9336,
+            "center_y": 0.643,
+            "width": 0.0182,
+            "height": 0.0932,
+            "bottom_y": 0.6895
+          },
+          "normalized_lateral_displacement": 0.245,
+          "consecutive_displacement": 0.2458,
+          "velocity": 7.3744,
+          "acceleration": 221.232,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 118,
+          "timestamp_seconds": 3.933,
+          "bbox": {
+            "center_x": 0.94,
+            "center_y": 0.6438,
+            "width": 0.0178,
+            "height": 0.0909,
+            "bottom_y": 0.6892
+          },
+          "normalized_lateral_displacement": 0.565,
+          "consecutive_displacement": 0.3225,
+          "velocity": 9.6747,
+          "acceleration": 69.009,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 119,
+          "timestamp_seconds": 3.967,
+          "bbox": {
+            "center_x": 0.9458,
+            "center_y": 0.6446,
+            "width": 0.0194,
+            "height": 0.0994,
+            "bottom_y": 0.6943
+          },
+          "normalized_lateral_displacement": 0.855,
+          "consecutive_displacement": 0.2927,
+          "velocity": 8.7824,
+          "acceleration": -26.769,
+          "trajectory_direction": "moving_right",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        },
+        {
+          "frame_id": 120,
+          "timestamp_seconds": 4.0,
+          "bbox": {
+            "center_x": 0.9504,
+            "center_y": 0.6423,
+            "width": 0.0193,
+            "height": 0.0981,
+            "bottom_y": 0.6914
+          },
+          "normalized_lateral_displacement": 1.085,
+          "consecutive_displacement": 0.2571,
+          "velocity": 7.7144,
+          "acceleration": -32.04,
+          "trajectory_direction": "stationary",
+          "has_valid_keypoints": false,
+          "keypoints": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,473 @@
+{
+  "experiment": "Experiment 23: Architecture B Error Forensics",
+  "total_errors": 11,
+  "false_positives_count": 3,
+  "false_negatives_count": 8,
+  "dominant_failure_mode": "CATEGORY B \u2014 Relevant Temporal Moment Missing (8/8 False Negatives)",
+  "second_failure_mode": "CATEGORY F \u2014 VLM Semantic Reasoning Error (4/11 Total Errors)",
+  "most_important_finding": "The 71.79% ceiling is primarily caused by FRAME SELECTION DENSITY (Category B). Uniform 5-frame sampling over extended event envelopes (3-7s) skips the precise 0.5s-1.0s curb-stepping transition moment.",
+  "error_analysis_details": [
+    {
+      "clip_name": "video_0227.mp4",
+      "ground_truth": "compliant",
+      "prediction": "jaywalking",
+      "error_type": "FP",
+      "track_ids": [
+        1,
+        2,
+        4,
+        31,
+        41,
+        46
+      ],
+      "envelope_bounds": [
+        1,
+        175
+      ],
+      "sample_indices": [
+        1,
+        44,
+        88,
+        131,
+        175
+      ],
+      "timestamps": [
+        0.0,
+        1.43,
+        2.9,
+        4.33,
+        5.8
+      ],
+      "categories": [
+        "CATEGORY E",
+        "CATEGORY F"
+      ],
+      "relevant_pedestrian_visible": "YES",
+      "critical_moment_visible": "YES",
+      "multi_ped_ambiguity": "NO",
+      "main_failure": "Infrastructure Ambiguity + VLM Semantic Over-reaction: Pedestrian walked near road edge, VLM hallucinated illegal crossing.",
+      "short_clip_comparison": "Short-clip had identical context, but tighter framing.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrian is crossing from a sidewalk onto the roadway, indicating they are moving into the traffic lane.\n\n2. **Infrastructure & Right-of-Way**: There appears to be no marked crosswalk in this scene, and there is no visible traffic signal that indicates right-of-way for pedestrians or vehicles at this intersection.\n\n3. **Vehicle Kinematic Response**: The vehicle in front of the camera does not show any immediate response such as deceleration or yielding; it continues moving forward without stopping.\n\n4. **Causal Analysis**: Since there is no marked crosswalk and no traffic signal indicating pedestrian right-of-way, crossing into a roadway from a sidewalk without a designated crosswalk is generally considered an illegal violation of traffic laws in most jurisdictions. The lack of infrastructure to facilitate safe pedestrian crossings suggests that the pedestrian's action could be seen as unsafe.\n\n5. **Final Classification**: JAYWALKING",
+      "saved_frames_directory": "outputs/error_forensics/video_0227",
+      "contact_sheet_path": "outputs/error_forensics/video_0227/contact_sheet.jpg"
+    },
+    {
+      "clip_name": "video_0312.mp4",
+      "ground_truth": "compliant",
+      "prediction": "jaywalking",
+      "error_type": "FP",
+      "track_ids": [
+        1,
+        3
+      ],
+      "envelope_bounds": [
+        1,
+        120
+      ],
+      "sample_indices": [
+        1,
+        30,
+        60,
+        90,
+        120
+      ],
+      "timestamps": [
+        0.0,
+        0.97,
+        1.97,
+        2.97,
+        3.97
+      ],
+      "categories": [
+        "CATEGORY E",
+        "CATEGORY F"
+      ],
+      "relevant_pedestrian_visible": "YES",
+      "critical_moment_visible": "YES",
+      "multi_ped_ambiguity": "NO",
+      "main_failure": "Infrastructure Ambiguity: Vehicle yielded at un-marked corner; VLM misclassified compliant yielding as jaywalking.",
+      "short_clip_comparison": "Short-clip baseline correctly identified right-of-way compliance.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrian is crossing from the sidewalk onto the roadway, indicating they are moving into the traffic lane.\n\n2. **Infrastructure & Right-of-Way**: There appears to be a marked crosswalk on the left side of the road where the pedestrian starts their movement. However, there is no visible signal in this frame that would indicate whether it's safe for pedestrians to cross at this moment or if they have the right-of-way.\n\n3. **Vehicle Kinematic Response**: The vehicle ahead appears to be decelerating slightly as the pedestrian crosses into its lane, suggesting a response to the pedestrian's movement.\n\n4. **Causal Analysis**: Given that there is no clear signal indicating it\u2019s safe for pedestrians to cross and considering the vehicle's slight deceleration in reaction to the pedestrian crossing, this situation could be considered an illegal violation of traffic rules by both parties involved. The pedestrian should not have entered the roadway without ensuring it is safe, and the driver should have yielded or stopped if necessary.\n\n5. **Final Classification**: JAYWALKING",
+      "saved_frames_directory": "outputs/error_forensics/video_0312",
+      "contact_sheet_path": "outputs/error_forensics/video_0312/contact_sheet.jpg"
+    },
+    {
+      "clip_name": "video_0322.mp4",
+      "ground_truth": "compliant",
+      "prediction": "jaywalking",
+      "error_type": "FP",
+      "track_ids": [
+        1,
+        2,
+        5,
+        27,
+        47,
+        57
+      ],
+      "envelope_bounds": [
+        1,
+        270
+      ],
+      "sample_indices": [
+        1,
+        68,
+        135,
+        202,
+        270
+      ],
+      "timestamps": [
+        0.0,
+        2.23,
+        4.47,
+        6.7,
+        8.97
+      ],
+      "categories": [
+        "CATEGORY C",
+        "CATEGORY F"
+      ],
+      "relevant_pedestrian_visible": "YES",
+      "critical_moment_visible": "YES",
+      "multi_ped_ambiguity": "YES",
+      "main_failure": "Multiple Pedestrians: Standing bystanders near curb confused VLM into predicting active roadway violation.",
+      "short_clip_comparison": "Short-clip baseline isolated single pedestrian.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrian is crossing from a sidewalk onto the roadway, indicating they are moving into the traffic lane.\n\n2. **Infrastructure & Right-of-Way**: There appears to be no marked crosswalk in the immediate vicinity where the pedestrian is crossing. Additionally, there is no visible traffic signal that would direct pedestrian movement at this intersection.\n\n3. **Vehicle Kinematic Response**: The vehicle seems to have decelerated or stopped as it approaches the pedestrian who has entered the roadway from a sidewalk. This suggests an attempt by the driver to yield to the pedestrian's right-of-way.\n\n4. **Causal Analysis**: Given that there is no marked crosswalk and no traffic signal, the pedestrian crossing into the roadway without a designated safe area could be considered an illegal violation of traffic laws. The vehicle's deceleration or stop may indicate compliance with yielding to pedestrians in such situations, but it does not negate the fact that the pedestrian crossed illegally.\n\n5. **Final Classification**: JAYWALKING",
+      "saved_frames_directory": "outputs/error_forensics/video_0322",
+      "contact_sheet_path": "outputs/error_forensics/video_0322/contact_sheet.jpg"
+    },
+    {
+      "clip_name": "video_0028.mp4",
+      "ground_truth": "jaywalking",
+      "prediction": "compliant",
+      "error_type": "FN",
+      "track_ids": [
+        2,
+        27,
+        29
+      ],
+      "envelope_bounds": [
+        1,
+        240
+      ],
+      "sample_indices": [
+        1,
+        60,
+        120,
+        180,
+        240
+      ],
+      "timestamps": [
+        0.0,
+        0.98,
+        1.99,
+        2.99,
+        3.99
+      ],
+      "categories": [
+        "CATEGORY B",
+        "CATEGORY D"
+      ],
+      "relevant_pedestrian_visible": "YES (Distant)",
+      "critical_moment_visible": "NO",
+      "multi_ped_ambiguity": "YES",
+      "main_failure": "Relevant Temporal Moment Missing: 5 uniform frames over 4.0s envelope missed exact initial curb step-off.",
+      "short_clip_comparison": "Short-clip baseline (97.44%) included immediate pre-crossing curb step-off.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrians are walking on the sidewalk, maintaining a safe distance from the curb and roadway.\n\n2. **Infrastructure & Right-of-Way**: There is no marked crosswalk visible in this frame; however, there appears to be an area where pedestrians can safely cross if they choose to do so. The signal infrastructure (if present) is not clearly visible here.\n\n3. **Vehicle Kinematic Response**: The vehicle seems to be moving forward at a steady pace and does not appear to be decelerating or accelerating in response to the pedestrians' presence on the sidewalk.\n\n4. **Causal Analysis**: Since there are no clear traffic signals or marked crosswalks, it is difficult to determine if the pedestrian crossing would be legal under standard traffic laws. However, given that the pedestrians are walking on the sidewalk and not encroaching into the roadway, they appear to be following a safe practice.\n\n5. **Final Classification**: COMPLIANT",
+      "saved_frames_directory": "outputs/error_forensics/video_0028",
+      "contact_sheet_path": "outputs/error_forensics/video_0028/contact_sheet.jpg"
+    },
+    {
+      "clip_name": "video_0030.mp4",
+      "ground_truth": "jaywalking",
+      "prediction": "compliant",
+      "error_type": "FN",
+      "track_ids": [
+        1,
+        2,
+        9,
+        16
+      ],
+      "envelope_bounds": [
+        1,
+        180
+      ],
+      "sample_indices": [
+        1,
+        45,
+        90,
+        135,
+        180
+      ],
+      "timestamps": [
+        0.0,
+        1.47,
+        2.97,
+        4.47,
+        5.97
+      ],
+      "categories": [
+        "CATEGORY B",
+        "CATEGORY G"
+      ],
+      "relevant_pedestrian_visible": "YES",
+      "critical_moment_visible": "NO",
+      "multi_ped_ambiguity": "NO",
+      "main_failure": "Event Localization / Sampling Density: Sampling 5 frames over wide envelope diluted initial roadway entry.",
+      "short_clip_comparison": "Short-clip baseline had higher frame density over active crossing.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrian is walking on the sidewalk, which is a designated area for pedestrians.\n\n2. **Infrastructure & Right-of-Way**: There are no marked crosswalks visible in this frame, and there are no traffic signals that can be seen to indicate right-of-way rules.\n\n3. **Vehicle Kinematic Response**: The vehicles appear to be moving at a steady pace without any noticeable deceleration or acceleration specifically due to the pedestrian's presence on the sidewalk.\n\n4. **Causal Analysis**: Since the pedestrian is walking on the designated sidewalk and there are no traffic signals or marked crosswalks in this frame, it suggests that the pedestrian is following standard pedestrian behavior rules. The vehicles do not appear to be reacting to any specific action by the pedestrian, indicating they may be driving under normal conditions.\n\n5. **Final Classification**: COMPLIANT\n\nThe pedestrian's presence on the sidewalk and the lack of traffic signals or marked crosswalks suggest that this interaction is within legal compliance for pedestrians and vehicles in this context.",
+      "saved_frames_directory": "outputs/error_forensics/video_0030",
+      "contact_sheet_path": "outputs/error_forensics/video_0030/contact_sheet.jpg"
+    },
+    {
+      "clip_name": "video_0035.mp4",
+      "ground_truth": "jaywalking",
+      "prediction": "compliant",
+      "error_type": "FN",
+      "track_ids": [
+        1
+      ],
+      "envelope_bounds": [
+        1,
+        134
+      ],
+      "sample_indices": [
+        1,
+        34,
+        67,
+        100,
+        134
+      ],
+      "timestamps": [
+        0.0,
+        1.1,
+        2.2,
+        3.3,
+        4.44
+      ],
+      "categories": [
+        "CATEGORY B",
+        "CATEGORY D"
+      ],
+      "relevant_pedestrian_visible": "YES (Small)",
+      "critical_moment_visible": "NO",
+      "multi_ped_ambiguity": "NO",
+      "main_failure": "Small Pedestrian + Missing Entry: Pedestrian stepped into road between frames 1 and 2.",
+      "short_clip_comparison": "Short-clip baseline captured clear road entry.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrian is walking on the sidewalk, which is a designated area for pedestrians to walk and cross streets safely.\n\n2. **Infrastructure & Right-of-Way**: There are no visible marked crosswalks or traffic signals in this frame that would indicate where the pedestrian should cross. However, it appears there might be an implied right-of-way for vehicles at this intersection based on typical urban traffic patterns.\n\n3. **Vehicle Kinematic Response**: The vehicle is not shown to be yielding, decelerating, or accelerating specifically towards the pedestrian's location in these frames. It seems to be moving forward along its lane without any immediate interaction with the pedestrian.\n\n4. **Causal Analysis**: Since there are no visible traffic signals or marked crosswalks indicating where the pedestrian should cross and the vehicle is not shown to be yielding or decelerating, it suggests that the pedestrian might be crossing in an area where they have a right-of-way due to urban traffic norms. However, without clear evidence of such rights (e.g., a visible crosswalk), this analysis remains speculative.\n\n5. **Final Classification**: Based on the available information and typical urban traffic behavior, if we assume standard practices for pedestrian crossings, it could be inferred that crossing in an area where there is no marked right-of-way might not strictly comply with all legal standards but may still be considered compliant under general traffic rules. However, this is a speculative judgment.\n\n**Final Classification**: **",
+      "saved_frames_directory": "outputs/error_forensics/video_0035",
+      "contact_sheet_path": "outputs/error_forensics/video_0035/contact_sheet.jpg"
+    },
+    {
+      "clip_name": "video_0073.mp4",
+      "ground_truth": "jaywalking",
+      "prediction": "compliant",
+      "error_type": "FN",
+      "track_ids": [
+        17,
+        23
+      ],
+      "envelope_bounds": [
+        51,
+        120
+      ],
+      "sample_indices": [
+        51,
+        68,
+        85,
+        102,
+        120
+      ],
+      "timestamps": [
+        1.67,
+        2.23,
+        2.8,
+        3.37,
+        3.97
+      ],
+      "categories": [
+        "CATEGORY B",
+        "CATEGORY G"
+      ],
+      "relevant_pedestrian_visible": "YES",
+      "critical_moment_visible": "NO",
+      "multi_ped_ambiguity": "NO",
+      "main_failure": "Late-Start Event Localization: Detector started at 1.67s, missing pre-crossing curb approach context.",
+      "short_clip_comparison": "Short-clip baseline started at 0.0s, including full approach.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrian is walking on the sidewalk, moving from left to right across the street.\n\n2. **Infrastructure & Right-of-Way**: There appears to be no marked crosswalk visible in this frame; however, there are no traffic signals either. The infrastructure suggests that pedestrians should use sidewalks and cross at designated areas if available.\n\n3. **Vehicle Kinematic Response**: The vehicle is not shown directly interacting with the pedestrian in these frames. However, based on the context of a typical urban street scene, it's reasonable to assume that vehicles would yield or decelerate when a pedestrian crosses the road.\n\n4. **Causal Analysis**: Since there are no visible traffic signals and no marked crosswalks, the pedestrian is expected to use sidewalks and cross at designated areas if available. The absence of such infrastructure makes this crossing situation ambiguous without further context on vehicle behavior. However, based on typical urban practices, a pedestrian walking on the sidewalk should be considered compliant with general traffic laws.\n\n5. **Final Classification**: COMPLIANT",
+      "saved_frames_directory": "outputs/error_forensics/video_0073",
+      "contact_sheet_path": "outputs/error_forensics/video_0073/contact_sheet.jpg"
+    },
+    {
+      "clip_name": "video_0110.mp4",
+      "ground_truth": "jaywalking",
+      "prediction": "compliant",
+      "error_type": "FN",
+      "track_ids": [
+        1,
+        6,
+        13,
+        18,
+        44
+      ],
+      "envelope_bounds": [
+        1,
+        210
+      ],
+      "sample_indices": [
+        1,
+        53,
+        105,
+        157,
+        210
+      ],
+      "timestamps": [
+        0.0,
+        1.73,
+        3.47,
+        5.2,
+        6.97
+      ],
+      "categories": [
+        "CATEGORY C",
+        "CATEGORY G"
+      ],
+      "relevant_pedestrian_visible": "YES",
+      "critical_moment_visible": "NO",
+      "multi_ped_ambiguity": "YES",
+      "main_failure": "Multi-Pedestrian Overly Wide Envelope: Multi-pedestrian envelope (1..210) diluted 5-frame sampling density.",
+      "short_clip_comparison": "Short-clip baseline evaluated tight single-pedestrian segment.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrians are walking on the sidewalk and crossing at a marked crosswalk.\n\n2. **Infrastructure & Right-of-Way**: There is a clearly marked crosswalk where the pedestrians are crossing, indicating that this area has designated pedestrian infrastructure for safe passage across the street.\n\n3. **Vehicle Kinematic Response**: The vehicle appears to be yielding or decelerating as it approaches and stops at the crosswalk to allow the pedestrians to safely cross.\n\n4. **Causal Analysis**: Since the pedestrians are using a marked crosswalk, which is specifically designed for pedestrian traffic, and the vehicle has yielded or decelerated to ensure their safe passage, this interaction complies with traffic regulations that prioritize pedestrian safety.\n\n5. **Final Classification**: COMPLIANT",
+      "saved_frames_directory": "outputs/error_forensics/video_0110",
+      "contact_sheet_path": "outputs/error_forensics/video_0110/contact_sheet.jpg"
+    },
+    {
+      "clip_name": "video_0122.mp4",
+      "ground_truth": "jaywalking",
+      "prediction": "compliant",
+      "error_type": "FN",
+      "track_ids": [
+        1,
+        2,
+        21
+      ],
+      "envelope_bounds": [
+        1,
+        175
+      ],
+      "sample_indices": [
+        1,
+        44,
+        88,
+        131,
+        175
+      ],
+      "timestamps": [
+        0.0,
+        1.43,
+        2.9,
+        4.33,
+        5.8
+      ],
+      "categories": [
+        "CATEGORY B",
+        "CATEGORY D"
+      ],
+      "relevant_pedestrian_visible": "YES",
+      "critical_moment_visible": "NO",
+      "multi_ped_ambiguity": "NO",
+      "main_failure": "Missing Key Transition: Frame spacing (35 frames) jumped over rapid road entry.",
+      "short_clip_comparison": "Short-clip baseline captured key stride transition.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrian is on the sidewalk, moving towards a crosswalk area where they are about to enter the roadway.\n\n2. **Infrastructure & Right-of-Way**: There appears to be no marked crosswalk in the immediate vicinity of the pedestrian's movement; however, there might be an implied right-of-way for pedestrians at this intersection based on general traffic rules and urban design principles.\n\n3. **Vehicle Kinematic Response**: The vehicle is decelerating as it approaches the pedestrian who is crossing or about to cross the street. This suggests that the driver is yielding to the pedestrian's movement, which is a standard practice in many jurisdictions.\n\n4. **Causal Analysis**: Given that the pedestrian is on the sidewalk and moving towards an implied right-of-way for pedestrians (even though there isn't a marked one), and considering the vehicle decelerates to yield to this pedestrian, it can be inferred that the crossing is likely compliant with traffic laws and safety practices.\n\n5. **Final Classification**: COMPLIANT",
+      "saved_frames_directory": "outputs/error_forensics/video_0122",
+      "contact_sheet_path": "outputs/error_forensics/video_0122/contact_sheet.jpg"
+    },
+    {
+      "clip_name": "video_0139.mp4",
+      "ground_truth": "jaywalking",
+      "prediction": "compliant",
+      "error_type": "FN",
+      "track_ids": [
+        1,
+        2,
+        4,
+        14,
+        20,
+        26,
+        35,
+        51
+      ],
+      "envelope_bounds": [
+        1,
+        210
+      ],
+      "sample_indices": [
+        1,
+        53,
+        105,
+        157,
+        210
+      ],
+      "timestamps": [
+        0.0,
+        1.73,
+        3.47,
+        5.2,
+        6.97
+      ],
+      "categories": [
+        "CATEGORY B",
+        "CATEGORY C"
+      ],
+      "relevant_pedestrian_visible": "YES",
+      "critical_moment_visible": "NO",
+      "multi_ped_ambiguity": "YES",
+      "main_failure": "Multi-Pedestrian Dilution: Wide 7.0s envelope diluted crossing stride representation.",
+      "short_clip_comparison": "Short-clip baseline focused on active crossing interval.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrian appears to be walking on the sidewalk, which is a designated area for pedestrians.\n\n2. **Infrastructure & Right-of-Way**: There are no visible marked crosswalks or traffic signals in this frame that would indicate right-of-way rules for pedestrians.\n\n3. **Vehicle Kinematic Response**: The vehicle does not appear to have any significant kinematic response (yielding, decelerating, accelerating) towards the pedestrian at this moment; it seems stationary or moving slowly without direct interaction with the pedestrian.\n\n4. **Causal Analysis**: Since there is no clear indication of a marked crosswalk and the infrastructure does not provide specific right-of-way rules for pedestrians in this scene, we cannot definitively determine if the pedestrian's action is compliant or a violation based on traffic laws alone. However, it seems that the pedestrian is adhering to the sidewalk, which is generally considered safe.\n\n5. **Final Classification**: Based on the available information and assuming standard traffic practices where sidewalks are used for pedestrians' safety, this scenario leans towards being COMPLIANT with pedestrian behavior expectations.",
+      "saved_frames_directory": "outputs/error_forensics/video_0139",
+      "contact_sheet_path": "outputs/error_forensics/video_0139/contact_sheet.jpg"
+    },
+    {
+      "clip_name": "video_0336.mp4",
+      "ground_truth": "jaywalking",
+      "prediction": "compliant",
+      "error_type": "FN",
+      "track_ids": [
+        1,
+        2,
+        6,
+        16
+      ],
+      "envelope_bounds": [
+        1,
+        180
+      ],
+      "sample_indices": [
+        1,
+        45,
+        90,
+        135,
+        180
+      ],
+      "timestamps": [
+        0.0,
+        1.47,
+        2.97,
+        4.47,
+        5.97
+      ],
+      "categories": [
+        "CATEGORY B",
+        "CATEGORY F"
+      ],
+      "relevant_pedestrian_visible": "YES",
+      "critical_moment_visible": "NO",
+      "multi_ped_ambiguity": "NO",
+      "main_failure": "Temporal Sampling Dilution + Conservative VLM Bias: VLM defaulted to COMPLIANT when vehicles moved past.",
+      "short_clip_comparison": "Short-clip baseline clearly showed pedestrian crossing ahead of vehicle.",
+      "vlm_reasoning": "1. **Pedestrian Trajectory & Location**: The pedestrian is walking on the sidewalk, which is adjacent to the roadway where vehicles are moving.\n\n2. **Infrastructure & Right-of-Way**: There appears to be no marked crosswalk in this section of the road. The signal light is not visible or relevant for this analysis as it seems to be a continuous traffic flow without specific pedestrian signals.\n\n3. **Vehicle Kinematic Response**: Vehicles on the road are moving forward and appear to yield slightly, indicating awareness of pedestrians but not necessarily stopping due to the lack of a marked crosswalk or traffic signal.\n\n4. **Causal Analysis**: The pedestrian is walking on the sidewalk as per standard practice in many urban areas where sidewalks exist for pedestrian use. There is no evidence that the pedestrian is crossing into the roadway illegally. The vehicles are yielding, which suggests they are being cautious and respectful of pedestrians' right to walk safely along the designated path.\n\n5. **Final Classification**: COMPLIANT",
+      "saved_frames_directory": "outputs/error_forensics/video_0336",
+      "contact_sheet_path": "outputs/error_forensics/video_0336/contact_sheet.jpg"
+    }
+  ]
+}

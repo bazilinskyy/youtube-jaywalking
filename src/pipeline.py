@@ -85,9 +85,18 @@ def get_pipeline(
                 min_votes_for_jaywalking=resolved_min_votes,
             )
         )
+    elif mode in ("alpamayo", "full_video"):
+        from src.vlm.alpamayo_detector import AlpamayoFullVideoDetector
+        return AlpamayoFullVideoDetector()
+    elif mode == "event_alpamayo":
+        from src.vlm.alpamayo_detector import EventLocalizedAlpamayoDetector
+        return EventLocalizedAlpamayoDetector()
+    elif mode in ("alpamayo_gemma", "gemma_evaluator"):
+        from src.vlm.gemma_evaluator import AlpamayoGemmaEvaluator
+        return AlpamayoGemmaEvaluator()
     else:
         raise ValueError(
-            f"Unknown pipeline mode: '{mode}'. Choose 'vlm', 'balanced', 'high_precision', 'safety', 'cv', or 'ensemble'."
+            f"Unknown pipeline mode: '{mode}'. Choose 'vlm', 'balanced', 'high_precision', 'safety', 'cv', 'ensemble', 'alpamayo', 'event_alpamayo', or 'alpamayo_gemma'."
         )
 
 

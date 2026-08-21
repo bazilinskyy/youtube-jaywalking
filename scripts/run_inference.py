@@ -22,7 +22,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run Jaywalking Detection Inference")
     parser.add_argument("--video", type=str, help="Path to a single video file")
     parser.add_argument("--dir", type=str, help="Path to a directory containing video files")
-    parser.add_argument("--mode", choices=["vlm", "cv", "ensemble"], default="vlm", help="Pipeline mode (default: vlm)")
+    parser.add_argument("--mode", choices=["alpamayo", "vlm", "cv", "ensemble", "full_video"], default="alpamayo", help="Pipeline mode (default: alpamayo)")
     parser.add_argument("--limit", type=int, default=None, help="Max videos to process if --dir is used")
     parser.add_argument("--prompt", choices=["canonical", "right_of_way"], default="canonical", help="VLM prompt preset")
     args = parser.parse_args()
