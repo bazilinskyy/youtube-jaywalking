@@ -1,5 +1,8 @@
-"""
-Vision-Language Model (VLM) client for zero-shot and context-aware classification.
+"""Vision-Language Model (VLM) client for zero-shot classification and scene verification.
+
+This module provides the VLMClassifier class and prompt constants used to interact with
+the locally hosted Ollama daemon (Qwen2.5-VL-7B). It handles prompt formatting, base64 image
+payload construction, timeout management, and graceful error fallbacks.
 """
 
 import logging
@@ -40,9 +43,7 @@ LEGAL_JUNCTION_VERIFIER_PROMPT = (
 
 
 class VLMClassifier:
-    """
-    Interface to local Ollama VLM daemon (Qwen2.5-VL-7B).
-    """
+    """Interface to the local Ollama vision-language model service (Qwen2.5-VL-7B)."""
 
     def __init__(
         self,
@@ -50,14 +51,32 @@ class VLMClassifier:
         api_base: str = "http://localhost:11434",
         temperature: float = 0.0,
         seed: int = 42,
-    ):
+    ) -> None:
+        """Initializes the VLM client configuration.
+
+        Args:
+            model_name: Name of the Ollama model to query. Defaults to 'qwen2.5vl:7b'.
+            api_base: Base URL for the Ollama REST API. Defaults to 'http://localhost:11434'.
+            temperature: Sampling temperature for deterministic generation. Defaults to 0.0.
+            seed: Random seed for reproducible generation. Defaults to 42.
+        """
         self.model_name = model_name
         self.api_base = api_base.rstrip("/")
         self.temperature = temperature
         self.seed = seed
 
     def query(self, prompt: str, base64_image: str, max_tokens: int = 30) -> str:
-        """Sends an image and text prompt to the Ollama /api/chat endpoint."""
+        """Sends a base64-encoded image and text prompt to the Ollama /api/chat endpoint.
+
+        Args:
+            prompt: Text prompt instructing the model on classification or scene verification.
+            base64_image: JPEG image encoded as a base64 string.
+            max_tokens: Maximum number of tokens to predict. Defaults to 30.
+
+        Returns:
+            The raw text response content from the model, stripped of leading/trailing whitespace.
+            In case of network error or timeout, logs the error and returns 'COMPLIANT' as a safe default.
+        """
         url = f"{self.api_base}/api/chat"
         payload = {
             "model": self.model_name,

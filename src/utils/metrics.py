@@ -1,5 +1,7 @@
-"""
-Metrics and evaluation helper utilities.
+"""Metrics and evaluation helper utilities for binary crossing classification.
+
+This module provides functions to compute standard classification metrics, including
+accuracy, precision, recall, specificity, F1 score, and confusion matrix counts.
 """
 
 from typing import Dict, List
@@ -11,14 +13,26 @@ def calculate_classification_metrics(
     pos_label: str = "JAYWALKING",
     neg_label: str = "COMPLIANT",
 ) -> Dict[str, float]:
-    """
-    Computes standard binary classification metrics:
-      - Accuracy
-      - Precision
-      - Recall
-      - Specificity
-      - F1 Score
-      - TP, TN, FP, FN counts
+    """Computes standard binary classification performance metrics.
+
+    Args:
+        y_true: Ground-truth class labels.
+        y_pred: Predicted class labels.
+        pos_label: Positive class label. Defaults to 'JAYWALKING'.
+        neg_label: Negative class label. Defaults to 'COMPLIANT'.
+
+    Returns:
+        Dictionary containing:
+            - accuracy (float): Overall classification accuracy percentage (0.0 to 100.0).
+            - precision (float): Precision percentage (0.0 to 100.0).
+            - recall (float): Recall / sensitivity percentage (0.0 to 100.0).
+            - specificity (float): Specificity / true negative rate percentage (0.0 to 100.0).
+            - f1_score (float): Harmonic mean of precision and recall (0.0 to 100.0).
+            - tp (int): True positive count.
+            - tn (int): True negative count.
+            - fp (int): False positive count.
+            - fn (int): False negative count.
+            - total (int): Total number of evaluated instances.
     """
     tp = sum(1 for yt, yp in zip(y_true, y_pred) if yt == pos_label and yp == pos_label)
     tn = sum(1 for yt, yp in zip(y_true, y_pred) if yt == neg_label and yp == neg_label)

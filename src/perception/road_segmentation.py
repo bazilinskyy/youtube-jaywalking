@@ -1,5 +1,8 @@
-"""
-Semantic road surface segmentation using SegFormer-B0.
+"""Semantic road surface segmentation using SegFormer-B0.
+
+This module provides the RoadSegmenter class, which leverages a lightweight SegFormer-B0
+model fine-tuned on Cityscapes to segment drivable road surfaces and evaluate whether
+pedestrian foot positions overlap with the active roadway.
 """
 
 import cv2
@@ -9,15 +12,19 @@ from transformers import SegformerForSemanticSegmentation, SegformerImageProcess
 
 
 class RoadSegmenter:
-    """
-    SegFormer-B0 Cityscapes segmentation model for identifying drivable roadway pixels.
-    """
+    """SegFormer-B0 Cityscapes segmentation model for identifying drivable roadway pixels."""
 
     def __init__(
         self,
         model_name: str = "nvidia/segformer-b0-finetuned-cityscapes-512-1024",
         device: str = "cuda",
-    ):
+    ) -> None:
+        """Initializes the SegFormer road segmenter.
+
+        Args:
+            model_name: HuggingFace model identifier for pretrained SegFormer weights.
+            device: Target computing device ('cuda' or 'cpu').
+        """
         self.device = torch.device(device if torch.cuda.is_available() and device == "cuda" else "cpu")
         self.processor = SegformerImageProcessor.from_pretrained(model_name)
         self.model = SegformerForSemanticSegmentation.from_pretrained(model_name).to(self.device)
@@ -25,9 +32,13 @@ class RoadSegmenter:
 
     @torch.no_grad()
     def segment_road_mask(self, image_bgr: np.ndarray) -> np.ndarray:
-        """
-        Segments the road mask from an image.
-        Returns a binary uint8 mask where 1 indicates Road (Cityscapes class 0).
+        """Segments the drivable road mask from an input BGR image.
+
+        Args:
+            image_bgr: Input image in OpenCV BGR format (H, W, 3).
+
+        Returns:
+            A binary uint8 2D array of shape (H, W) where 1 indicates road (Cityscapes class 0).
         """
         image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
         inputs = self.processor(images=image_rgb, return_tensors="pt").to(self.device)
@@ -40,7 +51,7 @@ class RoadSegmenter:
             align_corners=False,
         )
         pred_seg = upsampled_logits.argmax(dim=1)[0].cpu().numpy()
-        # Cityscapes: Class 0 is 'road'
+        # Cityscapes: Class 0 corresponds to drivable 'road'
         road_mask = (pred_seg == 0).astype(np.uint8)
         return road_mask
 
@@ -51,8 +62,16 @@ class RoadSegmenter:
         foot_y_norm: float,
         radius_px: int = 24,
     ) -> float:
-        """
-        Calculates the ratio of road pixels in a circular neighborhood around the pedestrian's base coordinates.
+        """Calculates the ratio of road pixels within a circular radius of the pedestrian base coordinates.
+
+        Args:
+            road_mask: Binary road segmentation mask (1=road, 0=non-road).
+            foot_x_norm: Normalized horizontal coordinate of pedestrian base (0.0 to 1.0).
+            foot_y_norm: Normalized vertical coordinate of pedestrian base (0.0 to 1.0).
+            radius_px: Search circle radius in pixels around the foot center. Defaults to 24px.
+
+        Returns:
+            Overlap ratio between 0.0 (strictly off-road / sidewalk) and 1.0 (fully on roadway).
         """
         h, w = road_mask.shape[:2]
         cx = int(np.clip(foot_x_norm * w, 0, w - 1))

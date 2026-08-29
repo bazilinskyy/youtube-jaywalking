@@ -1,6 +1,4 @@
-"""
-Top-level package initialization for crowd-jaywalking.
-"""
+"""Top-level package initialization for crowd-jaywalking."""
 
 from src.pipeline.jaywalking_pipeline import JaywalkingPipeline
 

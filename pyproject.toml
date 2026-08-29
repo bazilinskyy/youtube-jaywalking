@@ -35,6 +35,7 @@ dev = [
     "pytest>=8.0.0",
     "types-requests>=2.31.0",
     "types-PyYAML>=6.0.0",
+    "pydocstyle>=6.3.0",
 ]
 
 [build-system]
@@ -47,3 +48,9 @@ packages = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
+
+[tool.pydocstyle]
+convention = "google"
+match = "(?!test_).*\\.py"
+match-dir = "^(src|scripts|common|custom_logger|logmod)"
+

@@ -1,24 +1,24 @@
-"""
-End-to-End Production Jaywalking Detection Pipeline (Exp57/Exp58 Architecture).
+"""End-to-End Production Jaywalking Detection Pipeline (Exp57/Exp58 Architecture).
+
+This module defines the JaywalkingPipeline class, which orchestrates keyframe extraction,
+zero-shot VLM consensus classification, kinematic pedestrian pose tracking, semantic road
+segmentation, wide-scene contextual verification, and rule-based decision synthesis.
 """
 
 import time
 from typing import Any, Dict
 
-from src.perception.vlm_classifier import VLMClassifier, CANONICAL_CLASSIFICATION_PROMPT
 from src.perception.pedestrian_tracking import PedestrianTracker
 from src.perception.road_segmentation import RoadSegmenter
-from src.pipeline.frame_sampler import FrameSampler
+from src.perception.vlm_classifier import CANONICAL_CLASSIFICATION_PROMPT, VLMClassifier
 from src.pipeline.context_router import ContextRouter
 from src.pipeline.decision_engine import DecisionEngine
+from src.pipeline.frame_sampler import FrameSampler
 from src.utils.video_utils import encode_frame_to_base64
 
 
 class JaywalkingPipeline:
-    """
-    Unified end-to-end jaywalking detection system combining pose tracking,
-    road segmentation, multi-temporal VLM classification, and wide context verification.
-    """
+    """Unified end-to-end jaywalking detection system."""
 
     def __init__(
         self,
@@ -26,7 +26,15 @@ class JaywalkingPipeline:
         pose_model_path: str = "yolo26x-pose.pt",
         seg_model_name: str = "nvidia/segformer-b0-finetuned-cityscapes-512-1024",
         device: str = "cuda",
-    ):
+    ) -> None:
+        """Initializes all perception, tracking, segmentation, and decision submodules.
+
+        Args:
+            vlm_model: Identifier for the local Ollama VLM model.
+            pose_model_path: Path to YOLO26x-Pose model weights.
+            seg_model_name: HuggingFace model path for SegFormer-B0 Cityscapes segmentation.
+            device: Target execution device ('cuda' or 'cpu').
+        """
         self.vlm = VLMClassifier(model_name=vlm_model)
         self.tracker = PedestrianTracker(model_path=pose_model_path)
         self.segmenter = RoadSegmenter(model_name=seg_model_name, device=device)
@@ -35,12 +43,36 @@ class JaywalkingPipeline:
         self.engine = DecisionEngine()
 
     def process_video(self, video_path: str) -> Dict[str, Any]:
-        """
-        Processes an input video clip and returns the prediction and diagnostic metadata.
+        """Processes an input video clip and returns the prediction and diagnostic metadata.
+
+        Executes the 6-stage multimodal inference sequence:
+            1. Extracts 3 chronological keyframes (0%, 50%, 100%).
+            2. Computes independent VLM classification votes on each keyframe.
+            3. Tracks pedestrian pose and extracts lateral displacement, base coordinate, and duration.
+            4. Evaluates multi-temporal road surface segmentation and foot-road overlap.
+            5. Gated wide-scene context verification for crosswalk, public road, and junction status.
+            6. Synthesizes final classification decision and reasoning path via DecisionEngine.
+
+        Args:
+            video_path: Filepath to the input video file (.mp4).
+
+        Returns:
+            Dictionary containing:
+                - prediction (str): Final label ('JAYWALKING' or 'COMPLIANT').
+                - decision_path (str): Human-readable explanation of the triggering decision rule.
+                - votes (List[str]): List of 3 independent VLM frame votes.
+                - lateral_displacement (float): Maximum transverse displacement across track.
+                - mean_y (float): Average vertical coordinate of pedestrian track base.
+                - track_duration_sec (float): Duration in seconds of the primary pedestrian track.
+                - road_overlap (float): Ratio of drivable road pixels at pedestrian foot base.
+                - crosswalk_status (str): Context verification result for marked crosswalks.
+                - road_structure_status (str): Context verification result for roadway structure.
+                - junction_status (str): Context verification result for intersection junctions.
+                - latency_sec (float): Total processing time in seconds.
         """
         t0 = time.time()
 
-        # 1. Sample 3 Keyframes across video
+        # 1. Sample 3 Keyframes across video (Start: 0%, Mid: 50%, End: 100%)
         frames, indices, fps, tot_frames = self.sampler.sample_keyframes(video_path)
         mid_frame = frames[1] if len(frames) > 1 else frames[0]
 

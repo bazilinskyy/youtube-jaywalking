@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""
-Single-video inference CLI using the frozen production architecture.
+"""Single-video inference CLI using the frozen production architecture.
+
+Executes end-to-end jaywalking detection on a monocular video clip and displays
+the classification prediction, triggering decision path, VLM votes, and kinematics.
 
 Usage:
-  python3 scripts/run_inference.py --video path/to/video.mp4
+  uv run python scripts/run_inference.py --video path/to/video.mp4
+  uv run python scripts/run_inference.py --video path/to/video.mp4 --output results/output.json
 """
 
 import argparse
@@ -18,7 +21,8 @@ sys.path.insert(0, str(ROOT_DIR))
 from src.pipeline.jaywalking_pipeline import JaywalkingPipeline  # noqa: E402
 
 
-def main():
+def main() -> None:
+    """Parses command-line arguments and runs single-video inference."""
     parser = argparse.ArgumentParser(description="Run Jaywalking Detection on a single video clip.")
     parser.add_argument("--video", type=str, required=True, help="Path to input video file (.mp4).")
     parser.add_argument("--output", type=str, default=None, help="Optional path to save JSON results.")
