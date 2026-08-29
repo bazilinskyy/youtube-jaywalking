@@ -264,11 +264,14 @@ def extract_video_keypoints_and_kinematics(
 
     return {
         "video_path": video_path,
-        "total_frames": total_frames,
-        "fps": fps,
-        "duration_seconds": duration_seconds,
         "width": width,
         "height": height,
+        "resolution_px": f"{width}x{height}",
+        "frame_count": total_frames,
+        "total_frames": total_frames,
+        "fps": fps,
+        "duration_sec": duration_seconds,
+        "duration_seconds": duration_seconds,
         "total_pedestrian_tracks": len(processed_tracks),
         "tracks": processed_tracks,
     }

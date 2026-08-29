@@ -3,7 +3,7 @@
 ---
 
 ## Current Primary Pipeline
-**VLM Chain-of-Causation (CoC) Full-Video Baseline** (`FullVideoVLMDetector` in [`src/vlm/alpamayo_detector.py`](file:///home/tue20234844/crowd-jaywalking/src/vlm/alpamayo_detector.py)).
+**VLM Chain-of-Causation (CoC) Full-Video Baseline** (`FullVideoVLMDetector` in [`src/vlm/alpamayo_detector.py`](src/vlm/alpamayo_detector.py)).
 * **Configuration:** 5 equidistant frames per clip, single multi-image API call (`qwen2.5vl:7b`, `temp=0.0`, `seed=42`), 5-step Chain-of-Causation reasoning prompt protocol.
 
 ---

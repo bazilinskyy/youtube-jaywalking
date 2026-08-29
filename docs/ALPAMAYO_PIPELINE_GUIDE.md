@@ -102,12 +102,12 @@ evaluation/metrics.py (compute_metrics()) -> 97.44% Acc Summary
 
 | File | Purpose | Main Classes / Functions | Called By | Calls | Important Parameters |
 |---|---|---|---|---|---|
-| [`scripts/run_evaluation.py`](file:///home/tue20234844/crowd-jaywalking/scripts/run_evaluation.py) | CLI entry point | `main()` | Terminal CLI | [`src/pipeline.py`](file:///home/tue20234844/crowd-jaywalking/src/pipeline.py), [`evaluation/evaluator.py`](file:///home/tue20234844/crowd-jaywalking/evaluation/evaluator.py) | `--mode alpamayo`, `--gt data/ground_truth.csv` |
-| [`src/pipeline.py`](file:///home/tue20234844/crowd-jaywalking/src/pipeline.py) | Pipeline factory | `get_pipeline()` | `run_evaluation.py`, `run_inference.py` | [`src/vlm/alpamayo_detector.py`](file:///home/tue20234844/crowd-jaywalking/src/vlm/alpamayo_detector.py) | `mode="alpamayo"` |
-| [`src/vlm/alpamayo_detector.py`](file:///home/tue20234844/crowd-jaywalking/src/vlm/alpamayo_detector.py) | Full-video CoC detector | `FullVideoVLMDetector`, `extract_full_video_frames()`, `parse_coc_response()`, `predict()` | `src/pipeline.py` | [`src/vlm/client.py`](file:///home/tue20234844/crowd-jaywalking/src/vlm/client.py) | `max_frames=5`, `temperature=0.0`, `seed=42` |
-| [`src/vlm/client.py`](file:///home/tue20234844/crowd-jaywalking/src/vlm/client.py) | Ollama HTTP API client | `OllamaClient`, `generate_chat()`, `encode_frame_to_base64()` | `alpamayo_detector.py` | `requests`, `cv2`, `base64` | `model="qwen2.5vl:7b"`, `max_tokens=300` |
-| [`evaluation/evaluator.py`](file:///home/tue20234844/crowd-jaywalking/evaluation/evaluator.py) | Benchmark execution harness | `Evaluator`, `run_evaluation()` | `run_evaluation.py` | [`src/data_loader.py`](file:///home/tue20234844/crowd-jaywalking/src/data_loader.py), [`evaluation/metrics.py`](file:///home/tue20234844/crowd-jaywalking/evaluation/metrics.py) | `ground_truth_path="data/ground_truth.csv"` |
-| [`evaluation/metrics.py`](file:///home/tue20234844/crowd-jaywalking/evaluation/metrics.py) | Metric calculation | `compute_metrics()` | `evaluator.py` | None | Calculates Accuracy, Precision, Recall, Specificity, F1 |
+| [`scripts/run_evaluation.py`](scripts/run_evaluation.py) | CLI entry point | `main()` | Terminal CLI | [`src/pipeline.py`](src/pipeline.py), [`evaluation/evaluator.py`](evaluation/evaluator.py) | `--mode alpamayo`, `--gt data/ground_truth.csv` |
+| [`src/pipeline.py`](src/pipeline.py) | Pipeline factory | `get_pipeline()` | `run_evaluation.py`, `run_inference.py` | [`src/vlm/alpamayo_detector.py`](src/vlm/alpamayo_detector.py) | `mode="alpamayo"` |
+| [`src/vlm/alpamayo_detector.py`](src/vlm/alpamayo_detector.py) | Full-video CoC detector | `FullVideoVLMDetector`, `extract_full_video_frames()`, `parse_coc_response()`, `predict()` | `src/pipeline.py` | [`src/vlm/client.py`](src/vlm/client.py) | `max_frames=5`, `temperature=0.0`, `seed=42` |
+| [`src/vlm/client.py`](src/vlm/client.py) | Ollama HTTP API client | `OllamaClient`, `generate_chat()`, `encode_frame_to_base64()` | `alpamayo_detector.py` | `requests`, `cv2`, `base64` | `model="qwen2.5vl:7b"`, `max_tokens=300` |
+| [`evaluation/evaluator.py`](evaluation/evaluator.py) | Benchmark execution harness | `Evaluator`, `run_evaluation()` | `run_evaluation.py` | [`src/data_loader.py`](src/data_loader.py), [`evaluation/metrics.py`](evaluation/metrics.py) | `ground_truth_path="data/ground_truth.csv"` |
+| [`evaluation/metrics.py`](evaluation/metrics.py) | Metric calculation | `compute_metrics()` | `evaluator.py` | None | Calculates Accuracy, Precision, Recall, Specificity, F1 |
 
 ---
 

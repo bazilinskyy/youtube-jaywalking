@@ -1,80 +1,70 @@
-# Runs and output folders
-runs/
-_output/
-
-# Video and data folders
-video/
-videos/
-data/
-source_videos/
-
-# Model files
-yolov8x.pt
-yolo11x.pt
-
-# Python environment files
-.vscode/
-.pytest_cache/
+# Python environment & cache
+myenv/
+venv/
+env/
+/yt/
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 *.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
 
-# Scripts
-run_download.py
-check.py
-
-# macOS specific files
-**/.DS_Store
-
-# Sublime Text project files
+# IDE & Editor files
+.vscode/
+.idea/
 *.sublime-project
 *.sublime-workspace
+.DS_Store
+**/.DS_Store
 
-# Instance specific files
-config
-config.json
+# Secrets, configs, keys
+.env
+.env.*
 secret
 default.secret
 *.secret
-mapping_queue.csv
-last_updated_pytube.txt
+*.pem
+*.key
 
-# Model files (local downloads)
-models/
-
-# Pickle files
-*.pickle
-
-# Docker files
-docker-compose.debug.yml
-docker-compose.yml
-Dockerfile
-.dockerignore
-
-# venv
-/yt
-
-# temp video file in root
-/*.mp4
-
-# log files
-*.log
-*.out
-
-# log of upgrades
-upgrade_log.json
-myenv/
-!data/ground_truth.csv
-!data/heldout_ground_truth.csv
-
-# Output media and checkpoints
-outputs/**/*.mp4
-outputs/**/*.png
-outputs/keypoint_analysis/visualizations/
-outputs/annotated_videos/
-outputs/pose_diagnostics/
-outputs/error_forensics/**/*.jpg
+# Model weight binaries (Keep repository lightweight for GitHub)
 *.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+models/
 experiments/alpamayo1.5/
 experiments/alpamayo_r1/
 experiments/oom-free-alpamayo/
+
+# Video files & large raw datasets
+videos/
+video/
+source_videos/
+jaad_pedestrian_100/videos/
+*.mp4
+*.avi
+*.mkv
+*.mov
+
+# Temporary outputs & logs
+*.log
+*.out
+runs/
+_output/
+outputs/annotated_videos/
+outputs/pose_diagnostics/
+outputs/keypoint_analysis/visualizations/
+outputs/error_forensics/
+outputs/**/*.mp4
+outputs/**/*.png
+outputs/**/*.jpg
+
+# Preserve core benchmark manifests and result artifacts
+!datasets/manifests/*.csv
+!results/canonical/*
+!results/development/*
+!results/locked_test/*

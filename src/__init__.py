@@ -1,10 +1,7 @@
-from src.pipeline import get_pipeline, EnsembleJaywalkingDetector
-from src.vlm.detector import VLMJaywalkingDetector
-from src.cv.tracker import CVJaywalkingDetector
+"""
+Top-level package initialization for crowd-jaywalking.
+"""
 
-__all__ = [
-    "get_pipeline",
-    "VLMJaywalkingDetector",
-    "CVJaywalkingDetector",
-    "EnsembleJaywalkingDetector",
-]
+from src.pipeline.jaywalking_pipeline import JaywalkingPipeline
+
+__all__ = ["JaywalkingPipeline"]
