@@ -18,7 +18,7 @@ dependencies = [
     "pillow>=10.0.0",
     "tqdm>=4.66.0",
     "plotly>=5.18.0",
-    "kaleido==0.2.1",
+    "kaleido>=1",
     "scipy>=1.11.0",
     "matplotlib>=3.8.0",
     "lapx>=0.5.5",
