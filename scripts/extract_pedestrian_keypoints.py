@@ -19,6 +19,7 @@ Usage:
     python scripts/extract_pedestrian_keypoints.py
 """
 
+from pose_estimator import COCO_KEYPOINTS
 import json
 import os
 import sys
@@ -35,7 +36,6 @@ from ultralytics import YOLO
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR))
 
-from pose_estimator import COCO_KEYPOINTS
 
 SKELETON_CONNECTIONS = [
     (0, 1), (0, 2), (1, 3), (2, 4),           # Head
@@ -83,10 +83,8 @@ def extract_video_keypoints_and_kinematics(
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     duration_seconds = round(total_frames / fps, 3)
 
-    raw_track_frames = {} # tid -> list of frame observations
-
+    raw_track_frames = {}  # tid -> list of frame observations
     frame_idx = 0
-    all_read_frames = []
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -99,7 +97,7 @@ def extract_video_keypoints_and_kinematics(
             frame,
             tracker="bytetrack.yaml",
             persist=True,
-            classes=[0], # Pedestrian class
+            classes=[0],  # Pedestrian class
             conf=conf_thresh,
             verbose=False,
             device=device,
@@ -117,7 +115,7 @@ def extract_video_keypoints_and_kinematics(
         detected_poses = []
         if results_pose.keypoints is not None and results_pose.boxes is not None:
             p_boxes = results_pose.boxes.xywhn.cpu().numpy()
-            p_kps = results_pose.keypoints.data.cpu().numpy() # (N, 17, 3) (x_px, y_px, conf)
+            p_kps = results_pose.keypoints.data.cpu().numpy()  # (N, 17, 3) (x_px, y_px, conf)
             for pb, pkp in zip(p_boxes, p_kps):
                 norm_kps = []
                 for kp in pkp:
@@ -157,7 +155,7 @@ def extract_video_keypoints_and_kinematics(
                         "height": round(bh, 4),
                         "bottom_y": round(cy + bh / 2.0, 4),
                     },
-                    "keypoints": matched_kp, # (17, 3) or None
+                    "keypoints": matched_kp,  # (17, 3) or None
                     "has_valid_keypoints": matched_kp is not None,
                 })
 
@@ -183,7 +181,6 @@ def extract_video_keypoints_and_kinematics(
 
         avg_bw = max(float(np.mean(bws)), 0.02)
         start_x = cxs[0]
-        start_y = cys[0]
 
         max_dx_raw = float(np.max([abs(x - start_x) for x in cxs]))
         norm_motion_score = round(max_dx_raw / avg_bw, 4)
@@ -307,8 +304,10 @@ def generate_trajectory_plot(video_data: dict, out_png_path: str):
             times = [f["timestamp_seconds"] for f in t["frames"]]
             vels = [f["velocity"] for f in t["frames"]]
             plt.plot(times, vels, label=f"Track {t['track_id']} Velocity")
-            plt.axvline(t["roadway_entry_candidate_frame"] / video_data["fps"], color="g", linestyle=":", alpha=0.7, label=f"T{t['track_id']} Entry Frame")
-            plt.axvline(t["peak_motion_frame"] / video_data["fps"], color="r", linestyle=":", alpha=0.7, label=f"T{t['track_id']} Peak Frame")
+            plt.axvline(t["roadway_entry_candidate_frame"] / video_data["fps"], color="g",
+                        linestyle=":", alpha=0.7, label=f"T{t['track_id']} Entry Frame")
+            plt.axvline(t["peak_motion_frame"] / video_data["fps"], color="r",
+                        linestyle=":", alpha=0.7, label=f"T{t['track_id']} Peak Frame")
 
     plt.xlabel("Time (seconds)")
     plt.ylabel("Norm Velocity (bw/s)")
@@ -414,7 +413,7 @@ def run_pipeline():
         raise FileNotFoundError(f"Ground truth missing: {gt_path}")
 
     df_gt = pd.read_csv(gt_path)
-    eval_df = df_gt[df_gt["is_evaluated"] == True].copy()
+    eval_df = df_gt[df_gt["is_evaluated"]].copy()
     total_videos = len(eval_df)
 
     base_out = "outputs/keypoint_analysis"
@@ -492,7 +491,10 @@ def run_pipeline():
                 generate_diagnostic_video_overlay(vpath, v_res, mp4_out)
                 print(f"   Rendered representative diagnostic MP4: {mp4_out}")
 
-            print(f"   [SUCCESS] Tracks={n_tracks} | Valid KP Ratio={round(total_valid_kps / max(1, total_track_frames), 2)} -> Saved: {json_out}")
+            print(
+                f"   [SUCCESS] Tracks={n_tracks} | "
+                f"Valid KP Ratio={round(total_valid_kps / max(1, total_track_frames), 2)} -> Saved: {json_out}"
+            )
 
         except Exception as e:
             print(f"   [ERROR] Extraction failed for {cname}: {e}")

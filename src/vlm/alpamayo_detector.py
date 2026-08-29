@@ -54,7 +54,6 @@ class FullVideoVLMDetector:
             raise FileNotFoundError(f"Cannot open video file: {video_path}")
 
         total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
 
         if total_frames <= 0:
             cap.release()
@@ -234,5 +233,3 @@ class EventLocalizedVLMDetector(FullVideoVLMDetector):
 # Aliases for backward compatibility
 AlpamayoFullVideoDetector = FullVideoVLMDetector
 EventLocalizedAlpamayoDetector = EventLocalizedVLMDetector
-
-

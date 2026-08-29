@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR))
 
-from src.pipeline.jaywalking_pipeline import JaywalkingPipeline
+from src.pipeline.jaywalking_pipeline import JaywalkingPipeline  # noqa: E402
 
 
 def main():
@@ -28,7 +28,7 @@ def main():
         print(f"Error: Video file not found at {args.video}", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Initializing Jaywalking Detection Pipeline (Exp57 Frozen Production)...")
+    print("Initializing Jaywalking Detection Pipeline (Exp57 Frozen Production)...")
     pipeline = JaywalkingPipeline()
 
     print(f"Processing: {args.video}...")

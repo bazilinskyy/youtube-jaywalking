@@ -160,7 +160,7 @@ def get_pedestrian_spatial_position(
 
     x1, y1, x2, y2 = best_box
     xc = (x1 + x2) / (2 * w)
-    
+
     curb_margin = 0.06
     left_bound = boundary.left
     right_bound = boundary.right

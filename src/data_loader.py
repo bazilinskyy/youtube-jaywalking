@@ -11,11 +11,11 @@ def load_ground_truth_records(
 ) -> List[Dict[str, Any]]:
     """
     Loads canonical ground truth records and maps them to local video paths.
-    
+
     Args:
         csv_path: Path to ground truth CSV. Defaults to path from config (data/ground_truth.csv).
         only_evaluable: If True, filters only records marked with is_evaluated=True.
-        
+
     Returns:
         List of dicts representing each dataset record.
     """
@@ -36,7 +36,7 @@ def load_ground_truth_records(
 
             clip_name = row.get("clip_name", "").strip()
             video_path = Path(row.get("video_path", ""))
-            
+
             # Resolve video path if not existing as recorded
             if not video_path.exists():
                 candidate = paths["root"] / video_path

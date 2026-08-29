@@ -76,8 +76,12 @@ class PoseEstimator:
         det_boxes = []  # (cx,cy,bw,bh) normalized per detection
         for box in results.boxes.xyxy.cpu().numpy():
             x1, y1, x2, y2 = box
-            det_boxes.append(((x1 + x2) / (2 * w), (y1 + y2) / (2 * h),
-                               (x2 - x1) / w, (y2 - y1) / h))
+            det_boxes.append((
+                (x1 + x2) / (2 * w),
+                (y1 + y2) / (2 * h),
+                (x2 - x1) / w,
+                (y2 - y1) / h
+            ))
 
         kps_all = results.keypoints.data.cpu().numpy()  # (N_det, 17, 3) pixel+conf
 

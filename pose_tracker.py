@@ -1,6 +1,5 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
-from collections import deque
 import numpy as np
 
 from pose_estimator import Pose, PoseEstimator

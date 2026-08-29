@@ -1,9 +1,8 @@
 import time
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Union
 import cv2
-import numpy as np
 import torch
 from ultralytics import YOLO
 

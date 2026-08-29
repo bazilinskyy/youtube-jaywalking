@@ -70,7 +70,6 @@ class OllamaClient:
             "options": options,
         }
 
-
         try:
             response = requests.post(self.base_url, json=payload, timeout=self.timeout_seconds)
             response.raise_for_status()
@@ -80,4 +79,3 @@ class OllamaClient:
             raise ConnectionError(
                 f"Failed to communicate with Ollama at {self.base_url}. Ensure Ollama daemon is running. Error: {e}"
             ) from e
-

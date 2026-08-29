@@ -1,6 +1,5 @@
 from collections import Counter
-from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 import cv2
 import numpy as np
 import torch
@@ -73,7 +72,7 @@ class TrafficLightClassifier:
             results = model.predict(frame, verbose=False, conf=conf_thresh, imgsz=640, device=device)
             if not results or len(results) == 0 or results[0].boxes is None:
                 return "UNKNOWN"
-            
+
             # Map 20-class TLD output
             red_classes = {1, 6, 7, 8, 9, 12, 17, 18}
             green_classes = {0, 4, 13, 15, 16}

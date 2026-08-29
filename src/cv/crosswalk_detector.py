@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import List, Optional
+from typing import List
 import numpy as np
 import cv2
 
@@ -9,11 +9,11 @@ from src.cv.crosswalk_utils import CrosswalkRegion, merge_regions
 class CrosswalkDetector:
     """
     Classical Computer Vision Crosswalk Detector.
-    
+
     Uses HSV color thresholding, morphological filtering, spatial ROI constraints,
     aspect ratio bounds, white pixel density analysis, and horizontal/vertical
     intensity profile gradient stripe scoring (zebra pattern detection).
-    
+
     Requires ZERO neural network weights or external models.
     """
 

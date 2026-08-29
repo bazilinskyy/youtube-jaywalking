@@ -10,4 +10,3 @@ __all__ = [
     "RIGHT_OF_WAY_PROMPT",
     "get_prompt",
 ]
-

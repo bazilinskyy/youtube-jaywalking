@@ -2,12 +2,11 @@ import unittest
 from pathlib import Path
 import numpy as np
 
-from src.config import get_vlm_config, get_cv_config, get_paths
+from src.config import get_vlm_config, get_cv_config
 from src.data_loader import load_ground_truth_records
 from src.vlm.prompts import get_prompt, CANONICAL_PROMPT
 from src.vlm.detector import VLMJaywalkingDetector
-from src.cv.tracker import CVJaywalkingDetector
-from src.pipeline import get_pipeline, EnsembleJaywalkingDetector
+from src.pipeline import get_pipeline
 from evaluation.metrics import compute_metrics
 
 
@@ -72,7 +71,6 @@ class TestJaywalkingPipeline(unittest.TestCase):
             self.assertEqual(len(indices), 3)
             self.assertIsInstance(frames[0], np.ndarray)
 
-
     def test_pipeline_modes(self):
         p_balanced = get_pipeline(mode="balanced")
         self.assertEqual(p_balanced.min_votes_for_jaywalking, 2)
@@ -89,5 +87,3 @@ class TestJaywalkingPipeline(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-

@@ -15,6 +15,3 @@ __all__ = [
     "PedestrianMotionExtractor",
     "VehicleStateExtractor",
 ]
-
-
-

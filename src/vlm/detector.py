@@ -7,7 +7,7 @@ import numpy as np
 
 from src.config import get_vlm_config
 from src.vlm.client import OllamaClient, encode_frame_to_base64
-from src.vlm.prompts import CANONICAL_PROMPT, get_prompt
+from src.vlm.prompts import get_prompt
 
 
 class VLMJaywalkingDetector:
@@ -37,9 +37,11 @@ class VLMJaywalkingDetector:
         self.timeout_seconds = cfg.get("timeout_seconds", 60)
         self.seed = cfg.get("seed", 42)
         self.use_boundary_context = use_boundary_context
-        self.use_pedestrian_motion = use_pedestrian_motion or (prompt_name in ("temporal_motion", "temporal_vehicle_motion", "v4b"))
+        self.use_pedestrian_motion = use_pedestrian_motion or (
+            prompt_name in ("temporal_motion", "temporal_vehicle_motion", "v4b"))
         self.use_vehicle_context = use_vehicle_context or (prompt_name in ("temporal_vehicle_motion", "v4b"))
-        self.temporal_mode = temporal_mode if temporal_mode is not None else (prompt_name in ("temporal", "temporal_motion", "temporal_vehicle_motion", "v4b"))
+        self.temporal_mode = temporal_mode if temporal_mode is not None else (
+            prompt_name in ("temporal", "temporal_motion", "temporal_vehicle_motion", "v4b"))
         self.min_votes_for_jaywalking = min_votes_for_jaywalking
 
         self.prompt = custom_prompt or get_prompt(prompt_name)
@@ -51,7 +53,6 @@ class VLMJaywalkingDetector:
             max_tokens=self.max_tokens,
             timeout_seconds=self.timeout_seconds,
         )
-
 
         self._boundary_detector = None
         self._yolo = None
@@ -70,9 +71,6 @@ class VLMJaywalkingDetector:
         if self.use_vehicle_context:
             from src.cv.vehicle_state import VehicleStateExtractor
             self._vehicle_extractor = VehicleStateExtractor()
-
-
-
 
     def sample_keyframes(
         self, video_path: Union[str, Path], num_frames: Optional[int] = None
@@ -127,7 +125,6 @@ class VLMJaywalkingDetector:
             "raw_response": raw,
         }
 
-
     def predict(self, video_path: Union[str, Path]) -> Dict[str, Any]:
         """Runs VLM jaywalking detection on a video clip with majority voting."""
         t0 = time.time()
@@ -181,8 +178,6 @@ class VLMJaywalkingDetector:
                 result["vehicle_interaction"] = vehicle_info
             return result
 
-
-
         boundary_info = None
         if self.use_boundary_context and self._boundary_detector is not None:
             boundary_info = self._boundary_detector.detect(video_path)
@@ -202,7 +197,6 @@ class VLMJaywalkingDetector:
             votes.append(res["prediction"])
             raw_responses.append(res["raw_response"])
 
-
         counts = Counter(votes)
         jw_votes = counts.get("jaywalking", 0)
         comp_votes = counts.get("compliant", 0)
@@ -218,7 +212,10 @@ class VLMJaywalkingDetector:
         res_dict = {
             "prediction": final_pred,
             "confidence": confidence,
-            "reason": f"Vote margin ({jw_votes} jaywalking vs {comp_votes} compliant, min_req={self.min_votes_for_jaywalking})",
+            "reason": (
+                f"Vote margin ({jw_votes} jaywalking vs {comp_votes} compliant, "
+                f"min_req={self.min_votes_for_jaywalking})"
+            ),
             "frame_votes": votes,
             "raw_responses": raw_responses,
             "frame_indices": indices,
@@ -228,4 +225,3 @@ class VLMJaywalkingDetector:
         if spatial_positions:
             res_dict["spatial_positions"] = spatial_positions
         return res_dict
-

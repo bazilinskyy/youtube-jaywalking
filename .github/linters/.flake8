@@ -1,2 +1,11 @@
 [flake8]
 max-line-length = 119
+exclude =
+    .git,
+    __pycache__,
+    myenv,
+    venv,
+    experiments/archive,
+    build,
+    dist,
+    *.egg-info

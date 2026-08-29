@@ -2,7 +2,7 @@
 Pedestrian pose detection and multi-object tracking using YOLO26x-Pose and BoT-SORT.
 """
 
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 import numpy as np
 from ultralytics import YOLO
 
@@ -11,6 +11,7 @@ class PedestrianTracker:
     """
     Tracks pedestrians across video sequences and extracts dominant crossing candidate trajectories.
     """
+
     def __init__(
         self,
         model_path: str = "yolo26x-pose.pt",
@@ -36,7 +37,7 @@ class PedestrianTracker:
             conf=self.conf,
             iou=self.iou,
         )
-        
+
         track_boxes: Dict[int, List[dict]] = {}
         for f_i, res in enumerate(results_track):
             if res.boxes is not None and res.boxes.id is not None:
@@ -53,12 +54,12 @@ class PedestrianTracker:
                         "h": float(box[3]),
                         "by": float(box[1] + box[3] / 2.0),
                     })
-                    
+
         lat_disp = 0.0
         mean_y = 0.50
         track_dur = 0.0
         dom_frames: List[dict] = []
-        
+
         if track_boxes:
             scored = []
             for tid, f_list in track_boxes.items():
@@ -71,5 +72,5 @@ class PedestrianTracker:
                 lat_disp, _, dom_frames = scored[0]
                 mean_y = float(np.mean([p["by"] for p in dom_frames]))
                 track_dur = float(len(dom_frames) / max(1.0, fps))
-                
+
         return round(lat_disp, 3), round(mean_y, 3), round(track_dur, 2), dom_frames

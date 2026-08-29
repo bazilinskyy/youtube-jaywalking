@@ -6,53 +6,44 @@
 ###########################
 name: Lint codebase
 
-#
-# Documentation:
-# https://help.github.com/en/articles/workflow-syntax-for-github-actions
-#
-
 #############################
 # Start the job on all push #
 #############################
 on:
   push:
-    # branches-ignore: [master]
-    # Remove the line above to run when pushing to master
   pull_request:
-    branches: [main]
+    branches: [main, v1]
 
 ###############
 # Set the Job #
 ###############
 jobs:
   build:
-    # Name the Job
     name: Lint codebase
-    # Set the agent to run on
     runs-on: ubuntu-latest
 
-    ##################
-    # Load all steps #
-    ##################
     steps:
       ##########################
       # Checkout the code base #
       ##########################
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
-          # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
       ################################
       # Run Linter against code base #
       ################################
       - name: Lint codebase
-        uses: github/super-linter@v3.17.0
+        uses: super-linter/super-linter/slim@v5
         env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: main
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: v1
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FILTER_REGEX_INCLUDE: .*
+          FILTER_REGEX_EXCLUDE: (experiments/archive/.*|outputs/.*|jaad_pedestrian_100/.*|data/.*)
           VALIDATE_PYTHON_BLACK: false
           VALIDATE_PYTHON_ISORT: false
+          VALIDATE_PYTHON_FLAKE8: true
+          VALIDATE_MARKDOWN: false
+          VALIDATE_YAML: true
+          VALIDATE_JSON: false

@@ -1,7 +1,6 @@
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 import cv2
-import numpy as np
 import torch
 from ultralytics import YOLO
 
@@ -126,7 +125,10 @@ class PedestrianMotionExtractor:
             "formatted_context": self._format_context("unknown", "unknown", 0.0, "unknown", confidence),
         }
 
-    def detect_crossing_segment(self, video_path: Union[str, Path]) -> Tuple[Optional[int], Optional[int], Dict[str, Any]]:
+    def detect_crossing_segment(
+        self,
+        video_path: Union[str, Path]
+    ) -> Tuple[Optional[int], Optional[int], Dict[str, Any]]:
         """Detects primary pedestrian crossing segment start and end frame indices."""
         cap = cv2.VideoCapture(str(video_path))
         if not cap.isOpened():
@@ -177,7 +179,6 @@ class PedestrianMotionExtractor:
             return None, None, self._empty_result("none")
 
         primary_tid = max(valid_tracks.keys(), key=lambda tid: max(valid_tracks[tid]) - min(valid_tracks[tid]))
-        xs = valid_tracks[primary_tid]
         f_indices = track_frames[primary_tid]
         start_frame = f_indices[0]
         end_frame = f_indices[-1]

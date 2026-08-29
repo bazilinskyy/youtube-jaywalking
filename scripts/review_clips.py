@@ -5,6 +5,7 @@ Usage:
     python scripts/review_clips.py
     python scripts/review_clips.py --label unlabeled
 """
+from src.data_loader import load_ground_truth_records
 import argparse
 import csv
 import subprocess
@@ -13,8 +14,6 @@ from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR))
-
-from src.data_loader import load_ground_truth_records
 
 
 def play_clip(video_path: str):

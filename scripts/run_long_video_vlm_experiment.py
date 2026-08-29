@@ -11,23 +11,20 @@ Usage:
     python scripts/run_long_video_vlm_experiment.py --video data/raw_clips/video_0006.mp4
 """
 
-import argparse
-import json
-import os
+from pathlib import Path
 import sys
 import time
-from pathlib import Path
-
-import cv2
-import numpy as np
-import torch
-from ultralytics import YOLO
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR))
 
-from src.vlm.alpamayo_detector import FullVideoVLMDetector
-from src.vlm.client import encode_frame_to_base64
+import argparse  # noqa: E402
+import cv2  # noqa: E402
+import numpy as np  # noqa: E402
+import torch  # noqa: E402
+from ultralytics import YOLO  # noqa: E402
+from src.vlm.client import encode_frame_to_base64  # noqa: E402
+from src.vlm.alpamayo_detector import FullVideoVLMDetector  # noqa: E402
 
 
 def extract_candidate_events(video_path: str, min_duration: float = 1.0, min_displacement: float = 0.10):
@@ -167,20 +164,28 @@ def run_experiment(video_path: str):
     # 1. Detection & Extraction
     total_frames, fps, video_duration, candidates = extract_candidate_events(video_path)
 
-    print(f"\n[1. ORIGINAL CANDIDATE TRACK EXTRACTION (YOLO11x + ByteTrack)]")
+    print("\n[1. ORIGINAL CANDIDATE TRACK EXTRACTION (YOLO11x + ByteTrack)]")
     print(f"  Video Duration: {video_duration}s ({total_frames} total frames at {fps:.2f} FPS)")
     print(f"  Original Candidate Tracks Extracted: {len(candidates)}")
     for c in candidates:
-        print(f"   - {c['candidate_id']}: Track {c['track_id']} | Frames {c['start_frame']}–{c['end_frame']} ({c['start_timestamp']}s–{c['end_timestamp']}s, dur {c['duration']}s, disp {c['displacement']})")
+        print(
+            f"   - {c['candidate_id']}: Track {c['track_id']} | "
+            f"Frames {c['start_frame']}–{c['end_frame']} ({c['start_timestamp']}s–{c['end_timestamp']}s, "
+            f"dur {c['duration']}s, disp {c['displacement']})"
+        )
 
     # 2. Merging Mechanism
     merged_events = merge_overlapping_events(candidates, fps=fps)
 
-    print(f"\n[2. TEMPORAL EVENT MERGING & GROUPING]")
+    print("\n[2. TEMPORAL EVENT MERGING & GROUPING]")
     print(f"  Event Count Before Merging: {len(candidates)}")
     print(f"  Event Count After Merging:  {len(merged_events)}")
     for m in merged_events:
-        print(f"   - {m['event_id']}: Tracks {m['track_ids']} | Frames {m['start_frame']}–{m['end_frame']} ({m['start_timestamp']}s–{m['end_timestamp']}s, duration {m['duration']}s)")
+        print(
+            f"   - {m['event_id']}: Tracks {m['track_ids']} | "
+            f"Frames {m['start_frame']}–{m['end_frame']} ({m['start_timestamp']}s–{m['end_timestamp']}s, "
+            f"duration {m['duration']}s)"
+        )
 
     if not merged_events:
         print("  No crossing events remaining after merging.")
@@ -228,7 +233,10 @@ def run_experiment(video_path: str):
             "inference_time": elapsed,
         })
 
-        print(f"\n  --- {m['event_id']} (Tracks {m['track_ids']}, Frames {s_f}–{e_f}, {m['start_timestamp']}s–{m['end_timestamp']}s) ---")
+        print(
+            f"\n  --- {m['event_id']} (Tracks {m['track_ids']}, Frames {s_f}–{e_f}, "
+            f"{m['start_timestamp']}s–{m['end_timestamp']}s) ---"
+        )
         print(f"  VLM Verdict: {verdict}")
         print(f"  Inference Latency: {elapsed}s")
         print(f"  VLM Chain-of-Causation Reasoning:\n{coc_text}")
@@ -249,7 +257,10 @@ def run_experiment(video_path: str):
     print(f"Candidate Tracks Before:   {len(candidates)}")
     print(f"Merged Crossing Events:    {len(merged_events)}")
     for r in event_results:
-        print(f"  * {r['event_id']}: Frames {r['start_frame']}–{r['end_frame']} ({r['start_timestamp']}s–{r['end_timestamp']}s) -> {r['verdict']} ({r['inference_time']}s)")
+        print(
+            f"  * {r['event_id']}: Frames {r['start_frame']}–{r['end_frame']} "
+            f"({r['start_timestamp']}s–{r['end_timestamp']}s) -> {r['verdict']} ({r['inference_time']}s)"
+        )
     print(f"Final Aggregated Verdict:  {final_video_verdict}")
     print(f"Total VLM Inference Time:  {total_vlm_latency}s")
     print(f"Total Script Time:         {total_execution_time}s")

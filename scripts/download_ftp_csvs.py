@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 FTP CSV Downloader for Crowd Jaywalking Project
 
@@ -6,7 +5,7 @@ Downloads object detection / pedestrian CSV files from the mobility FTP server
 matching video sequences defined in mapping.csv.
 
 Usage:
-    python scripts/download_ftp_csvs.py [--secret secret] [--mapping experiments/legacy/mapping.csv] [--output data/csv]
+    python scripts/download_ftp_csvs.py [--secret secret] [--mapping mapping.csv] [--output data/csv]
 """
 
 import argparse
@@ -51,9 +50,11 @@ def connect_ftp(ftp_host: str, username: str, password: str, alias: str, max_ret
             ftp.cwd(alias)
             return ftp
         except Exception as e:
-            logger.warning(f"FTP connection attempt {attempt}/{max_retries} failed ({e}). Retrying in {attempt * 2}s...")
+            logger.warning(
+                f"FTP connection attempt {attempt}/{max_retries} failed ({e}). Retrying in {attempt * 2}s...")
             time.sleep(attempt * 2)
-    raise ConnectionError(f"Could not connect to FTP host '{ftp_host}' under alias '{alias}' after {max_retries} retries.")
+    raise ConnectionError(
+        f"Could not connect to FTP host '{ftp_host}' under alias '{alias}' after {max_retries} retries.")
 
 
 def download_csv_files_from_ftp(
@@ -108,7 +109,8 @@ def download_csv_files_from_ftp(
 
         try:
             v_list = eval(str(videos)) if isinstance(videos, str) and videos.startswith("[") else [videos]
-            st_list = eval(str(start_times)) if isinstance(start_times, str) and start_times.startswith("[") else [start_times]
+            st_list = eval(str(start_times)) if isinstance(
+                start_times, str) and start_times.startswith("[") else [start_times]
         except Exception:
             v_list = [videos]
             st_list = [start_times]
@@ -154,7 +156,7 @@ def download_csv_files_from_ftp(
                         else:
                             logger.info(f"Downloading '{remote_file}' from FTP ('{alias}')...")
                             os.makedirs(alias_output_dir, exist_ok=True)
-                            
+
                             # Attempt download with reconnection safety
                             success = False
                             for attempt in range(1, 4):
@@ -166,12 +168,15 @@ def download_csv_files_from_ftp(
                                     success = True
                                     break
                                 except Exception as download_err:
-                                    logger.warning(f"Download failed for '{remote_file}' (attempt {attempt}/3): {download_err}. Reconnecting...")
+                                    logger.warning(
+                                        f"Download failed for '{remote_file}' (attempt {attempt}/3): {download_err}."
+                                        " Reconnecting..."
+                                    )
                                     try:
                                         ftps[alias] = connect_ftp(ftp_host, username, password, alias)
                                     except Exception as reconnect_err:
                                         logger.error(f"Reconnection failed: {reconnect_err}")
-                                
+
                             if not success and os.path.exists(local_file_path):
                                 os.remove(local_file_path)
                         break

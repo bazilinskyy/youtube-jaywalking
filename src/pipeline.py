@@ -54,7 +54,7 @@ def get_pipeline(
         - 'ensemble' (fused VLM + CV decision)
     """
     mode = mode.lower()
-    
+
     # Resolve vote threshold
     if min_votes is not None:
         resolved_min_votes = min_votes
@@ -96,10 +96,6 @@ def get_pipeline(
         return AlpamayoGemmaEvaluator()
     else:
         raise ValueError(
-            f"Unknown pipeline mode: '{mode}'. Choose 'vlm', 'balanced', 'high_precision', 'safety', 'cv', 'ensemble', 'alpamayo', 'event_alpamayo', or 'alpamayo_gemma'."
+            f"Unknown pipeline mode: '{mode}'. Choose 'vlm', 'balanced', 'high_precision', 'safety', "
+            "'cv', 'ensemble', 'alpamayo', 'event_alpamayo', or 'alpamayo_gemma'."
         )
-
-
-
-
-

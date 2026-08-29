@@ -2,7 +2,6 @@
 Semantic road surface segmentation using SegFormer-B0.
 """
 
-from typing import List, Tuple
 import cv2
 import numpy as np
 import torch
@@ -13,6 +12,7 @@ class RoadSegmenter:
     """
     SegFormer-B0 Cityscapes segmentation model for identifying drivable roadway pixels.
     """
+
     def __init__(
         self,
         model_name: str = "nvidia/segformer-b0-finetuned-cityscapes-512-1024",
@@ -57,22 +57,22 @@ class RoadSegmenter:
         h, w = road_mask.shape[:2]
         cx = int(np.clip(foot_x_norm * w, 0, w - 1))
         cy = int(np.clip(foot_y_norm * h, 0, h - 1))
-        
+
         y_min = max(0, cy - radius_px)
         y_max = min(h, cy + radius_px + 1)
         x_min = max(0, cx - radius_px)
         x_max = min(w, cx + radius_px + 1)
-        
+
         patch = road_mask[y_min:y_max, x_min:x_max]
         if patch.size == 0:
             return 0.0
-            
+
         y_indices, x_indices = np.ogrid[y_min - cy:y_max - cy, x_min - cx:x_max - cx]
         dist_from_center = np.sqrt(x_indices**2 + y_indices**2)
         circle_mask = dist_from_center <= radius_px
-        
+
         if not np.any(circle_mask):
             return 0.0
-            
+
         overlap = np.mean(patch[circle_mask])
         return float(overlap)

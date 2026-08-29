@@ -3,7 +3,7 @@ Video decoding, frame sampling, and base64 encoding utilities.
 """
 
 import base64
-from typing import List, Optional, Tuple
+from typing import List, Tuple
 import cv2
 import numpy as np
 
@@ -28,19 +28,19 @@ def extract_equidistant_frames(
     cap = cv2.VideoCapture(vpath)
     if not cap.isOpened():
         raise FileNotFoundError(f"Could not open video file at: {vpath}")
-        
+
     fps = cap.get(cv2.CAP_PROP_FPS) or 30.0
     tot_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    
+
     if tot_frames <= 0:
         cap.release()
         raise ValueError(f"Video {vpath} contains 0 frames.")
-        
+
     if num_frames == 3:
         indices = [0, max(0, tot_frames // 2), max(0, tot_frames - 1)]
     else:
         indices = [int(x) for x in np.linspace(0, tot_frames - 1, num_frames)]
-        
+
     frames = []
     for idx in indices:
         cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
@@ -50,6 +50,6 @@ def extract_equidistant_frames(
         else:
             # Fallback black frame if corrupt
             frames.append(np.zeros((720, 1280, 3), dtype=np.uint8))
-            
+
     cap.release()
     return frames, indices, fps, tot_frames

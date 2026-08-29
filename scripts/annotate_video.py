@@ -2,21 +2,19 @@
 """
 CLI tool to generate an annotated video with visual bounding boxes and VLM decision overlay.
 Usage:
-    python scripts/annotate_video.py --video data/raw_clips/video_0014.mp4 --output outputs/annotated_videos/video_0014_annotated.mp4
+    python scripts/annotate_video.py --video video.mp4 --output video_annotated.mp4
 """
+from src.vlm.alpamayo_detector import AlpamayoFullVideoDetector
+from src.config import get_cv_config
 import argparse
 import sys
 from pathlib import Path
 import cv2
-import numpy as np
 import torch
 from ultralytics import YOLO
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR))
-
-from src.config import get_cv_config
-from src.vlm.alpamayo_detector import AlpamayoFullVideoDetector
 
 
 def parse_coc_summary(coc_text: str) -> dict:
@@ -51,7 +49,8 @@ def main():
         print(f"Error: Video file not found: {input_path}")
         sys.exit(1)
 
-    out_path = Path(args.output) if args.output else ROOT_DIR / "outputs" / "annotated_videos" / f"{input_path.stem}_annotated.mp4"
+    out_path = Path(args.output) if args.output else ROOT_DIR / "outputs" / \
+        "annotated_videos" / f"{input_path.stem}_annotated.mp4"
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     print(f"Running Alpamayo visual reasoning on {input_path.name}...")
@@ -98,7 +97,8 @@ def main():
                 if cid == 0:  # Pedestrian
                     color = (255, 255, 255)
                     cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
-                    cv2.putText(frame, f"Ped {tid}" if tid != -1 else "Ped", (x1, max(y1 - 5, 15)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+                    cv2.putText(frame, f"Ped {tid}" if tid != -1 else "Ped",
+                                (x1, max(y1 - 5, 15)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
                 elif cid in (2, 3, 5, 7):  # Vehicles
                     cv2.rectangle(frame, (x1, y1), (x2, y2), (120, 120, 120), 1)
 
@@ -113,10 +113,14 @@ def main():
         cv2.rectangle(frame, (10, bot_y), (w - 10, h - 10), (20, 20, 20), -1)
         cv2.rectangle(frame, (10, bot_y), (w - 10, h - 10), banner_color, 2)
 
-        cv2.putText(frame, f"1. Trajectory: {coc_summary['trajectory'][:85]}", (20, bot_y + 25), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (220, 220, 220), 1)
-        cv2.putText(frame, f"2. Infrastructure: {coc_summary['infrastructure'][:85]}", (20, bot_y + 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (220, 220, 220), 1)
-        cv2.putText(frame, f"3. Vehicle Response: {coc_summary['vehicle_response'][:85]}", (20, bot_y + 75), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (220, 220, 220), 1)
-        cv2.putText(frame, f"4. Final Verdict: {pred_label} | Frame {frame_idx}/{total_frames}", (20, bot_y + 105), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 255), 2)
+        cv2.putText(frame, f"1. Trajectory: {coc_summary['trajectory'][:85]}",
+                    (20, bot_y + 25), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (220, 220, 220), 1)
+        cv2.putText(frame, f"2. Infrastructure: {coc_summary['infrastructure'][:85]}",
+                    (20, bot_y + 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (220, 220, 220), 1)
+        cv2.putText(frame, f"3. Vehicle Response: {coc_summary['vehicle_response'][:85]}",
+                    (20, bot_y + 75), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (220, 220, 220), 1)
+        cv2.putText(frame, f"4. Final Verdict: {pred_label} | Frame {frame_idx}/{total_frames}",
+                    (20, bot_y + 105), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 255), 2)
 
         out_writer.write(frame)
 
