@@ -1,4 +1,5 @@
 # Python environment & cache
+.venv/
 myenv/
 venv/
 env/
@@ -24,8 +25,8 @@ htmlcov/
 .env
 .env.*
 secret
-default.secret
 *.secret
+!default.secret
 *.pem
 *.key
 
@@ -53,8 +54,10 @@ jaad_pedestrian_100/videos/
 # Temporary outputs & logs
 *.log
 *.out
-runs/
+_logs/
 _output/
+_cache/
+runs/
 outputs/annotated_videos/
 outputs/pose_diagnostics/
 outputs/keypoint_analysis/visualizations/

@@ -6,7 +6,7 @@ from src.config import get_vlm_config, get_cv_config
 from src.data_loader import load_ground_truth_records
 from src.vlm.prompts import get_prompt, CANONICAL_PROMPT
 from src.vlm.detector import VLMJaywalkingDetector
-from src.pipeline import get_pipeline
+from src.pipeline_factory import get_pipeline
 from evaluation.metrics import compute_metrics
 
 
