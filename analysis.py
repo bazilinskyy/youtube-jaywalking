@@ -39,11 +39,8 @@ import math
 from pathlib import Path
 
 import plotly.express as px
-import plotly.graph_objects as go
 import numpy as np
 import pandas as pd
-
-import common
 
 
 # -------------------------------------------------------------------------
@@ -174,14 +171,12 @@ def midpoint(point_a, point_b):
     return (point_a + point_b) / 2.0
 
 
-
 def euclidean_distance(point_a, point_b):
     """
     Euclidean distance between two 2D points.
     """
 
     return float(np.linalg.norm(point_a - point_b))
-
 
 
 def keypoints_to_pixels(
@@ -230,7 +225,6 @@ def keypoints_to_pixels(
     return coordinates, valid
 
 
-
 def get_body_centre(coordinates, valid):
     """
     Find a stable body centre.
@@ -262,7 +256,6 @@ def get_body_centre(coordinates, valid):
         return None
 
     return np.median(visible_points, axis=0)
-
 
 
 def get_body_scale(
@@ -319,7 +312,6 @@ def get_body_scale(
     return None
 
 
-
 def normalise_pose(
     coordinates,
     valid,
@@ -370,7 +362,6 @@ def normalise_pose(
     return normalised
 
 
-
 def subset_motion(
     pose_previous,
     pose_current,
@@ -419,7 +410,6 @@ def subset_motion(
     return float(np.median(distances) / delta_time)
 
 
-
 def overall_pose_motion(
     pose_previous,
     pose_current,
@@ -466,7 +456,6 @@ def overall_pose_motion(
     )
 
     return motion, len(distances)
-
 
 
 def calculate_torso_lean(
@@ -522,7 +511,6 @@ def calculate_torso_lean(
     )
 
     return float(angle)
-
 
 
 def calculate_global_translation(
