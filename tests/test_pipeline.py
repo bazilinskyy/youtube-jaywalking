@@ -1,45 +1,114 @@
+"""Unit tests for the production Jaywalking Detection architecture (Exp57/Exp58)."""
+
 import unittest
-from pathlib import Path
 import numpy as np
 
-from src.config import get_vlm_config, get_cv_config
-from src.data_loader import load_ground_truth_records
-from src.vlm.prompts import get_prompt, CANONICAL_PROMPT
-from src.vlm.detector import VLMJaywalkingDetector
-from src.pipeline_factory import get_pipeline
-from evaluation.metrics import compute_metrics
+from src.pipeline.decision_engine import DecisionEngine
+from src.perception.vlm_classifier import (
+    CANONICAL_CLASSIFICATION_PROMPT,
+    CROSSWALK_VERIFIER_PROMPT,
+    PUBLIC_ROADWAY_VERIFIER_PROMPT,
+    LEGAL_JUNCTION_VERIFIER_PROMPT,
+)
+from src.utils.metrics import calculate_classification_metrics
+from src.utils.video_utils import encode_frame_to_base64
+import common
 
 
-class TestJaywalkingPipeline(unittest.TestCase):
+class TestProductionPipeline(unittest.TestCase):
+    """Verifies core production pipeline components and decision logic."""
 
-    def test_config_loader(self):
-        vlm_cfg = get_vlm_config()
+    def setUp(self) -> None:
+        """Initializes decision engine and test fixtures."""
+        self.engine = DecisionEngine()
+
+    def test_config_loader(self) -> None:
+        """Tests that default configuration keys are properly loaded."""
+        vlm_cfg = common.get_configs("vlm")
         self.assertEqual(vlm_cfg.get("model"), "qwen2.5vl:7b")
-        self.assertEqual(vlm_cfg.get("num_frames"), 3)
+        self.assertEqual(vlm_cfg.get("num_keyframes"), 3)
 
-        cv_cfg = get_cv_config()
-        self.assertTrue(Path(cv_cfg["yolo_model"]).exists())
+        tracking_cfg = common.get_configs("tracking")
+        self.assertEqual(tracking_cfg.get("model_path"), "yolo26x-pose.pt")
 
-    def test_ground_truth_loader(self):
-        records = load_ground_truth_records(only_evaluable=True)
-        self.assertEqual(len(records), 39)
-        for r in records:
-            self.assertIn(r["ground_truth"], ("jaywalking", "compliant"))
-            self.assertTrue(Path(r["video_path"]).exists(), f"Video missing: {r['video_path']}")
+    def test_decision_engine_rules(self) -> None:
+        """Tests each decision path in the frozen Exp57 decision engine."""
+        # 1. Unanimous Jaywalking -> Public Street = JAYWALKING
+        pred, reason = self.engine.evaluate(
+            votes=["JAYWALKING", "JAYWALKING", "JAYWALKING"],
+            lateral_displacement=0.5,
+            mean_y=0.6,
+            track_duration_sec=3.0,
+            static_road_overlap=0.8,
+            crosswalk_status="NO_CROSSWALK",
+            road_structure_status="PUBLIC_STREET",
+            junction_status="UNREGULATED_MIDBLOCK",
+        )
+        self.assertEqual(pred, "JAYWALKING")
+        self.assertIn("unanimous VLM", reason)
 
-    def test_prompt_presets(self):
-        prompt = get_prompt("canonical")
-        self.assertEqual(prompt, CANONICAL_PROMPT)
-        self.assertIn("JAYWALKING or COMPLIANT", prompt)
+        # 2. Unanimous Jaywalking + Legal Crosswalk = COMPLIANT
+        pred, reason = self.engine.evaluate(
+            votes=["JAYWALKING", "JAYWALKING", "JAYWALKING"],
+            lateral_displacement=0.5,
+            mean_y=0.6,
+            track_duration_sec=3.0,
+            static_road_overlap=0.8,
+            crosswalk_status="LEGAL_CROSSWALK",
+            road_structure_status="PUBLIC_STREET",
+            junction_status="UNREGULATED_MIDBLOCK",
+        )
+        self.assertEqual(pred, "COMPLIANT")
+        self.assertIn("crosswalk", reason.lower())
 
-    def test_metrics_calculation(self):
-        dummy_results = [
-            {"ground_truth": "jaywalking", "prediction": "jaywalking"},
-            {"ground_truth": "jaywalking", "prediction": "jaywalking"},
-            {"ground_truth": "compliant", "prediction": "compliant"},
-            {"ground_truth": "compliant", "prediction": "jaywalking"},  # FP
-        ]
-        m = compute_metrics(dummy_results)
+        # 3. Unanimous Jaywalking + Driveway Apron Filter = COMPLIANT
+        pred, reason = self.engine.evaluate(
+            votes=["JAYWALKING", "JAYWALKING", "JAYWALKING"],
+            lateral_displacement=0.1,
+            mean_y=0.90,
+            track_duration_sec=7.0,
+            static_road_overlap=0.10,
+            crosswalk_status="NO_CROSSWALK",
+            road_structure_status="PUBLIC_STREET",
+            junction_status="UNREGULATED_MIDBLOCK",
+        )
+        self.assertEqual(pred, "COMPLIANT")
+        self.assertIn("bumper", reason.lower())
+
+        # 4. 2/3 Fast-Crossing Sprint Dash = JAYWALKING
+        pred, reason = self.engine.evaluate(
+            votes=["JAYWALKING", "JAYWALKING", "COMPLIANT"],
+            lateral_displacement=0.25,
+            mean_y=0.6,
+            track_duration_sec=1.2,
+            static_road_overlap=0.5,
+            crosswalk_status="NO_CROSSWALK",
+            road_structure_status="PUBLIC_STREET",
+            junction_status="UNREGULATED_MIDBLOCK",
+        )
+        self.assertEqual(pred, "JAYWALKING")
+        self.assertIn("dash", reason.lower())
+
+        # 5. Compliant Consensus = COMPLIANT
+        pred, reason = self.engine.evaluate(
+            votes=["COMPLIANT", "COMPLIANT", "COMPLIANT"],
+            lateral_displacement=0.05,
+            mean_y=0.5,
+            track_duration_sec=4.0,
+            static_road_overlap=0.0,
+            crosswalk_status="NO_CROSSWALK",
+            road_structure_status="PUBLIC_STREET",
+            junction_status="UNREGULATED_MIDBLOCK",
+        )
+        self.assertEqual(pred, "COMPLIANT")
+        self.assertIn("Compliant consensus", reason)
+
+    def test_metrics_calculation(self) -> None:
+        """Tests standard classification metrics computation."""
+        y_true = ["JAYWALKING", "JAYWALKING", "COMPLIANT", "COMPLIANT"]
+        y_pred = ["JAYWALKING", "JAYWALKING", "COMPLIANT", "JAYWALKING"]  # 1 FP
+
+        m = calculate_classification_metrics(y_true, y_pred)
         self.assertEqual(m["tp"], 2)
         self.assertEqual(m["tn"], 1)
         self.assertEqual(m["fp"], 1)
@@ -47,42 +116,19 @@ class TestJaywalkingPipeline(unittest.TestCase):
         self.assertEqual(m["accuracy"], 75.0)
         self.assertEqual(m["recall"], 100.0)
 
-    def test_all_ground_truth_records(self):
-        all_records = load_ground_truth_records(only_evaluable=False)
-        self.assertEqual(len(all_records), 50)
-        evaluable = [r for r in all_records if r["is_evaluated"]]
-        non_evaluable = [r for r in all_records if not r["is_evaluated"]]
-        self.assertEqual(len(evaluable), 39)
-        self.assertEqual(len(non_evaluable), 11)
+    def test_prompt_constants(self) -> None:
+        """Verifies core VLM prompt text definitions."""
+        self.assertIn("JAYWALKING or COMPLIANT", CANONICAL_CLASSIFICATION_PROMPT)
+        self.assertIn("LEGAL_CROSSWALK", CROSSWALK_VERIFIER_PROMPT)
+        self.assertIn("PUBLIC_STREET", PUBLIC_ROADWAY_VERIFIER_PROMPT)
+        self.assertIn("LEGAL_JUNCTION_CROSSING", LEGAL_JUNCTION_VERIFIER_PROMPT)
 
-    def test_vlm_response_parser(self):
-        detector = VLMJaywalkingDetector()
-        self.assertEqual(detector.parse_response("JAYWALKING"), "jaywalking")
-        self.assertEqual(detector.parse_response("The classification is COMPLIANT."), "compliant")
-        self.assertEqual(detector.parse_response("Jaywalking - crossing on red"), "jaywalking")
-        self.assertEqual(detector.parse_response("UNCERTAIN"), "unknown")
-
-    def test_vlm_keyframe_sampling(self):
-        detector = VLMJaywalkingDetector()
-        test_video = Path(__file__).resolve().parents[1] / "data" / "raw_clips" / "video_0014.mp4"
-        if test_video.exists():
-            frames, indices = detector.sample_keyframes(test_video, num_frames=3)
-            self.assertEqual(len(frames), 3)
-            self.assertEqual(len(indices), 3)
-            self.assertIsInstance(frames[0], np.ndarray)
-
-    def test_pipeline_modes(self):
-        p_balanced = get_pipeline(mode="balanced")
-        self.assertEqual(p_balanced.min_votes_for_jaywalking, 2)
-
-        p_hp = get_pipeline(mode="high_precision")
-        self.assertEqual(p_hp.min_votes_for_jaywalking, 3)
-
-        p_safety = get_pipeline(mode="safety")
-        self.assertEqual(p_safety.min_votes_for_jaywalking, 1)
-
-        p_custom = get_pipeline(mode="vlm", min_votes=3)
-        self.assertEqual(p_custom.min_votes_for_jaywalking, 3)
+    def test_frame_encoding(self) -> None:
+        """Verifies base64 frame encoding utility."""
+        dummy_frame = np.zeros((480, 640, 3), dtype=np.uint8)
+        b64 = encode_frame_to_base64(dummy_frame)
+        self.assertIsInstance(b64, str)
+        self.assertGreater(len(b64), 0)
 
 
 if __name__ == "__main__":

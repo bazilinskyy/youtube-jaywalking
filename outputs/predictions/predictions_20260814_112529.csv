@@ -1,3 +1,0 @@
-clip_id,clip_name,ground_truth,prediction,is_correct,failure_type,confidence,reason,elapsed_seconds,video_path,notes
-video_0003,video_0003.mp4,compliant,compliant,True,CORRECT,medium,"Vote margin (2 jaywalking vs 1 compliant, min_req=3)",0.879,data/raw_clips/video_0003.mp4,
-video_0014,video_0014.mp4,compliant,compliant,True,CORRECT,medium,"Vote margin (1 jaywalking vs 2 compliant, min_req=3)",0.844,data/raw_clips/video_0014.mp4,

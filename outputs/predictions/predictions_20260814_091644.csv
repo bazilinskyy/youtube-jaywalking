@@ -1,6 +1,0 @@
-clip_id,clip_name,ground_truth,prediction,is_correct,failure_type,confidence,reason,elapsed_seconds,video_path,notes
-video_0003,video_0003.mp4,compliant,jaywalking,False,FP,high,Majority vote (2 jaywalking vs 1 compliant),4.135,data/raw_clips/video_0003.mp4,
-video_0014,video_0014.mp4,compliant,compliant,True,CORRECT,high,Majority vote (1 jaywalking vs 2 compliant),0.832,data/raw_clips/video_0014.mp4,
-video_0028,video_0028.mp4,jaywalking,jaywalking,True,CORRECT,high,Majority vote (3 jaywalking vs 0 compliant),4.111,data/raw_clips/video_0028.mp4,
-video_0030,video_0030.mp4,jaywalking,jaywalking,True,CORRECT,high,Majority vote (3 jaywalking vs 0 compliant),4.145,data/raw_clips/video_0030.mp4,
-video_0035,video_0035.mp4,jaywalking,jaywalking,True,CORRECT,high,Majority vote (3 jaywalking vs 0 compliant),4.19,data/raw_clips/video_0035.mp4,

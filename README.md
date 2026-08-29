@@ -136,11 +136,14 @@ uv run python scripts/run_inference.py --video path/to/video.mp4
 
 ### Run Benchmark Evaluations:
 ```bash
-# Evaluate on Canonical 39-video benchmark
-uv run python scripts/run_canonical_evaluation.py
+# Evaluate on Development 69-video benchmark (Exp 57)
+uv run python scripts/evaluate.py --split development
 
-# Evaluate on Locked 30-video test benchmark
-uv run python scripts/run_locked_evaluation.py
+# Evaluate on Locked 30-video test benchmark (Exp 58)
+uv run python scripts/evaluate.py --split locked_test
+
+# Evaluate on Canonical 39-video benchmark
+uv run python scripts/evaluate.py --split canonical
 ```
 
 ---
