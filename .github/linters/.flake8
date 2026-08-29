@@ -5,7 +5,8 @@ exclude =
     __pycache__,
     myenv,
     venv,
-    experiments/archive,
+    experiments,
+    data,
     build,
     dist,
     *.egg-info

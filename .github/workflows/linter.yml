@@ -40,6 +40,6 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: v1
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FILTER_REGEX_EXCLUDE: (experiments/archive/.*|outputs/.*|jaad_pedestrian_100/.*|data/.*)
+          FILTER_REGEX_EXCLUDE: .*(experiments/|outputs/|jaad_pedestrian_100/|data/).*
           VALIDATE_PYTHON_FLAKE8: true
           VALIDATE_YAML: true

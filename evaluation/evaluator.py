@@ -35,11 +35,11 @@ class Evaluator:
         if limit:
             records = records[:limit]
 
-        print(f"\n==================================================")
+        print("\n==================================================")
         print(f"Starting Evaluation on {len(records)} clips")
         print(f"Ground Truth Source: {self.gt_path}")
         print(f"Pipeline: {self.pipeline.__class__.__name__}")
-        print(f"==================================================\n")
+        print("==================================================\n")
 
         results: List[Dict[str, Any]] = []
         t0 = time.time()
@@ -69,7 +69,14 @@ class Evaluator:
 
             # Match status
             is_match = (pred == gt) if gt in ("jaywalking", "compliant") else None
-            failure_type = "CORRECT" if is_match else ("FP" if (gt == "compliant" and pred == "jaywalking") else ("FN" if (gt == "jaywalking" and pred == "compliant") else "OTHER"))
+            if is_match:
+                failure_type = "CORRECT"
+            elif gt == "compliant" and pred == "jaywalking":
+                failure_type = "FP"
+            elif gt == "jaywalking" and pred == "compliant":
+                failure_type = "FN"
+            else:
+                failure_type = "OTHER"
 
             status_icon = "✓" if is_match else ("✗" if is_match is False else "-")
             print(f"Pred={pred:<11} [{status_icon}] ({elapsed:.1f}s)")
@@ -120,7 +127,10 @@ class Evaluator:
         print(f"{'-'*75}")
         for r in results:
             status = "PASS" if r["is_correct"] else ("FAIL" if r["is_correct"] is False else "N/A")
-            print(f"{r['clip_name']:<18} | {r['ground_truth']:<11} | {r['prediction']:<11} | {status:<7} | {r['elapsed_seconds']:>4.1f}s | {r['reason'][:30]}")
+            print(
+                f"{r['clip_name']:<18} | {r['ground_truth']:<11} | {r['prediction']:<11} | "
+                f"{status:<7} | {r['elapsed_seconds']:>4.1f}s | {r['reason'][:30]}"
+            )
 
         print(f"{'='*75}")
         print(f"Accuracy:        {metrics['accuracy']}% ({metrics['correct']}/{metrics['total_evaluated']})")
