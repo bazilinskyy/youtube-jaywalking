@@ -33,7 +33,9 @@ class PedestrianTracker:
         self.conf = conf
         self.iou = iou
 
-    def track_video(self, video_path: str, fps: float) -> Tuple[float, float, float, List[dict]]:
+    def track_video(
+        self, video_path: str, fps: float
+    ) -> Tuple[float, float, float, float, List[dict]]:
         """Executes multi-object tracking across an entire video and identifies the dominant pedestrian track.
 
         Identifies candidate pedestrian tracks having at least 3 observed frames, scores them
@@ -47,6 +49,7 @@ class PedestrianTracker:
         Returns:
             A tuple containing:
                 - lateral_displacement (float): Maximum normalized horizontal displacement (0.0 to 1.0).
+                - mean_x (float): Average normalized horizontal position of the bounding box center (0.0 to 1.0).
                 - mean_bottom_y (float): Average normalized vertical position of the bounding box base (0.0 to 1.0).
                 - track_duration_sec (float): Duration in seconds the dominant pedestrian was actively tracked.
                 - dominant_frames (List[dict]): Frame-by-frame bounding box annotations for the dominant track.
@@ -78,6 +81,7 @@ class PedestrianTracker:
                     })
 
         lat_disp = 0.0
+        mean_x = 0.50
         mean_y = 0.50
         track_dur = 0.0
         dom_frames: List[dict] = []
@@ -94,7 +98,14 @@ class PedestrianTracker:
                 # Dominant candidate is the pedestrian with the largest transverse trajectory
                 scored.sort(key=lambda x: x[0], reverse=True)
                 lat_disp, _, dom_frames = scored[0]
+                mean_x = float(np.mean([p["cx"] for p in dom_frames]))
                 mean_y = float(np.mean([p["by"] for p in dom_frames]))
                 track_dur = float(len(dom_frames) / max(1.0, fps))
 
-        return round(lat_disp, 3), round(mean_y, 3), round(track_dur, 2), dom_frames
+        return (
+            round(lat_disp, 3),
+            round(mean_x, 3),
+            round(mean_y, 3),
+            round(track_dur, 2),
+            dom_frames,
+        )

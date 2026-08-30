@@ -87,14 +87,14 @@ class JaywalkingPipeline:
         p_unanimous = "JAYWALKING" if votes.count("JAYWALKING") == 3 else "COMPLIANT"
 
         # 3. Pedestrian Trajectory Tracking
-        lat_disp, mean_y, track_dur, _ = self.tracker.track_video(video_path, fps=fps)
+        lat_disp, mean_x, mean_y, track_dur, _ = self.tracker.track_video(video_path, fps=fps)
 
         # 4. Multi-temporal Road Surface Segmentation
         temporal_frames = self.sampler.sample_temporal_timestamps(video_path, fractions=[0.25, 0.50, 0.75])
         ov_samples = []
         for fr in temporal_frames:
             rmask = self.segmenter.segment_road_mask(fr)
-            ov = self.segmenter.evaluate_foot_road_overlap(rmask, 0.50, mean_y, radius_px=24)
+            ov = self.segmenter.evaluate_foot_road_overlap(rmask, mean_x, mean_y, radius_px=24)
             ov_samples.append(ov)
 
         static_road_ov = ov_samples[1] if len(ov_samples) > 1 else 0.0

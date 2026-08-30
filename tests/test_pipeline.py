@@ -131,6 +131,44 @@ class TestProductionPipeline(unittest.TestCase):
         self.assertIsInstance(b64, str)
         self.assertGreater(len(b64), 0)
 
+    def test_pedestrian_tracker_mean_x(self) -> None:
+        """Verifies PedestrianTracker computes mean_x from tracked pedestrian detections."""
+        from unittest.mock import MagicMock
+        import torch
+        from src.perception.pedestrian_tracking import PedestrianTracker
+
+        tracker = PedestrianTracker.__new__(PedestrianTracker)
+        tracker.tracker_config = "configs/botsort_custom.yaml"
+        tracker.conf = 0.25
+        tracker.iou = 0.5
+
+        # Create mock tracking results with an off-center pedestrian (cx ~ 0.20)
+        # xywhn format: [cx, cy, w, h]
+        mock_res1 = MagicMock()
+        mock_res1.boxes.id = torch.tensor([1])
+        mock_res1.boxes.xywhn = torch.tensor([[0.18, 0.60, 0.08, 0.20]])
+
+        mock_res2 = MagicMock()
+        mock_res2.boxes.id = torch.tensor([1])
+        mock_res2.boxes.xywhn = torch.tensor([[0.20, 0.62, 0.08, 0.20]])
+
+        mock_res3 = MagicMock()
+        mock_res3.boxes.id = torch.tensor([1])
+        mock_res3.boxes.xywhn = torch.tensor([[0.22, 0.64, 0.08, 0.20]])
+
+        tracker.model = MagicMock()
+        tracker.model.track.return_value = [mock_res1, mock_res2, mock_res3]
+
+        lat_disp, mean_x, mean_y, track_dur, dom_frames = tracker.track_video("mock_video.mp4", fps=30.0)
+
+        # Expected: mean_x = mean([0.18, 0.20, 0.22]) = 0.20
+        self.assertAlmostEqual(mean_x, 0.20, places=2)
+        # Expected: lat_disp = abs(0.22 - 0.18) = 0.04
+        self.assertAlmostEqual(lat_disp, 0.04, places=2)
+        # Expected: mean_y = mean([0.60 + 0.10, 0.62 + 0.10, 0.64 + 0.10]) = 0.72
+        self.assertAlmostEqual(mean_y, 0.72, places=2)
+        self.assertEqual(len(dom_frames), 3)
+
 
 if __name__ == "__main__":
     unittest.main()
