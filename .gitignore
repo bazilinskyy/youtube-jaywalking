@@ -63,3 +63,4 @@ outputs/
 # Preserved benchmark manifests and results
 !datasets/manifests/*.csv
 !results/**
+results
