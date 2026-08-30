@@ -1,50 +1,41 @@
-"""Custom logger module supporting brace-style formatting."""
-
 import logging
-from typing import Any
 
 
 class CustomLogger:
-    """Logger wrapper that handles brace-style string formatting.
+    """Logger that handles string formatting.
 
-    Wraps a standard logging.Logger instance to allow str.format() style
-    positional placeholders within log messages while retaining standard logging levels.
+    Contains a logging.Logger object. Copies the various logging.Logger
+    methods. The purpose is to accept str.format() style formatting.
+    With this custom class, messages may contain '{}' where the next
+    arguments will be placed. Doesn't work with keyword arguments for the
+    formatting.
 
-    Args:
-        name: Name of the logger, typically __name__.
+    Examples
+    --------
+    >>> CustomLogger(__name__)
+    <gazes.CustomLogger object at 0x00000AB32390>
     """
 
-    def __init__(self, name: str) -> None:
-        """Initializes CustomLogger with the specified name."""
+    def __init__(self, name):
         self.logger = logging.getLogger(name)
         self.logger.setLevel(5)
 
-    def debug(self, msg: str, *args: Any, **kwargs: Any) -> None:
-        """Logs a message with level DEBUG."""
+    def debug(self, msg, *args, **kwargs):
         self.log(logging.DEBUG, msg, *args, **kwargs)
 
-    def info(self, msg: str, *args: Any, **kwargs: Any) -> None:
-        """Logs a message with level INFO."""
+    def info(self, msg, *args, **kwargs):
         self.log(logging.INFO, msg, *args, **kwargs)
 
-    def warning(self, msg: str, *args: Any, **kwargs: Any) -> None:
-        """Logs a message with level WARNING."""
+    def warning(self, msg, *args, **kwargs):
         self.log(logging.WARNING, msg, *args, **kwargs)
 
-    def error(self, msg: str, *args: Any, **kwargs: Any) -> None:
-        """Logs a message with level ERROR."""
+    def error(self, msg, *args, **kwargs):
         self.log(logging.ERROR, msg, *args, **kwargs)
 
-    def critical(self, msg: str, *args: Any, **kwargs: Any) -> None:
-        """Logs a message with level CRITICAL."""
+    def critical(self, msg, *args, **kwargs):
         self.log(logging.CRITICAL, msg, *args, **kwargs)
 
-    def log(self, level: int, msg: str, *args: Any, **kwargs: Any) -> None:
-        """Logs a message with the specified integer level."""
+    def log(self, level, msg, *args, **kwargs):
         if self.logger.isEnabledFor(level):
-            if args:
-                try:
-                    msg = msg.format(*args)
-                except Exception:
-                    pass
+            msg = msg.format(*args)
             self.logger._log(level, msg, args=(), **kwargs)

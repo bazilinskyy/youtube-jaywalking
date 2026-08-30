@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """Unified benchmark evaluation runner for the frozen Jaywalking detection pipeline.
 
-Evaluates the frozen production architecture across canonical, development, or locked test splits.
+Evaluates the frozen production architecture across development or locked test splits.
 
 Usage:
   uv run python scripts/evaluate.py --split development
   uv run python scripts/evaluate.py --split locked_test
-  uv run python scripts/evaluate.py --split canonical
   uv run python scripts/evaluate.py --manifest path/to/custom_manifest.csv --video-dir path/to/videos
 """
 
@@ -19,6 +18,7 @@ from typing import Optional
 
 import pandas as pd
 
+# Add repository root to system path for submodule imports
 ROOT_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT_DIR))
 
@@ -26,6 +26,7 @@ from src.pipeline.jaywalking_pipeline import JaywalkingPipeline  # noqa: E402
 from src.utils.metrics import calculate_classification_metrics  # noqa: E402
 
 
+# Canonical manifest configurations for standardized splits
 SPLIT_DEFAULTS = {
     "development": {
         "manifest": "datasets/manifests/development_manifest.csv",
@@ -38,12 +39,6 @@ SPLIT_DEFAULTS = {
         "video_dir": "jaad_pedestrian_100/videos",
         "output_dir": "results/locked_test",
         "description": "LOCKED TEST BENCHMARK (30 UNSEEN VIDEOS — EXP58 EVALUATION)",
-    },
-    "canonical": {
-        "manifest": "experiments/legacy/mapping.csv",
-        "video_dir": "videos",
-        "output_dir": "results/canonical",
-        "description": "CANONICAL BENCHMARK (39 VIDEOS — EXP57 FROZEN PIPELINE)",
     },
 }
 
@@ -68,18 +63,22 @@ def evaluate_split(
     Raises:
         FileNotFoundError: If the manifest file is not found.
     """
+    # Guard: verify manifest existence
     if not os.path.isfile(manifest_path):
         raise FileNotFoundError(f"Manifest not found at {manifest_path}")
 
+    # Compute manifest SHA-256 for audit and research integrity
     with open(manifest_path, "rb") as fp:
         manifest_hash = hashlib.sha256(fp.read()).hexdigest()
 
+    # Load dataset manifest
     df = pd.read_csv(manifest_path)
     total_clips = len(df)
 
-    # Normalize ground truth column
+    # Normalize ground truth column representation
     if "ground_truth" not in df.columns:
         if "is_jaywalking" in df.columns:
+            # Convert binary 0/1 integers into canonical uppercase strings
             df["ground_truth"] = df["is_jaywalking"].apply(
                 lambda x: "JAYWALKING" if int(x) == 1 else "COMPLIANT"
             )
@@ -93,11 +92,13 @@ def evaluate_split(
     print(f"Videos:     {total_clips}")
     print("=" * 80)
 
+    # Initialize frozen end-to-end perception pipeline
     pipeline = JaywalkingPipeline()
     records = []
     y_true = []
     y_pred = []
 
+    # Iterate sequentially across all clips in the manifest
     for idx, (_, row) in enumerate(df.iterrows(), start=1):
         if "clip_name" in row:
             cname = str(row["clip_name"])
@@ -110,15 +111,18 @@ def evaluate_split(
         gt = str(row["ground_truth"]).upper()
         vpath = os.path.join(video_dir, cname)
 
+        # Check if local video binary is present on disk
         if not os.path.isfile(vpath):
             print(f"[{idx:02d}/{total_clips:02d}] {cname:<16} WARNING: File not found at {vpath}. Skipping.")
             continue
 
+        # Run full multimodal perception and decision synthesis
         res = pipeline.process_video(vpath)
         pred = res["prediction"]
         is_corr = (pred == gt)
         sym = "✓" if is_corr else "✗"
 
+        # Record true and predicted labels for metrics calculation
         y_true.append(gt)
         y_pred.append(pred)
 
@@ -127,6 +131,7 @@ def evaluate_split(
             f"({res['latency_sec']}s) Path: {res['decision_path']}"
         )
 
+        # Append detailed per-video diagnostic record
         records.append({
             "video_id": cname,
             "ground_truth": gt,
@@ -142,11 +147,15 @@ def evaluate_split(
             "latency_sec": res["latency_sec"],
         })
 
+    # Compute overall benchmark performance metrics
     metrics = calculate_classification_metrics(y_true, y_pred)
 
+    # Optionally persist outputs and summaries
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
+        # Write per-video predictions CSV
         pd.DataFrame(records).to_csv(os.path.join(output_dir, "per_video_results.csv"), index=False)
+        # Write summary metrics CSV
         pd.DataFrame([metrics]).to_csv(os.path.join(output_dir, "results_summary.csv"), index=False)
 
     print("\n" + "=" * 80)
@@ -162,14 +171,14 @@ def evaluate_split(
     return metrics
 
 
-def main():
+def main() -> None:
     """CLI entry point for running benchmark evaluations."""
     parser = argparse.ArgumentParser(
         description="Unified Jaywalking Detection Benchmark Evaluator."
     )
     parser.add_argument(
         "--split",
-        choices=["development", "locked_test", "canonical"],
+        choices=["development", "locked_test"],
         default=None,
         help="Preconfigured evaluation split.",
     )
@@ -193,6 +202,7 @@ def main():
     )
     args = parser.parse_args()
 
+    # Route preconfigured split or custom manifest inputs
     if args.split:
         cfg = SPLIT_DEFAULTS[args.split]
         manifest_path = args.manifest or cfg["manifest"]

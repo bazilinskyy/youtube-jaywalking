@@ -24,12 +24,13 @@ class TestProductionPipeline(unittest.TestCase):
 
     def test_config_loader(self) -> None:
         """Tests that default configuration keys are properly loaded."""
-        vlm_cfg = common.get_configs("vlm")
-        self.assertEqual(vlm_cfg.get("model"), "qwen2.5vl:7b")
-        self.assertEqual(vlm_cfg.get("num_keyframes"), 3)
-
-        tracking_cfg = common.get_configs("tracking")
-        self.assertEqual(tracking_cfg.get("model_path"), "yolo26x-pose.pt")
+        import json
+        import os
+        with open(os.path.join(common.root_dir, "default.config")) as f:
+            cfg = json.load(f)
+        self.assertEqual(cfg["vlm_model"], "qwen2.5vl:7b")
+        self.assertEqual(cfg["vlm_num_keyframes"], 3)
+        self.assertEqual(cfg["tracking_model_path"], "yolo26x-pose.pt")
 
     def test_decision_engine_rules(self) -> None:
         """Tests each decision path in the frozen Exp57 decision engine."""

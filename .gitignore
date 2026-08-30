@@ -3,7 +3,6 @@
 myenv/
 venv/
 env/
-/yt/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -24,28 +23,29 @@ htmlcov/
 # Secrets, configs, keys
 .env
 .env.*
+config
+*.config
+!default.config
 secret
 *.secret
 !default.secret
 *.pem
 *.key
 
-# Model weight binaries (Keep repository lightweight for GitHub)
+# Model weight binaries
 *.pt
 *.pth
 *.bin
 *.onnx
 *.safetensors
 models/
-experiments/alpamayo1.5/
-experiments/alpamayo_r1/
-experiments/oom-free-alpamayo/
 
-# Video files & large raw datasets
+# Video files & large raw datasets (Never commit videos)
 videos/
 video/
 source_videos/
-jaad_pedestrian_100/videos/
+jaad_pedestrian_100/
+data/
 *.mp4
 *.avi
 *.mkv
@@ -58,16 +58,8 @@ _logs/
 _output/
 _cache/
 runs/
-outputs/annotated_videos/
-outputs/pose_diagnostics/
-outputs/keypoint_analysis/visualizations/
-outputs/error_forensics/
-outputs/**/*.mp4
-outputs/**/*.png
-outputs/**/*.jpg
+outputs/
 
-# Preserve core benchmark manifests and result artifacts
+# Preserved benchmark manifests and results
 !datasets/manifests/*.csv
-!results/canonical/*
-!results/development/*
-!results/locked_test/*
+!results/**

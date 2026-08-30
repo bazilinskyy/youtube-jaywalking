@@ -34,16 +34,26 @@ def calculate_classification_metrics(
             - fn (int): False negative count.
             - total (int): Total number of evaluated instances.
     """
+    # Count true positives: ground truth and prediction are both positive (JAYWALKING)
     tp = sum(1 for yt, yp in zip(y_true, y_pred) if yt == pos_label and yp == pos_label)
+    # Count true negatives: ground truth and prediction are both negative (COMPLIANT)
     tn = sum(1 for yt, yp in zip(y_true, y_pred) if yt == neg_label and yp == neg_label)
+    # Count false positives: actual compliant incorrectly flagged as jaywalking
     fp = sum(1 for yt, yp in zip(y_true, y_pred) if yt == neg_label and yp == pos_label)
+    # Count false negatives: actual jaywalking missed by pipeline
     fn = sum(1 for yt, yp in zip(y_true, y_pred) if yt == pos_label and yp == neg_label)
 
+    # Compute aggregate totals and guard against division by zero
     total = len(y_true)
+    # Accuracy: overall fraction of correctly classified clips
     acc = (tp + tn) / max(1, total) * 100.0
+    # Precision: positive predictive value (TP / (TP + FP))
     prec = tp / max(1, tp + fp) * 100.0 if (tp + fp) > 0 else 0.0
+    # Recall (Sensitivity): true positive rate (TP / (TP + FN))
     rec = tp / max(1, tp + fn) * 100.0 if (tp + fn) > 0 else 0.0
+    # Specificity: true negative rate (TN / (TN + FP))
     spec = tn / max(1, tn + fp) * 100.0 if (tn + fp) > 0 else 0.0
+    # F1 Score: balanced harmonic mean of precision and recall
     f1 = 2 * prec * rec / max(1e-6, prec + rec) if (prec + rec) > 0 else 0.0
 
     return {

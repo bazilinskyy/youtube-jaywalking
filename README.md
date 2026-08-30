@@ -107,9 +107,6 @@ crowd-jaywalking/
 │   ├── BENCHMARK_PROTOCOL.md       # Split definitions & evaluation protocols
 │   └── PROJECT_REPORT.md           # Research methodology and evolution report
 │
-├── experiments/
-│   └── archive/                    # Immutable historical research artifacts (Exps 42–58)
-│
 ├── common.py                       # Configuration & secret loading utilities
 ├── custom_logger.py                # Standardized custom logger with brace formatting
 ├── logmod.py                       # Global logging handlers setup
@@ -122,7 +119,6 @@ crowd-jaywalking/
 
 - **`src/`**: Contains the active production implementation.
 - **`scripts/`**: Contains only the necessary execution interfaces (`run_inference.py`, `evaluate.py`).
-- **`experiments/archive/`**: Contains frozen historical research artifacts (Exps 42–58) preserved as research evidence, excluded from active production linting.
 - **`results/`**: Contains verified benchmark summaries, per-video CSV records, and confusion matrices.
 - **`docs/`**: Detailed technical reports, architecture specifications, and benchmark protocols.
 
@@ -180,9 +176,6 @@ uv run python scripts/evaluate.py --split development
 # Evaluate on the Locked 30-video test benchmark (Exp 58)
 uv run python scripts/evaluate.py --split locked_test
 
-# Evaluate on the Canonical 39-video benchmark
-uv run python scripts/evaluate.py --split canonical
-
 # Evaluate on a custom manifest
 uv run python scripts/evaluate.py --manifest path/to/manifest.csv --video-dir path/to/videos --output-dir results/custom
 ```
@@ -196,7 +189,7 @@ uv run python scripts/evaluate.py --manifest path/to/manifest.csv --video-dir pa
 - **Split Separation:** Development (69 videos) and Locked Test (30 videos) partitions are strictly segregated.
 - **Integrity Verification:** Dataset manifests are tracked and verified with SHA-256 checksums (`locked_test_manifest.csv`: `0ba8541a9ba09dfaa03fa130064be2bc5d7024a6b7f4dc9bbb8e38ee4ae07269`).
 - **Frozen Architecture:** The Exp 57 pipeline was fully frozen prior to executing the single Exp 58 test benchmark evaluation.
-- **Historical Evidence:** All exploratory and ablation scripts are preserved under `experiments/archive/` as immutable research records.
+- **Minimal Production Codebase:** Obsolete prototype scripts have been removed to ensure the repository remains minimal, auditable, and maintainable.
 
 ---
 
