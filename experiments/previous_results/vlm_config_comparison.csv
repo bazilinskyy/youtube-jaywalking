@@ -1,6 +1,0 @@
-config,model,ensemble,accuracy,precision,recall,f1,tp,tn,fp,fn,correct,total,time
-1. Simple prompt / 2b,qwen2.5vl:7b,False,84.61538461538461,90.0,90.0,90.0,9,2,1,1,11,13,55.42300248146057
-2. Simple prompt / 7b,qwen2.5vl:7b,False,84.61538461538461,90.0,90.0,90.0,9,2,1,1,11,13,11.00248646736145
-3. Step-by-step rules / 7b,qwen2.5vl:7b,False,84.61538461538461,90.0,90.0,90.0,9,2,1,1,11,13,12.416964292526245
-4. Step-by-step + ensemble / 7b,qwen2.5vl:7b,True,84.61538461538461,90.0,90.0,90.0,9,2,1,1,11,13,11.152535438537598
-5. Detailed per-frame / 7b,qwen2.5vl:7b,False,76.92307692307693,76.92307692307693,100.0,86.95652173913044,10,0,3,0,10,13,11.905686616897583
