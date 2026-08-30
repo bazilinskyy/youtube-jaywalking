@@ -1,5 +1,0 @@
-Configuration,Accuracy,Precision,Recall,Specificity,F1 Score,TP,TN,FP,FN
-★ Exp 57: Refined Context Synergy Architecture (NEW CHAMPION),92.75%,83.33%,100.0%,88.64%,90.91%,25,39,5,0
-Exp 57A: Refined Public-Road Verifier Only,91.3%,80.65%,100.0%,86.36%,89.29%,25,38,6,0
-Exp 57C: Junction Crossing Verifier Only,89.86%,84.62%,88.0%,90.91%,86.28%,22,40,4,3
-Baseline: Exp 56C (Previous Champion),88.41%,77.42%,96.0%,84.09%,85.71%,24,37,7,1
