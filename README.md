@@ -65,13 +65,13 @@ flowchart TD
    - **Road Structure Verifier:** Differentiates public roadways from enclosed private garages and parking aprons (`PUBLIC_STREET` vs. `PRIVATE_ENCLOSED`).
    - **Junction Verifier:** Checks for legal crossings at intersection corners (`LEGAL_JUNCTION_CROSSING` vs. `UNREGULATED_MIDBLOCK`).
 6. **Hierarchical Decision Synthesis:** [`DecisionEngine`](src/pipeline/decision_engine.py) evaluates the frozen Exp 57 decision tree:
-   - *Rule 1 (Driveway Apron Filter):* If unanimous VLM, $\bar{y} > 0.84$, $T_{\text{track}} > 6.0\text{s}$, and $\text{road\_overlap} < 0.30 \implies \text{COMPLIANT}$.
-   - *Rule 2 (Marked Crosswalk):* If unanimous VLM and $\text{crosswalk} = \text{LEGAL\_CROSSWALK} \implies \text{COMPLIANT}$.
-   - *Rule 3 (Intersection Junction):* If unanimous VLM, $\text{junction} = \text{LEGAL\_JUNCTION\_CROSSING}$, $\text{road} = \text{PUBLIC\_STREET}$, and $\Delta x \ge 0.70 \implies \text{COMPLIANT}$.
-   - *Rule 4 (Enclosed Private Space):* If unanimous VLM, $\text{road} = \text{PRIVATE\_ENCLOSED}$, and $\bar{y} > 0.82 \implies \text{COMPLIANT}$.
-   - *Rule 5 (Confirmed Public Roadway):* Unanimous VLM on public street $\implies \text{JAYWALKING}$.
-   - *Fast-Crossing Dash Fallback:* If 2/3 votes, $T_{\text{track}} \le 1.5\text{s}$, $\Delta x \ge 0.15$, and $\text{crosswalk} = \text{NO\_CROSSWALK} \implies \text{JAYWALKING}$.
-   - *Default:* $\text{COMPLIANT}$.
+   - *Rule 1 (Driveway Apron Filter):* If unanimous VLM, $\bar{y} > 0.84$, $T_{\text{track}} > 6.0\text{s}$, and `road_overlap` $< 0.30$ $\implies$ `COMPLIANT`.
+   - *Rule 2 (Marked Crosswalk):* If unanimous VLM and `crosswalk_status` == `LEGAL_CROSSWALK` $\implies$ `COMPLIANT`.
+   - *Rule 3 (Intersection Junction):* If unanimous VLM, `junction_status` == `LEGAL_JUNCTION_CROSSING`, `road_structure_status` == `PUBLIC_STREET`, and $\Delta x \ge 0.70$ $\implies$ `COMPLIANT`.
+   - *Rule 4 (Enclosed Private Space):* If unanimous VLM, `road_structure_status` == `PRIVATE_ENCLOSED`, and $\bar{y} > 0.82$ $\implies$ `COMPLIANT`.
+   - *Rule 5 (Confirmed Public Roadway):* Unanimous VLM on public street $\implies$ `JAYWALKING`.
+   - *Fast-Crossing Dash Fallback:* If 2/3 votes, $T_{\text{track}} \le 1.5\text{s}$, $\Delta x \ge 0.15$, and `crosswalk_status` == `NO_CROSSWALK` $\implies$ `JAYWALKING`.
+   - *Default:* `COMPLIANT`.
 
 ---
 
