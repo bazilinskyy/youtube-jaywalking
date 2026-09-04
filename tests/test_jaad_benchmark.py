@@ -5,7 +5,12 @@ import unittest
 from pathlib import Path
 
 from crowd_jaywalking.jaad import JAADPedestrianTrack, JAADVideoAnnotations
-from crowd_jaywalking.jaad_benchmark import box_iou, match_person_tracks
+from crowd_jaywalking.jaad_benchmark import (
+    JAADCrossingBenchmark,
+    _classification_metrics,
+    box_iou,
+    match_person_tracks,
+)
 from crowd_jaywalking.models import BoundingBox, TrackObservation
 from crowd_jaywalking.tracking import load_observations_csv, save_observations_csv
 
@@ -81,6 +86,67 @@ class JAADBenchmarkTests(unittest.TestCase):
             loaded = load_observations_csv(path)
 
         self.assertEqual(loaded, observations)
+
+    def test_single_class_metrics_are_reported_as_undefined(self) -> None:
+        metrics = _classification_metrics(
+            [
+                {
+                    "ground_truth_crossing": False,
+                    "predicted_crossing": False,
+                },
+                {
+                    "ground_truth_crossing": False,
+                    "predicted_crossing": False,
+                },
+            ]
+        )
+
+        self.assertEqual(metrics["tn"], 2)
+        self.assertEqual(metrics["accuracy_percent"], 100.0)
+        self.assertEqual(metrics["specificity_percent"], 100.0)
+        self.assertIsNone(metrics["precision_percent"])
+        self.assertIsNone(metrics["recall_percent"])
+        self.assertIsNone(metrics["f1_percent"])
+        self.assertIsNone(metrics["balanced_accuracy_percent"])
+
+    def test_f1_is_zero_when_positive_crossings_are_missed(self) -> None:
+        metrics = _classification_metrics(
+            [
+                {
+                    "ground_truth_crossing": True,
+                    "predicted_crossing": False,
+                },
+                {
+                    "ground_truth_crossing": False,
+                    "predicted_crossing": False,
+                },
+            ]
+        )
+
+        self.assertEqual(metrics["recall_percent"], 0.0)
+        self.assertEqual(metrics["f1_percent"], 0.0)
+        self.assertIsNone(metrics["precision_percent"])
+        self.assertEqual(metrics["balanced_accuracy_percent"], 50.0)
+
+    def test_track_diagnostics_include_motion_features(self) -> None:
+        observations = [
+            TrackObservation(
+                frame_index=frame,
+                track_id=7,
+                class_id=0,
+                confidence=0.9,
+                box=box(0.10 + frame * 0.05, 0.20, 0.30 + frame * 0.05, 0.80),
+            )
+            for frame in range(3)
+        ]
+
+        diagnostics = JAADCrossingBenchmark._track_diagnostics(observations)
+
+        self.assertEqual(diagnostics["matched_track_frames"], 3)
+        self.assertEqual(diagnostics["matched_track_start_frame"], 0)
+        self.assertEqual(diagnostics["matched_track_end_frame"], 2)
+        self.assertAlmostEqual(diagnostics["matched_track_x_range"], 0.10)
+        self.assertAlmostEqual(diagnostics["matched_track_net_x_displacement"], 0.10)
 
 
 if __name__ == "__main__":

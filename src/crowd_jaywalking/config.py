@@ -12,6 +12,11 @@ from typing import Any
 ACTIVE_CONFIG_NAME = "config"
 DEFAULT_CONFIG_NAME = "default.config"
 
+OPTIONAL_CROSSING_DEFAULTS = {
+    "partial_crossing_enabled": True,
+    "partial_exit_min_x_range": 0.48,
+}
+
 CROSSING_KEYS = (
     "road_left",
     "road_right",
@@ -20,6 +25,7 @@ CROSSING_KEYS = (
     "min_road_seconds",
     "max_track_gap_seconds",
     "min_crossing_x_range",
+    "max_crossing_speed_per_frame",
     "low_x_range",
     "low_x_min_road_seconds",
     "weak_x_range",
@@ -27,14 +33,52 @@ CROSSING_KEYS = (
     "weak_y_jitter_x_range",
     "weak_y_jitter_motion",
     "weak_y_jitter_height",
-    "tiny_track_height",
-    "tiny_track_width",
-    "tiny_track_min_road_seconds",
+    "jitter_road_seconds",
+    "tiny_long_track_x_range",
+    "tiny_long_track_height",
+    "tiny_long_track_road_seconds",
+    "tiny_no_static_height",
+    "tiny_no_static_width",
+    "tiny_no_static_min_road_seconds",
+    "no_static_tiny_min_road_seconds",
+    "no_static_tiny_fast_speed",
+    "slender_track_width",
+    "slender_track_height",
+    "slender_track_min_road_seconds",
+    "slender_track_max_road_seconds",
+    "no_static_slender_height",
+    "no_static_slender_max_road_seconds",
+    "slender_static_min_relative_x_range",
+    "large_lateral_x_range",
+    "large_lateral_tiny_height",
     "min_static_shared_seconds",
+    "camera_static_x_range",
     "camera_ratio_threshold",
+    "camera_static_relative_x_range",
+    "camera_static_height",
+    "camera_static_tiny_relative_x_range",
+    "camera_static_tiny_height",
+    "camera_tiny_height",
+    "camera_min_road_seconds",
     "min_relative_x_range",
     "rider_min_shared_seconds",
-    "rider_overlap_threshold",
+    "rider_min_continuous_shared_seconds",
+    "rider_shared_run_gap_seconds",
+    "rider_min_vehicle_width_ratio",
+    "rider_min_vehicle_width_ratio_frames",
+    "rider_distance_relative_threshold",
+    "rider_proximity_ratio",
+    "rider_alpha_x",
+    "rider_beta_y",
+    "rider_gamma_y",
+    "rider_colocation_ratio",
+    "rider_similarity_threshold",
+    "rider_similarity_ratio",
+    "rider_min_motion_seconds",
+    "rider_motion_colocation_min",
+    "rider_short_shared_seconds",
+    "rider_short_similarity_ratio",
+    "rider_short_displacement",
 )
 
 REQUIRED_KEYS = {
@@ -172,7 +216,14 @@ class ProjectConfig:
         }
 
     def crossing_settings(self) -> dict[str, Any]:
-        return {key: self.get(key) for key in CROSSING_KEYS}
+        settings = {key: self.get(key) for key in CROSSING_KEYS}
+        settings.update(
+            {
+                key: self.raw.get(key, default)
+                for key, default in OPTIONAL_CROSSING_DEFAULTS.items()
+            }
+        )
+        return settings
 
     def evidence_settings(self) -> dict[str, Any]:
         return {
@@ -204,8 +255,11 @@ class ProjectConfig:
         }
 
     def fingerprint(self, prompt_version: str) -> str:
+        effective_config = dict(self.raw)
+        for key, default in OPTIONAL_CROSSING_DEFAULTS.items():
+            effective_config.setdefault(key, default)
         payload = {
-            "config": self.raw,
+            "config": effective_config,
             "prompt_version": prompt_version,
         }
         canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"))
@@ -231,6 +285,20 @@ class ProjectConfig:
         right = float(self.get("road_right"))
         if not 0.0 <= left < right <= 1.0:
             raise ValueError("road_left and road_right must satisfy 0 <= left < right <= 1")
+        partial_crossing_enabled = self.raw.get(
+            "partial_crossing_enabled",
+            OPTIONAL_CROSSING_DEFAULTS["partial_crossing_enabled"],
+        )
+        if not isinstance(partial_crossing_enabled, bool):
+            raise ValueError("partial_crossing_enabled must be true or false")
+        partial_exit_min_x_range = float(
+            self.raw.get(
+                "partial_exit_min_x_range",
+                OPTIONAL_CROSSING_DEFAULTS["partial_exit_min_x_range"],
+            )
+        )
+        if not 0.0 <= partial_exit_min_x_range <= 1.0:
+            raise ValueError("partial_exit_min_x_range must be between 0 and 1")
 
         positions = self.get("evidence_sample_positions")
         if not isinstance(positions, list) or not positions:

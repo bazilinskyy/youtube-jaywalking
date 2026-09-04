@@ -7,7 +7,7 @@ from dataclasses import dataclass
 import json
 import os
 from pathlib import Path
-from statistics import mean
+from statistics import mean, median
 from typing import Any
 
 from .config import ProjectConfig
@@ -18,6 +18,7 @@ from .tracking import PersonTracker, load_observations_csv, save_observations_cs
 
 
 PERSON_CLASS = 0
+STATIC_REFERENCE_CLASSES = {9, 10, 11, 12, 13}
 
 PER_PEDESTRIAN_FIELDS = (
     "video_id",
@@ -29,8 +30,54 @@ PER_PEDESTRIAN_FIELDS = (
     "matched_iou_frames",
     "track_coverage",
     "mean_matched_iou",
+    "matched_track_start_frame",
+    "matched_track_end_frame",
+    "matched_track_frames",
+    "matched_track_duration_frames",
+    "matched_track_duration_seconds",
+    "matched_track_max_gap_frames",
+    "matched_track_segment_count",
+    "matched_track_longest_segment_frames",
+    "matched_track_x_range",
+    "matched_track_net_x_displacement",
+    "matched_track_signed_x_displacement",
+    "matched_track_gross_x_motion",
+    "matched_track_x_direction_consistency",
+    "matched_track_x_range_over_height",
+    "matched_track_y_range",
+    "matched_track_net_y_displacement",
+    "matched_track_signed_y_displacement",
+    "matched_track_gross_y_motion",
+    "matched_track_y_direction_consistency",
+    "matched_track_y_range_over_height",
+    "matched_track_bottom_y_range",
+    "matched_track_height_change_ratio",
+    "matched_track_median_width",
+    "matched_track_median_height",
+    "matched_track_left_frames",
+    "matched_track_road_frames",
+    "matched_track_right_frames",
+    "matched_track_longest_road_run",
+    "matched_track_start_state",
+    "matched_track_end_state",
+    "matched_track_complete_transition",
+    "matched_track_static_shared_frames",
+    "matched_track_static_x_range",
+    "matched_track_relative_x_range",
+    "matched_track_camera_motion_ratio",
     "predicted_crossing",
     "candidate_outcome",
+    "candidate_track_frames",
+    "candidate_road_frames",
+    "candidate_x_range",
+    "candidate_x_speed_per_frame",
+    "candidate_y_gross_motion",
+    "candidate_median_width",
+    "candidate_median_height",
+    "candidate_static_shared_frames",
+    "candidate_static_x_range",
+    "candidate_relative_x_range",
+    "candidate_camera_motion_ratio",
     "ground_truth_start_frame",
     "ground_truth_end_frame",
     "predicted_transition_start_frame",
@@ -72,6 +119,34 @@ def box_iou(first: BoundingBox, second: BoundingBox) -> float:
     second_area = second.width * second.height
     union = first_area + second_area - intersection
     return intersection / union if union > 0.0 else 0.0
+
+
+def _nearest_quantile(values: list[float], probability: float) -> float:
+    if not values:
+        return 0.0
+    ordered = sorted(float(value) for value in values)
+    index = round((len(ordered) - 1) * probability)
+    return ordered[max(0, min(index, len(ordered) - 1))]
+
+
+def _robust_range(values: list[float]) -> float:
+    if not values:
+        return 0.0
+    return max(
+        0.0,
+        _nearest_quantile(values, 0.95) - _nearest_quantile(values, 0.05),
+    )
+
+
+def _longest_run(states: list[str], required_state: str) -> int:
+    longest = current = 0
+    for state in states:
+        if state == required_state:
+            current += 1
+            longest = max(longest, current)
+        else:
+            current = 0
+    return longest
 
 
 def _person_tracks(
@@ -174,20 +249,26 @@ def _best_event(
     return max(events, key=lambda item: _temporal_iou(ground_truth_frames, item))
 
 
-def _classification_metrics(rows: list[dict[str, Any]]) -> dict[str, float | int]:
+def _classification_metrics(
+    rows: list[dict[str, Any]],
+) -> dict[str, float | int | None]:
     tp = sum(row["ground_truth_crossing"] and row["predicted_crossing"] for row in rows)
     tn = sum(not row["ground_truth_crossing"] and not row["predicted_crossing"] for row in rows)
     fp = sum(not row["ground_truth_crossing"] and row["predicted_crossing"] for row in rows)
     fn = sum(row["ground_truth_crossing"] and not row["predicted_crossing"] for row in rows)
 
-    def percentage(numerator: float, denominator: float) -> float:
-        return 100.0 * numerator / denominator if denominator else 0.0
+    def percentage(numerator: float, denominator: float) -> float | None:
+        return 100.0 * numerator / denominator if denominator else None
 
     precision = percentage(tp, tp + fp)
     recall = percentage(tp, tp + fn)
     specificity = percentage(tn, tn + fp)
-    f1 = 2.0 * precision * recall / (precision + recall) if precision + recall else 0.0
-    balanced = (recall + specificity) / 2.0
+    f1 = percentage(2 * tp, 2 * tp + fp + fn)
+    balanced = (
+        (recall + specificity) / 2.0
+        if recall is not None and specificity is not None
+        else None
+    )
     return {
         "tp": tp,
         "tn": tn,
@@ -212,6 +293,7 @@ class JAADCrossingBenchmark:
         self.output_dir = config.path("jaad_benchmark_results") / self.split
         self.tracks_dir = self.output_dir / "tracks"
         self.per_pedestrian_csv = self.output_dir / "per_pedestrian.csv"
+        self.partial_candidates_csv = self.output_dir / "partial_candidate_features.csv"
         self.unmatched_csv = self.output_dir / "unmatched_crossing_predictions.csv"
         self.summary_json = self.output_dir / "summary.json"
         self.detector = CrossingDetector(config.crossing_settings())
@@ -247,11 +329,23 @@ class JAADCrossingBenchmark:
                 annotations,
                 observations,
                 detections,
+                fps,
             )
             rows.extend(video_rows)
             unmatched_rows.extend(video_unmatched)
 
         self._write_csv(self.per_pedestrian_csv, PER_PEDESTRIAN_FIELDS, rows)
+        partial_rows = [
+            row
+            for row in rows
+            if row["track_matched"]
+            and row["candidate_outcome"] == "NO_CROSSING_CANDIDATE"
+        ]
+        self._write_csv(
+            self.partial_candidates_csv,
+            PER_PEDESTRIAN_FIELDS,
+            partial_rows,
+        )
         self._write_csv(self.unmatched_csv, UNMATCHED_PREDICTION_FIELDS, unmatched_rows)
         summary = self._summarise(video_ids, rows, unmatched_rows)
         with self.summary_json.open("w", encoding="utf-8") as handle:
@@ -280,6 +374,7 @@ class JAADCrossingBenchmark:
         annotations: JAADVideoAnnotations,
         observations: list[TrackObservation],
         detections: CrossingDetectionResult,
+        fps: float,
     ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
         matches, unmatched_track_ids = match_person_tracks(
             annotations=annotations,
@@ -290,6 +385,7 @@ class JAADCrossingBenchmark:
         )
         valid = _event_by_track(detections.valid_events)
         rejected = _event_by_track(detections.rejected_events)
+        predicted_tracks = _person_tracks(observations)
 
         rows: list[dict[str, Any]] = []
         for ground_truth in annotations.behaviour_tracks:
@@ -303,11 +399,31 @@ class JAADCrossingBenchmark:
             intervals = ground_truth.crossing_intervals()
             ground_truth_start = intervals[0][0] if intervals else ""
             ground_truth_end = intervals[-1][1] if intervals else ""
+            matched_track: list[TrackObservation] = []
+            if match:
+                matched_track = sorted(
+                    predicted_tracks.get(match.track_id, {}).values(),
+                    key=lambda item: item.frame_index,
+                )
+                if ground_truth.visible_frames:
+                    first_visible = min(ground_truth.visible_frames)
+                    last_visible = max(ground_truth.visible_frames)
+                    matched_track = [
+                        item
+                        for item in matched_track
+                        if first_visible <= item.frame_index <= last_visible
+                    ]
+            track_diagnostics = self._partial_track_diagnostics(
+                matched_track,
+                observations,
+                fps,
+            )
+            candidate_diagnostics = self._candidate_diagnostics(event)
 
             if valid_events:
                 outcome = "ACCEPTED"
             elif rejected_events:
-                outcome = rejected_events[0].rejection_reason.value
+                outcome = event.rejection_reason.value if event else "REJECTED"
             elif match:
                 outcome = "NO_CROSSING_CANDIDATE"
             else:
@@ -324,8 +440,10 @@ class JAADCrossingBenchmark:
                     "matched_iou_frames": match.matched_iou_frames if match else 0,
                     "track_coverage": round(match.coverage, 6) if match else 0.0,
                     "mean_matched_iou": round(match.mean_matched_iou, 6) if match else 0.0,
+                    **track_diagnostics,
                     "predicted_crossing": predicted_crossing,
                     "candidate_outcome": outcome,
+                    **candidate_diagnostics,
                     "ground_truth_start_frame": ground_truth_start,
                     "ground_truth_end_frame": ground_truth_end,
                     "predicted_transition_start_frame": event.transition_start_frame if event else "",
@@ -355,6 +473,317 @@ class JAADCrossingBenchmark:
             )
         return rows, unmatched_rows
 
+    @staticmethod
+    def _candidate_diagnostics(event: CrossingEvent | None) -> dict[str, Any]:
+        if event is None:
+            return {
+                "candidate_track_frames": 0,
+                "candidate_road_frames": 0,
+                "candidate_x_range": "",
+                "candidate_x_speed_per_frame": "",
+                "candidate_y_gross_motion": "",
+                "candidate_median_width": "",
+                "candidate_median_height": "",
+                "candidate_static_shared_frames": 0,
+                "candidate_static_x_range": "",
+                "candidate_relative_x_range": "",
+                "candidate_camera_motion_ratio": "",
+            }
+        features = event.features
+        return {
+            "candidate_track_frames": features.track_frames,
+            "candidate_road_frames": features.road_frames,
+            "candidate_x_range": round(features.x_range, 6),
+            "candidate_x_speed_per_frame": round(features.x_speed_per_frame, 8),
+            "candidate_y_gross_motion": round(features.y_gross_motion, 6),
+            "candidate_median_width": round(features.median_width, 6),
+            "candidate_median_height": round(features.median_height, 6),
+            "candidate_static_shared_frames": features.static_shared_frames,
+            "candidate_static_x_range": round(features.static_x_range, 6),
+            "candidate_relative_x_range": round(features.relative_x_range, 6),
+            "candidate_camera_motion_ratio": round(features.camera_motion_ratio, 6),
+        }
+
+    @staticmethod
+    def _track_diagnostics(track: list[TrackObservation]) -> dict[str, Any]:
+        """Retain the version 1.2 diagnostic API used by existing tests."""
+
+        if not track:
+            return {
+                "matched_track_start_frame": "",
+                "matched_track_end_frame": "",
+                "matched_track_frames": 0,
+                "matched_track_x_range": "",
+                "matched_track_net_x_displacement": "",
+                "matched_track_y_range": "",
+                "matched_track_median_width": "",
+                "matched_track_median_height": "",
+            }
+        xs = [item.box.centre_x for item in track]
+        ys = [item.box.centre_y for item in track]
+        widths = [item.box.width for item in track]
+        heights = [item.box.height for item in track]
+        return {
+            "matched_track_start_frame": track[0].frame_index,
+            "matched_track_end_frame": track[-1].frame_index,
+            "matched_track_frames": len(track),
+            "matched_track_x_range": round(max(xs) - min(xs), 6),
+            "matched_track_net_x_displacement": round(abs(xs[-1] - xs[0]), 6),
+            "matched_track_y_range": round(max(ys) - min(ys), 6),
+            "matched_track_median_width": round(float(median(widths)), 6),
+            "matched_track_median_height": round(float(median(heights)), 6),
+        }
+
+    def _partial_track_diagnostics(
+        self,
+        track: list[TrackObservation],
+        observations: list[TrackObservation],
+        fps: float,
+    ) -> dict[str, Any]:
+        names = (
+            "matched_track_start_frame",
+            "matched_track_end_frame",
+            "matched_track_frames",
+            "matched_track_duration_frames",
+            "matched_track_duration_seconds",
+            "matched_track_max_gap_frames",
+            "matched_track_segment_count",
+            "matched_track_longest_segment_frames",
+            "matched_track_x_range",
+            "matched_track_net_x_displacement",
+            "matched_track_signed_x_displacement",
+            "matched_track_gross_x_motion",
+            "matched_track_x_direction_consistency",
+            "matched_track_x_range_over_height",
+            "matched_track_y_range",
+            "matched_track_net_y_displacement",
+            "matched_track_signed_y_displacement",
+            "matched_track_gross_y_motion",
+            "matched_track_y_direction_consistency",
+            "matched_track_y_range_over_height",
+            "matched_track_bottom_y_range",
+            "matched_track_height_change_ratio",
+            "matched_track_median_width",
+            "matched_track_median_height",
+            "matched_track_left_frames",
+            "matched_track_road_frames",
+            "matched_track_right_frames",
+            "matched_track_longest_road_run",
+            "matched_track_start_state",
+            "matched_track_end_state",
+            "matched_track_complete_transition",
+            "matched_track_static_shared_frames",
+            "matched_track_static_x_range",
+            "matched_track_relative_x_range",
+            "matched_track_camera_motion_ratio",
+        )
+        if not track:
+            empty = {name: "" for name in names}
+            for name in (
+                "matched_track_frames",
+                "matched_track_duration_frames",
+                "matched_track_max_gap_frames",
+                "matched_track_segment_count",
+                "matched_track_longest_segment_frames",
+                "matched_track_left_frames",
+                "matched_track_road_frames",
+                "matched_track_right_frames",
+                "matched_track_longest_road_run",
+                "matched_track_static_shared_frames",
+            ):
+                empty[name] = 0
+            empty["matched_track_complete_transition"] = False
+            return empty
+
+        xs = [item.box.centre_x for item in track]
+        ys = [item.box.centre_y for item in track]
+        widths = [item.box.width for item in track]
+        heights = [item.box.height for item in track]
+        bottom_ys = [item.box.y2 for item in track]
+        frame_gaps = [
+            current.frame_index - previous.frame_index
+            for previous, current in zip(track, track[1:])
+        ]
+        gross_x = sum(abs(current - previous) for previous, current in zip(xs, xs[1:]))
+        gross_y = sum(abs(current - previous) for previous, current in zip(ys, ys[1:]))
+        signed_x = xs[-1] - xs[0]
+        signed_y = ys[-1] - ys[0]
+        median_height = float(median(heights))
+        edge_count = max(1, len(track) // 5)
+        initial_height = float(median(heights[:edge_count]))
+        final_height = float(median(heights[-edge_count:]))
+
+        max_gap = max(
+            1,
+            round(
+                float(self.config.get("max_track_gap_seconds"))
+                * max(float(fps), 1.0)
+            ),
+        )
+        segments: list[list[TrackObservation]] = [[track[0]]]
+        for item in track[1:]:
+            if item.frame_index - segments[-1][-1].frame_index > max_gap:
+                segments.append([item])
+            else:
+                segments[-1].append(item)
+
+        states = self._corridor_states(track)
+        min_road = max(
+            1,
+            round(
+                float(self.config.get("min_road_seconds"))
+                * max(float(fps), 1.0)
+            ),
+        )
+        complete_transition = any(
+            self._has_complete_transition(self._corridor_states(segment), min_road)
+            for segment in segments
+        )
+        static = self._static_diagnostics(track, observations)
+        duration_frames = track[-1].frame_index - track[0].frame_index + 1
+        x_range = max(xs) - min(xs)
+        y_range = max(ys) - min(ys)
+
+        return {
+            "matched_track_start_frame": track[0].frame_index,
+            "matched_track_end_frame": track[-1].frame_index,
+            "matched_track_frames": len(track),
+            "matched_track_duration_frames": duration_frames,
+            "matched_track_duration_seconds": round(duration_frames / max(fps, 1.0), 6),
+            "matched_track_max_gap_frames": max(frame_gaps, default=0),
+            "matched_track_segment_count": len(segments),
+            "matched_track_longest_segment_frames": max(len(segment) for segment in segments),
+            "matched_track_x_range": round(x_range, 6),
+            "matched_track_net_x_displacement": round(abs(signed_x), 6),
+            "matched_track_signed_x_displacement": round(signed_x, 6),
+            "matched_track_gross_x_motion": round(gross_x, 6),
+            "matched_track_x_direction_consistency": round(
+                abs(signed_x) / gross_x if gross_x > 0.0 else 0.0,
+                6,
+            ),
+            "matched_track_x_range_over_height": round(
+                x_range / max(median_height, 1e-9),
+                6,
+            ),
+            "matched_track_y_range": round(y_range, 6),
+            "matched_track_net_y_displacement": round(abs(signed_y), 6),
+            "matched_track_signed_y_displacement": round(signed_y, 6),
+            "matched_track_gross_y_motion": round(gross_y, 6),
+            "matched_track_y_direction_consistency": round(
+                abs(signed_y) / gross_y if gross_y > 0.0 else 0.0,
+                6,
+            ),
+            "matched_track_y_range_over_height": round(
+                y_range / max(median_height, 1e-9),
+                6,
+            ),
+            "matched_track_bottom_y_range": round(max(bottom_ys) - min(bottom_ys), 6),
+            "matched_track_height_change_ratio": round(
+                final_height / max(initial_height, 1e-9),
+                6,
+            ),
+            "matched_track_median_width": round(float(median(widths)), 6),
+            "matched_track_median_height": round(median_height, 6),
+            "matched_track_left_frames": states.count("LEFT"),
+            "matched_track_road_frames": states.count("ROAD"),
+            "matched_track_right_frames": states.count("RIGHT"),
+            "matched_track_longest_road_run": _longest_run(states, "ROAD"),
+            "matched_track_start_state": states[0],
+            "matched_track_end_state": states[-1],
+            "matched_track_complete_transition": complete_transition,
+            "matched_track_static_shared_frames": static["shared_frames"],
+            "matched_track_static_x_range": round(static["static_x_range"], 6),
+            "matched_track_relative_x_range": round(static["relative_x_range"], 6),
+            "matched_track_camera_motion_ratio": round(static["camera_motion_ratio"], 6),
+        }
+
+    def _corridor_states(self, track: list[TrackObservation]) -> list[str]:
+        left = float(self.config.get("road_left"))
+        right = float(self.config.get("road_right"))
+        tolerance = float(self.config.get("boundary_tolerance"))
+        previous = "ROAD"
+        states: list[str] = []
+        for index, item in enumerate(track):
+            x = item.box.centre_x
+            if index == 0:
+                previous = "LEFT" if x < left else "RIGHT" if x > right else "ROAD"
+            elif x <= left - tolerance:
+                previous = "LEFT"
+            elif x >= right + tolerance:
+                previous = "RIGHT"
+            elif left + tolerance <= x <= right - tolerance:
+                previous = "ROAD"
+            states.append(previous)
+        return states
+
+    @staticmethod
+    def _has_complete_transition(states: list[str], min_road: int) -> bool:
+        if states.count("ROAD") < min_road:
+            return False
+        for index, state in enumerate(states):
+            if state != "ROAD":
+                continue
+            before = states[:index]
+            after = states[index + 1 :]
+            if ("LEFT" in before and "RIGHT" in after) or (
+                "RIGHT" in before and "LEFT" in after
+            ):
+                return True
+        return False
+
+    @staticmethod
+    def _static_diagnostics(
+        track: list[TrackObservation],
+        observations: list[TrackObservation],
+    ) -> dict[str, float | int]:
+        people = {item.frame_index: item for item in track}
+        references: dict[int, dict[int, TrackObservation]] = {}
+        for item in observations:
+            if (
+                track[0].frame_index <= item.frame_index <= track[-1].frame_index
+                and item.class_id in STATIC_REFERENCE_CLASSES
+            ):
+                reference = references.setdefault(item.track_id, {})
+                previous = reference.get(item.frame_index)
+                if previous is None or item.confidence > previous.confidence:
+                    reference[item.frame_index] = item
+
+        best: dict[str, float | int] | None = None
+        for reference in references.values():
+            shared = sorted(set(people).intersection(reference))
+            if not shared:
+                continue
+            person_x = [people[frame].box.centre_x for frame in shared]
+            static_x = [reference[frame].box.centre_x for frame in shared]
+            person_range = _robust_range(person_x)
+            static_range = _robust_range(static_x)
+            candidate: dict[str, float | int] = {
+                "shared_frames": len(shared),
+                "static_x_range": static_range,
+                "relative_x_range": _robust_range(
+                    [
+                        person_value - static_value
+                        for person_value, static_value in zip(person_x, static_x)
+                    ]
+                ),
+                "camera_motion_ratio": static_range / max(person_range, 1e-9),
+            }
+            if best is None or (
+                int(candidate["shared_frames"]),
+                float(candidate["static_x_range"]),
+            ) > (
+                int(best["shared_frames"]),
+                float(best["static_x_range"]),
+            ):
+                best = candidate
+
+        return best or {
+            "shared_frames": 0,
+            "static_x_range": 0.0,
+            "relative_x_range": 0.0,
+            "camera_motion_ratio": 0.0,
+        }
+
     def _summarise(
         self,
         video_ids: list[str],
@@ -367,6 +796,12 @@ class JAADCrossingBenchmark:
             for row in rows
             if row["ground_truth_crossing"] and row["predicted_crossing"]
         ]
+        false_negative_outcomes: dict[str, int] = {}
+        for row in rows:
+            if not row["ground_truth_crossing"] or row["predicted_crossing"]:
+                continue
+            outcome = str(row["candidate_outcome"])
+            false_negative_outcomes[outcome] = false_negative_outcomes.get(outcome, 0) + 1
         return {
             "split": self.split,
             "videos": len(video_ids),
@@ -394,10 +829,23 @@ class JAADCrossingBenchmark:
                 else 0.0
             ),
             "unmatched_accepted_crossings_requiring_review": len(unmatched_rows),
+            "partial_candidate_diagnostic_rows": sum(
+                bool(row["track_matched"])
+                and row["candidate_outcome"] == "NO_CROSSING_CANDIDATE"
+                for row in rows
+            ),
+            "partial_candidate_features_csv": str(self.partial_candidates_csv),
+            "false_negative_outcomes": dict(
+                sorted(
+                    false_negative_outcomes.items(),
+                    key=lambda item: (-item[1], item[0]),
+                )
+            ),
             "configuration": {
                 "match_iou": self.config.get("jaad_match_iou"),
                 "min_match_frames": self.config.get("jaad_min_match_frames"),
                 "min_track_coverage": self.config.get("jaad_min_track_coverage"),
+                "crossing": self.config.crossing_settings(),
             },
         }
 
@@ -415,12 +863,26 @@ class JAADCrossingBenchmark:
     @staticmethod
     def _print_summary(summary: dict[str, Any]) -> None:
         metrics = summary["end_to_end_crossing_metrics"]
+
+        def display(value: float | int | None) -> str:
+            return "N/A" if value is None else f"{float(value):.2f}%"
+
         print("\nJAAD crossing benchmark")
         print(f"Split: {summary['split']}")
         print(f"Videos: {summary['videos']}")
         print(f"Annotated pedestrians: {summary['behaviour_annotated_pedestrians']}")
         print(f"Track match recall: {summary['track_match_recall_percent']:.2f}%")
-        print(f"Crossing precision: {metrics['precision_percent']:.2f}%")
-        print(f"Crossing recall: {metrics['recall_percent']:.2f}%")
-        print(f"Crossing F1: {metrics['f1_percent']:.2f}%")
-        print(f"Balanced accuracy: {metrics['balanced_accuracy_percent']:.2f}%")
+        print(
+            "Confusion matrix: "
+            f"TP={metrics['tp']} TN={metrics['tn']} "
+            f"FP={metrics['fp']} FN={metrics['fn']}"
+        )
+        print(f"Crossing accuracy: {display(metrics['accuracy_percent'])}")
+        print(f"Crossing precision: {display(metrics['precision_percent'])}")
+        print(f"Crossing recall: {display(metrics['recall_percent'])}")
+        print(f"Crossing F1: {display(metrics['f1_percent'])}")
+        print(f"Balanced accuracy: {display(metrics['balanced_accuracy_percent'])}")
+        print(
+            "Partial candidate features: "
+            f"{summary['partial_candidate_features_csv']}"
+        )

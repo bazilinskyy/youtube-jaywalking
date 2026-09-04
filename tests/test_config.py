@@ -1,5 +1,6 @@
 """Tests for the CROWD style configuration file workflow."""
 
+import json
 import os
 import tempfile
 import unittest
@@ -41,6 +42,23 @@ class ProjectConfigTests(unittest.TestCase):
                 os.chdir(previous)
 
         self.assertEqual(config.source_path.name, "config")
+
+    def test_partial_crossing_settings_have_backwards_compatible_defaults(self) -> None:
+        raw = json.loads(self.template)
+        raw.pop("partial_crossing_enabled")
+        raw.pop("partial_exit_min_x_range")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "config").write_text(json.dumps(raw), encoding="utf-8")
+            previous = Path.cwd()
+            try:
+                os.chdir(root)
+                crossing = ProjectConfig.load().crossing_settings()
+            finally:
+                os.chdir(previous)
+
+        self.assertTrue(crossing["partial_crossing_enabled"])
+        self.assertEqual(crossing["partial_exit_min_x_range"], 0.48)
 
 
 if __name__ == "__main__":

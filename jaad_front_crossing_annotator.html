@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JAAD Front Crossing Annotator</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #0b1020;
+      --panel: #151c31;
+      --panel-strong: #1b2540;
+      --border: #2b385a;
+      --text: #f3f6ff;
+      --muted: #aeb9d4;
+      --yes: #29b875;
+      --yes-dark: #137047;
+      --no: #ef6670;
+      --no-dark: #9d333d;
+      --accent: #6ea8fe;
+      --warning: #f2c14e;
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(63, 105, 190, 0.2), transparent 34rem),
+        var(--background);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button,
+    select,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel-strong);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 120ms ease, transform 120ms ease, background 120ms ease;
+    }
+
+    button:hover:not(:disabled) {
+      border-color: var(--accent);
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.42;
+    }
+
+    .app {
+      width: min(1500px, 100%);
+      margin: 0 auto;
+      padding: 22px;
+    }
+
+    .topbar {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 7px;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      letter-spacing: -0.025em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 780px;
+      line-height: 1.45;
+    }
+
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 9px;
+    }
+
+    .file-button,
+    .export-button {
+      display: inline-flex;
+      min-height: 42px;
+      padding: 0 15px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel-strong);
+      color: var(--text);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .file-button:hover,
+    .export-button:hover:not(:disabled) {
+      border-color: var(--accent);
+    }
+
+    .file-button input {
+      display: none;
+    }
+
+    .export-button {
+      background: #234d8d;
+    }
+
+    .progress-panel {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .metric {
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(21, 28, 49, 0.9);
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .metric-value {
+      margin-top: 3px;
+      font-size: 1.45rem;
+      font-weight: 760;
+    }
+
+    .progress-track {
+      height: 8px;
+      margin: 0 0 18px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #080c18;
+      border: 1px solid var(--border);
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--yes));
+      transition: width 180ms ease;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 18px;
+      min-height: 650px;
+    }
+
+    .main-panel,
+    .side-panel {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(21, 28, 49, 0.92);
+      box-shadow: 0 18px 55px rgba(0, 0, 0, 0.2);
+    }
+
+    .main-panel {
+      padding: 16px;
+    }
+
+    .video-header {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .video-name {
+      overflow-wrap: anywhere;
+      font-weight: 720;
+    }
+
+    .video-position {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .video-wrap {
+      display: grid;
+      min-height: 430px;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid #273450;
+      border-radius: 12px;
+      background: #05070d;
+    }
+
+    video {
+      display: none;
+      width: 100%;
+      max-height: 66vh;
+      background: #000;
+    }
+
+    .empty-state {
+      max-width: 560px;
+      padding: 34px;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .empty-state strong {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--text);
+      font-size: 1.12rem;
+    }
+
+    .playback-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 11px;
+    }
+
+    .playback-row button {
+      min-height: 38px;
+      padding: 0 13px;
+    }
+
+    .playback-row label {
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    select,
+    .search-input {
+      min-height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #0e1528;
+      color: var(--text);
+      padding: 0 10px;
+    }
+
+    .question-card {
+      margin-top: 14px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #10172a;
+    }
+
+    .question {
+      margin: 0;
+      font-size: clamp(1.08rem, 2vw, 1.28rem);
+      font-weight: 760;
+      line-height: 1.35;
+    }
+
+    .guidance {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.92rem;
+    }
+
+    .answer-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .answer-button {
+      min-height: 66px;
+      border-width: 2px;
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .yes-button {
+      border-color: var(--yes-dark);
+      background: rgba(19, 112, 71, 0.34);
+    }
+
+    .yes-button:hover:not(:disabled),
+    .yes-button.selected {
+      border-color: var(--yes);
+      background: var(--yes-dark);
+    }
+
+    .no-button {
+      border-color: var(--no-dark);
+      background: rgba(157, 51, 61, 0.28);
+    }
+
+    .no-button:hover:not(:disabled),
+    .no-button.selected {
+      border-color: var(--no);
+      background: var(--no-dark);
+    }
+
+    .navigation-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .navigation-row button {
+      min-height: 42px;
+      padding: 0 14px;
+    }
+
+    .clear-button {
+      color: var(--muted);
+    }
+
+    .side-panel {
+      display: flex;
+      min-height: 0;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .side-controls {
+      display: grid;
+      gap: 9px;
+      padding: 13px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .search-input {
+      width: 100%;
+    }
+
+    .filter-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .filter-row button {
+      min-height: 34px;
+      padding: 0 8px;
+      font-size: 0.83rem;
+    }
+
+    .filter-row button.active {
+      border-color: var(--accent);
+      background: #234d8d;
+    }
+
+    .video-list {
+      min-height: 0;
+      max-height: 720px;
+      overflow: auto;
+      padding: 8px;
+    }
+
+    .video-list-item {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 32px minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      padding: 9px;
+      margin-bottom: 5px;
+      text-align: left;
+      background: transparent;
+    }
+
+    .video-list-item.current {
+      border-color: var(--accent);
+      background: #1d3156;
+    }
+
+    .list-number {
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      font-size: 0.78rem;
+    }
+
+    .list-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 0.88rem;
+    }
+
+    .status-pill {
+      min-width: 38px;
+      padding: 3px 6px;
+      border-radius: 999px;
+      color: var(--muted);
+      background: #26314c;
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+
+    .status-pill.yes {
+      color: #d9ffeb;
+      background: var(--yes-dark);
+    }
+
+    .status-pill.no {
+      color: #ffe2e4;
+      background: var(--no-dark);
+    }
+
+    .footer-note {
+      margin: 14px 2px 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      max-width: min(420px, calc(100vw - 44px));
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #1d3156;
+      box-shadow: 0 12px 42px rgba(0, 0, 0, 0.34);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .topbar {
+        flex-direction: column;
+      }
+
+      .top-actions {
+        justify-content: flex-start;
+      }
+
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .video-list {
+        max-height: 300px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .app {
+        padding: 12px;
+      }
+
+      .progress-panel {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .video-wrap {
+        min-height: 260px;
+      }
+
+      .answer-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1>JAAD front crossing annotator</h1>
+        <p class="subtitle">
+          Review each video and record whether at least one pedestrian crosses through the ego vehicle's forward path.
+          Everything stays on this computer.
+        </p>
+      </div>
+      <div class="top-actions">
+        <label class="file-button">
+          Select video folder
+          <input id="folderInput" type="file" webkitdirectory directory multiple accept="video/*">
+        </label>
+        <button id="exportButton" class="export-button" type="button" disabled>Export CSV</button>
+      </div>
+    </header>
+
+    <section class="progress-panel" aria-label="Annotation progress">
+      <div class="metric">
+        <div class="metric-label">Total videos</div>
+        <div id="totalCount" class="metric-value">0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Labelled</div>
+        <div id="labelledCount" class="metric-value">0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Yes</div>
+        <div id="yesCount" class="metric-value">0</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">No</div>
+        <div id="noCount" class="metric-value">0</div>
+      </div>
+    </section>
+
+    <div class="progress-track" aria-hidden="true">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+
+    <section class="workspace">
+      <div class="main-panel">
+        <div class="video-header">
+          <div id="videoName" class="video-name">No folder selected</div>
+          <div id="videoPosition" class="video-position">0 / 0</div>
+        </div>
+
+        <div class="video-wrap">
+          <video id="videoPlayer" controls preload="metadata"></video>
+          <div id="emptyState" class="empty-state">
+            <strong>Select your JAAD video folder to begin</strong>
+            Choose <code>data\videos</code>. The browser reads the selected videos locally and does not upload them.
+          </div>
+        </div>
+
+        <div class="playback-row">
+          <button id="backOneSecond" type="button" disabled>−1 second</button>
+          <button id="forwardOneSecond" type="button" disabled>+1 second</button>
+          <label>
+            Speed
+            <select id="playbackRate" disabled>
+              <option value="0.5">0.5×</option>
+              <option value="0.75">0.75×</option>
+              <option value="1" selected>1×</option>
+              <option value="1.5">1.5×</option>
+              <option value="2">2×</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="question-card">
+          <p class="question">Does any pedestrian cross the road directly in front of the ego vehicle?</p>
+          <p class="guidance">
+            Choose Yes when a pedestrian crosses through the vehicle's forward driving path. Choose No for crossings away
+            from that path, pavement movement, people standing near the road, or videos with no crossing.
+          </p>
+          <div class="answer-row">
+            <button id="yesButton" class="answer-button yes-button" type="button" disabled>Yes <span aria-hidden="true">(Y)</span></button>
+            <button id="noButton" class="answer-button no-button" type="button" disabled>No <span aria-hidden="true">(N)</span></button>
+          </div>
+        </div>
+
+        <div class="navigation-row">
+          <button id="previousButton" type="button" disabled>← Previous</button>
+          <button id="clearButton" class="clear-button" type="button" disabled>Clear label</button>
+          <button id="nextButton" type="button" disabled>Next →</button>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="side-controls">
+          <input id="searchInput" class="search-input" type="search" placeholder="Find video filename" disabled>
+          <div class="filter-row" aria-label="Filter videos">
+            <button type="button" data-filter="all" class="active" disabled>All</button>
+            <button type="button" data-filter="unlabelled" disabled>Unlabelled</button>
+            <button type="button" data-filter="yes" disabled>Yes</button>
+            <button type="button" data-filter="no" disabled>No</button>
+          </div>
+        </div>
+        <div id="videoList" class="video-list"></div>
+      </aside>
+    </section>
+
+    <p class="footer-note">
+      Labels are saved automatically in this browser. Export the CSV regularly as a durable backup.
+      Keyboard shortcuts: Y for Yes, N for No, and the left or right arrow for navigation when the video controls are not focused.
+    </p>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const STORAGE_KEY = "jaad-front-crossing-annotations-v1";
+      const VIDEO_EXTENSIONS = [".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"];
+
+      const folderInput = document.getElementById("folderInput");
+      const exportButton = document.getElementById("exportButton");
+      const totalCount = document.getElementById("totalCount");
+      const labelledCount = document.getElementById("labelledCount");
+      const yesCount = document.getElementById("yesCount");
+      const noCount = document.getElementById("noCount");
+      const progressFill = document.getElementById("progressFill");
+      const videoName = document.getElementById("videoName");
+      const videoPosition = document.getElementById("videoPosition");
+      const videoPlayer = document.getElementById("videoPlayer");
+      const emptyState = document.getElementById("emptyState");
+      const backOneSecond = document.getElementById("backOneSecond");
+      const forwardOneSecond = document.getElementById("forwardOneSecond");
+      const playbackRate = document.getElementById("playbackRate");
+      const yesButton = document.getElementById("yesButton");
+      const noButton = document.getElementById("noButton");
+      const previousButton = document.getElementById("previousButton");
+      const nextButton = document.getElementById("nextButton");
+      const clearButton = document.getElementById("clearButton");
+      const searchInput = document.getElementById("searchInput");
+      const videoList = document.getElementById("videoList");
+      const filterButtons = [...document.querySelectorAll("[data-filter]")];
+      const toast = document.getElementById("toast");
+
+      let videos = [];
+      let annotations = loadAnnotations();
+      let currentIndex = -1;
+      let currentObjectUrl = null;
+      let activeFilter = "all";
+      let toastTimer = null;
+
+      function loadAnnotations() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          const value = stored ? JSON.parse(stored) : {};
+          return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+        } catch (error) {
+          return {};
+        }
+      }
+
+      function saveAnnotations() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(annotations));
+        } catch (error) {
+          showToast("Browser storage is unavailable. Export the CSV frequently.");
+        }
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("visible");
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 2400);
+      }
+
+      function isVideo(file) {
+        // macOS AppleDouble files such as ._video_0001.mp4 contain Finder
+        // metadata rather than playable video data.
+        if (file.name.startsWith(".") || file.webkitRelativePath.includes("/__MACOSX/")) {
+          return false;
+        }
+        const lower = file.name.toLowerCase();
+        return file.type.startsWith("video/") || VIDEO_EXTENSIONS.some(extension => lower.endsWith(extension));
+      }
+
+      function naturalCompare(left, right) {
+        return left.localeCompare(right, undefined, { numeric: true, sensitivity: "base" });
+      }
+
+      function videoKey(file) {
+        return file.name;
+      }
+
+      function videoId(file) {
+        const dot = file.name.lastIndexOf(".");
+        return dot > 0 ? file.name.slice(0, dot) : file.name;
+      }
+
+      function currentFile() {
+        return currentIndex >= 0 && currentIndex < videos.length ? videos[currentIndex] : null;
+      }
+
+      function currentAnnotation() {
+        const file = currentFile();
+        return file ? annotations[videoKey(file)] : null;
+      }
+
+      function setControlsEnabled(enabled) {
+        [
+          exportButton,
+          backOneSecond,
+          forwardOneSecond,
+          playbackRate,
+          yesButton,
+          noButton,
+          previousButton,
+          nextButton,
+          clearButton,
+          searchInput,
+          ...filterButtons,
+        ].forEach(control => {
+          control.disabled = !enabled;
+        });
+      }
+
+      function loadCurrentVideo({ autoplay = true } = {}) {
+        const file = currentFile();
+        if (!file) {
+          return;
+        }
+
+        if (currentObjectUrl) {
+          URL.revokeObjectURL(currentObjectUrl);
+        }
+        currentObjectUrl = URL.createObjectURL(file);
+        videoPlayer.src = currentObjectUrl;
+        videoPlayer.style.display = "block";
+        emptyState.style.display = "none";
+        videoPlayer.playbackRate = Number(playbackRate.value);
+        videoName.textContent = file.name;
+        videoPosition.textContent = `${currentIndex + 1} / ${videos.length}`;
+        updateAnswerButtons();
+        renderVideoList();
+
+        const selected = videoList.querySelector(`[data-index="${currentIndex}"]`);
+        if (selected) {
+          selected.scrollIntoView({ block: "nearest" });
+        }
+
+        if (autoplay) {
+          videoPlayer.play().catch(() => {});
+        }
+      }
+
+      function updateAnswerButtons() {
+        const annotation = currentAnnotation();
+        yesButton.classList.toggle("selected", annotation && annotation.value === "YES");
+        noButton.classList.toggle("selected", annotation && annotation.value === "NO");
+        clearButton.disabled = !annotation;
+      }
+
+      function updateProgress() {
+        const relevantKeys = new Set(videos.map(videoKey));
+        const relevant = Object.entries(annotations).filter(([key]) => relevantKeys.has(key));
+        const yes = relevant.filter(([, item]) => item.value === "YES").length;
+        const no = relevant.filter(([, item]) => item.value === "NO").length;
+        const labelled = yes + no;
+        totalCount.textContent = String(videos.length);
+        labelledCount.textContent = String(labelled);
+        yesCount.textContent = String(yes);
+        noCount.textContent = String(no);
+        progressFill.style.width = videos.length ? `${(100 * labelled) / videos.length}%` : "0%";
+      }
+
+      function matchesFilter(file) {
+        const annotation = annotations[videoKey(file)];
+        const search = searchInput.value.trim().toLowerCase();
+        if (search && !file.name.toLowerCase().includes(search)) {
+          return false;
+        }
+        if (activeFilter === "unlabelled") {
+          return !annotation;
+        }
+        if (activeFilter === "yes") {
+          return annotation && annotation.value === "YES";
+        }
+        if (activeFilter === "no") {
+          return annotation && annotation.value === "NO";
+        }
+        return true;
+      }
+
+      function renderVideoList() {
+        videoList.replaceChildren();
+        videos.forEach((file, index) => {
+          if (!matchesFilter(file)) {
+            return;
+          }
+          const annotation = annotations[videoKey(file)];
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = `video-list-item${index === currentIndex ? " current" : ""}`;
+          button.dataset.index = String(index);
+          button.title = file.name;
+
+          const number = document.createElement("span");
+          number.className = "list-number";
+          number.textContent = String(index + 1).padStart(3, "0");
+
+          const name = document.createElement("span");
+          name.className = "list-name";
+          name.textContent = file.name;
+
+          const status = document.createElement("span");
+          status.className = "status-pill";
+          status.textContent = "—";
+          if (annotation) {
+            status.textContent = annotation.value;
+            status.classList.add(annotation.value.toLowerCase());
+          }
+
+          button.append(number, name, status);
+          button.addEventListener("click", () => {
+            currentIndex = index;
+            loadCurrentVideo();
+          });
+          videoList.appendChild(button);
+        });
+
+        if (!videoList.children.length && videos.length) {
+          const message = document.createElement("div");
+          message.className = "empty-state";
+          message.textContent = "No videos match this filter.";
+          videoList.appendChild(message);
+        }
+      }
+
+      function firstUnlabelledIndex() {
+        const index = videos.findIndex(file => !annotations[videoKey(file)]);
+        return index >= 0 ? index : 0;
+      }
+
+      function labelCurrent(value) {
+        const file = currentFile();
+        if (!file) {
+          return;
+        }
+        annotations[videoKey(file)] = {
+          value,
+          annotatedAt: new Date().toISOString(),
+        };
+        saveAnnotations();
+        updateProgress();
+        updateAnswerButtons();
+        renderVideoList();
+
+        if (currentIndex < videos.length - 1) {
+          currentIndex += 1;
+          loadCurrentVideo();
+        } else {
+          showToast("Last video labelled. Export the CSV when you are ready.");
+        }
+      }
+
+      function clearCurrentLabel() {
+        const file = currentFile();
+        if (!file) {
+          return;
+        }
+        delete annotations[videoKey(file)];
+        saveAnnotations();
+        updateProgress();
+        updateAnswerButtons();
+        renderVideoList();
+        showToast("Label cleared.");
+      }
+
+      function navigate(offset) {
+        if (!videos.length) {
+          return;
+        }
+        const next = Math.max(0, Math.min(videos.length - 1, currentIndex + offset));
+        if (next !== currentIndex) {
+          currentIndex = next;
+          loadCurrentVideo();
+        }
+      }
+
+      function csvCell(value) {
+        return `"${String(value ?? "").replaceAll('"', '""')}"`;
+      }
+
+      function exportCsv() {
+        if (!videos.length) {
+          return;
+        }
+        const rows = [
+          ["video_id", "filename", "crossing_in_front_of_car", "annotated_at"],
+          ...videos.map(file => {
+            const annotation = annotations[videoKey(file)];
+            return [
+              videoId(file),
+              file.name,
+              annotation ? annotation.value : "",
+              annotation ? annotation.annotatedAt : "",
+            ];
+          }),
+        ];
+        const csv = rows.map(row => row.map(csvCell).join(",")).join("\r\n") + "\r\n";
+        const blob = new Blob(["\ufeff", csv], { type: "text/csv;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "jaad_front_crossing_annotations.csv";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        showToast("CSV exported.");
+      }
+
+      folderInput.addEventListener("change", event => {
+        const selected = [...event.target.files].filter(isVideo);
+        selected.sort((left, right) => naturalCompare(left.name, right.name));
+        videos = selected;
+
+        if (!videos.length) {
+          currentIndex = -1;
+          setControlsEnabled(false);
+          showToast("No supported video files were found in that folder.");
+          return;
+        }
+
+        currentIndex = firstUnlabelledIndex();
+        activeFilter = "all";
+        searchInput.value = "";
+        filterButtons.forEach(button => button.classList.toggle("active", button.dataset.filter === "all"));
+        setControlsEnabled(true);
+        updateProgress();
+        loadCurrentVideo({ autoplay: false });
+        showToast(`${videos.length} videos loaded.`);
+      });
+
+      yesButton.addEventListener("click", () => labelCurrent("YES"));
+      noButton.addEventListener("click", () => labelCurrent("NO"));
+      clearButton.addEventListener("click", clearCurrentLabel);
+      previousButton.addEventListener("click", () => navigate(-1));
+      nextButton.addEventListener("click", () => navigate(1));
+      exportButton.addEventListener("click", exportCsv);
+      backOneSecond.addEventListener("click", () => {
+        videoPlayer.currentTime = Math.max(0, videoPlayer.currentTime - 1);
+      });
+      forwardOneSecond.addEventListener("click", () => {
+        videoPlayer.currentTime = Math.min(videoPlayer.duration || Infinity, videoPlayer.currentTime + 1);
+      });
+      playbackRate.addEventListener("change", () => {
+        videoPlayer.playbackRate = Number(playbackRate.value);
+      });
+      searchInput.addEventListener("input", renderVideoList);
+
+      filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          activeFilter = button.dataset.filter;
+          filterButtons.forEach(candidate => candidate.classList.toggle("active", candidate === button));
+          renderVideoList();
+        });
+      });
+
+      document.addEventListener("keydown", event => {
+        const target = event.target;
+        if (target instanceof HTMLInputElement || target instanceof HTMLSelectElement) {
+          return;
+        }
+        if (!currentFile()) {
+          return;
+        }
+        const key = event.key.toLowerCase();
+        if (key === "y") {
+          event.preventDefault();
+          labelCurrent("YES");
+        } else if (key === "n") {
+          event.preventDefault();
+          labelCurrent("NO");
+        } else if (event.key === "ArrowLeft" && target !== videoPlayer) {
+          event.preventDefault();
+          navigate(-1);
+        } else if (event.key === "ArrowRight" && target !== videoPlayer) {
+          event.preventDefault();
+          navigate(1);
+        }
+      });
+
+      window.addEventListener("beforeunload", () => {
+        if (currentObjectUrl) {
+          URL.revokeObjectURL(currentObjectUrl);
+        }
+      });
+
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>
