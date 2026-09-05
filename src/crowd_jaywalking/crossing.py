@@ -56,13 +56,22 @@ def _longest_run(frames: Iterable[int], gap_allow: int) -> int:
 
 
 class CrossingDetector:
-    """Apply complete and conservative partial CROWD crossing rules."""
+    """Apply complete and conservative partial CROWD crossing rules.
+
+    The corridor can be a perspective aware trapezoid. Track state is then
+    determined from the pedestrian foot point instead of the centre of the
+    bounding box. This is a closer approximation of whether the person is in
+    the ego vehicle path than a fixed vertical strip through the image.
+    """
 
     def __init__(self, settings: dict[str, Any]) -> None:
         self.settings = settings
         self.left = float(settings["road_left"])
         self.right = float(settings["road_right"])
         self.tolerance = float(settings.get("boundary_tolerance", 0.0))
+        self.perspective_corridor_enabled = bool(
+            settings.get("perspective_corridor_enabled", False)
+        )
 
     def f(self, key: str, fps: float) -> int:
         return _frames(self.settings[key], fps)
@@ -115,21 +124,48 @@ class CrossingDetector:
                 parts[-1].append(item)
         return parts
 
-    def _states(self, track: list[TrackObservation]) -> list[str]:
+    def corridor_bounds(self, item: TrackObservation) -> tuple[float, float]:
+        """Return ego corridor boundaries at the pedestrian foot point."""
+
+        if not self.perspective_corridor_enabled:
+            return self.left, self.right
+
+        top_y = float(self.settings.get("road_top_y", 0.0))
+        bottom_y = float(self.settings.get("road_bottom_y", 1.0))
+        proportion = (item.box.y2 - top_y) / max(bottom_y - top_y, EPS)
+        proportion = max(0.0, min(proportion, 1.0))
+
+        top_left = float(self.settings.get("road_top_left", self.left))
+        top_right = float(self.settings.get("road_top_right", self.right))
+        bottom_left = float(self.settings.get("road_bottom_left", self.left))
+        bottom_right = float(self.settings.get("road_bottom_right", self.right))
+        left = top_left + proportion * (bottom_left - top_left)
+        right = top_right + proportion * (bottom_right - top_right)
+        return left, right
+
+    def track_states(self, track: list[TrackObservation]) -> list[str]:
+        """Classify a track as left, inside, or right of the ego corridor."""
+
         states: list[str] = []
         previous = "ROAD"
         for index, item in enumerate(track):
             x = item.box.centre_x
+            left, right = self.corridor_bounds(item)
             if index == 0:
-                previous = "LEFT" if x < self.left else "RIGHT" if x > self.right else "ROAD"
-            elif x <= self.left - self.tolerance:
+                previous = "LEFT" if x < left else "RIGHT" if x > right else "ROAD"
+            elif x <= left - self.tolerance:
                 previous = "LEFT"
-            elif x >= self.right + self.tolerance:
+            elif x >= right + self.tolerance:
                 previous = "RIGHT"
-            elif self.left + self.tolerance <= x <= self.right - self.tolerance:
+            elif left + self.tolerance <= x <= right - self.tolerance:
                 previous = "ROAD"
             states.append(previous)
         return states
+
+    def _states(self, track: list[TrackObservation]) -> list[str]:
+        """Backward compatible internal alias for track state calculation."""
+
+        return self.track_states(track)
 
     def _window(self, track: list[TrackObservation], min_road: int) -> tuple[int, int] | None:
         states = self._states(track)
@@ -181,13 +217,54 @@ class CrossingDetector:
                 road_end += 1
             x_values = [item.box.centre_x for item in track]
             x_range = max(x_values) - min(x_values)
+            direction_consistency = self._direction_consistency(x_values)
             if (
                 road_end + 1 >= min_road
                 and x_range >= float(self.settings.get("partial_exit_min_x_range", 0.48))
+                and direction_consistency
+                >= float(self.settings.get("partial_exit_min_direction_consistency", 0.0))
             ):
                 return 0, min(len(states) - 1, road_end + 1)
 
         return None
+
+    @staticmethod
+    def _direction_consistency(xs: list[float]) -> float:
+        """Measure how consistently the horizontal trajectory moves one way."""
+
+        gross_motion = sum(abs(current - previous) for previous, current in zip(xs, xs[1:]))
+        if gross_motion <= EPS:
+            return 0.0
+        return abs(xs[-1] - xs[0]) / gross_motion
+
+    def _is_strong_complete_crossing(
+        self,
+        track: list[TrackObservation],
+        x: CrossingFeatures,
+        fps: float,
+    ) -> bool:
+        """Identify complete crossings whose motion outweighs small box size.
+
+        This override applies only to size based rejection rules. Rider,
+        camera motion, excessive speed, and other motion checks still apply.
+        """
+
+        if not bool(self.settings.get("strong_complete_override_enabled", False)):
+            return False
+        xs = [item.box.centre_x for item in track]
+        duration_seconds = (
+            track[-1].frame_index - track[0].frame_index + 1
+        ) / max(float(fps), 1.0)
+        return (
+            duration_seconds
+            >= float(self.settings.get("strong_complete_min_seconds", 4.0))
+            and x.x_range
+            >= float(self.settings.get("strong_complete_min_x_range", 0.45))
+            and self._direction_consistency(xs)
+            >= float(
+                self.settings.get("strong_complete_min_direction_consistency", 0.85)
+            )
+        )
 
     def _event(
         self,
@@ -242,6 +319,7 @@ class CrossingDetector:
         s = self.settings
         if self._is_rider(track, all_items, fps):
             return RejectionReason.RIDER
+        strong_complete = self._is_strong_complete_crossing(track, x, fps)
         if x.x_range < s["min_crossing_x_range"]:
             return RejectionReason.INSUFFICIENT_LATERAL_MOTION
         if x.x_range < s["low_x_range"] and x.road_frames < self.f("low_x_min_road_seconds", fps):
@@ -260,7 +338,7 @@ class CrossingDetector:
             and x.median_height < s["weak_y_jitter_height"]
         ):
             return RejectionReason.VERTICAL_JITTER
-        if (
+        if not strong_complete and (
             x.x_range < s["tiny_long_track_x_range"]
             and x.median_height < s["tiny_long_track_height"]
             and x.road_frames >= self.f("tiny_long_track_road_seconds", fps)
@@ -268,7 +346,7 @@ class CrossingDetector:
             return RejectionReason.TINY_UNVERIFIED_TRACK
 
         min_static = self.f("min_static_shared_seconds", fps)
-        if (
+        if not strong_complete and (
             x.static_shared_frames < min_static
             and x.median_height <= s["tiny_no_static_height"]
             and x.median_width <= s["tiny_no_static_width"]
@@ -280,11 +358,7 @@ class CrossingDetector:
         ):
             return RejectionReason.TINY_UNVERIFIED_TRACK
 
-        camera_dominant = (
-            x.static_shared_frames >= min_static
-            and x.static_x_range >= s["camera_static_x_range"]
-            and x.camera_motion_ratio >= s["camera_ratio_threshold"]
-        )
+        camera_dominant = self._camera_dominant(x, fps)
         if camera_dominant and (
             (x.median_height <= s["camera_tiny_height"] and x.road_frames >= self.f("camera_min_road_seconds", fps))
             or (x.relative_x_range <= s["camera_static_tiny_relative_x_range"] and x.median_height <= s["camera_static_tiny_height"])
@@ -301,10 +375,16 @@ class CrossingDetector:
         )
         if slender:
             if x.static_shared_frames < min_static:
-                if x.median_height < s["no_static_slender_height"] and x.road_frames <= self.f("no_static_slender_max_road_seconds", fps):
+                if (
+                    not strong_complete
+                    and x.median_height < s["no_static_slender_height"]
+                    and x.road_frames
+                    <= self.f("no_static_slender_max_road_seconds", fps)
+                ):
                     return RejectionReason.TINY_UNVERIFIED_TRACK
-            elif x.relative_x_range < s["slender_static_min_relative_x_range"] or (
-                camera_dominant and x.median_height <= s["camera_tiny_height"]
+            elif camera_dominant and (
+                x.relative_x_range < s["slender_static_min_relative_x_range"]
+                or x.median_height <= s["camera_tiny_height"]
             ):
                 return RejectionReason.CAMERA_MOTION
 
@@ -319,12 +399,25 @@ class CrossingDetector:
         maximum_speed = s.get("max_crossing_speed_per_frame")
         if maximum_speed is not None and x.x_speed_per_frame > maximum_speed:
             return RejectionReason.INSUFFICIENT_LATERAL_MOTION
-        if x.static_shared_frames >= min_static:
+        if camera_dominant:
             if x.relative_x_range < s["min_relative_x_range"]:
                 return RejectionReason.CAMERA_MOTION
             if x.camera_motion_ratio >= s["camera_ratio_threshold"] and x.relative_x_range < 2 * s["min_relative_x_range"]:
                 return RejectionReason.CAMERA_MOTION
         return RejectionReason.NONE
+
+    def _camera_dominant(self, x: CrossingFeatures, fps: float) -> bool:
+        """Require sustained, moving background evidence for camera motion."""
+
+        s = self.settings
+        min_static = self.f("min_static_shared_seconds", fps)
+        shared_ratio = x.static_shared_frames / max(x.track_frames, 1)
+        return (
+            x.static_shared_frames >= min_static
+            and shared_ratio >= float(s.get("camera_min_shared_track_ratio", 0.0))
+            and x.static_x_range >= s["camera_static_x_range"]
+            and x.camera_motion_ratio >= s["camera_ratio_threshold"]
+        )
 
     def _partial_reason(
         self,
@@ -349,14 +442,10 @@ class CrossingDetector:
 
     def _is_camera_motion(self, x: CrossingFeatures, fps: float) -> bool:
         s = self.settings
-        min_static = self.f("min_static_shared_seconds", fps)
-        if x.static_shared_frames < min_static:
+        if not self._camera_dominant(x, fps):
             return False
 
-        camera_dominant = (
-            x.static_x_range >= s["camera_static_x_range"]
-            and x.camera_motion_ratio >= s["camera_ratio_threshold"]
-        )
+        camera_dominant = True
         if camera_dominant and (
             (
                 x.median_height <= s["camera_tiny_height"]
@@ -395,13 +484,7 @@ class CrossingDetector:
         ):
             return True
 
-        return (
-            x.relative_x_range < s["min_relative_x_range"]
-            or (
-                x.camera_motion_ratio >= s["camera_ratio_threshold"]
-                and x.relative_x_range < 2 * s["min_relative_x_range"]
-            )
-        )
+        return x.relative_x_range < 2 * s["min_relative_x_range"]
 
     def _static_stats(
         self,

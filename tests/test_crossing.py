@@ -75,9 +75,11 @@ class CrossingDetectorTests(unittest.TestCase):
         event = result.valid_events[0]
         self.assertAlmostEqual(event.features.x_range, 0.60)
         self.assertEqual((event.start_frame, event.end_frame), (0, 8))
-        self.assertEqual((event.transition_start_frame, event.transition_end_frame), (2, 6))
+        self.assertEqual((event.transition_start_frame, event.transition_end_frame), (1, 7))
 
     def test_rejects_insufficient_lateral_motion(self) -> None:
+        custom = settings()
+        custom["perspective_corridor_enabled"] = False
         track = [
             observation(0, 0.44),
             observation(1, 0.47),
@@ -85,7 +87,7 @@ class CrossingDetectorTests(unittest.TestCase):
             observation(3, 0.53),
             observation(4, 0.56),
         ]
-        result = CrossingDetector(settings()).detect(track, fps=10.0)
+        result = CrossingDetector(custom).detect(track, fps=10.0)
         self.assertFalse(result.valid_events)
         self.assertEqual(
             result.rejected_events[0].rejection_reason,
@@ -115,7 +117,7 @@ class CrossingDetectorTests(unittest.TestCase):
                 result.valid_events[0].transition_start_frame,
                 result.valid_events[0].transition_end_frame,
             ),
-            (1, 4),
+            (0, 4),
         )
 
     def test_partial_entry_requires_sustained_road_contact(self) -> None:
@@ -135,7 +137,7 @@ class CrossingDetectorTests(unittest.TestCase):
     def test_accepts_partial_road_to_side_exit_at_tuned_range(self) -> None:
         track = [
             observation(frame, x)
-            for frame, x in enumerate([0.50, 0.48, 0.44, 0.25, 0.02])
+            for frame, x in enumerate([0.50, 0.47, 0.40, 0.25, 0.10])
         ]
 
         result = CrossingDetector(settings()).detect(track, fps=10.0)
@@ -146,7 +148,18 @@ class CrossingDetectorTests(unittest.TestCase):
     def test_rejects_partial_exit_below_tuned_range(self) -> None:
         track = [
             observation(frame, x)
-            for frame, x in enumerate([0.50, 0.48, 0.44, 0.25, 0.03])
+            for frame, x in enumerate([0.50, 0.47, 0.40, 0.25, 0.15])
+        ]
+
+        result = CrossingDetector(settings()).detect(track, fps=10.0)
+
+        self.assertFalse(result.valid_events)
+        self.assertFalse(result.rejected_events)
+
+    def test_rejects_directionally_inconsistent_partial_exit(self) -> None:
+        track = [
+            observation(frame, x)
+            for frame, x in enumerate([0.50, 0.42, 0.10, 0.40, 0.10])
         ]
 
         result = CrossingDetector(settings()).detect(track, fps=10.0)
@@ -170,7 +183,7 @@ class CrossingDetectorTests(unittest.TestCase):
     def test_partial_crossing_still_rejects_camera_motion(self) -> None:
         people = [
             observation(frame, x)
-            for frame, x in enumerate([0.30, 0.40, 0.46, 0.50, 0.53])
+            for frame, x in enumerate([0.05, 0.20, 0.40, 0.48, 0.53])
         ]
         static_objects = [
             observation(
@@ -191,6 +204,54 @@ class CrossingDetectorTests(unittest.TestCase):
             result.rejected_events[0].rejection_reason,
             RejectionReason.CAMERA_MOTION,
         )
+
+    def test_weak_static_overlap_does_not_imply_camera_motion(self) -> None:
+        people = [
+            observation(frame, 0.10 + 0.80 * frame / 99)
+            for frame in range(100)
+        ]
+        shared_frames = [round(index * 99 / 8) for index in range(9)]
+        static_objects = [
+            observation(
+                frame,
+                people[frame].box.centre_x,
+                track_id=99,
+                class_id=9,
+                width=0.05,
+                height=0.10,
+            )
+            for frame in shared_frames
+        ]
+
+        result = CrossingDetector(settings()).detect(people + static_objects, fps=10.0)
+
+        self.assertEqual(len(result.valid_events), 1)
+        self.assertFalse(result.rejected_events)
+
+    def test_strong_complete_crossing_overrides_tiny_size_filter(self) -> None:
+        track = [
+            observation(
+                frame,
+                0.20 + 0.60 * frame / 59,
+                width=0.02,
+                height=0.10,
+            )
+            for frame in range(60)
+        ]
+
+        result = CrossingDetector(settings()).detect(track, fps=10.0)
+
+        self.assertEqual(len(result.valid_events), 1)
+        self.assertFalse(result.rejected_events)
+
+    def test_perspective_corridor_uses_the_pedestrian_foot_point(self) -> None:
+        detector = CrossingDetector(settings())
+        near_horizon = observation(0, 0.35, y=0.28, height=0.10)
+        near_camera = observation(1, 0.35, y=0.85, height=0.10)
+
+        states = detector.track_states([near_horizon, near_camera])
+
+        self.assertEqual(states, ["LEFT", "ROAD"])
 
     def test_rejects_camera_motion(self) -> None:
         people = crossing_track()

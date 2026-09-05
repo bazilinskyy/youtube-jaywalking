@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from enum import Enum
 from pathlib import Path
 from typing import Any
@@ -45,6 +45,7 @@ class RejectionReason(str, Enum):
     TINY_UNVERIFIED_TRACK = "TINY_UNVERIFIED_TRACK"
     CAMERA_MOTION = "CAMERA_MOTION"
     RIDER = "RIDER"
+    CLASSIFIER_NEGATIVE = "CLASSIFIER_NEGATIVE"
 
 
 @dataclass(frozen=True)
@@ -151,6 +152,19 @@ class PersonDecision:
 
 
 @dataclass(frozen=True)
+class CrossingClassification:
+    """Frozen model score and audit information for one person track."""
+
+    person_id: int
+    probability: float
+    threshold: float
+    predicted_crossing: bool
+    rule_outcome: str
+    event: CrossingEvent
+    track_features: dict[str, Any]
+
+
+@dataclass(frozen=True)
 class VideoResult:
     """Complete result for one input video."""
 
@@ -159,6 +173,7 @@ class VideoResult:
     person_decisions: list[PersonDecision]
     rejected_candidates: list[CrossingEvent]
     latency_seconds: float
+    crossing_classifications: list[CrossingClassification] = field(default_factory=list)
 
 
 def to_jsonable(value: Any) -> Any:

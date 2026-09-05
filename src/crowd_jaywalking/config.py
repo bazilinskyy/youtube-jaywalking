@@ -15,6 +15,53 @@ DEFAULT_CONFIG_NAME = "default.config"
 OPTIONAL_CROSSING_DEFAULTS = {
     "partial_crossing_enabled": True,
     "partial_exit_min_x_range": 0.48,
+    "partial_exit_min_direction_consistency": 0.0,
+    "perspective_corridor_enabled": False,
+    "road_top_y": 0.0,
+    "road_bottom_y": 1.0,
+    "road_top_left": 0.45,
+    "road_top_right": 0.55,
+    "road_bottom_left": 0.45,
+    "road_bottom_right": 0.55,
+    "strong_complete_override_enabled": False,
+    "strong_complete_min_seconds": 4.0,
+    "strong_complete_min_x_range": 0.45,
+    "strong_complete_min_direction_consistency": 0.85,
+    "camera_min_shared_track_ratio": 0.0,
+}
+
+OPTIONAL_CLASSIFIER_DEFAULTS = {
+    "crossing_classifier_results": "results/jaad_crossing_classifier_v1",
+    "crossing_classifier_model": (
+        "results/jaad_crossing_classifier_v1/crossing_classifier.joblib"
+    ),
+    "crossing_classifier_min_precision": 0.90,
+    "crossing_classifier_cv_folds": 5,
+    "crossing_classifier_threshold_step": 0.01,
+    "crossing_classifier_random_seed": 42,
+    "crossing_classifier_logistic_c_values": [0.10, 1.00, 10.00],
+    "crossing_classifier_gradient_learning_rates": [0.05, 0.10],
+    "crossing_classifier_gradient_max_leaf_nodes": [7, 15],
+    "crossing_decision_mode": "classifier",
+    "crossing_classifier_fallback_to_rules": False,
+    "crossing_classifier_min_track_frames": 5,
+}
+
+OPTIONAL_CROWD_DEFAULTS = {
+    "mapping": "mapping.csv",
+    "ftp_server": "https://files.mobility-squad.com/",
+    "crowd_results": "results/crowd_jaywalking_v2",
+    "crowd_resume": True,
+    "crowd_ftp_aliases": ["tue4", "tue5"],
+    "crowd_download_dir": "data/crowd_downloads",
+    "crowd_download_timeout_seconds": 20,
+    "crowd_download_max_pages": 500,
+    "crowd_trim_end_margin_seconds": 1.0,
+    "crowd_delete_downloaded_base_videos": False,
+    "crowd_keep_segment_videos": True,
+    "crowd_max_segments": 0,
+    "crowd_audit_random_seed": 42,
+    "crowd_audit_per_stratum": 50,
 }
 
 CROSSING_KEYS = (
@@ -254,9 +301,85 @@ class ProjectConfig:
             )
         }
 
+    def crossing_classifier_settings(self) -> dict[str, Any]:
+        """Return effective settings for supervised crossing classification."""
+
+        value = lambda name: self.raw.get(name, OPTIONAL_CLASSIFIER_DEFAULTS[name])
+        return {
+            "benchmark_results": self.path("jaad_benchmark_results"),
+            "results": self._resolved_optional_path(
+                "crossing_classifier_results",
+                OPTIONAL_CLASSIFIER_DEFAULTS["crossing_classifier_results"],
+            ),
+            "model": self._resolved_optional_path(
+                "crossing_classifier_model",
+                OPTIONAL_CLASSIFIER_DEFAULTS["crossing_classifier_model"],
+            ),
+            "min_precision": float(value("crossing_classifier_min_precision")),
+            "cv_folds": int(value("crossing_classifier_cv_folds")),
+            "threshold_step": float(value("crossing_classifier_threshold_step")),
+            "random_seed": int(value("crossing_classifier_random_seed")),
+            "logistic_c_values": [
+                float(item) for item in value("crossing_classifier_logistic_c_values")
+            ],
+            "gradient_learning_rates": [
+                float(item)
+                for item in value("crossing_classifier_gradient_learning_rates")
+            ],
+            "gradient_max_leaf_nodes": [
+                int(item)
+                for item in value("crossing_classifier_gradient_max_leaf_nodes")
+            ],
+            "decision_mode": str(value("crossing_decision_mode")).strip().lower(),
+            "fallback_to_rules": bool(value("crossing_classifier_fallback_to_rules")),
+            "min_track_frames": int(value("crossing_classifier_min_track_frames")),
+        }
+
+    def crowd_settings(self) -> dict[str, Any]:
+        """Return batch execution and manual audit settings for CROWD."""
+
+        value = lambda name: self.raw.get(name, OPTIONAL_CROWD_DEFAULTS[name])
+        return {
+            "mapping": self._resolved_optional_path(
+                "mapping", OPTIONAL_CROWD_DEFAULTS["mapping"]
+            ),
+            "ftp_server": str(value("ftp_server")).strip(),
+            "results": self._resolved_optional_path(
+                "crowd_results", OPTIONAL_CROWD_DEFAULTS["crowd_results"]
+            ),
+            "resume": bool(value("crowd_resume")),
+            "ftp_aliases": [
+                str(item).strip() for item in value("crowd_ftp_aliases")
+            ],
+            "download_dir": self._resolved_optional_path(
+                "crowd_download_dir", OPTIONAL_CROWD_DEFAULTS["crowd_download_dir"]
+            ),
+            "download_timeout_seconds": int(value("crowd_download_timeout_seconds")),
+            "download_max_pages": int(value("crowd_download_max_pages")),
+            "trim_end_margin_seconds": float(value("crowd_trim_end_margin_seconds")),
+            "delete_downloaded_base_videos": bool(
+                value("crowd_delete_downloaded_base_videos")
+            ),
+            "keep_segment_videos": bool(value("crowd_keep_segment_videos")),
+            "max_segments": int(value("crowd_max_segments")),
+            "audit_random_seed": int(value("crowd_audit_random_seed")),
+            "audit_per_stratum": int(value("crowd_audit_per_stratum")),
+        }
+
+    def _resolved_optional_path(self, name: str, default: str) -> Path:
+        value = self.raw.get(name, default)
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError(f"Configuration entry must be a path string: {name}")
+        candidate = Path(value)
+        return candidate.resolve() if candidate.is_absolute() else (self.root / candidate).resolve()
+
     def fingerprint(self, prompt_version: str) -> str:
         effective_config = dict(self.raw)
         for key, default in OPTIONAL_CROSSING_DEFAULTS.items():
+            effective_config.setdefault(key, default)
+        for key, default in OPTIONAL_CLASSIFIER_DEFAULTS.items():
+            effective_config.setdefault(key, default)
+        for key, default in OPTIONAL_CROWD_DEFAULTS.items():
             effective_config.setdefault(key, default)
         payload = {
             "config": effective_config,
@@ -300,6 +423,57 @@ class ProjectConfig:
         if not 0.0 <= partial_exit_min_x_range <= 1.0:
             raise ValueError("partial_exit_min_x_range must be between 0 and 1")
 
+        for name in (
+            "partial_exit_min_direction_consistency",
+            "strong_complete_min_direction_consistency",
+            "camera_min_shared_track_ratio",
+        ):
+            value = float(self.raw.get(name, OPTIONAL_CROSSING_DEFAULTS[name]))
+            if not 0.0 <= value <= 1.0:
+                raise ValueError(f"{name} must be between 0 and 1")
+
+        for name in (
+            "perspective_corridor_enabled",
+            "strong_complete_override_enabled",
+        ):
+            value = self.raw.get(name, OPTIONAL_CROSSING_DEFAULTS[name])
+            if not isinstance(value, bool):
+                raise ValueError(f"{name} must be true or false")
+
+        road_top_y = float(self.raw.get("road_top_y", OPTIONAL_CROSSING_DEFAULTS["road_top_y"]))
+        road_bottom_y = float(
+            self.raw.get("road_bottom_y", OPTIONAL_CROSSING_DEFAULTS["road_bottom_y"])
+        )
+        if not 0.0 <= road_top_y < road_bottom_y <= 1.0:
+            raise ValueError("road_top_y and road_bottom_y must satisfy 0 <= top < bottom <= 1")
+        for prefix in ("road_top", "road_bottom"):
+            corridor_left = float(
+                self.raw.get(f"{prefix}_left", OPTIONAL_CROSSING_DEFAULTS[f"{prefix}_left"])
+            )
+            corridor_right = float(
+                self.raw.get(f"{prefix}_right", OPTIONAL_CROSSING_DEFAULTS[f"{prefix}_right"])
+            )
+            if not 0.0 <= corridor_left < corridor_right <= 1.0:
+                raise ValueError(
+                    f"{prefix}_left and {prefix}_right must satisfy 0 <= left < right <= 1"
+                )
+
+        if float(
+            self.raw.get(
+                "strong_complete_min_seconds",
+                OPTIONAL_CROSSING_DEFAULTS["strong_complete_min_seconds"],
+            )
+        ) < 0.0:
+            raise ValueError("strong_complete_min_seconds must be non-negative")
+        strong_complete_min_x_range = float(
+            self.raw.get(
+                "strong_complete_min_x_range",
+                OPTIONAL_CROSSING_DEFAULTS["strong_complete_min_x_range"],
+            )
+        )
+        if not 0.0 <= strong_complete_min_x_range <= 1.0:
+            raise ValueError("strong_complete_min_x_range must be between 0 and 1")
+
         positions = self.get("evidence_sample_positions")
         if not isinstance(positions, list) or not positions:
             raise ValueError("evidence_sample_positions must be a non-empty list")
@@ -334,3 +508,54 @@ class ProjectConfig:
             raise ValueError("jaad_min_match_frames must be positive")
         if not 0.0 < float(self.get("jaad_min_track_coverage")) <= 1.0:
             raise ValueError("jaad_min_track_coverage must be greater than 0 and at most 1")
+
+        classifier = self.crossing_classifier_settings()
+        if classifier["decision_mode"] not in {"classifier", "rules"}:
+            raise ValueError("crossing_decision_mode must be one of: classifier, rules")
+        fallback = self.raw.get(
+            "crossing_classifier_fallback_to_rules",
+            OPTIONAL_CLASSIFIER_DEFAULTS["crossing_classifier_fallback_to_rules"],
+        )
+        if not isinstance(fallback, bool):
+            raise ValueError("crossing_classifier_fallback_to_rules must be true or false")
+        if classifier["min_track_frames"] < 1:
+            raise ValueError("crossing_classifier_min_track_frames must be positive")
+        if not 0.0 < classifier["min_precision"] <= 1.0:
+            raise ValueError("crossing_classifier_min_precision must be greater than 0 and at most 1")
+        if classifier["cv_folds"] < 2:
+            raise ValueError("crossing_classifier_cv_folds must be at least 2")
+        if not 0.0 < classifier["threshold_step"] < 1.0:
+            raise ValueError("crossing_classifier_threshold_step must be greater than 0 and less than 1")
+        for name in ("logistic_c_values", "gradient_learning_rates"):
+            values = classifier[name]
+            if not values or any(value <= 0.0 for value in values):
+                raise ValueError(f"crossing_classifier_{name} must contain positive values")
+        leaf_nodes = classifier["gradient_max_leaf_nodes"]
+        if not leaf_nodes or any(value < 2 for value in leaf_nodes):
+            raise ValueError(
+                "crossing_classifier_gradient_max_leaf_nodes must contain integers of at least 2"
+            )
+
+        crowd = self.crowd_settings()
+        for name in (
+            "crowd_resume",
+            "crowd_delete_downloaded_base_videos",
+            "crowd_keep_segment_videos",
+        ):
+            value = self.raw.get(name, OPTIONAL_CROWD_DEFAULTS[name])
+            if not isinstance(value, bool):
+                raise ValueError(f"{name} must be true or false")
+        if not crowd["ftp_server"]:
+            raise ValueError("ftp_server must not be empty")
+        if not crowd["ftp_aliases"] or any(not item for item in crowd["ftp_aliases"]):
+            raise ValueError("crowd_ftp_aliases must contain at least one alias")
+        if crowd["download_timeout_seconds"] < 1:
+            raise ValueError("crowd_download_timeout_seconds must be positive")
+        if crowd["download_max_pages"] < 1:
+            raise ValueError("crowd_download_max_pages must be positive")
+        if crowd["trim_end_margin_seconds"] < 0.0:
+            raise ValueError("crowd_trim_end_margin_seconds must be non-negative")
+        if crowd["max_segments"] < 0:
+            raise ValueError("crowd_max_segments must be zero or positive")
+        if crowd["audit_per_stratum"] < 1:
+            raise ValueError("crowd_audit_per_stratum must be positive")

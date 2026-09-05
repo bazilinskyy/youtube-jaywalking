@@ -15,6 +15,7 @@ from .crossing import CrossingDetectionResult, CrossingDetector
 from .jaad import JAADDataset, JAADPedestrianTrack, JAADVideoAnnotations
 from .models import BoundingBox, CrossingEvent, TrackObservation
 from .tracking import PersonTracker, load_observations_csv, save_observations_csv
+from .track_features import TrackFeatureExtractor
 
 
 PERSON_CLASS = 0
@@ -297,6 +298,7 @@ class JAADCrossingBenchmark:
         self.unmatched_csv = self.output_dir / "unmatched_crossing_predictions.csv"
         self.summary_json = self.output_dir / "summary.json"
         self.detector = CrossingDetector(config.crossing_settings())
+        self.feature_extractor = TrackFeatureExtractor(config.crossing_settings())
         self._tracker: PersonTracker | None = None
 
     @property
@@ -540,6 +542,8 @@ class JAADCrossingBenchmark:
         observations: list[TrackObservation],
         fps: float,
     ) -> dict[str, Any]:
+        if track:
+            return self.feature_extractor.extract(track, observations, fps)
         names = (
             "matched_track_start_frame",
             "matched_track_end_frame",
@@ -698,23 +702,7 @@ class JAADCrossingBenchmark:
         }
 
     def _corridor_states(self, track: list[TrackObservation]) -> list[str]:
-        left = float(self.config.get("road_left"))
-        right = float(self.config.get("road_right"))
-        tolerance = float(self.config.get("boundary_tolerance"))
-        previous = "ROAD"
-        states: list[str] = []
-        for index, item in enumerate(track):
-            x = item.box.centre_x
-            if index == 0:
-                previous = "LEFT" if x < left else "RIGHT" if x > right else "ROAD"
-            elif x <= left - tolerance:
-                previous = "LEFT"
-            elif x >= right + tolerance:
-                previous = "RIGHT"
-            elif left + tolerance <= x <= right - tolerance:
-                previous = "ROAD"
-            states.append(previous)
-        return states
+        return self.detector.track_states(track)
 
     @staticmethod
     def _has_complete_transition(states: list[str], min_road: int) -> bool:
