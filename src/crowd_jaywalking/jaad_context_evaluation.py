@@ -95,16 +95,27 @@ def _macro_metrics(truth: list[str], predictions: list[str], labels: tuple[str, 
 class JAADContextBenchmark:
     """Run and evaluate the VLM only on independently labelled true crossings."""
 
-    def __init__(self, config: ProjectConfig) -> None:
+    def __init__(
+        self,
+        config: ProjectConfig,
+        *,
+        model_id: str | None = None,
+        output_dir: str | Path | None = None,
+    ) -> None:
         self.config = config
         self.split = str(config.get("jaad_context_split")).strip().lower()
-        self.output_dir = config.path("jaad_context_results") / self.split
-        self.annotations_csv = self.output_dir / "context_annotations.csv"
+        self.model_id = model_id or str(config.get("vlm_model"))
+        self.annotation_dir = config.path("jaad_context_results") / self.split
+        self.output_dir = (
+            Path(output_dir).resolve() if output_dir is not None else self.annotation_dir
+        )
+        self.annotations_csv = self.annotation_dir / "context_annotations.csv"
         self.predictions_csv = self.output_dir / "vlm_predictions.csv"
         self.summary_json = self.output_dir / "vlm_summary.json"
         self.manifest_json = self.output_dir / "vlm_manifest.json"
 
     def run(self) -> dict[str, Any]:
+        self.output_dir.mkdir(parents=True, exist_ok=True)
         annotation_rows = self._annotation_rows()
         complete, incomplete = self._complete_rows(annotation_rows)
         if not complete:
@@ -122,43 +133,49 @@ class JAADContextBenchmark:
         classifier: HuggingFaceContextClassifier | None = None
         policy = JaywalkingPolicy(self.config.policy_settings())
         write_header = not self.predictions_csv.exists() or self.predictions_csv.stat().st_size == 0
-        with self.predictions_csv.open("a", encoding="utf-8", newline="") as handle:
-            writer = csv.DictWriter(handle, fieldnames=PREDICTION_FIELDS)
-            if write_header:
-                writer.writeheader()
+        try:
+            with self.predictions_csv.open("a", encoding="utf-8", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=PREDICTION_FIELDS)
+                if write_header:
+                    writer.writeheader()
 
-            for index, row in enumerate(complete, start=1):
-                key = (row["video_id"], row["jaad_pedestrian_id"])
-                if key in completed:
-                    print(f"[{index:03d}/{len(complete):03d}] {key}: already completed")
-                    continue
-                if classifier is None:
-                    classifier = HuggingFaceContextClassifier(self.config.vlm_settings())
-                    classifier.ensure_ready()
-                print(f"[{index:03d}/{len(complete):03d}] {key}")
-                context = classifier.classify(self._evidence(row))
-                predicted_label, reason = policy.decide(context)
-                writer.writerow(
-                    {
-                        "video_id": row["video_id"],
-                        "jaad_pedestrian_id": row["jaad_pedestrian_id"],
-                        **{
-                            f"ground_truth_{field}": _normalise_ternary(row[field])
-                            for field in CONTEXT_FIELDS
-                        },
-                        **{
-                            f"predicted_{field}": getattr(context, field).value
-                            for field in CONTEXT_FIELDS
-                        },
-                        "ground_truth_visibility": _normalise_visibility(row["visibility"]),
-                        "predicted_visibility": context.visibility.value,
-                        "ground_truth_label": _normalise_jaywalking(row["is_jaywalking"]),
-                        "predicted_label": predicted_label.value,
-                        "policy_reason": reason,
-                        "evidence_summary": context.evidence_summary,
-                    }
-                )
-                handle.flush()
+                for index, row in enumerate(complete, start=1):
+                    key = (row["video_id"], row["jaad_pedestrian_id"])
+                    if key in completed:
+                        print(f"[{index:03d}/{len(complete):03d}] {key}: already completed")
+                        continue
+                    if classifier is None:
+                        classifier = HuggingFaceContextClassifier(
+                            self.config.vlm_settings(self.model_id)
+                        )
+                        classifier.ensure_ready()
+                    print(f"[{index:03d}/{len(complete):03d}] {key}")
+                    context = classifier.classify(self._evidence(row))
+                    predicted_label, reason = policy.decide(context)
+                    writer.writerow(
+                        {
+                            "video_id": row["video_id"],
+                            "jaad_pedestrian_id": row["jaad_pedestrian_id"],
+                            **{
+                                f"ground_truth_{field}": _normalise_ternary(row[field])
+                                for field in CONTEXT_FIELDS
+                            },
+                            **{
+                                f"predicted_{field}": getattr(context, field).value
+                                for field in CONTEXT_FIELDS
+                            },
+                            "ground_truth_visibility": _normalise_visibility(row["visibility"]),
+                            "predicted_visibility": context.visibility.value,
+                            "ground_truth_label": _normalise_jaywalking(row["is_jaywalking"]),
+                            "predicted_label": predicted_label.value,
+                            "policy_reason": reason,
+                            "evidence_summary": context.evidence_summary,
+                        }
+                    )
+                    handle.flush()
+        finally:
+            if classifier is not None:
+                classifier.close()
 
         prediction_rows = self._read_csv(self.predictions_csv)
         summary = self._summarise(prediction_rows, len(incomplete))
@@ -171,7 +188,7 @@ class JAADContextBenchmark:
         if not self.annotations_csv.is_file():
             raise FileNotFoundError(
                 f"Context annotation sheet not found: {self.annotations_csv}. "
-                "Run prepare_jaad_context_audit.py first."
+                "Run prepare_jaad_context.py first."
             )
         rows = self._read_csv(self.annotations_csv)
         required = set(MANUAL_CONTEXT_FIELDS).difference({"annotator", "notes"})
@@ -210,7 +227,8 @@ class JAADContextBenchmark:
             json.dumps(annotation_payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
         ).hexdigest()
         fingerprint = self.config.fingerprint(
-            f"{PROMPT_VERSION}\n{CONTEXT_PROMPT}\njaad-context-v1\n{annotation_sha256}"
+            f"{PROMPT_VERSION}\n{CONTEXT_PROMPT}\njaad-context-v2\n"
+            f"{self.model_id}\n{annotation_sha256}"
         )
         if self.manifest_json.is_file():
             existing = json.loads(self.manifest_json.read_text(encoding="utf-8"))
@@ -221,13 +239,13 @@ class JAADContextBenchmark:
                 )
             return
         payload = {
-            "pipeline_version": "1.1.0",
+            "pipeline_version": "1.9.0",
             "prompt_version": PROMPT_VERSION,
             "fingerprint": fingerprint,
             "split": self.split,
             "annotated_events": len(annotated_rows),
             "annotation_sha256": annotation_sha256,
-            "vlm_model": self.config.get("vlm_model"),
+            "vlm_model": self.model_id,
         }
         self.manifest_json.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
@@ -240,7 +258,7 @@ class JAADContextBenchmark:
         }
 
     def _evidence(self, row: dict[str, str]) -> list[EvidenceImage]:
-        directory = self.output_dir / row["evidence_directory"]
+        directory = self.annotation_dir / row["evidence_directory"]
         if not directory.is_dir():
             raise FileNotFoundError(f"Evidence directory not found: {directory}")
         evidence: list[EvidenceImage] = []
@@ -287,8 +305,21 @@ class JAADContextBenchmark:
                 DecisionLabel.UNCERTAIN.value,
             ),
         )
+        uncertain_events = sum(
+            row["predicted_label"] == DecisionLabel.UNCERTAIN.value for row in rows
+        )
+        label_metrics.update(
+            {
+                "decided_events": len(rows) - uncertain_events,
+                "uncertain_events": uncertain_events,
+                "coverage_percent": (
+                    100.0 * (len(rows) - uncertain_events) / len(rows) if rows else 0.0
+                ),
+            }
+        )
         return {
             "split": self.split,
+            "vlm_model": self.model_id,
             "evaluated_events": len(rows),
             "incomplete_annotation_rows": incomplete_rows,
             "context_field_metrics": field_metrics,

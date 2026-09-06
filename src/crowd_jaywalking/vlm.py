@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+import gc
 import json
 from typing import Any
 
 from .models import ContextAssessment, EvidenceImage, Ternary, Visibility
 
 
-PROMPT_VERSION = "global-context-v1"
+PROMPT_VERSION = "global-context-v2"
 
 CONTEXT_PROMPT = """You are inspecting one tracked pedestrian crossing event.
 
@@ -35,7 +36,9 @@ authorised_crossing_sign means a visible sign explicitly designating the target 
 crossing_guard_permission means a visible authorised person is directing the target to cross.
 prohibitive_pedestrian_signal means a visible red or do-not-walk pedestrian signal applying to the target.
 
-Use UNCERTAIN when the relevant area is occluded, too small, outside the frame, or visually ambiguous. Output JSON only.
+Vehicle traffic lights are not pedestrian signals. Do not treat a red vehicle light as pedestrian permission or a green vehicle light as a prohibitive pedestrian signal.
+
+Use NO only when the relevant crossing path or control is sufficiently visible and the feature is not present. Use UNCERTAIN when the relevant area is occluded, too small, outside the frame, or visually ambiguous. Output JSON only.
 """
 
 
@@ -44,10 +47,11 @@ class VLMError(RuntimeError):
 
 
 class HuggingFaceContextClassifier:
-    """Run Qwen2.5 VL locally with weights obtained from Hugging Face."""
+    """Run a supported local VLM with weights obtained from Hugging Face."""
 
     def __init__(self, settings: dict[str, Any]) -> None:
         self.model_id = str(settings["model_id"])
+        self.model_family = self._model_family(self.model_id)
         self.max_new_tokens = int(settings.get("max_new_tokens", 300))
         self.model = None
         self.processor = None
@@ -57,8 +61,7 @@ class HuggingFaceContextClassifier:
     def _load(self, settings: dict[str, Any]) -> None:
         try:
             import torch
-            from qwen_vl_utils import process_vision_info
-            from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
+            from transformers import AutoProcessor
         except ImportError as error:
             raise VLMError(
                 "Hugging Face VLM dependencies are missing. Run 'uv sync' from the repository root."
@@ -72,23 +75,45 @@ class HuggingFaceContextClassifier:
         processor_kwargs: dict[str, Any] = {
             "cache_dir": cache_dir,
             "local_files_only": local_files_only,
-            "min_pixels": int(settings.get("min_pixels", 200704)),
-            "max_pixels": int(settings.get("max_pixels", 401408)),
         }
         model_kwargs: dict[str, Any] = {
             "cache_dir": cache_dir,
             "device_map": settings.get("device_map", "auto"),
             "local_files_only": local_files_only,
             "low_cpu_mem_usage": True,
-            "torch_dtype": dtype,
+            "dtype": dtype,
         }
         attention = settings.get("attn_implementation")
         if attention:
             model_kwargs["attn_implementation"] = str(attention)
 
         try:
+            if self.model_family == "qwen":
+                from qwen_vl_utils import process_vision_info
+
+                processor_kwargs.update(
+                    {
+                        "min_pixels": int(settings.get("min_pixels", 200704)),
+                        "max_pixels": int(settings.get("max_pixels", 401408)),
+                    }
+                )
+                if "qwen3" in self.model_id.lower():
+                    from transformers import Qwen3VLForConditionalGeneration
+
+                    model_class = Qwen3VLForConditionalGeneration
+                else:
+                    from transformers import Qwen2_5_VLForConditionalGeneration
+
+                    model_class = Qwen2_5_VLForConditionalGeneration
+                self._process_vision_info = process_vision_info
+            else:
+                from transformers import AutoModelForMultimodalLM
+
+                model_class = AutoModelForMultimodalLM
+                processor_kwargs["padding_side"] = "left"
+
             self.processor = AutoProcessor.from_pretrained(self.model_id, **processor_kwargs)
-            self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+            self.model = model_class.from_pretrained(
                 self.model_id,
                 **model_kwargs,
             )
@@ -99,13 +124,13 @@ class HuggingFaceContextClassifier:
                 "Check disk space, memory, network access, and any required Hugging Face login."
             ) from error
 
-        self._process_vision_info = process_vision_info
-
     def ensure_ready(self) -> None:
         """Confirm that the processor and model finished loading."""
 
-        if self.processor is None or self.model is None or self._process_vision_info is None:
+        if self.processor is None or self.model is None:
             raise VLMError(f"Hugging Face model '{self.model_id}' is not ready")
+        if self.model_family == "qwen" and self._process_vision_info is None:
+            raise VLMError(f"Qwen vision utilities for '{self.model_id}' are not ready")
 
     def classify(self, evidence: list[EvidenceImage]) -> ContextAssessment:
         """Return a validated structured context assessment."""
@@ -113,6 +138,15 @@ class HuggingFaceContextClassifier:
         if not evidence:
             raise VLMError("No evidence images were supplied to the VLM")
         self.ensure_ready()
+
+        if self.model_family == "qwen":
+            output = self._classify_qwen(evidence)
+        else:
+            output = self._classify_gemma(evidence)
+        return self._validate_response(output)
+
+    def _classify_qwen(self, evidence: list[EvidenceImage]) -> str:
+        """Run Qwen2.5 VL or Qwen3 VL using its multimodal utility."""
 
         content: list[dict[str, str]] = []
         for index, item in enumerate(evidence, start=1):
@@ -168,7 +202,87 @@ class HuggingFaceContextClassifier:
                 "The evaluation stopped instead of inventing a label."
             ) from error
 
-        return self._validate_response(output)
+        return output
+
+    def _classify_gemma(self, evidence: list[EvidenceImage]) -> str:
+        """Run Gemma 4 with images placed before the classification prompt."""
+
+        content: list[dict[str, str]] = []
+        image_order: list[str] = []
+        for index, item in enumerate(evidence, start=1):
+            content.extend(
+                [
+                    {"type": "image", "url": item.context_path.resolve().as_uri()},
+                    {"type": "image", "url": item.focus_path.resolve().as_uri()},
+                ]
+            )
+            image_order.append(
+                f"Images {2 * index - 1} and {2 * index} are time {index}: "
+                "full scene followed by target focus."
+            )
+        content.append(
+            {
+                "type": "text",
+                "text": "\n".join([*image_order, CONTEXT_PROMPT]),
+            }
+        )
+        messages = [{"role": "user", "content": content}]
+
+        try:
+            inputs = self.processor.apply_chat_template(
+                messages,
+                tokenize=True,
+                return_dict=True,
+                return_tensors="pt",
+                add_generation_prompt=True,
+                enable_thinking=False,
+            ).to(self.model.device)
+            input_length = inputs["input_ids"].shape[-1]
+
+            import torch
+
+            with torch.inference_mode():
+                generated_ids = self.model.generate(
+                    **inputs,
+                    max_new_tokens=self.max_new_tokens,
+                    do_sample=False,
+                    use_cache=True,
+                )
+            return self.processor.decode(
+                generated_ids[0][input_length:],
+                skip_special_tokens=True,
+            )
+        except Exception as error:
+            raise VLMError(
+                f"Local Hugging Face inference failed for '{self.model_id}'. "
+                "The evaluation stopped instead of inventing a label."
+            ) from error
+
+    def close(self) -> None:
+        """Release model memory before another comparison model is loaded."""
+
+        self.model = None
+        self.processor = None
+        self._process_vision_info = None
+        gc.collect()
+        try:
+            import torch
+
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except ImportError:
+            pass
+
+    @staticmethod
+    def _model_family(model_id: str) -> str:
+        normalised = model_id.strip().lower()
+        if "qwen2.5-vl" in normalised or "qwen3-vl" in normalised:
+            return "qwen"
+        if "gemma-4" in normalised:
+            return "gemma"
+        raise VLMError(
+            "Unsupported VLM. Use a Qwen2.5 VL, Qwen3 VL, or Gemma 4 model ID."
+        )
 
     @staticmethod
     def _resolve_dtype(value: str, torch_module: Any) -> Any:

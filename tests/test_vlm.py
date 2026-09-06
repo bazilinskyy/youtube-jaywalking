@@ -20,6 +20,22 @@ def valid_payload() -> dict[str, str]:
 
 
 class VLMValidationTests(unittest.TestCase):
+    def test_recognises_supported_model_families(self) -> None:
+        self.assertEqual(
+            HuggingFaceContextClassifier._model_family(
+                "Qwen/Qwen3-VL-8B-Instruct"
+            ),
+            "qwen",
+        )
+        self.assertEqual(
+            HuggingFaceContextClassifier._model_family("google/gemma-4-12B-it"),
+            "gemma",
+        )
+
+    def test_rejects_unsupported_model_family(self) -> None:
+        with self.assertRaises(VLMError):
+            HuggingFaceContextClassifier._model_family("text-only/model")
+
     def test_accepts_exact_json_schema(self) -> None:
         result = HuggingFaceContextClassifier._validate_response(json.dumps(valid_payload()))
         self.assertEqual(result.marked_crosswalk, Ternary.NO)

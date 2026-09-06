@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JAAD Observable Context Annotator v2.1</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #09101f;
+      --panel: #121c31;
+      --panel2: #182540;
+      --border: #2b3b60;
+      --text: #f4f7ff;
+      --muted: #aab7d2;
+      --accent: #71a8ff;
+      --yes: #24b879;
+      --no: #ef6570;
+      --uncertain: #e8b84b;
+      --clear: #49c7d2;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 0, rgba(70, 116, 208, 0.25), transparent 34rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    button, .file-button {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      background: var(--panel2);
+      cursor: pointer;
+    }
+
+    button:hover:not(:disabled), .file-button:hover { border-color: var(--accent); }
+    button:disabled { cursor: not-allowed; opacity: 0.42; }
+
+    .app { width: min(1700px, 100%); margin: auto; padding: 22px; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    h1 { margin: 0 0 7px; font-size: clamp(1.45rem, 3vw, 2.15rem); }
+    .subtitle { margin: 0; max-width: 850px; color: var(--muted); line-height: 1.5; }
+
+    .actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .file-button, .actions button {
+      display: inline-flex;
+      min-height: 42px;
+      padding: 0 14px;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+    }
+    .file-button input { display: none; }
+    .primary { background: #285797; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 9px;
+      margin-bottom: 10px;
+    }
+
+    .metric {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(18, 28, 49, 0.94);
+    }
+    .metric-label { color: var(--muted); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .metric-value { margin-top: 3px; font-size: 1.35rem; font-weight: 800; }
+
+    .progress { height: 8px; margin-bottom: 16px; overflow: hidden; border: 1px solid var(--border); border-radius: 99px; background: #050a14; }
+    .progress > div { width: 0; height: 100%; background: linear-gradient(90deg, var(--accent), var(--yes)); transition: width 160ms ease; }
+
+    .workspace { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 16px; }
+    .main, .sidebar { border: 1px solid var(--border); border-radius: var(--radius); background: rgba(18, 28, 49, 0.95); }
+    .main { min-width: 0; padding: 16px; }
+    .sidebar { min-height: 720px; overflow: hidden; }
+
+    .event-header { display: flex; justify-content: space-between; gap: 15px; align-items: flex-start; margin-bottom: 13px; }
+    .event-title { font-size: 1.1rem; font-weight: 800; overflow-wrap: anywhere; }
+    .event-meta { margin-top: 5px; color: var(--muted); font-size: 0.88rem; }
+    .position { color: var(--muted); white-space: nowrap; }
+
+    .empty {
+      padding: 38px 24px;
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .video-section { display: none; margin-bottom: 14px; }
+    video { width: 100%; max-height: 45vh; border: 1px solid var(--border); border-radius: 11px; background: #000; }
+    .video-controls { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 7px; }
+    .video-controls button { min-height: 36px; padding: 0 11px; }
+
+    .section-title { margin: 17px 0 9px; font-size: 1rem; }
+    .evidence-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+    .evidence-card { min-width: 0; overflow: hidden; border: 1px solid var(--border); border-radius: 11px; background: #070b14; }
+    .evidence-card button { display: block; width: 100%; padding: 0; border: 0; border-radius: 0; background: #05070d; }
+    .evidence-card img { display: block; width: 100%; height: 280px; object-fit: contain; }
+    .evidence-label { padding: 7px 9px; color: var(--muted); font-size: 0.8rem; }
+
+    .form { display: grid; gap: 10px; margin-top: 16px; }
+    .question-card { padding: 12px; border: 1px solid var(--border); border-radius: 11px; background: #0e172a; }
+    .question-row { display: grid; grid-template-columns: minmax(220px, 1fr) minmax(360px, 1.4fr); gap: 12px; align-items: center; }
+    .question-label { font-weight: 730; }
+    .question-help { margin-top: 4px; color: var(--muted); font-size: 0.8rem; line-height: 1.35; }
+    .choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .choice { min-height: 40px; padding: 0 8px; font-weight: 750; }
+    .choice[data-value="YES"].selected { border-color: var(--yes); background: #126841; }
+    .choice[data-value="NO"].selected { border-color: var(--no); background: #81323b; }
+    .choice[data-value="UNCERTAIN"].selected { border-color: var(--uncertain); background: #70551d; }
+    .choice[data-value="CLEAR"].selected { border-color: var(--clear); background: #17616b; }
+    .choice[data-value="PARTIAL"].selected { border-color: var(--uncertain); background: #70551d; }
+    .choice[data-value="INSUFFICIENT"].selected { border-color: var(--no); background: #81323b; }
+
+    .text-fields { display: grid; grid-template-columns: 260px 1fr; gap: 10px; }
+    .text-field { display: grid; gap: 5px; color: var(--muted); font-size: 0.82rem; }
+    .text-field input, .text-field textarea, .sidebar input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--text);
+      background: #091224;
+      padding: 9px 10px;
+    }
+    .text-field textarea { min-height: 72px; resize: vertical; }
+
+    .policy-note { display: none; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; color: var(--muted); background: #0b1426; line-height: 1.4; }
+    .policy-note.warning { display: block; border-color: var(--uncertain); color: #ffe4a1; }
+    .policy-note.ok { display: block; border-color: #287957; color: #c8f7df; }
+
+    .navigation { display: grid; grid-template-columns: 1fr auto auto 1fr; gap: 8px; margin-top: 14px; }
+    .navigation button { min-height: 42px; padding: 0 13px; }
+
+    .side-controls { display: grid; gap: 8px; padding: 12px; border-bottom: 1px solid var(--border); }
+    .filters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .filters button { min-height: 34px; padding: 0 6px; font-size: 0.78rem; }
+    .filters button.active { border-color: var(--accent); background: #285797; }
+    .event-list { max-height: 920px; overflow: auto; padding: 7px; }
+    .event-item {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 32px minmax(0, 1fr) auto;
+      gap: 7px;
+      align-items: center;
+      margin-bottom: 5px;
+      padding: 9px;
+      text-align: left;
+      background: transparent;
+    }
+    .event-item.current { border-color: var(--accent); background: #1b3155; }
+    .item-number { color: var(--muted); font-size: 0.75rem; }
+    .item-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.84rem; }
+    .pill { min-width: 28px; padding: 3px 6px; border-radius: 99px; text-align: center; color: var(--muted); background: #263553; font-size: 0.67rem; font-weight: 800; }
+    .pill.complete { color: #d9ffeb; background: #126841; }
+    .pill.started { color: #fff0bd; background: #70551d; }
+
+    .footer { margin: 13px 2px 0; color: var(--muted); font-size: 0.82rem; line-height: 1.45; }
+    .toast { position: fixed; right: 20px; bottom: 20px; z-index: 50; max-width: min(430px, calc(100vw - 40px)); padding: 11px 14px; border: 1px solid var(--border); border-radius: 10px; background: #1b3155; opacity: 0; transform: translateY(8px); pointer-events: none; transition: 150ms ease; }
+    .toast.visible { opacity: 1; transform: none; }
+
+    dialog { width: min(1500px, 96vw); max-height: 94vh; padding: 0; border: 1px solid var(--border); border-radius: 12px; background: #050811; color: var(--text); }
+    dialog::backdrop { background: rgba(0, 0, 0, 0.86); }
+    .dialog-bar { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 9px 12px; background: var(--panel); }
+    .dialog-bar button { min-height: 34px; padding: 0 11px; }
+    dialog img { display: block; width: 100%; max-height: calc(94vh - 55px); object-fit: contain; }
+
+    @media (max-width: 1050px) {
+      .topbar { flex-direction: column; }
+      .actions { justify-content: flex-start; }
+      .workspace { grid-template-columns: 1fr; }
+      .sidebar { min-height: 0; }
+      .event-list { max-height: 350px; }
+    }
+
+    @media (max-width: 720px) {
+      .app { padding: 11px; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .question-row, .text-fields { grid-template-columns: 1fr; }
+      .evidence-grid { grid-template-columns: 1fr; }
+      .evidence-card img { height: 230px; }
+      .navigation { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <h1>JAAD observable context annotator v2.1</h1>
+        <p class="subtitle">
+          Annotate observable crossing infrastructure for every JAAD pedestrian event. Files remain on this computer.
+          Load the generated CSV and its evidence folder. The original video folder is optional.
+        </p>
+      </div>
+      <div class="actions">
+        <label class="file-button">Load annotation CSV<input id="csvInput" type="file" accept=".csv,text/csv"></label>
+        <label class="file-button">Select evidence folder<input id="evidenceInput" type="file" webkitdirectory directory multiple accept="image/*,video/*"></label>
+        <label class="file-button">Select video folder (optional)<input id="videoInput" type="file" webkitdirectory directory multiple accept="video/*"></label>
+        <button id="exportButton" class="primary" type="button" disabled>Export updated CSV</button>
+      </div>
+    </header>
+
+    <section class="metrics" aria-label="Annotation progress">
+      <div class="metric"><div class="metric-label">Events</div><div id="totalCount" class="metric-value">0</div></div>
+      <div class="metric"><div class="metric-label">Complete</div><div id="completeCount" class="metric-value">0</div></div>
+      <div class="metric"><div class="metric-label">Incomplete</div><div id="incompleteCount" class="metric-value">0</div></div>
+      <div class="metric"><div class="metric-label">Videos</div><div id="videoCount" class="metric-value">0</div></div>
+      <div class="metric"><div class="metric-label">Evidence files</div><div id="evidenceCount" class="metric-value">0</div></div>
+    </section>
+    <div class="progress" aria-hidden="true"><div id="progressFill"></div></div>
+
+    <section class="workspace">
+      <article class="main">
+        <div class="event-header">
+          <div>
+            <div id="eventTitle" class="event-title">Load a context annotation CSV to begin</div>
+            <div id="eventMeta" class="event-meta"></div>
+          </div>
+          <div id="eventPosition" class="position">0 / 0</div>
+        </div>
+
+        <div id="emptyState" class="empty">
+          First choose <code>results\jaad_context_audit\&lt;split&gt;\context_annotations.csv</code>.
+          Then select the matching <code>evidence</code> folder.
+        </div>
+
+        <section id="videoSection" class="video-section">
+          <h2 id="videoSectionTitle" class="section-title">Target preview video</h2>
+          <video id="videoPlayer" controls preload="metadata"></video>
+          <div class="video-controls">
+            <button id="seekCrossing" type="button">Seek to crossing</button>
+            <button id="backSecond" type="button">−1 second</button>
+            <button id="forwardSecond" type="button">+1 second</button>
+          </div>
+        </section>
+
+        <section id="evidenceSection" hidden>
+          <h2 class="section-title">Chronological evidence</h2>
+          <div id="evidenceGrid" class="evidence-grid"></div>
+        </section>
+
+        <form id="annotationForm" class="form" hidden>
+          <div id="questionContainer"></div>
+
+          <div class="text-fields">
+            <label class="text-field">Annotator<input id="annotatorInput" type="text" autocomplete="name"></label>
+            <label class="text-field">Notes<textarea id="notesInput" placeholder="Optional ambiguity or evidence note"></textarea></label>
+          </div>
+
+          <div id="policyNote" class="policy-note"></div>
+
+          <div class="navigation">
+            <button id="previousButton" type="button">← Previous</button>
+            <button id="clearButton" type="button">Clear labels</button>
+            <button id="nextIncompleteButton" type="button">Next incomplete</button>
+            <button id="nextButton" type="button">Next →</button>
+          </div>
+        </form>
+      </article>
+
+      <aside class="sidebar">
+        <div class="side-controls">
+          <input id="searchInput" type="search" placeholder="Search video or pedestrian" disabled>
+          <div class="filters">
+            <button type="button" data-filter="all" class="active" disabled>All</button>
+            <button type="button" data-filter="incomplete" disabled>Incomplete</button>
+            <button type="button" data-filter="complete" disabled>Complete</button>
+          </div>
+        </div>
+        <div id="eventList" class="event-list"></div>
+      </aside>
+    </section>
+
+    <p class="footer">
+      Progress is saved automatically in this browser. Export regularly and replace the original
+      <code>context_annotations.csv</code> before running the VLM comparison. Arrow keys move between events when a text field is not active.
+    </p>
+  </main>
+
+  <dialog id="imageDialog">
+    <div class="dialog-bar"><span id="dialogLabel"></span><button id="closeDialog" type="button">Close</button></div>
+    <img id="dialogImage" alt="Enlarged evidence">
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const REQUIRED_FIELDS = [
+        "marked_crosswalk",
+        "permissive_pedestrian_signal",
+        "authorised_crossing_sign",
+        "crossing_guard_permission",
+        "prohibitive_pedestrian_signal",
+        "visibility",
+      ];
+      const SAVED_FIELDS = [...REQUIRED_FIELDS, "annotator", "notes"];
+      const TERNARY = ["YES", "NO", "UNCERTAIN"];
+      const QUESTIONS = [
+        ["marked_crosswalk", "Marked crosswalk", "Visible zebra stripes or another clearly marked pedestrian crossing on this person's path.", TERNARY],
+        ["permissive_pedestrian_signal", "Permissive pedestrian signal", "A visible active walk or green pedestrian signal that applies to this person.", TERNARY],
+        ["authorised_crossing_sign", "Authorised crossing sign", "A visible sign explicitly designating this location as a pedestrian crossing.", TERNARY],
+        ["crossing_guard_permission", "Crossing guard permission", "A visible authorised person is directing this pedestrian to cross.", TERNARY],
+        ["prohibitive_pedestrian_signal", "Prohibitive pedestrian signal", "A visible red or do not walk pedestrian signal applies to this person. Do not use vehicle traffic lights.", TERNARY],
+        ["visibility", "Overall visibility", "Whether the relevant crossing path and controls can be judged from the supplied evidence.", ["CLEAR", "PARTIAL", "INSUFFICIENT"]],
+      ];
+      const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+      const VIDEO_EXTENSIONS = [".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"];
+
+      const byId = id => document.getElementById(id);
+      const csvInput = byId("csvInput");
+      const evidenceInput = byId("evidenceInput");
+      const videoInput = byId("videoInput");
+      const exportButton = byId("exportButton");
+      const totalCount = byId("totalCount");
+      const completeCount = byId("completeCount");
+      const incompleteCount = byId("incompleteCount");
+      const videoCount = byId("videoCount");
+      const evidenceCount = byId("evidenceCount");
+      const progressFill = byId("progressFill");
+      const eventTitle = byId("eventTitle");
+      const eventMeta = byId("eventMeta");
+      const eventPosition = byId("eventPosition");
+      const emptyState = byId("emptyState");
+      const videoSection = byId("videoSection");
+      const videoSectionTitle = byId("videoSectionTitle");
+      const videoPlayer = byId("videoPlayer");
+      const evidenceSection = byId("evidenceSection");
+      const evidenceGrid = byId("evidenceGrid");
+      const annotationForm = byId("annotationForm");
+      const questionContainer = byId("questionContainer");
+      const annotatorInput = byId("annotatorInput");
+      const notesInput = byId("notesInput");
+      const policyNote = byId("policyNote");
+      const searchInput = byId("searchInput");
+      const eventList = byId("eventList");
+      const filterButtons = [...document.querySelectorAll("[data-filter]")];
+      const imageDialog = byId("imageDialog");
+      const dialogImage = byId("dialogImage");
+      const dialogLabel = byId("dialogLabel");
+      const toast = byId("toast");
+
+      let headers = [];
+      let rows = [];
+      let sourceName = "context_annotations.csv";
+      let storageKey = "";
+      let currentIndex = -1;
+      let activeFilter = "all";
+      let evidenceFiles = [];
+      let previewFiles = [];
+      let videos = new Map();
+      let imageUrls = [];
+      let videoUrl = null;
+      let toastTimer = null;
+
+      function normalisePath(value) {
+        return String(value || "").replaceAll("\\", "/").replace(/^\.\//, "").toLowerCase();
+      }
+
+      function eventKey(row) {
+        return `${row.video_id || ""}::${row.jaad_pedestrian_id || ""}`;
+      }
+
+      function isHiddenMetadata(file) {
+        const path = normalisePath(file.webkitRelativePath || file.name);
+        return file.name.startsWith(".") || path.includes("/__macosx/");
+      }
+
+      function hasExtension(file, extensions) {
+        const name = file.name.toLowerCase();
+        return extensions.some(extension => name.endsWith(extension));
+      }
+
+      function parseCsv(text) {
+        const output = [];
+        let row = [];
+        let cell = "";
+        let quoted = false;
+        const clean = text.replace(/^\ufeff/, "");
+
+        for (let index = 0; index < clean.length; index += 1) {
+          const character = clean[index];
+          if (quoted) {
+            if (character === '"' && clean[index + 1] === '"') {
+              cell += '"';
+              index += 1;
+            } else if (character === '"') {
+              quoted = false;
+            } else {
+              cell += character;
+            }
+          } else if (character === '"') {
+            quoted = true;
+          } else if (character === ",") {
+            row.push(cell);
+            cell = "";
+          } else if (character === "\n") {
+            row.push(cell.replace(/\r$/, ""));
+            output.push(row);
+            row = [];
+            cell = "";
+          } else {
+            cell += character;
+          }
+        }
+        if (cell.length || row.length) {
+          row.push(cell.replace(/\r$/, ""));
+          output.push(row);
+        }
+        return output.filter(item => item.some(value => value !== ""));
+      }
+
+      function csvCell(value) {
+        return `"${String(value ?? "").replaceAll('"', '""')}"`;
+      }
+
+      function serialiseCsv() {
+        return [headers, ...rows.map(row => headers.map(header => row[header] ?? ""))]
+          .map(row => row.map(csvCell).join(","))
+          .join("\r\n") + "\r\n";
+      }
+
+      function validateHeaders() {
+        const essential = ["video_id", "jaad_pedestrian_id", "evidence_directory", ...REQUIRED_FIELDS];
+        const missing = essential.filter(header => !headers.includes(header));
+        if (missing.length) {
+          throw new Error(`CSV is missing columns: ${missing.join(", ")}`);
+        }
+      }
+
+      function isComplete(row) {
+        return REQUIRED_FIELDS.every(field => {
+          const value = String(row[field] || "").trim().toUpperCase();
+          const allowed = field === "visibility" ? ["CLEAR", "PARTIAL", "INSUFFICIENT"] : TERNARY;
+          return allowed.includes(value);
+        });
+      }
+
+      function isStarted(row) {
+        return SAVED_FIELDS.some(field => String(row[field] || "").trim());
+      }
+
+      function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add("visible");
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 2800);
+      }
+
+      function restoreProgress() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+          rows.forEach(row => {
+            const values = saved[eventKey(row)];
+            if (!values) return;
+            SAVED_FIELDS.forEach(field => {
+              if (Object.hasOwn(values, field) && !String(row[field] || "").trim()) {
+                row[field] = values[field];
+              }
+            });
+          });
+        } catch (error) {
+          showToast("Saved browser progress could not be restored.");
+        }
+      }
+
+      function saveProgress() {
+        if (!storageKey) return;
+        const saved = {};
+        rows.forEach(row => {
+          saved[eventKey(row)] = Object.fromEntries(SAVED_FIELDS.map(field => [field, row[field] || ""]));
+        });
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(saved));
+        } catch (error) {
+          showToast("Browser storage is unavailable. Export the CSV frequently.");
+        }
+      }
+
+      function currentRow() {
+        return currentIndex >= 0 && currentIndex < rows.length ? rows[currentIndex] : null;
+      }
+
+      function buildQuestions() {
+        questionContainer.replaceChildren();
+        QUESTIONS.forEach(([field, label, help, values]) => {
+          const card = document.createElement("section");
+          card.className = "question-card";
+          const layout = document.createElement("div");
+          layout.className = "question-row";
+          const description = document.createElement("div");
+          const title = document.createElement("div");
+          title.className = "question-label";
+          title.textContent = label;
+          const guidance = document.createElement("div");
+          guidance.className = "question-help";
+          guidance.textContent = help;
+          description.append(title, guidance);
+
+          const choices = document.createElement("div");
+          choices.className = "choices";
+          values.forEach(value => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "choice";
+            button.dataset.field = field;
+            button.dataset.value = value;
+            button.textContent = value;
+            button.addEventListener("click", () => setField(field, value));
+            choices.appendChild(button);
+          });
+          layout.append(description, choices);
+          card.appendChild(layout);
+          questionContainer.appendChild(card);
+        });
+      }
+
+      function updateMetrics() {
+        const complete = rows.filter(isComplete).length;
+        totalCount.textContent = String(rows.length);
+        completeCount.textContent = String(complete);
+        incompleteCount.textContent = String(rows.length - complete);
+        videoCount.textContent = String(new Set(rows.map(row => row.video_id)).size);
+        evidenceCount.textContent = String(evidenceFiles.length);
+        progressFill.style.width = rows.length ? `${100 * complete / rows.length}%` : "0%";
+      }
+
+      function matchesFilter(row) {
+        const search = searchInput.value.trim().toLowerCase();
+        const searchable = `${row.video_id || ""} ${row.filename || ""} ${row.jaad_pedestrian_id || ""}`.toLowerCase();
+        if (search && !searchable.includes(search)) return false;
+        if (activeFilter === "complete") return isComplete(row);
+        if (activeFilter === "incomplete") return !isComplete(row);
+        return true;
+      }
+
+      function renderList() {
+        eventList.replaceChildren();
+        rows.forEach((row, index) => {
+          if (!matchesFilter(row)) return;
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = `event-item${index === currentIndex ? " current" : ""}`;
+          const number = document.createElement("span");
+          number.className = "item-number";
+          number.textContent = String(index + 1).padStart(3, "0");
+          const name = document.createElement("span");
+          name.className = "item-name";
+          name.textContent = `${row.video_id} · ${row.jaad_pedestrian_id}`;
+          name.title = name.textContent;
+          const status = document.createElement("span");
+          status.className = "pill";
+          status.textContent = "—";
+          if (isComplete(row)) {
+            status.textContent = "OK";
+            status.classList.add("complete");
+          } else if (isStarted(row)) {
+            status.textContent = "…";
+            status.classList.add("started");
+          }
+          button.append(number, name, status);
+          button.addEventListener("click", () => {
+            currentIndex = index;
+            renderCurrent();
+          });
+          eventList.appendChild(button);
+        });
+        if (!eventList.children.length && rows.length) {
+          const message = document.createElement("div");
+          message.className = "empty";
+          message.textContent = "No events match this filter.";
+          eventList.appendChild(message);
+        }
+      }
+
+      function evidenceFor(row) {
+        const rawTarget = normalisePath(row.evidence_directory);
+        const target = rawTarget.includes("evidence/") ? rawTarget.split("evidence/").pop() : rawTarget;
+        const videoPedestrian = `${String(row.video_id).toLowerCase()}/${String(row.jaad_pedestrian_id).toLowerCase()}`;
+        return evidenceFiles.filter(file => {
+          const path = normalisePath(file.webkitRelativePath || file.name);
+          return path.includes(`${target}/`) || path.includes(`${videoPedestrian}/`);
+        }).sort((left, right) => left.name.localeCompare(right.name, undefined, { numeric: true }));
+      }
+
+      function previewFor(row) {
+        const rawTarget = normalisePath(row.evidence_directory);
+        const target = rawTarget.includes("evidence/") ? rawTarget.split("evidence/").pop() : rawTarget;
+        const videoPedestrian = `${String(row.video_id).toLowerCase()}/${String(row.jaad_pedestrian_id).toLowerCase()}`;
+        return previewFiles.find(file => {
+          const path = normalisePath(file.webkitRelativePath || file.name);
+          return file.name.toLowerCase() === "target_preview.mp4"
+            && (path.includes(`${target}/`) || path.includes(`${videoPedestrian}/`));
+        });
+      }
+
+      function releaseMediaUrls() {
+        imageUrls.forEach(url => URL.revokeObjectURL(url));
+        imageUrls = [];
+        if (videoUrl) URL.revokeObjectURL(videoUrl);
+        videoUrl = null;
+      }
+
+      function renderEvidence(row) {
+        evidenceGrid.replaceChildren();
+        const files = evidenceFor(row);
+        if (!files.length) {
+          const message = document.createElement("div");
+          message.className = "empty";
+          message.textContent = "No matching evidence found. Select the evidence folder for this CSV split.";
+          evidenceGrid.appendChild(message);
+          return;
+        }
+        files.forEach(file => {
+          const url = URL.createObjectURL(file);
+          imageUrls.push(url);
+          const card = document.createElement("div");
+          card.className = "evidence-card";
+          const open = document.createElement("button");
+          open.type = "button";
+          const image = document.createElement("img");
+          image.src = url;
+          image.alt = file.name;
+          image.loading = "lazy";
+          open.appendChild(image);
+          open.addEventListener("click", () => {
+            dialogImage.src = url;
+            dialogLabel.textContent = file.name;
+            imageDialog.showModal();
+          });
+          const label = document.createElement("div");
+          label.className = "evidence-label";
+          label.textContent = file.name.replace("_context", " · full scene").replace("_focus", " · target focus");
+          card.append(open, label);
+          evidenceGrid.appendChild(card);
+        });
+      }
+
+      function renderVideo(row) {
+        const preview = previewFor(row);
+        const filename = String(row.filename || `${row.video_id}.mp4`).toLowerCase();
+        const file = preview || videos.get(filename) || videos.get(`${String(row.video_id).toLowerCase()}.mp4`);
+        if (!file) {
+          videoSection.style.display = "none";
+          videoPlayer.removeAttribute("src");
+          return;
+        }
+        videoUrl = URL.createObjectURL(file);
+        videoPlayer.src = videoUrl;
+        videoSection.style.display = "block";
+        videoSectionTitle.textContent = preview ? "Target preview video" : "Original video";
+        byId("seekCrossing").style.display = preview ? "none" : "inline-block";
+      }
+
+      function observableStatus(row) {
+        const visibility = String(row.visibility || "").toUpperCase();
+        const values = Object.fromEntries(REQUIRED_FIELDS.map(field => [field, String(row[field] || "").toUpperCase()]));
+        if (visibility === "INSUFFICIENT") return "INSUFFICIENT_VISIBILITY";
+        const permissionFields = ["marked_crosswalk", "permissive_pedestrian_signal", "authorised_crossing_sign", "crossing_guard_permission"];
+        if (permissionFields.some(field => values[field] === "YES")) return "VISIBLE_CROSSING_PERMISSION";
+        if (permissionFields.every(field => values[field] === "NO")) return "NO_VISIBLE_CROSSING_PERMISSION";
+        return "UNCERTAIN_CONTEXT";
+      }
+
+      function renderPolicyNote(row) {
+        const status = observableStatus(row);
+        policyNote.className = "policy-note";
+        if (!REQUIRED_FIELDS.some(field => String(row[field] || "").trim())) return;
+        const prohibition = String(row.prohibitive_pedestrian_signal || "").toUpperCase() === "YES"
+          ? " A prohibitive pedestrian signal is also visible."
+          : "";
+        policyNote.textContent = `Observable context summary: ${status}.${prohibition}`;
+        policyNote.classList.add(status.includes("UNCERTAIN") || status.includes("INSUFFICIENT") ? "warning" : "ok");
+      }
+
+      function renderForm(row) {
+        document.querySelectorAll(".choice").forEach(button => {
+          button.classList.toggle("selected", String(row[button.dataset.field] || "").toUpperCase() === button.dataset.value);
+        });
+        annotatorInput.value = row.annotator || "";
+        notesInput.value = row.notes || "";
+        renderPolicyNote(row);
+      }
+
+      function renderCurrent() {
+        const row = currentRow();
+        if (!row) return;
+        releaseMediaUrls();
+        emptyState.hidden = true;
+        evidenceSection.hidden = false;
+        annotationForm.hidden = false;
+        eventTitle.textContent = `${row.video_id} · pedestrian ${row.jaad_pedestrian_id}`;
+        eventMeta.textContent = `Split ${row.split || "unknown"} · crossing frames ${row.crossing_start_frame || "?"} to ${row.crossing_end_frame || "?"}`;
+        eventPosition.textContent = `${currentIndex + 1} / ${rows.length}`;
+        renderVideo(row);
+        renderEvidence(row);
+        renderForm(row);
+        updateMetrics();
+        renderList();
+        const selected = eventList.querySelector(".event-item.current");
+        if (selected) selected.scrollIntoView({ block: "nearest" });
+      }
+
+      function setField(field, value) {
+        const row = currentRow();
+        if (!row) return;
+        row[field] = value;
+        saveProgress();
+        renderForm(row);
+        updateMetrics();
+        renderList();
+      }
+
+      function navigate(offset) {
+        if (!rows.length) return;
+        currentIndex = Math.max(0, Math.min(rows.length - 1, currentIndex + offset));
+        renderCurrent();
+      }
+
+      function nextIncomplete() {
+        if (!rows.length) return;
+        for (let step = 1; step <= rows.length; step += 1) {
+          const index = (currentIndex + step) % rows.length;
+          if (!isComplete(rows[index])) {
+            currentIndex = index;
+            renderCurrent();
+            return;
+          }
+        }
+        showToast("Every event is complete. Export the updated CSV.");
+      }
+
+      function clearCurrent() {
+        const row = currentRow();
+        if (!row || !window.confirm("Clear all manual labels for this pedestrian event?")) return;
+        REQUIRED_FIELDS.forEach(field => { row[field] = ""; });
+        row.notes = "";
+        saveProgress();
+        renderCurrent();
+      }
+
+      function exportCsv() {
+        if (!rows.length) return;
+        const csv = serialiseCsv();
+        const blob = new Blob(["\ufeff", csv], { type: "text/csv;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = sourceName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        const remaining = rows.filter(row => !isComplete(row)).length;
+        showToast(remaining ? `CSV exported with ${remaining} incomplete events.` : "Complete CSV exported.");
+      }
+
+      csvInput.addEventListener("change", async event => {
+        const file = event.target.files[0];
+        if (!file) return;
+        try {
+          const matrix = parseCsv(await file.text());
+          if (matrix.length < 2) throw new Error("CSV contains no annotation rows.");
+          const sourceHeaders = matrix[0].map(value => value.trim());
+          rows = matrix.slice(1).map(values => Object.fromEntries(sourceHeaders.map((header, index) => [header, values[index] ?? ""])));
+          headers = sourceHeaders.filter(header => header !== "is_jaywalking");
+          rows.forEach(row => { delete row.is_jaywalking; });
+          validateHeaders();
+          sourceName = file.name;
+          storageKey = `jaad-context-annotations-v1:${sourceName}:${rows.length}:${eventKey(rows[0])}:${eventKey(rows.at(-1))}`;
+          restoreProgress();
+          currentIndex = Math.max(0, rows.findIndex(row => !isComplete(row)));
+          exportButton.disabled = false;
+          searchInput.disabled = false;
+          filterButtons.forEach(button => { button.disabled = false; });
+          activeFilter = "all";
+          filterButtons.forEach(button => button.classList.toggle("active", button.dataset.filter === "all"));
+          renderCurrent();
+          showToast(`${rows.length} pedestrian crossing events loaded.`);
+        } catch (error) {
+          rows = [];
+          currentIndex = -1;
+          exportButton.disabled = true;
+          showToast(error instanceof Error ? error.message : "Could not load the CSV.");
+        }
+      });
+
+      evidenceInput.addEventListener("change", event => {
+        const selected = [...event.target.files].filter(file => !isHiddenMetadata(file));
+        evidenceFiles = selected.filter(file => file.type.startsWith("image/") || hasExtension(file, IMAGE_EXTENSIONS));
+        previewFiles = selected.filter(file => file.name.toLowerCase() === "target_preview.mp4");
+        evidenceFiles.sort((left, right) => left.name.localeCompare(right.name, undefined, { numeric: true }));
+        evidenceCount.textContent = String(evidenceFiles.length);
+        if (currentRow()) renderCurrent();
+        showToast(`${evidenceFiles.length} evidence images and ${previewFiles.length} target clips loaded.`);
+      });
+
+      videoInput.addEventListener("change", event => {
+        videos = new Map();
+        [...event.target.files]
+          .filter(file => !isHiddenMetadata(file) && (file.type.startsWith("video/") || hasExtension(file, VIDEO_EXTENSIONS)))
+          .forEach(file => videos.set(file.name.toLowerCase(), file));
+        if (currentRow()) renderCurrent();
+        showToast(`${videos.size} videos loaded.`);
+      });
+
+      annotatorInput.addEventListener("input", () => {
+        const row = currentRow();
+        if (row) { row.annotator = annotatorInput.value; saveProgress(); }
+      });
+      notesInput.addEventListener("input", () => {
+        const row = currentRow();
+        if (row) { row.notes = notesInput.value; saveProgress(); }
+      });
+      searchInput.addEventListener("input", renderList);
+      filterButtons.forEach(button => button.addEventListener("click", () => {
+        activeFilter = button.dataset.filter;
+        filterButtons.forEach(candidate => candidate.classList.toggle("active", candidate === button));
+        renderList();
+      }));
+
+      byId("previousButton").addEventListener("click", () => navigate(-1));
+      byId("nextButton").addEventListener("click", () => navigate(1));
+      byId("nextIncompleteButton").addEventListener("click", nextIncomplete);
+      byId("clearButton").addEventListener("click", clearCurrent);
+      exportButton.addEventListener("click", exportCsv);
+      byId("seekCrossing").addEventListener("click", () => {
+        const frame = Number(currentRow()?.crossing_start_frame || 0);
+        videoPlayer.currentTime = Math.max(0, frame / 30);
+      });
+      byId("backSecond").addEventListener("click", () => { videoPlayer.currentTime = Math.max(0, videoPlayer.currentTime - 1); });
+      byId("forwardSecond").addEventListener("click", () => { videoPlayer.currentTime = Math.min(videoPlayer.duration || Infinity, videoPlayer.currentTime + 1); });
+      byId("closeDialog").addEventListener("click", () => imageDialog.close());
+      imageDialog.addEventListener("click", event => { if (event.target === imageDialog) imageDialog.close(); });
+
+      document.addEventListener("keydown", event => {
+        if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement || event.target instanceof HTMLVideoElement) return;
+        if (event.key === "ArrowLeft") { event.preventDefault(); navigate(-1); }
+        if (event.key === "ArrowRight") { event.preventDefault(); navigate(1); }
+      });
+
+      window.addEventListener("beforeunload", releaseMediaUrls);
+      buildQuestions();
+      updateMetrics();
+    })();
+  </script>
+</body>
+</html>

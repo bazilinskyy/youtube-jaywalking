@@ -64,6 +64,14 @@ OPTIONAL_CROWD_DEFAULTS = {
     "crowd_audit_per_stratum": 50,
 }
 
+OPTIONAL_VLM_COMPARISON_DEFAULTS = {
+    "vlm_comparison_models": [
+        "Qwen/Qwen3-VL-8B-Instruct",
+        "google/gemma-4-12B-it",
+    ],
+    "vlm_comparison_results": "results/jaad_vlm_comparison_v1",
+}
+
 CROSSING_KEYS = (
     "road_left",
     "road_right",
@@ -281,9 +289,9 @@ class ProjectConfig:
             "jpeg_quality": self.get("evidence_jpeg_quality"),
         }
 
-    def vlm_settings(self) -> dict[str, Any]:
+    def vlm_settings(self, model_id: str | None = None) -> dict[str, Any]:
         return {
-            "model_id": self.get("vlm_model"),
+            "model_id": model_id or self.get("vlm_model"),
             "device_map": self.get("vlm_device_map"),
             "torch_dtype": self.get("vlm_torch_dtype"),
             "attn_implementation": self.get("vlm_attn_implementation"),
@@ -292,6 +300,23 @@ class ProjectConfig:
             "min_pixels": self.get("vlm_min_pixels"),
             "max_pixels": self.get("vlm_max_pixels"),
             "max_new_tokens": self.get("vlm_max_new_tokens"),
+        }
+
+    def vlm_comparison_settings(self) -> dict[str, Any]:
+        """Return model candidates and output location for VLM selection."""
+
+        models_value = self.raw.get(
+            "vlm_comparison_models",
+            OPTIONAL_VLM_COMPARISON_DEFAULTS["vlm_comparison_models"],
+        )
+        if not isinstance(models_value, list):
+            raise ValueError("vlm_comparison_models must be a list")
+        return {
+            "models": [str(item).strip() for item in models_value],
+            "results": self._resolved_optional_path(
+                "vlm_comparison_results",
+                OPTIONAL_VLM_COMPARISON_DEFAULTS["vlm_comparison_results"],
+            ),
         }
 
     def policy_settings(self) -> dict[str, Any]:
@@ -380,6 +405,8 @@ class ProjectConfig:
         for key, default in OPTIONAL_CLASSIFIER_DEFAULTS.items():
             effective_config.setdefault(key, default)
         for key, default in OPTIONAL_CROWD_DEFAULTS.items():
+            effective_config.setdefault(key, default)
+        for key, default in OPTIONAL_VLM_COMPARISON_DEFAULTS.items():
             effective_config.setdefault(key, default)
         payload = {
             "config": effective_config,
@@ -495,6 +522,14 @@ class ProjectConfig:
             raise ValueError("VLM pixel limits must satisfy 0 < min_pixels <= max_pixels")
         if int(self.get("vlm_max_new_tokens")) <= 0:
             raise ValueError("vlm_max_new_tokens must be positive")
+
+        comparison = self.vlm_comparison_settings()
+        if len(comparison["models"]) < 2:
+            raise ValueError("vlm_comparison_models must contain at least two models")
+        if any(not model for model in comparison["models"]):
+            raise ValueError("vlm_comparison_models must not contain empty model IDs")
+        if len(set(comparison["models"])) != len(comparison["models"]):
+            raise ValueError("vlm_comparison_models must contain distinct model IDs")
 
         self.path("jaad_root")
         self.path("jaad_benchmark_results")

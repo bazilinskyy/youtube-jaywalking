@@ -152,6 +152,26 @@ class ProjectConfigTests(unittest.TestCase):
         self.assertEqual(settings["max_segments"], 0)
         self.assertEqual(settings["audit_per_stratum"], 50)
 
+    def test_vlm_comparison_settings_have_backwards_compatible_defaults(self) -> None:
+        raw = json.loads(self.template)
+        raw.pop("vlm_comparison_models")
+        raw.pop("vlm_comparison_results")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "config").write_text(json.dumps(raw), encoding="utf-8")
+            previous = Path.cwd()
+            try:
+                os.chdir(root)
+                settings = ProjectConfig.load().vlm_comparison_settings()
+            finally:
+                os.chdir(previous)
+
+        self.assertEqual(
+            settings["models"],
+            ["Qwen/Qwen3-VL-8B-Instruct", "google/gemma-4-12B-it"],
+        )
+        self.assertEqual(settings["results"].name, "jaad_vlm_comparison_v1")
+
 
 if __name__ == "__main__":
     unittest.main()
